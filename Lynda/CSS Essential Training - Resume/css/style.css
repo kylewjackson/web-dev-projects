@@ -1,0 +1,404 @@
+/* Color Palette
+	#51E5FF - Electric Blue rgb(81, 229, 255, 1);
+	#440381 - Indigo (web) rgb(68, 3, 129, 1);
+	#EC368D - Cerise Pink rgb(236, 54, 141, 1);
+	#FFA5A5 - Salmon Pink rgb(255, 165, 165, 1);
+	#FFD6C0 - Very Pale Orange rgb(255, 214, 192, 1);
+*/
+
+
+/* Global Styles 
+-----------------------*/
+html {
+  	box-sizing: border-box;
+}
+
+*, *:before, *:after {
+  	box-sizing: inherit;
+}
+
+body {
+	background: rgba(81, 229, 255, 1);
+	color: #440381;
+	font-family: 'Montserrat', sans-serif;
+	line-height: 1.5;
+	margin: 0; /* runs to edge of page */
+}
+
+h1, h2 {
+	font-family: 'Open Sans Condensed', sans-serif;
+	font-weight: 400;
+}
+
+h1 {
+	font-size: 5rem;
+}
+
+h2 {
+	font-size: 2.5rem;
+	margin-top: 0;
+}
+
+h3 {
+	margin: 0;
+}
+
+a {
+	text-decoration: none;
+	border-bottom: 1px solid;
+	padding: 4px 2px 0px 2px;
+	margin: 0px 1px;
+}
+
+ul {
+	font-style: italic;
+}
+
+.btn {
+	text-decoration: none;
+	background-color: #440381;
+	color: #51E5FF;
+	padding: 10px;
+	margin: 0;
+	display: inline-block;
+	border: none;
+}
+
+.content-wrap { 
+	max-width: 950px;
+	padding: 50px 50px;
+	margin: 0 auto;
+	/* Content within sections given max width, padded from edge, and centered */
+	overflow: auto;
+}
+
+.uppercase {
+	text-transform: uppercase;
+}
+
+
+/* Header and Footer
+-----------------------*/
+header {
+	padding-top: 50px;
+	position: relative;
+}
+
+header, footer {
+	background: #EC368D;
+	color: #FFA5A5;
+	/*	text-align: center;*/
+}
+
+.blue-link a {
+	color: #51E5FF;
+	margin: 10px;
+}
+
+
+/* Navigation
+-----------------------*/
+nav {
+	background: #51E5FF;
+	text-align: center;
+	position: fixed;
+	z-index: 1;
+	top: 0;
+	width: 100%;
+}
+
+nav a {
+	color: #440381;
+	display: inline-block;
+/*	padding: 15px 20px;*/
+	margin: 10px;
+	padding: 5px;
+	text-transform: uppercase;
+	font-weight: 700;
+	border: none;
+}
+
+
+/* Header */
+header h1, header h2 {
+	color: #FFD6C0;
+	margin: 0;
+}
+
+header strong {
+	color: #FFD6C0;
+	font-size: 1.05rem;
+}
+
+.profile-img {
+/*	width: 300px;  height will auto adjust 
+	float: left;
+	margin-right: 25px; */
+	float: left;
+	border-radius: 25%; /* round edges, 50% is circle */
+}
+
+header p.interests strong {
+	font-size: .95rem;
+}
+
+
+
+/* Footer */
+footer {
+	text-align: center;
+}
+
+
+
+/* Skillset
+-----------------------*/
+/* Skills */
+.skills {
+/*	background: #FFA5A5;*/
+	background: 
+		linear-gradient(rgba(255, 165, 165, 0.8), rgba(255, 165, 165, 0.8)),
+		url(https://picsum.photos/1200/800/?random) no-repeat fixed;
+		background-size: cover;
+	text-align: center;
+}
+
+.skills-list {
+	display: inline-block;
+	text-align: left;
+}
+
+.skills span { /* skills list items */
+	background: #FFD6C0;
+	color: #EC368D;
+/*	font-size: .95rem;*/
+	font-style: normal;
+	display: inline-block;  /* span is inline, can only pad left/right */
+/*	padding: 7px 49px 7px 7px;
+	margin: 3px;*/
+}
+
+
+
+/* Work Experience
+-----------------------*/
+.work {
+	background: #FFD6C0;
+}
+
+p.date {
+	font-style: italic;
+	font-size: .9rem;
+}
+
+p.date strong {
+	font-style: normal;
+	font-size: .9rem;
+}
+
+.work a {
+	color: #EC368D;
+}
+
+h3 ~ p {
+	margin: 0;
+}
+
+.job-description {
+	margin-bottom: 25px;
+	min-height: 110px;
+}
+
+.job-description p:first-of-type {
+	margin-top: 0;
+}
+
+
+/* Education 
+-----------------------*/
+.education {
+/*	background: #FFA5A5;*/
+	background: 
+		linear-gradient(rgba(255, 165, 165, 1), rgba(255, 165, 165, 0.75)),
+		url(https://picsum.photos/1200/800/?random) no-repeat fixed;
+		background-size: cover;
+}
+
+.education .date {
+	margin: 8px 0;
+}
+
+p#degree strong {
+	background: rgba(236, 54, 141, 0.8);
+/*	opacity: 0.85;*/
+	font-size: .9rem;
+	display: inline-block; /* strong is inline, can only pad left/right */
+	padding: 5px 45px 5px 8px;
+	margin: 3px 3px 3px 0px;
+}
+
+p + h3 {
+	margin-top: 30px;
+}
+
+
+
+ /* Media Queries
+ --------------------*/
+
+ @media (min-width: 700px) {
+ 	 /* Global */
+ 	.col-narrow {
+		width: 30%;
+		float: left;
+	/*	min-height: 175px;*/
+	/*	test*/
+	/*	border: 1px solid black;*/
+	}
+
+	.col-wide {
+		width: 70%;
+		float: left;
+		padding-left: 15px;
+	/*	min-height: 175px;*/
+	/*	test*/
+	/*	border: 1px solid black;*/
+	}
+
+	a:hover {
+		text-decoration: none;
+		padding: 2px;
+	}
+
+	.btn:hover {
+		background-color: #51E5FF;
+		color: #440381;
+		padding: 10px;
+		margin: 0;
+	}
+
+	/* Header and Footer */
+	.download {
+		position: absolute;
+		bottom: -20px;
+		right: 0;
+	}
+
+	.blue-link a:hover {
+		background: #51E5FF;
+		color: #EC368D;
+	}
+
+	/* Navigation */
+	nav a:hover {
+		background: #EC368D;
+		color: #51E5FF;
+		padding: 5px;
+	}
+
+	/* Content */
+	.work a:hover {
+		background: #EC368D;
+		color: #FFD6C0;
+	}
+
+	.skills span { /* skills list items */
+		font-size: .95rem;
+		padding: 7px 49px 7px 7px;
+		margin: 3px;
+	}
+
+ }
+
+/* Single Column */
+ @media (max-width: 699px) {
+	header {
+		text-align: center;
+	} 	
+
+	.profile-img {
+		width: 30%;
+	}
+
+	.skills span { /* skills list items */
+		font-size: .85rem;
+		padding: 4px 7px 4px 4px;
+		margin: 1px;
+	}
+
+ }
+
+/* Large Phones */
+ @media (max-width: 630px) {
+ 	header .content-wrap {
+ 		padding-top: 20%;
+ 	}
+ 	header h1 {
+ 		font-size: 12vw;
+ 		font-weight: 700;
+ 	}
+
+ 	header h2 {
+ 		font-size: 6vw;
+ 	}
+
+ 	.profile-img {
+ 		width: 45%;
+ 	}
+
+ 	#skills {
+ 		padding-top: 80px;
+ 		margin-top: -50px;
+ 	}
+
+ 	#work {
+ 		padding-top: 80px;
+ 		margin-top: -50px;
+ 	}
+
+ 	#education {
+ 		padding-top: 80px;
+ 		margin-top: -50px;
+ 	}
+ }
+
+/* Small Phones */
+@media (max-width: 399px) {
+	header .content-wrap {
+		padding-top: 25%;
+	}
+
+	nav {
+		height: 17%;
+	}
+
+	nav a {
+		font-size: 3.75vw;
+		padding-top: 3%;
+	}
+}
+
+@media (max-width: 320px) {
+	header .content-wrap {
+		padding-top: 30%;
+	}
+
+	nav {
+		height: 15%;
+	}
+
+	nav a {
+		font-size: 3.75vw;
+		padding-top: 3%;
+	}
+}
+
+@media (max-width: 288px) {
+	header .content-wrap {
+		padding-top: 5%;
+	}
+
+	nav {
+		display: none;
+	}
+}
