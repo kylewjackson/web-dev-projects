@@ -1,0 +1,121 @@
+body {
+  background: pink;
+  font-family: futura, sans-serif;
+  color: white;
+  text-align: center;
+}
+
+h1 {
+  font-size: 4rem;
+  letter-spacing: -.2rem;
+}
+
+h2 {
+  letter-spacing: .2rem;
+}
+
+h3 {
+  font-size: 1.2rem;
+  font-style: italic;
+}
+
+#title {
+  font-family: bodoni;
+}
+
+#img-div {
+  background: lightgray;
+}
+
+#image {
+  display: block;
+  max-width: 100%;
+  min-width: 150px;
+}
+
+#img-caption {
+  opacity: .5;
+  font-size: .85rem;
+}
+
+#tribute-info {
+  text-align: left;
+}
+
+#tribute-link {
+  color: red;
+  text-decoration: none;
+}
+
+
+@media (max-width: 400px) {
+  #img-caption {
+    font-size: .4rem;
+  }
+}
+
+/* Small screen */
+@media (max-width: 599px) {
+  h3 {
+    margin: 10vw 0px;
+    line-height: 2.5rem;
+  }
+
+  #img-div {
+    padding: 10px;
+    margin: 10vw 0px;
+  }
+
+  #image {
+    width: 90vw;
+    display: block;
+    margin: auto;
+  }
+
+  #img-caption {
+    margin-top: 10px;
+  }
+
+  #tribute-info {
+    margin: 10vw;
+  }
+
+}
+
+/* Large Screen */
+@media (min-width: 600px) {
+  main {
+    display: flex;
+    flex-flow: wrap;
+    justify-content: center;
+  }
+
+  h1, h3 {
+    margin: .75rem 0px;
+  }
+
+  #header {
+    display: flex;
+    width: 90vw;
+    align-items: center;
+  }
+
+  #title_caption {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    padding-right: 3vw;
+  }
+
+  #img-div {
+    margin-top: 3vh;
+  }
+
+  #image {
+    width: 60vw;
+  }
+
+  #tribute-info {
+    margin: 2vw 5vw;
+  }
+}

@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Survey Form</title>
+	<link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+<script src="https://cdn.freecodecamp.org/testable-projects-fcc/v1/bundle.js"></script>
+
+<h1 id="title">Some Form</h1>
+  
+<form id="survey-form">
+
+  <p id="description">A form for a thing but idk what to make it about because it's late af</p>
+
+  <div class="form-div">
+    <label for="name" id="name-label" class="label">* Name:</label> 
+    <input type="text" id="name" placeholder="First Last" class="input" required>
+  </div>
+
+  <div class="form-div">
+    <label for="email" id="email-label" class="label">* Email:</label> 
+    <input type="email" id="email" placeholder="your@email.com" class="input" required>
+  </div>
+
+  <div class="form-div">
+    <label for="age" id="number-label" class="label">* Age:</label> 
+    <input type="number" id="number" min="13" max="150" placeholder="13+" class="input" required>
+  </div>
+
+  <div class="form-div">
+    <label for="gender" id="gender-label" class="label">Gender:</label>
+    <select name="dropdown" id="dropdown" class="input">
+      <option value="male">Male</option>
+      <option value="female">Female</option>
+      <option value="other">Other</option>
+    </select>
+  </div>
+
+  <div class="form-div">
+    <label for="swole" id="swole-label" class="label">Swole?</label>
+    <div class="input">
+      <input type="radio" name="swole" value="1">Yea<br>
+      <input type="radio" name="swole" value="2">Nah<br>
+      <input type="radio" name="swole" value="3">Soon<br>
+    </div>
+  </div>
+
+  <div class="form-div">
+    <label for="affil" id="affil-label" class="label">Interested in (check all that apply):</label>
+    <div class="input">
+      <input type="checkbox" name="choice" value="1">Men<br>
+      <input type="checkbox" name="choice" value="2">Women<br>
+      <input type="checkbox" name="choice" value="3">Other<br>
+    </div>
+  </div>
+
+  <div class="form-div">
+    <label for="comments" id="comments-label" class="label">Comments:</label>
+    <textarea id="comments" name="comments" class="input"></textarea>
+  </div>
+
+  <div class="form-div"><input type="submit" id="submit"></div>
+
+  <h2>* Denotes Required Field</h2>
+  
+</form>
+</body>
+</html>
