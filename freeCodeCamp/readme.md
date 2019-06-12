@@ -4,7 +4,7 @@ Here is a [codepen collection](https://codepen.io/collection/npPeRk/) for the 5 
 
 These versions are somewhat barebones, since I finished them with the intent of moving onto the next lessons quickly. I'll probably continue to tweak them over time, but I feel like they're a decent representation of the concepts learned in the curriculum.
 
-### *Note*: when using the test script, make sure the correct test suite is selected from the dropdown menu.
+#### *Note*: when using the test script, make sure the correct test suite is selected from the dropdown menu.
 
 1. Project 1 - Build a Tribute Page: [codepen](https://codepen.io/kylewjackson/pen/ReJGRE) or [live preview](http://htmlpreview.github.io/?https://github.com/kylewjackson/web-dev-projects/blob/master/freeCodeCamp/FCC%201:%20Tribute%20Page/index.html)
 2. Project 2 - Build a Survey Form: [codepen](https://codepen.io/kylewjackson/pen/KGeNXo) or [live preview](http://htmlpreview.github.io/?https://github.com/kylewjackson/web-dev-projects/blob/master/freeCodeCamp/FCC%202:%20Survey%20Form/index.html)
