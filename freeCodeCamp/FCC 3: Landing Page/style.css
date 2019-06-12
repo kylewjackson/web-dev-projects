@@ -3,8 +3,8 @@ body {
   margin: 0px auto;
 
   background-color: #4F345A;
-  /*background-image: linear-gradient(#C9F299, #4F345A, #C9F299);*/
   color: #C9F299;
+  font-family: 'Old Standard TT', serif;
 }
 
 #header {
@@ -34,6 +34,9 @@ body {
 
 #nav-bar a {
   padding: .25rem;
+
+  font-family: 'Abril Fatface', cursive;
+  text-decoration: none;
 }
 
 .nav-link {

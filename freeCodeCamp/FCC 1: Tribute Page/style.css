@@ -30,7 +30,7 @@ h3 {
 #image {
   display: block;
   max-width: 100%;
-  min-width: 150px;
+  min-width: 100px;
 }
 
 #img-caption {
@@ -53,6 +53,7 @@ h3 {
     font-size: .4rem;
   }
 }
+
 
 /* Small screen */
 @media (max-width: 599px) {
