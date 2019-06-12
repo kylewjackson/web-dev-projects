@@ -1,4 +1,4 @@
-#FreeCodeCamp Responsive Design Projects
+# FreeCodeCamp Responsive Design Projects
 
 Here is a [codepen collection](https://codepen.io/collection/npPeRk/) for the 5 final projects of the FCC Responsive Design curriculum. Here is my [certifcate of completion](https://www.freecodecamp.org/certification/kylewjackson/responsive-web-design).
 
