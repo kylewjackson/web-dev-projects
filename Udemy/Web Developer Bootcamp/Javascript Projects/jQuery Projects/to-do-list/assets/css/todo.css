@@ -26,6 +26,13 @@ style {
 
 */
 
+.hide {
+	display: none;
+}
+
+#options.btwn {
+	justify-content: space-between;
+}
 
 body {
 	font-family: Roboto;
@@ -80,6 +87,10 @@ body {
 				outline: none;
 			}
 
+			input::placeholder {
+				opacity: .5;
+			}
+
 		ul {
 			margin: 0;
 			padding: 0;
@@ -107,7 +118,6 @@ body {
 
 				li span {
 					display: inline-block;
-					width: 0px;
 					height: 40px;
 					margin-right: 20px;
 
@@ -117,10 +127,46 @@ body {
 
 					background-color: #e74c3c;
 
-					transition: 0.2s linear;
+					transition: 0.25s linear;
 				}
+
+					.del {
+						width: 0px;
+
+						background-color: #e74c3c;
+					}
+
+					.fav {
+						float: right;
+						margin: 0;
+						width: 20px;
+
+						background-color: rgb(225, 225, 0);
+					}
 
 			.completed {
 				color: grey;
 				text-decoration: line-through;
 			}
+
+		#options {
+			display: flex;
+			align-items: center;
+			justify-content: flex-end;
+			height: 40px;
+			padding: 0 10px;
+		}
+
+				span.sort {
+					color: rgba(0, 130, 255, 0.75);
+					font-weight: 700;
+				}
+
+				span.sort-kind {
+					color: rgba(0, 130, 255, 0.55);
+				}
+
+					span.sort-kind:hover {
+						color: rgba(0, 130, 255, .85);
+					}
+

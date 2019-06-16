@@ -4,7 +4,7 @@ $('ul').on('click', 'li', function (){
 });
 
 //click on x to delete todo
-$('ul').on('click', 'span', function(e){
+$('ul').on('click', '.del', function(e){
 	$(this).parent().fadeOut(500, function(){
 		$(this).remove();
 	});
@@ -21,6 +21,18 @@ $('input[type="text"]').keypress(function(e){
 	}
 });
 
+//fade input field
 $('span').eq(0).click(function(){
 	$('input[type="text"]').fadeToggle(200);
+})
+
+//alphabetize list
+const alpha = () => $("li").sort((a, b) => 
+	$(b).text().charAt(1).toUpperCase() < $(a).text().charAt(1).toUpperCase() ? 1 : -1
+	).appendTo('#todo-list');
+
+//show sort options
+$('.sort').on('click', function(){
+	$('#options').toggleClass('btwn');;
+	$('.sort-kind').toggleClass('hide');
 })
