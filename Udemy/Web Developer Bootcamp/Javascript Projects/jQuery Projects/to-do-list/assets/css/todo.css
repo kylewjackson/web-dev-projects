@@ -1,0 +1,126 @@
+/*   Format Gudie
+style {
+	positioning-and-display: e.g.;
+	margin: 0;
+	display: flex;
+
+	text-styles: e.g.;
+	font-size: 20px;
+	color: red;
+
+	visiual-styles: e.g.;
+	border: 1px solid white;
+	background-color: blue;
+
+	transtitons: e.g.;
+	transform/etc: animation;
+}
+
+	nested {
+	
+	}
+
+		based-on-document-structure {
+	
+		}
+
+*/
+
+
+body {
+	font-family: Roboto;
+
+	background: #314755;  /* fallback for old browsers */
+	background: -webkit-linear-gradient(to right, #26a0da, #314755);  /* Chrome 10-25, Safari 5.1-6 */
+	background: linear-gradient(to right, #26a0da, #314755); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
+
+
+}
+
+	#container {
+		width: 360px;
+		margin: 100px auto;
+
+		background-color: #f7f7f7;
+		box-shadow: 0 0 3px rgba(0, 0, 0, 0.1);
+	}
+
+		h1 {
+			margin: 0;
+			padding: 10px 20px;
+
+			color: white;
+			text-transform: uppercase;
+			font-size: 24px;
+			font-weight: normal;
+
+			background-color: #2980b9;
+		}
+
+			.fa-pen-square {
+				float: right;
+			}
+
+		input {
+			width: 100%;
+			padding: 13px 13px 13px 20px;
+			box-sizing: border-box;
+
+			color: #2980b9;
+			font-size: 18px;
+
+			background-color: #f7f7f7;
+			border: 3px solid rgba(0, 0, 0, 0);
+		}
+
+			input:focus {
+				background-color: white;
+				border: 3px solid #2980b9;
+				outline: none;
+			}
+
+		ul {
+			margin: 0;
+			padding: 0;
+
+			list-style: none;
+		}
+
+			li {
+				height: 40px;
+
+				color: #666;
+				line-height: 40px;
+
+				background-color: white;
+			}
+
+				li:nth-child(2n) {
+					background-color: #f7f7f7;
+				}
+
+				li:hover span {
+					width: 40px;
+					opacity: 1;
+				}
+
+				li span {
+					display: inline-block;
+					width: 0px;
+					height: 40px;
+					margin-right: 20px;
+
+					color: white;
+					opacity: 0;
+					text-align: center;
+
+					background-color: #e74c3c;
+
+					transition: 0.2s linear;
+				}
+
+			.completed {
+				color: grey;
+				text-decoration: line-through;
+			}
