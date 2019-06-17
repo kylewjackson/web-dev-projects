@@ -26,12 +26,8 @@ style {
 
 */
 
-.hide {
-	display: none;
-}
-
-#options.btwn {
-	justify-content: space-between;
+.fas, #todo-list > li, #options > span {
+	cursor: pointer;
 }
 
 body {
@@ -152,21 +148,37 @@ body {
 		#options {
 			display: flex;
 			align-items: center;
-			justify-content: flex-end;
+			justify-content: space-around;
 			height: 40px;
 			padding: 0 10px;
 		}
 
 				span.sort {
+					margin-left: 100%;
+
 					color: rgba(0, 130, 255, 0.75);
 					font-weight: 700;
+
+					transition: .2s linear;
 				}
+
+					span.sort-clicked {
+						margin-left: 0;
+					}
 
 				span.sort-kind {
 					color: rgba(0, 130, 255, 0.55);
+					opacity: 0;
+
+					transition: .2s linear;
 				}
 
-					span.sort-kind:hover {
+				span.sort-vis {
+					color: rgba(0, 130, 255, 0.55);
+					opacity: 1;
+				}
+
+					span.sort-vis:hover {
 						color: rgba(0, 130, 255, .85);
 					}
 
