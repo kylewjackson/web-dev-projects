@@ -128,15 +128,3 @@ $('#options').on('click', function(e){
 		}
 	}
 })
-
-function tester(ele, undo) {
-	if (undo) {
-		$(ele).removeAttr('style');
-	} else {
-		$(ele).css('color', 'white');
-		$(ele).css('background-color', 'red');
-		$(ele).css('border', '1px solid black')
-	}
-}
-
-
