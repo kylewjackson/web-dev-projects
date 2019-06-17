@@ -14,15 +14,15 @@
 		<h1 class="active">To-Do List<span><i class="fas fa-minus"></i></span></h1>
 		<input type="text" name="todo" placeholder="Add New To-Do (enter to submit)">
 		<ul id="todo-list">
-			<li><span class="del"><i class="fas fa-trash-alt"></i></span>Carve Stakes<span class="fav"><i class="fas fa-star"></i></span></li>
-			<li><span class="del"><i class="fas fa-trash-alt"></i></span>Go to Library<span class="fav"><i class="fas fa-star"></i></span></li>
-			<li><span class="del"><i class="fas fa-trash-alt"></i></span>Visit Angel<span class="fav"><i class="fas fa-star"></i></span></li>
+			<li data-num="1"><span class="del"><i class="fas fa-trash-alt"></i></span>Carve Stakes<span class="fav"><i class="fas fa-star"></i></span></li>
+			<li data-num="2"><span class="del"><i class="fas fa-trash-alt"></i></span>Go to Library<span class="fav"><i class="fas fa-star"></i></span></li>
+			<li data-num="3"><span class="del"><i class="fas fa-trash-alt"></i></span>Visit Angel<span class="fav"><i class="fas fa-star"></i></span></li>
 		</ul>
 		<div id="options">
-			<span class="sort pointer">sort</span>
-			<span class="sort-kind" id="az">a - z</span>
-			<span class="sort-kind" id="asc">asc</span>
-			<span class="sort-kind" id="desc">desc</span>
+			<span class="sort pointer sort-trans">sort</span>
+			<span class="sort-kind sort-trans" id="az">a - z</span>
+			<span class="sort-kind sort-trans" id="asc">order</span>
+			<span class="sort-kind sort-trans" id="desc">new</span>
 		</div>
 	</div>
 

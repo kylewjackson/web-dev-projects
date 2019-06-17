@@ -2,7 +2,7 @@
 
 #### Taught by [Colt Steele](https://www.udemy.com/user/coltsteele/)
 
-I'll be uploading various small projects from throughout this course. Live previews can be viewed from the links below.
+I'll be uploading various small projects from throughout this course. Live previews can be viewed from the links below. (*Note*: FontAwesome icons don't always appear in live preview.)
 
 * CSS  
    [Photogrid](http://htmlpreview.github.io/?https://github.com/kylewjackson/web-dev-projects/blob/master/Udemy/Web%20Developer%20Bootcamp/CSS%20Projects/photogrid.html)  

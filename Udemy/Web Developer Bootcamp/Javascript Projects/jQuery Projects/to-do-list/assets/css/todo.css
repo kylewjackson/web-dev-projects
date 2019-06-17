@@ -154,6 +154,11 @@ body {
 				text-decoration: line-through;
 			}
 
+			.fa-check {
+				color: rgb(75, 255, 50);
+				text-decoration: none;
+			}
+
 		#options {
 			display: flex;
 			align-items: center;
@@ -178,9 +183,11 @@ body {
 				span.sort-kind {
 					color: rgba(0, 130, 255, 0.5);
 					opacity: 0;
-
-					transition: .2s linear;
 				}
+
+					.sort-trans {
+						transition: .2s linear;
+					}
 
 				span.sort-vis {
 					color: rgba(0, 130, 255, 0.5);
