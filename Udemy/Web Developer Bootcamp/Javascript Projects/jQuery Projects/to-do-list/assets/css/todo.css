@@ -61,7 +61,7 @@ body {
 			background-color: #2980b9;
 		}
 
-			.fa-pen-square {
+			.fa-pen-square, .fa-minus, .fa-plus {
 				float: right;
 			}
 
@@ -132,12 +132,21 @@ body {
 						background-color: #e74c3c;
 					}
 
-					.fav {
+					span.fav {
 						float: right;
 						margin: 0;
 						width: 20px;
 
-						background-color: rgb(225, 225, 0);
+						background-color: rgb(240, 240, 0);
+					}
+
+					.fav.active {
+						width: 40px;
+
+						color: rgb(240, 240, 0);
+
+						opacity: 1;
+						background-color: transparent;
 					}
 
 			.completed {
@@ -167,18 +176,22 @@ body {
 					}
 
 				span.sort-kind {
-					color: rgba(0, 130, 255, 0.55);
+					color: rgba(0, 130, 255, 0.5);
 					opacity: 0;
 
 					transition: .2s linear;
 				}
 
 				span.sort-vis {
-					color: rgba(0, 130, 255, 0.55);
+					color: rgba(0, 130, 255, 0.5);
 					opacity: 1;
 				}
 
 					span.sort-vis:hover {
 						color: rgba(0, 130, 255, .85);
+					}
+
+					.sort-vis.active {
+						color: rgba(0, 130, 255, 1);
 					}
 
