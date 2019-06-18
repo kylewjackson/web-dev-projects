@@ -14,7 +14,7 @@ I'll be uploading various small projects from throughout this course. Live previ
 
 * Javascript  
    [Color Game](http://htmlpreview.github.io/?https://github.com/kylewjackson/web-dev-projects/blob/master/Udemy/Web%20Developer%20Bootcamp/Javascript%20Projects/color-game-project/color-game.html)  
-   [Patatap Clone](http://htmlpreview.github.io/?)  
+   [Patatap Clone](http://htmlpreview.github.io/?https://github.com/kylewjackson/web-dev-projects/blob/master/Udemy/Web%20Developer%20Bootcamp/Javascript%20Projects/patatap-clone/circles.html)  
 
 * jQuery  
    [To-Do List](http://htmlpreview.github.io/?https://github.com/kylewjackson/web-dev-projects/blob/master/Udemy/Web%20Developer%20Bootcamp/Javascript%20Projects/jQuery%20Projects/to-do-list/index.html)  
