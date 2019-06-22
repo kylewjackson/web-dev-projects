@@ -4,6 +4,7 @@
 * Mongodb
 * Mongoose
 * Express
+* CSS Framework: Semantic UI
 
 *Note*: Dependendcies included in package.JSON.
 
