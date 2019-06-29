@@ -21,4 +21,5 @@ I'll be uploading various small projects from throughout this course. Live previ
 
 * Backend / Express  
   RESTful Blog App  
-  Authentication Demo with Passport JS
+  Authentication Demo with Passport JS  
+  [YelpCamp v1 - heroku demo](https://quiet-retreat-56369.herokuapp.com/)
