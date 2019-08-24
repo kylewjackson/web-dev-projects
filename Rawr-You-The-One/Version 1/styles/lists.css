@@ -1,0 +1,171 @@
+/* Global List Styles */
+.selections-list-containers {
+    position: relative;
+}
+
+.list-labels {
+    position: absolute;
+    pointer-events: none;
+}
+
+/* Checked */
+.list-inputs:checked+.list-labels {
+    pointer-events: all;
+    cursor: pointer;
+    opacity: 1;
+}
+
+/* Unchecked */
+.list-inputs:not(:checked)+.list-labels {
+    opacity: 0;
+    left: -9999px;
+}
+
+/* Default Checked */
+.list-inputs[id$="-default-input"]:checked+.list-labels {
+    opacity: 0.25;
+}
+
+
+
+@media (max-width: 699px) {
+    @media (max-width: 499px) {
+        .list-labels {
+            width: 12vw;
+            top: 1.1vw;
+        }
+    }
+
+    @media (min-width: 500px) {
+        .list-labels {
+            width: 7vw;
+            top: 2vw;
+        }
+    }
+
+    /* List Counts */
+    .pet-list-spans {
+        position: relative;
+    }
+
+    .pet-list-spans>.white-count {
+        position: absolute;
+        bottom: 1.5vw;
+        left: 1.5vw;
+    }
+
+    .pet-list-spans>.black-count {
+        position: absolute;
+        top: 1.5vw;
+        left: 1.5vw;
+    }
+
+    /* Single Bone List Styles */
+
+    .selection-containers.collapsed>.radio-containers {
+        grid-template-columns: auto;
+        gap: initial;
+        padding-left: 0;
+        justify-self: auto;
+        width: 80%;
+    }
+
+    .selection-containers.collapsed .pet-labels:not(.hidden) {
+        place-content: stretch;
+    }
+
+    .selection-containers.collapsed .active-selection.pet-label-spans {
+        padding: 2vw 4vw 3vw 13vw;
+    }
+
+    .selection-containers.collapsed .active-selection.pet-label-spans::after {
+        width: 15vw;
+        left: -4vw;
+    }
+
+    .selection-containers.collapsed .active-selection.pet-label-spans>.pet-label-name {
+        display: grid;
+        grid-auto-flow: column;
+        grid-auto-columns: -webkit-max-content;
+        grid-auto-columns: max-content;
+        gap: 2vw;
+        -webkit-box-align: center;
+        -ms-flex-align: center;
+        align-items: center;
+        margin-top: 1.5vw;
+    }
+
+    @media (min-width: 500px) {
+        .selection-containers.collapsed .active-selection.pet-label-spans {
+            padding: 0vw 2vw 1.5vw 5vw;
+        }
+
+        .selection-containers.collapsed .active-selection.pet-label-spans::after {
+            width: 8.5vw;
+            left: -3.5vw;
+        }
+    }
+
+    .selection-containers.collapsed .active-selection.pet-label-spans>.pet-label-name::after {
+        content: url(../images/bone-default.svg);
+        opacity: 0.5;
+        width: 10vw;
+        cursor: pointer;
+    }
+
+    .selection-containers.collapsed .active-selection.pet-label-spans.whitelist>.pet-label-name::after {
+        content: url(../images/bone-white.svg);
+        opacity: 1;
+    }
+
+    .selection-containers.collapsed .active-selection.pet-label-spans.blacklist>.pet-label-name::after {
+        content: url(../images/bone-black.svg);
+        opacity: 1;
+    }
+
+    .selection-containers.collapsed .duplicate-selection>.pet-label-name::before {
+        top: 0;
+        left: -10.75vw;
+    }
+
+    @media (min-width: 500px) {
+        .selection-containers.collapsed .active-selection.pet-label-spans>.pet-label-name {
+            font-size: 2.75vw;
+            margin-top: 1.75vw;
+            margin-left: .5vw;
+        }
+
+        .selection-containers.collapsed .active-selection.pet-label-spans>.pet-label-name::after {
+            width: 5vw;
+        }
+
+        .selection-containers.collapsed .duplicate-selection>.pet-label-name::before {
+            left: -5.75vw;
+            top: -1vw;
+        }
+    }
+}
+
+@media (min-width: 700px) {
+
+    .selections-list-containers {
+        left: 25%;
+        bottom: 25%;
+    }
+
+    .list-labels {
+        width: 30%;
+    }
+
+    /* Collapsed */
+    .collapsed .pet-labels {
+        position: relative;
+    }
+
+    .collapsed .selections-list-containers {
+        opacity: 1 !important;
+        left: 80% !important;
+        top: 30%;
+        width: 50%;
+    }
+}

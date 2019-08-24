@@ -1,0 +1,45 @@
+/*=============
+Safari
+==============*/
+
+/* note: affects Chrome iOS as well */
+@media not all and (min-resolution:.001dpcm) {
+    @media {
+
+        /* Headings */
+        .safari10-border-radius,
+        h3.headings {
+            border-radius: 0 !important;
+        }
+
+        /* Attempts */
+        .pet-label-spans,
+        .woof-labels {
+            border-radius: 12px !important;
+        }
+
+        .collapsed .pet-label-spans::after { /* Pawfect Icon On Collpased Match Field */
+            width: 33%;
+            left: -8%;
+            top: -12%;
+        }
+
+        /* Navbar */
+        #navbar > #message-container:not(.clicked) {
+            align-content: start; /* Keeps message from overflowing */
+        }
+    }
+}
+
+
+/*==============
+Firefox
+===============*/
+
+
+@-moz-document url-prefix() {
+    /* Gap between reset buttons*/
+    #reset-buttons-container {
+       gap: 5vw;
+    }
+}
