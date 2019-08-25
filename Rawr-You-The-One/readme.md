@@ -15,6 +15,7 @@ Features
 --
 
 * All code is from scratch* and completely **vanilla**
+  * Javascript code is annotated
 * Layout is **responsive**, and optimized for both **mobile** and **desktop** play
 * Styled primarily using **CSS Grid**
 * **Auto-prefixed** and **cross-browser** tested.
