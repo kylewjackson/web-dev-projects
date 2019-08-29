@@ -211,6 +211,9 @@ document.addEventListener('submit', e => {
         } else {
             resetRound(currentGame, currentStats);
             nextRound(currentGame, currentStats);
+            //v1.1 jump to stats section
+            location.href = "#";
+            location.href = "#stats";
         };
     };
 }, false);

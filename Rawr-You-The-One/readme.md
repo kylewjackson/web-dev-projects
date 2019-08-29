@@ -48,7 +48,24 @@ Future Updates
 
 ## Version History
 
-**Version 1**
-* *Code made public on August 24th, 2019*
-* Completed over the course of 2 months
-* Public hosting and player testing coming soon
+### Version 1
+
+* ***1.0***
+
+  * *Code made public on August 24th, 2019*
+  * Completed over the course of 2 months
+  * Public hosting and player testing coming soon
+
+* ***1.1***
+
+  * *August 28th, 2019*
+  * Bug fixes:
+    * Added additional empty cell in stat chart during endgame
+    * Marked pawfect matches in other owner stat charts as no-match
+    * Higher specifity for Safari-only query when positioning inputs
+    * Fixed duplicate marker in stats chart to be readable
+  * Message container now shakes to alert users of game changing events.
+  * Round submit jumps to Stats chart anchor
+  * White/Blacklist bone icons can be seen in stat chart entries
+  * Stat chart backgrounds for match/no-matches is more apparent
+  * Adjusted stat chart highlight colors

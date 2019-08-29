@@ -100,3 +100,11 @@ function clearChildElements(element) {
         element.removeChild(element.firstChild);
     };
 };
+
+//v1.1 shake animation
+function shake(ele) {
+    classChange(ele, ['shake'], []);
+    setTimeout(e => {
+        classChange(ele, [], ['shake']);
+    }, 400);
+}

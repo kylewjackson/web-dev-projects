@@ -60,6 +60,8 @@ function startGame() {
         classChange(currentMessage.parentElement, [], ['message-danger', 'message-blackout', 'message-match', 'message-nomatch']);
     };
     currentMessage.innerHTML = `You have ${currentGame.rounds} rounds to make ${currentGame.rounds} Pawfect Matches. Good luck!`;
+    // //v1.1 shake message container
+    // shake(currentMessage.parentElement);
     //change start game button to restart game
     document.querySelector('#submit-config').innerHTML = 'Restart';
     //jump to top of page
@@ -170,12 +172,19 @@ function woofMatch(game, stats, woofedOwner, woofedPet) {
     //for stats chart, if applicable
     if (stats.chart) {
         markStats(woofedOwner, woofedPet, 'match');
-        //mark no matches
+        //mark no matches for owner
         for (let i = 1; i < game.round; i++) {
             if (stats.round[i].selections[woofedOwner] !== woofedPet) {
                 markStats(woofedOwner, stats.round[i].selections[woofedOwner], 'no');
             };
         };
+        //v1.1 mark no matches for pet in other owners
+        game.owners.forEach(owner => {
+            //select each stat chart entry for woofed pet that is not for the original owner
+            if (owner !== woofedOwner && document.querySelector(`.pet-stats[id$=-${owner}-${woofedPet}-selection]`)) {
+                markStats(owner, woofedPet, 'no');
+            };
+        });
     };
 
     //remove pair from validWoofs object
@@ -185,6 +194,8 @@ function woofMatch(game, stats, woofedOwner, woofedPet) {
     //update message and button text
     classChange(currentMessage.parentElement, ['message-match'], ['message-danger', 'message-blackout', 'message-nomatch']);
     currentMessage.innerHTML = `Congrats! ${names.cased.lower[woofedOwner]} and ${names.cased.lower[woofedPet]} are a Pawfect Match!`;
+    //v1.1 shake message container
+    shake(currentMessage.parentElement);
     document.querySelector('#submit-woof').innerHTML = 'Pawfect Match';
 };
 
@@ -222,6 +233,8 @@ function woofNoMatch(game, stats, woofedOwner, woofedPet) {
     //update message and button text
     classChange(currentMessage.parentElement, ['message-nomatch'], ['message-danger', 'message-blackout', 'message-match']);
     currentMessage.innerHTML = `Sorry, ${names.cased.lower[woofedOwner]} and ${names.cased.lower[woofedPet]} are not a match.`;
+    //v1.1 shake message container
+    shake(currentMessage.parentElement);
     document.querySelector('#submit-woof').innerHTML = 'No Match';
 };
 
@@ -377,6 +390,8 @@ function potentialWoofInput(game, stats) {
             };
             classChange(currentMessage.parentElement, ['message-danger'], ['message-match', 'message-nomatch']);
             currentMessage.innerHTML = 'Sorry, this pairing has already been woofed. Try again.';
+            //v1.1 shake message container
+            shake(currentMessage.parentElement);
             return;
         };
     };
@@ -458,6 +473,8 @@ function markSelections(stats, pet) {
             markHeader(span, ['dupe'], ['uni']);
             classChange(currentMessage.parentElement, ['message-danger'], []);
             currentMessage.innerHTML = 'All selections must be unique';
+            //v1.1 shake message container
+            shake(currentMessage.parentElement);
             //reveal selections
             const ownerName = span.parentElement.previousElementSibling.name;
             const petName = span.parentElement.previousElementSibling.value;
@@ -579,6 +596,8 @@ function checkWinner(game, stats) {
 
 //actions if game is over
 function endGame(game, stats, win) {
+    //v1.1 set game to over
+    game.over = true;
     //remove html for selections and woof booth fields
     clearChildElements(document.querySelector('#attempt'));
     if (win) {
@@ -586,7 +605,9 @@ function endGame(game, stats, win) {
         classChange(document.querySelector('#stats'), [], ['hidden']);
         //update message with winner
         classChange(currentMessage.parentElement, ['message-match'], []);
-        currentMessage.innerHTML = 'You win! You found all the Pawfect Matches!'
+        currentMessage.innerHTML = 'You win! You found all the Pawfect Matches!';
+        //v1.1 shake message container
+        shake(currentMessage.parentElement);
         //add number of blackouts, if any
         if (stats.blackouts > 0) {
             currentMessage.parentElement.insertAdjacentHTML('beforeend', `
@@ -603,6 +624,8 @@ function endGame(game, stats, win) {
         //update message with loss
         classChange(currentMessage.parentElement, ['message-blackout'], []);
         currentMessage.innerHTML = 'Sorry, you lost.';
+        //v1.1 shake message container
+        shake(currentMessage.parentElement);
     };
     //highlight all instances of confirmed matches in stat chart that are not already marked
     game.owners.forEach((owner, i) => {
@@ -617,7 +640,7 @@ function endGame(game, stats, win) {
     });
     //change restart button innerhtml to play again
     document.querySelector('#submit-config').innerHTML = 'Play again?';
-    //collpase navivation if expanded
+    //collpase navigation if expanded
     if (document.querySelector('#navbar').classList.contains('navigation-clicked')) {
         navbarClicked('navigation');
     };
@@ -801,9 +824,13 @@ function checkSubmit(game, stats, message) {
             //change message
             classChange(currentMessage.parentElement, ['message-ready'], ['message-danger']);
             currentMessage.innerHTML = 'Ready to Submit';
+            //v1.1 shake message container
+            shake(currentMessage.parentElement);
         } else {
             classChange(currentMessage.parentElement, ['message-danger'], ['message-blackout', 'message-match', 'message-ready']);
             currentMessage.innerHTML = "Don't forget to woof!";
+            //v1.1 shake message container
+            shake(currentMessage.parentElement);
         }
     } else if (document.querySelectorAll('.pet-inputs:checked').length < game.rounds && document.querySelectorAll('.pet-label-spans.duplicate-selection').length === 0) {
         //if not all selections are made, and none are duplicates
@@ -814,6 +841,8 @@ function checkSubmit(game, stats, message) {
         } else {
             classChange(currentMessage.parentElement, ['message-danger'], ['message-match', 'messge-nomatch', 'message-ready']);
             currentMessage.innerHTML = "Don't forget to woof!";
+            //v1.1 shake message container
+            shake(currentMessage.parentElement);
         }
     } else {
         if (!document.querySelector('#submit-selections').disabled) {
@@ -825,6 +854,8 @@ function checkSubmit(game, stats, message) {
             document.querySelector('#submit-selections').innerHTML = message;
         };
         currentMessage.innerHTML = message;
+        //v1.1 shake message container
+        shake(currentMessage.parentElement);
     };
 };
 
@@ -919,9 +950,13 @@ function setupStatChart(game, stats) {
     if (stats.round[game.round].correct === 0) {
         classChange(currentMessage.parentElement, ['message-blackout'], []);
         currentMessage.innerHTML = "Oh no, you blacked out! That's no matches.";
+        //v1.1 shake message container
+        shake(currentMessage.parentElement);
     } else {
         classChange(currentMessage.parentElement, ['message-match'], []);
         currentMessage.innerHTML = `Congrats, you found ${stats.round[game.round].correct} Pawfect Matches!`;
+        //v1.1 shake message container
+        shake(currentMessage.parentElement);
     };
 };
 

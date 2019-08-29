@@ -44,7 +44,9 @@ const names = {
         'Josh',
         'Arthur',
         'Mowgli',
-        'Christopher',
+        //v1.1 name too long
+        // 'Christopher',
+        'Eliza',
         'Buffy'
     ],
     pets: [
@@ -541,6 +543,10 @@ function setupLegendHeaders(game, adjust) {
                 //add list items based on current round
                 for (let i = 1; i < game.round; i++) {
                     document.querySelectorAll('.stat-selections.empty')[document.querySelectorAll('.stat-selections.empty').length - 1].insertAdjacentHTML('beforeend', `<li id="round-${game.round - 1}-empty-cell-${i}" class="wrapper empty-cells"></li>`);
+                };
+                //v1.1 if game is over, add additional cell
+                if (game.over) {
+                    document.querySelectorAll('.stat-selections.empty')[document.querySelectorAll('.stat-selections.empty').length - 1].insertAdjacentHTML('beforeend', `<li id="round-${game.round}-empty-cell-${game.round}" class="wrapper empty-cells"></li>`);
                 };
             } else if (document.querySelectorAll('.stat-selections.empty').length > necessaryCells) {
                 adjustEmptyCells(false);

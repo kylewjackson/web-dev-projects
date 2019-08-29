@@ -18,15 +18,26 @@ Safari
             border-radius: 12px !important;
         }
 
-        .collapsed .pet-label-spans::after { /* Pawfect Icon On Collpased Match Field */
-            width: 33%;
-            left: -8%;
-            top: -12%;
+        /*v1.1 tweak specificity and resolution*/
+
+        @media (max-width: 699px) {
+            #selections-container .collapsed .pet-label-spans::after { /* Pawfect Icon On Collpased Match Field */
+                top: 0vw;
+            }
+        }
+
+        @media (min-width: 700px) {
+            #selections-container .collapsed .pet-label-spans::after { /* Pawfect Icon On Collpased Match Field */
+                width: 33%;
+                left: -8%;
+                top: -12%;
+            }
         }
 
         /* Navbar */
         #navbar > #message-container:not(.clicked) {
-            align-content: start; /* Keeps message from overflowing */
+            -ms-flex-line-pack: start;
+                align-content: start; /* Keeps message from overflowing */
         }
     }
 }

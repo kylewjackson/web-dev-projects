@@ -19,8 +19,9 @@
     place-items: center;
     position: relative;
     list-style-type: none;
-    padding: 1vw;
-    margin: -1px;
+    /* v1.1 stat chart gap tweak */
+    /* padding: 1vw;
+    margin: -1px; */
 }
 
 /* Highlight Styles */
@@ -31,9 +32,25 @@
 
 .pet-stats.highlight.no-match {
     opacity: 0.5;
+    color: rgba(185, 74, 141, 0.4); /* v1.1 */
 }
 
-;
+/*v1.1 dupe selection style */
+.duplicate-selection.pet-stats {
+    color: #BA7AA1;
+}
+
+/* v1.1 stat chart background colors */
+
+#stats > #stat-charts-container .pet-stats.pawfect-match {
+    background-color: rgba(236, 115, 190, 0.65);
+    color: #93F3E2;
+}
+
+#stats > #stat-charts-container .pet-stats.no-match {
+    background-color: rgba(0, 0, 0, 0.25);
+}
+
 
 @media (min-width: 500px) {
     #stats li {

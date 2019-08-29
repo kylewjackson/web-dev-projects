@@ -447,12 +447,16 @@ button:disabled {
 Semantic Selection Styles
 ======================*/
 
-.duplicate-selection {
-    color: #C4C4C4;
-    -webkit-text-stroke: .25vw #ED74BE;
+/*v1.1 change dupe style in chart*/
 
+.duplicate-selection {
     font-family: 'Alfa Slab One', sans-serif;
 }
+
+    .duplicate-selection:not(.pet-stats) {
+        color: #C4C4C4;
+        -webkit-text-stroke: .25vw #ED74BE;
+    }
 
 .no-match {
     color: rgba(185, 74, 141, 0.4);
@@ -612,4 +616,28 @@ Message Dialog
     font-weight: bold;
     text-shadow: 1px 1px 1px #93F3E2, -1px 1px 1px #93F3E2;
     text-align: center;
+}
+
+/*v1.1 animation*/
+.shake {
+    -webkit-animation: shake 0.3s ease-in-out 1;
+            animation: shake 0.3s ease-in-out 1;
+}
+
+@-webkit-keyframes shake {
+    0% { -webkit-transform: translateX(1vw); transform: translateX(1vw); }
+    30% { -webkit-transform: translateX(-1vw); transform: translateX(-1vw); }
+    55% { -webkit-transform: translateX(1vw); transform: translateX(1vw); }
+    75% { -webkit-transform: translateX(-1vw); transform: translateX(-1vw); }
+    90% { -webkit-transform: translateX(1vw); transform: translateX(1vw); }
+    100% { -webkit-transform: translateX(-1vw); transform: translateX(-1vw); }
+}
+
+@keyframes shake {
+    0% { -webkit-transform: translateX(1vw); transform: translateX(1vw); }
+    30% { -webkit-transform: translateX(-1vw); transform: translateX(-1vw); }
+    55% { -webkit-transform: translateX(1vw); transform: translateX(1vw); }
+    75% { -webkit-transform: translateX(-1vw); transform: translateX(-1vw); }
+    90% { -webkit-transform: translateX(1vw); transform: translateX(1vw); }
+    100% { -webkit-transform: translateX(-1vw); transform: translateX(-1vw); }
 }

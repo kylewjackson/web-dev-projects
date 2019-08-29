@@ -26,6 +26,29 @@
     opacity: 0.25;
 }
 
+/* v1.1 start chart lists */
+.pet-stats.whitelist::before {
+    position: absolute;
+    content: url('../images/bone-white.svg');
+    opacity: 0.75;
+    width: 35px;
+    max-width: 30%;
+    top: 10%;
+}
+
+.pet-stats.blacklist {
+    color: #BA7AA1;
+    opacity: 1;
+}
+
+.pet-stats.blacklist::after {
+    position: absolute;
+    content: url('../images/bone-black.svg');
+    opacity: 0.75;
+    width: 30px;
+    max-width: 25%;
+    bottom: 10%;
+}
 
 
 @media (max-width: 699px) {
