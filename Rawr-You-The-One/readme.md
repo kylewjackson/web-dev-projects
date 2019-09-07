@@ -77,3 +77,4 @@ Features
 * ***1.1.1***
   * *September 7th, 2019*
   * Added ```noscript``` fallback messge
+  * Added ```lang``` attribute to ```html``` tag
