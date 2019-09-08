@@ -169,8 +169,8 @@ const projects = {
         title: 'Rawr You the One?',
         description: "A browser-based logic game inspired by MTV's <em>Are You the One?</em>.",
         tools: 'Vanilla HTML, CSS, JS',
-        thumb: 'rawr',
-        live: 'rawr',
+        thumb: '/rawr',
+        live: '/rawr',
         source: 'https://github.com/kylewjackson/web-dev-projects/tree/master/Rawr-You-The-One'
     },
     portfolio: {
@@ -187,8 +187,8 @@ const projects = {
         title: 'CSS Resume',
         description: 'Custom resume for the CSS Essentials Training Lynda Course. 2018.',
         tools: 'Vanilla HTML, CSS',
-        thumb: 'Lynda/CSS%20Essential%20Training%20-%20Resume',
-        live: 'Lynda/CSS%20Essential%20Training%20-%20Resume',
+        thumb: '/Lynda/CSS%20Essential%20Training%20-%20Resume',
+        live: '/Lynda/CSS%20Essential%20Training%20-%20Resume',
         source: 'https://github.com/kylewjackson/web-dev-projects/tree/master/Lynda/CSS%20Essential%20Training%20-%20Resume'
     },
     jtodo: {
@@ -196,8 +196,8 @@ const projects = {
         title: 'jQuery To-Do List',
         description: 'Udemy course to-do list. Custom design, favorite/sort functions.',
         tools: 'HTML, CSS, jQuery',
-        thumb: 'Udemy/Web%20Developer%20Bootcamp/Javascript%20Projects/jQuery%20Projects/to-do-list',
-        live: 'Udemy/Web%20Developer%20Bootcamp/Javascript%20Projects/jQuery%20Projects/to-do-list',
+        thumb: '/Udemy/Web%20Developer%20Bootcamp/Javascript%20Projects/jQuery%20Projects/to-do-list',
+        live: '/Udemy/Web%20Developer%20Bootcamp/Javascript%20Projects/jQuery%20Projects/to-do-list',
         source: 'https://github.com/kylewjackson/web-dev-projects/tree/master/Udemy/Web%20Developer%20Bootcamp/Javascript%20Projects/jQuery%20Projects/to-do-list'
     },
     bootcamp: {
