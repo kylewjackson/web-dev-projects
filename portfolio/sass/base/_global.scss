@@ -23,15 +23,15 @@ body {
     @include linkHover;
   }
 
-  p {
-    &:not(.project-description):not(.project-tools) {
-      //@include transition-1s;
-    }
-  }
+  // p {
+  //   &:not(.project-description):not(.project-tools) {
+  //     @include transition-1s;
+  //   }
+  // }
 
-  h4 {
-    //@include transition-1s;
-  }
+  // h4 {
+  //   @include transition-1s;
+  // }
 
 }
 
@@ -43,9 +43,9 @@ body {
   padding: 2% 10% 10% 10%;
 }
 
-.container:not(#header-container) {
-  //@include transition-1s;
-}
+// .container:not(#header-container) {
+//   @include transition-1s;
+// }
 
 
 /* Heading Styles */
@@ -76,9 +76,9 @@ body {
     font-size: 4vw;
   }
 
-  &:not(#subtitle) {
-    //@include transition-1s;
-  }
+  // &:not(#subtitle) {
+  //   @include transition-1s;
+  // }
 }
 
 .project-title {
@@ -105,9 +105,9 @@ h4 {
     max-width: 80px;
   }
 
-  &:not(#home-icon):not(#email-icon):not(#phone-icon) {
-    //@include transition-1s;
-  }
+  // &:not(#home-icon):not(#email-icon):not(#phone-icon) {
+  //   @include transition-1s;
+  // }
 }
 
 /* Text Accents */

@@ -11,16 +11,16 @@ document.querySelector('.header-content').insertAdjacentHTML('afterbegin', `
         <ul class="navigation">
             <li id="home-link" class="nav-link">
                 <button class="home-button" tabindex="-1">
-                    <a href="index.html">
+                    <a href="/">
                         <img src="images/icons/navigation-home-icon.svg" alt="home-page button" id="home-icon" class="icon">
                     </a>
                 </button>
             </li>
             <li id="about-link" class="nav-link">
-                <a href="about.html">About Me</a>
+                <a href="/about">About Me</a>
             </li>
             <li id="projects-link" class="nav-link">
-                <a href="projects.html">Projects</a>
+                <a href="/projects">Projects</a>
             </li>
         </ul>
     </nav>
@@ -353,7 +353,7 @@ document.addEventListener('keydown', e => {
     };
 }, false);
 
-//add transition class to faded elements
+//add transition class to faded elements for page load
 document.querySelectorAll('.faded').forEach(element => {
     element.classList.add('transition-1s');
 });
