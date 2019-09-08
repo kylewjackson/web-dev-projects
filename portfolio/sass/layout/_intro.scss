@@ -1,0 +1,25 @@
+/*==============
+Intro Section
+===============*/
+
+#intro {
+    @include whiteBlack;
+    text-align: center;
+
+    #intro-icons {
+        @include flexContainer;
+        justify-content: space-around;
+    }
+
+    p {
+        line-height: 10vw;
+
+        @media (max-height: 600px) {
+            line-height: 6vw;
+        }
+
+        @include large-screen {
+            line-height: 75px;
+        }
+    }
+}

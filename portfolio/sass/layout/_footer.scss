@@ -1,0 +1,64 @@
+.footer-content {
+    padding: 2% 5% 5% 5%;
+
+    @include tablet {
+        font-size: 24px;
+
+        .content-heading {
+            font-size: 48px;
+        }
+    }
+
+    .container {
+        @include flexColCenter;
+        margin-bottom: 10%;
+
+        @include tablet {
+            margin-bottom: 30px;
+        }
+    }
+
+        .container:not(#social-profiles-container) {
+            a,
+            a:visited {
+                @include fontBlack;
+                @include linkHover;
+            }
+        }
+
+        #social-profiles-container {
+            flex-flow: row;
+            justify-content: space-around;
+            padding: 5% 10%;
+
+            @include mobileMax {
+                justify-content: center;
+            }
+
+            @include tablet {
+                padding: 0;
+            }
+        }
+
+    .contact-link {
+        @include flexColCenter;
+    }
+
+    .icon {
+        margin-bottom: 5%;
+        width: 25%;
+    }
+
+        #email-icon {
+            width: 15%;
+        }
+
+    //copyright
+    small {
+        display: flex;
+        justify-content: flex-end;
+        font-family: $font-roboto;
+        font-size: 14px;
+    }
+}
+

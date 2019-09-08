@@ -1,0 +1,278 @@
+/*===========
+Mixins
+============*/
+
+/* Reset */
+@mixin reset($props...) {
+  //map of specific values for reset
+  $types: (
+    'margin': 0,
+    'padding': 0,
+    'top': 0,
+    'bottom': 0,
+    'left': 0,
+    'right': 0
+  );
+  //for each property passed in
+  @each $prop in $props {
+      //see if map has property as key
+      @if map-has-key($types, $prop) {
+        //if it does, get the value
+        $value: map-get($types, $prop);
+        //set property to the value from key in map
+        #{$prop}: $value;
+      } @else {
+        //set property to 'inherit'
+        #{$prop}: #{'inherit'};
+      };
+  }
+}
+
+/* Before and After selectors */
+@mixin setupBeforeAfter($pos, $content) {
+  & {
+      position: relative;
+  }
+
+  &::#{$pos} {
+      position: absolute;
+      content: $content;
+      @include reset('top', 'bottom', 'left', 'right');
+  }
+}
+
+  @mixin setBefore($content: '') {
+      @include setupBeforeAfter('before', $content);
+  }
+
+  @mixin setAfter($content: '') {
+      @include setupBeforeAfter('after', $content);
+  }
+
+
+/* Display Properties */
+
+@mixin hide {
+  position: absolute;
+  left: -9999px;
+  opacity: 0;
+}
+
+@mixin flexContainer {
+  display: flex;
+}
+
+  @mixin flexRow {
+    @include flexContainer;
+    flex-flow: row wrap;
+  }
+
+    @mixin flexRowCenter {
+      @include flexRow;
+      justify-content: center;
+    }
+
+  @mixin flexCol {
+    @include flexContainer;
+    flex-flow: column wrap;
+  }
+
+    @mixin flexColCenter {
+      @include flexCol;
+      align-items: center;
+    }
+
+//padding bottom trick for preserving aspect ratio
+@mixin ratioBox($percent) {
+  position: relative;
+  width: $percent;
+  height: 0;
+  padding-bottom: $percent;
+}
+
+/* Font Styles */
+@mixin fontBlack {
+  color: $color-black;
+}
+
+@mixin fontWhite {
+  color: $color-white;
+}
+
+@mixin linkHover {
+  &:hover,
+  &:active {
+    color: $color-orange;
+  }
+}
+
+//font color on background color
+@mixin whiteBlack {
+  @include fontWhite;
+  background-color: $color-black;
+}
+
+@mixin blackWhite {
+  @include fontBlack;
+  background-color: $color-white;
+}
+
+//maximum font sizes
+@mixin maxFonts($fontMap) {
+  @each $element, $val in $fontMap {
+    #{$element} {
+      font-size: $val;
+    }
+  }
+}
+
+/* Device Sizes/Orienations */
+
+@mixin mobile($orientation: null) {
+  @if $orientation {
+    @if $orientation == 'portrait' {
+      @media (max-width: $breakpoint-max-small) and (orientation: portrait) { @content; }
+    } @else if $orientation == 'landscape' {
+      @media (max-height: $breakpoint-max-small) and (orientation: landscape) { @content; }
+    } @else {
+      @media (max-width: $breakpoint-max-small) and (#{$orientation}) { @content; }
+    }
+  } @else {
+    @media (max-width: $breakpoint-max-small) { @content; }
+  }
+}
+  // starting at mobile max
+  @mixin mobileMax {
+      @media (min-width: $breakpoint-small) { @content; }
+  }
+
+@mixin tablet {
+  @media (min-width: $breakpoint-medium) and (min-height: $breakpoint-max-small + 1) { @content; }
+}
+
+@mixin large-screen {
+  @media (min-width: $breakpoint-large) and (min-height: $breakpoint-max-small + 1) { @content; }
+}
+
+@mixin desktop {
+  @media (min-width: $breakpoint-x-large) and (min-height: $breakpoint-max-small + 1) { @content; }
+}
+
+
+/* Thumbnails */
+
+@mixin thumbnail($image) {
+  background-position: center;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-image: url($image);
+}
+
+//mobile
+@mixin thumbMobilePortrait($image) {
+  @include mobile('portrait') {
+    @include thumbnail($image);
+  }
+}
+
+@mixin thumbMobileLandscape($image) {
+  @include mobile('landscape') {
+    @include thumbnail($image);
+    width: 49%;
+    margin: 0;
+    left: 21%;
+  }
+}
+
+//tablet
+@mixin thumbTablet($image) {
+  @include tablet {
+    @include thumbnail($image);
+    background-position: inherit;
+    top: 7%;
+  }
+}
+
+//large
+@mixin thumbLarge($image) {
+  @include large-screen {
+    @include thumbnail($image);
+  }
+  //xx large
+  @media (min-width: $breakpoint-xx-large) {
+    background-position: center 25%;
+  }
+}
+
+//Row flow, 2 columns
+@mixin rowContainer {
+  min-width: 80vw;
+  justify-content: space-between;
+}
+
+  @mixin rowCol-1 {
+    width: 40%
+  }
+
+  @mixin rowCol-2 {
+    width: 50%;
+  }
+
+
+/* Tool Styles */
+@mixin colorTools($tool-map) {
+  @each $tool, $color in $tool-map {
+    ##{$tool}#{'-box'} {
+      background-color: $color;
+    }
+  }
+}
+
+//tool name link hover color
+@mixin aboutColorTools {
+  @each $tool, $color in $tool-map {
+    &##{$tool}#{'-link'}:hover {
+      background-color: $color;
+      color: $color-white;
+      padding: 2%;
+      border-radius: 5px;
+    }
+  }
+}
+
+
+/* Boxes */
+@mixin boxStyles($percent: 30%) {
+  @include ratioBox($percent);
+  display: flex;
+  flex-flow: column;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 10%;
+  border-radius: 10%;
+}
+
+@mixin boxSymbols($size: 15vw) {
+  position: absolute;
+  font-family: $font-roboto;
+  font-size: $size;
+  font-weight: 700;
+}
+
+@mixin boxNames($size: 3.5vw) {
+  position: absolute;
+  font-size: $size;
+  font-style: normal;
+  font-weight: 700;
+}
+
+
+/* Transitions */
+
+@mixin transition-1s {
+  transition: 1s;
+}
+
+@mixin transition-quick {
+  transition: .25s;
+}

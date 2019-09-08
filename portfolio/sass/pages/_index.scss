@@ -1,0 +1,25 @@
+/*===========
+Index Styles
+============*/
+
+#index {
+    //hide home button on home page
+    .nav-link:first-child {
+        visibility: hidden;
+    }
+
+    //reposition content for fade in on mobile/tablet
+    .main-content {
+        margin-top: -300px;
+        @include tablet {
+            margin-top: -200px;
+        }
+        @include desktop {
+            margin-top: inherit;
+        }
+    }
+
+    .top-faded {
+        opacity: 0;
+    }
+}

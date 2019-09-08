@@ -1,0 +1,152 @@
+/*=================
+Project Thumbnails
+==================*/
+
+#rawr-thumbnail-preview {
+    //mobile portratit
+    @include thumbMobilePortrait('../images/thumbnails/rawr/thumbnail-phone-rawr.png');
+
+    //mobile landscape
+    @include thumbMobileLandscape('../images/thumbnails/rawr/thumbnail-phone-landscape-rawr.png');
+
+    //tablet
+    @include thumbTablet('../images/thumbnails/rawr/thumbnail-tablet-rawr.png');
+
+    //large
+    @include thumbLarge('../images/thumbnails/rawr/thumbnail-large-rawr.png');
+
+}
+
+#portfolio-thumbnail-preview {
+    //mobile portrait
+    @include thumbMobilePortrait('../images/thumbnails/portfolio/thumbnail-phone-portfolio.png');
+
+    //mobile landscape
+    @include thumbMobileLandscape('../images/thumbnails/portfolio/thumbnail-phone-landscape-portfolio.png');
+
+    //tablet
+    @include thumbTablet('../images/thumbnails/portfolio/thumbnail-tablet-portfolio.png');
+
+    //large
+    @include thumbLarge('../images/thumbnails/portfolio/thumbnail-large-portfolio.png');
+
+}
+
+#resumecss-thumbnail-preview {
+    //mobile portrait
+    @include thumbMobilePortrait('../images/thumbnails/resumecss/thumbnail-phone-resume.png');
+
+    //mobile landscape
+    @include thumbMobileLandscape('../images/thumbnails/resumecss/thumbnail-phone-landscape-resume.png');
+
+    //tablet
+    @include thumbTablet('../images/thumbnails/resumecss/thumbnail-tablet-resume.png');
+
+    //large
+    @include thumbLarge('../images/thumbnails/resumecss/thumbnail-large-resume.png');
+
+}
+
+#jtodo-thumbnail-preview {
+    //mobile portrait
+    @include thumbMobilePortrait('../images/thumbnails/jtodo/thumbnail-phone-jtodo.png');
+
+    //mobile landscape
+    @include thumbMobileLandscape('../images/thumbnails/jtodo/thumbnail-phone-landscape-jtodo.png');
+
+    //tablet
+    @include thumbTablet('../images/thumbnails/jtodo/thumbnail-tablet-jtodo.png');
+
+    //large
+    @include thumbLarge('../images/thumbnails/jtodo/thumbnail-large-jtodo.png');
+
+}
+
+#bootcamp-thumbnail-preview {
+    //mobile portrait
+    @include thumbMobilePortrait('../images/thumbnails/bootcamp/thumbnail-phone-bootcamp.png');
+
+    //mobile landscape
+    @include thumbMobileLandscape('../images/thumbnails/bootcamp/thumbnail-phone-landscape-bootcamp.png');
+
+    //tablet
+    @include thumbTablet('../images/thumbnails/bootcamp/thumbnail-tablet-bootcamp.png');
+
+    //large
+    @include thumbLarge('../images/thumbnails/bootcamp/thumbnail-large-bootcamp.png');
+
+}
+
+.thumbnail-preview {
+
+    height: 60vw;
+    margin: 5% 0 10% 0;
+
+    @include setBefore;
+
+    @include setAfter;
+
+    //mobile - portrait
+    @include mobile('portrait') {
+
+        top: 5%;
+
+        &::before {
+            background: $color-black;
+            top: 90%;
+        }
+
+        &::after {
+            background: url('../images/icons/device-phone-icon.svg') no-repeat;
+            height: 110%;
+            top: -5%;
+            left: 3%;
+        }
+    }
+
+        //mobile - landscape {
+        @include mobile('landscape') {
+
+            height: 20vw;
+
+            &::before {
+                background: $color-black;
+                right: 96%;
+            }
+
+            &::after {
+                background: url('../images/icons/device-phone-landscape-icon.svg') no-repeat;
+                width: 120%;
+                height: 107%;
+                left: -4%;
+            }
+        }
+
+    //tablet
+    @include tablet {
+        &::after {
+            background: url('../images/icons/device-tablet-icon.svg') no-repeat;
+            width: 110%;
+            top: -5%;
+            left: -5%;
+        }
+    }
+
+    //large screen
+    @include large-screen {
+        height: 20vw;
+        top: 10%;
+
+        &::after {
+            background: url('../images/icons/device-desktop-monitor-icon.svg') no-repeat;
+            height: 125%;
+        }
+    }
+
+    //desktop
+    @include desktop {
+        &::after {
+            top: 5%;
+        }
+    }
+}

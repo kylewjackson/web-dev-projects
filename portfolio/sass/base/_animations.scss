@@ -1,0 +1,10 @@
+/*================
+Animations
+=================*/
+
+.faded,
+.top-faded {
+    opacity: 0;
+    transform: translateY(100px);
+    transition: 0;
+}
