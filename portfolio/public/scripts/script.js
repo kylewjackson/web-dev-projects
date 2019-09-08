@@ -288,17 +288,14 @@ if (document.body.id === 'index') {
             navOff = false;
         };
         //if navbar is visible and position is less than element, hide navbar
-        // if (window.scrollY < subtitlePos && !navOff) {
-        //     // console.log('hide');
-        //     document.querySelector('.navbar').classList.toggle('hidden');
-        //     navOff = true;
-        // };
-        // if scrolled to top, hide navbar and fade top section of content
+        if (window.scrollY < subtitlePos && !navOff) {
+            // console.log('hide');
+            document.querySelector('.navbar').classList.toggle('hidden');
+            navOff = true;
+        };
+        // if scrolled to top, fade top section of content
         if (window.scrollY === 0) {
             //hide navbar if visible
-            if (!navOff) {
-                document.querySelector('.navbar').classList.toggle('hidden');
-            };
             if (document.querySelectorAll('.top-faded').length === 0) {
                 document.querySelector('#intro-heading').classList.add('top-faded');
                 document.querySelector('#intro-icons').classList.add('top-faded');
@@ -306,10 +303,6 @@ if (document.body.id === 'index') {
                 document.querySelector('.employ-paragraph').classList.add('top-faded');
             };
         } else {
-            //reveal navbar if hidden
-            if (navOff) {
-                document.querySelector('.navbar').classList.toggle('hidden');
-            };
             //unfade
             if (document.querySelectorAll('.top-faded').length > 0) {
                 document.querySelector('#intro-heading').classList.remove('top-faded');
