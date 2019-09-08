@@ -263,7 +263,7 @@ document.querySelector('.footer-content').insertAdjacentHTML('beforeend', `
         </a>
     </div>
     <div id="social-profiles-container" class="container faded">
-        <a href="https://www.linkedin.com/in/kyle-jackson-80762b4b/" target="_blank" id="contact-linkedin-link" class="link-box">
+        <a href="https://www.linkedin.com/in/kylewalkerjackson/" target="_blank" id="contact-linkedin-link" class="link-box">
             <b id="contact-linkedin-symbol" class="link-symbol">li</b>
             <i id="contact-linkedin-icon" class="link-name">LinkedIn</i>
         </a>
@@ -288,13 +288,17 @@ if (document.body.id === 'index') {
             navOff = false;
         };
         //if navbar is visible and position is less than element, hide navbar
-        if (window.scrollY < subtitlePos && !navOff) {
-            // console.log('hide');
-            document.querySelector('.navbar').classList.toggle('hidden');
-            navOff = true;
-        };
-        // if scrolled to top, fade top section of content
+        // if (window.scrollY < subtitlePos && !navOff) {
+        //     // console.log('hide');
+        //     document.querySelector('.navbar').classList.toggle('hidden');
+        //     navOff = true;
+        // };
+        // if scrolled to top, hide navbar and fade top section of content
         if (window.scrollY === 0) {
+            //hide navbar if visible
+            if (!navOff) {
+                document.querySelector('.navbar').classList.toggle('hidden');
+            };
             if (document.querySelectorAll('.top-faded').length === 0) {
                 document.querySelector('#intro-heading').classList.add('top-faded');
                 document.querySelector('#intro-icons').classList.add('top-faded');
@@ -302,6 +306,10 @@ if (document.body.id === 'index') {
                 document.querySelector('.employ-paragraph').classList.add('top-faded');
             };
         } else {
+            //reveal navbar if hidden
+            if (navOff) {
+                document.querySelector('.navbar').classList.toggle('hidden');
+            };
             //unfade
             if (document.querySelectorAll('.top-faded').length > 0) {
                 document.querySelector('#intro-heading').classList.remove('top-faded');
