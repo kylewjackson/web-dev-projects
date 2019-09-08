@@ -413,16 +413,6 @@ body a:hover, body a:active {
   color: #e9a642;
 }
 
-body p:not(.project-description):not(.project-tools) {
-  -webkit-transition: 1s;
-  transition: 1s;
-}
-
-body h4 {
-  -webkit-transition: 1s;
-  transition: 1s;
-}
-
 .hidden {
   position: absolute;
   left: -9999px;
@@ -431,11 +421,6 @@ body h4 {
 
 .content {
   padding: 2% 10% 10% 10%;
-}
-
-.container:not(#header-container) {
-  -webkit-transition: 1s;
-  transition: 1s;
 }
 
 /* Heading Styles */
@@ -447,8 +432,6 @@ body h4 {
   font-size: 10vw;
   margin-top: 0;
   text-align: center;
-  -webkit-transition: 1s;
-  transition: 1s;
 }
 
 @media (min-width: 500px) and (min-height: 500px) {
@@ -467,11 +450,6 @@ body h4 {
   .sub-heading {
     font-size: 4vw;
   }
-}
-
-.sub-heading:not(#subtitle) {
-  -webkit-transition: 1s;
-  transition: 1s;
 }
 
 .project-title {
@@ -503,11 +481,6 @@ h4 {
   .icon {
     max-width: 80px;
   }
-}
-
-.icon:not(#home-icon):not(#email-icon):not(#phone-icon) {
-  -webkit-transition: 1s;
-  transition: 1s;
 }
 
 /* Text Accents */
@@ -1280,8 +1253,6 @@ Tools Section
 =============*/
 #tools {
   text-align: center;
-  -webkit-transition: 1s;
-  transition: 1s;
 }
 
 #tools .sub-heading {
@@ -1321,8 +1292,6 @@ Recent Projects
           align-items: center;
   color: #EEEEEE;
   background-color: #333333;
-  -webkit-transition: 1s;
-  transition: 1s;
 }
 
 #projects > * {
@@ -1344,8 +1313,6 @@ Recent Projects
   -webkit-box-direction: normal;
       -ms-flex-flow: row wrap;
           flex-flow: row wrap;
-  -webkit-transition: 1s;
-  transition: 1s;
 }
 
 @media (max-width: 499px) {
@@ -1636,8 +1603,6 @@ About Styles
 #about .pic {
   border-radius: 25px;
   max-width: 50vw;
-  -webkit-transition: 1s;
-  transition: 1s;
 }
 
 @media (min-width: 500px) and (min-height: 500px) {
@@ -1749,8 +1714,6 @@ About Styles
 
 #about #stackshare-box {
   margin: 0 auto;
-  -webkit-transition: 1s;
-  transition: 1s;
 }
 
 #about #work-together-link-container {
@@ -1762,8 +1725,6 @@ About Styles
   margin: 10% auto;
   width: 35%;
   max-width: 200px;
-  -webkit-transition: 1s;
-  transition: 1s;
   -webkit-transition-property: opacity, -webkit-transform;
   transition-property: opacity, -webkit-transform;
   transition-property: opacity, transform;
@@ -1796,16 +1757,12 @@ About Styles
   padding-bottom: 100px;
   -ms-grid-column-align: end;
       justify-self: end;
-  -webkit-transition: 1s;
-  transition: 1s;
 }
 
 #about #tool-container .links {
   -ms-grid-column-align: start;
       justify-self: start;
   text-align: left;
-  -webkit-transition: 1s;
-  transition: 1s;
   -webkit-transition-property: opacity, -webkit-transform;
   transition-property: opacity, -webkit-transform;
   transition-property: opacity, transform;

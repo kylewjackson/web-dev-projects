@@ -24,7 +24,7 @@ About Styles
             max-width: 200px;
         }
 
-        @include transition-1s;
+        //@include transition-1s;
     }
 
     #intro {
@@ -102,7 +102,7 @@ About Styles
         #stackshare-box {
             margin: 0 auto;
 
-            @include transition-1s;
+            //@include transition-1s;
         }
 
         #work-together-link-container {
@@ -117,7 +117,7 @@ About Styles
 
         @include linkHover;
 
-        @include transition-1s;
+        //@include transition-1s;
         transition-property: opacity, transform;
     }
 
@@ -135,7 +135,7 @@ About Styles
             padding-bottom: 100px;
             justify-self: end;
 
-            @include transition-1s;
+            //@include transition-1s;
         }
 
         .links {
@@ -153,7 +153,7 @@ About Styles
                 font-size: 1.25rem;
             }
 
-            @include transition-1s;
+            //@include transition-1s;
             transition-property: opacity, transform;
         }
     }
