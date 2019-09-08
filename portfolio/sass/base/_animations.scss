@@ -8,3 +8,7 @@ Animations
     transform: translateY(100px);
     transition: 0;
 }
+
+.transition-1s {
+    @include transition-1s;
+}

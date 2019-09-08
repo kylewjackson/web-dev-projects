@@ -352,3 +352,8 @@ document.addEventListener('keydown', e => {
         };
     };
 }, false);
+
+//add transition class to faded elements
+document.querySelectorAll('.faded').forEach(element => {
+    element.classList.add('transition-1s');
+});

@@ -385,6 +385,11 @@ Animations
   transition: 0;
 }
 
+.transition-1s {
+  -webkit-transition: 1s;
+  transition: 1s;
+}
+
 /*===========
 Global Styles
 ============*/
