@@ -1,5 +1,7 @@
 # Rawr You the One?
 
+[Play Now!](https://www.kylejackson.dev/rawr)
+
 This browser game is inspired by the MTV reality program *Are You the One?*.
 
 Made with vanilla:
