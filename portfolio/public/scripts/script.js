@@ -178,8 +178,8 @@ const projects = {
         title: 'Front-End Portfolio',
         description: 'My portfolio. Custom svg icons, responsive with Flexbox.',
         tools: 'HTML, CSS, Sass, Vanilla JS',
-        thumb: '#',
-        live: '#',
+        thumb: '/',
+        live: '/',
         source: 'https://github.com/kylewjackson/web-dev-projects/tree/master/portfolio'
     },
     resumecss: {
