@@ -6,8 +6,8 @@
 
 Various small projects from throughout this course. Live previews can be viewed from the links below. (*Note*: FontAwesome icons don't always appear in live preview.)
 
-* CSS
-   [Photogrid](https://www.kylejackson.dev/Udemy/Web%20Developer%20Bootcamp/CSS%20Projects/photogrid.html)
+* CSS  
+   [Photogrid](https://www.kylejackson.dev/Udemy/Web%20Developer%20Bootcamp/CSS%20Projects/photogrid.html)  
 
 * Bootstrap  
    [Landing Page](https://www.kylejackson.dev/Udemy/Web%20Developer%20Bootcamp/CSS%20Projects/Bootstrap%20Projects/landing.html)  
