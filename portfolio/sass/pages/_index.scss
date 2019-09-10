@@ -11,6 +11,11 @@ Index Styles
     //reposition content for fade in on mobile/tablet
     .main-content {
         margin-top: -300px;
+
+        @include mobile('landscape') {
+            margin-top: inherit;
+        }
+        
         @include tablet {
             margin-top: -200px;
         }
