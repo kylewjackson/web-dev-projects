@@ -80,3 +80,7 @@ Features
   * *September 7th, 2019*
   * Added ```noscript``` fallback messge
   * Added ```lang``` attribute to ```html``` tag
+
+* ***1.1.2***
+  * *September 9th, 2019*
+  * Added open graph preview
