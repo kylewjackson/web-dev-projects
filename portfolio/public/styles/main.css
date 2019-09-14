@@ -419,7 +419,7 @@ body a:hover, body a:active {
 }
 
 body address {
-  font-style: inherit;
+  font-style: normal;
 }
 
 .hidden {
