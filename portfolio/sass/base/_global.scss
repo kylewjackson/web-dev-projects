@@ -23,6 +23,10 @@ body {
     @include linkHover;
   }
 
+  address {
+    font-style: inherit;
+  }
+
   // p {
   //   &:not(.project-description):not(.project-tools) {
   //     @include transition-1s;
