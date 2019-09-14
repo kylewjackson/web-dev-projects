@@ -250,18 +250,18 @@ if (document.body.id === 'index') {
 //add footer
 document.querySelector('.footer-content').insertAdjacentHTML('beforeend', `
     <h2 id="contact-heading" class="content-heading faded">Let's get in touch!</h2>
-    <div id="email-container" class="container faded">
+    <address id="email-container" class="container faded">
         <a href="mailto:kylewalkerjackson@gmail.com" target="_blank" id="email-link" class="contact-link">
             <img src="images/icons/contact-mail-icon.svg" alt="" id="email-icon" class="icon">
             <span>kylewalkerjackson@gmail.com</span>
         </a>
-    </div>
-    <div id="phone-container" class="container faded">
+    </address>
+    <address id="phone-container" class="container faded">
         <a href="tel:682-438-1847" id="phone-link" class="contact-link">
             <img src="images/icons/contact-phone-icon.svg" alt="" id="phone-icon" class="icon">
             <span>682.438.1847</span>
         </a>
-    </div>
+    </address>
     <div id="social-profiles-container" class="container faded">
         <a href="https://www.linkedin.com/in/kylewalkerjackson/" target="_blank" id="contact-linkedin-link" class="link-box">
             <b id="contact-linkedin-symbol" class="link-symbol">li</b>
