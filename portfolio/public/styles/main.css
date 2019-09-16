@@ -822,6 +822,53 @@ Project Thumbnails
 }
 
 @media (max-width: 499px) and (orientation: portrait) {
+  #product-thumbnail-preview {
+    background-position: center;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-image: url("../images/thumbnails/product-mockup/thumbnail-phone-product-mock.png");
+  }
+}
+
+@media (max-height: 499px) and (orientation: landscape) {
+  #product-thumbnail-preview {
+    background-position: center;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-image: url("../images/thumbnails/product-mockup/thumbnail-phone-landscape-product-mock.png");
+    width: 49%;
+    margin: 0;
+    left: 21%;
+  }
+}
+
+@media (min-width: 500px) and (min-height: 500px) {
+  #product-thumbnail-preview {
+    background-position: center;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-image: url("../images/thumbnails/product-mockup/thumbnail-tablet-product-mock.png");
+    background-position: inherit;
+    top: 7%;
+  }
+}
+
+@media (min-width: 768px) and (min-height: 500px) {
+  #product-thumbnail-preview {
+    background-position: center;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-image: url("../images/thumbnails/product-mockup/thumbnail-large-product-mock.png");
+  }
+}
+
+@media (min-width: 1300px) {
+  #product-thumbnail-preview {
+    background-position: center 25%;
+  }
+}
+
+@media (max-width: 499px) and (orientation: portrait) {
   #resumecss-thumbnail-preview {
     background-position: center;
     background-size: contain;
