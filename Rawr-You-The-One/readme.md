@@ -84,3 +84,8 @@ Features
 * ***1.1.2***
   * *September 9th, 2019*
   * Added open graph preview
+
+* ***1.1.3***
+  * *September 16th, 2019*
+  * Added footer
+  
