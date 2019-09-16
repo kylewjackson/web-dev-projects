@@ -189,7 +189,9 @@ const projects = {
         tools: 'React, Sass, CSS',
         thumb: '/',
         live: '/',
-        source: '/'
+        source: '/',
+        srcText: 'Source',
+        liveText: 'Mockup'
     },
     resumecss: {
         abbr: 'resumecss',
@@ -250,6 +252,13 @@ if (document.body.id === 'index') {
     //projects page
     Object.keys(projects).forEach(project => {
         addProject(projects[project].abbr, projects[project].title, projects[project].description, projects[project].tools, projects[project].thumb, projects[project].live, projects[project].source);
+        //change inner text if custom
+        if (projects[project].srcText) {
+            document.querySelector(`#${projects[project].abbr}-source-link`).innerText = projects[project].srcText;
+        };
+        if (projects[project].liveText) {
+            document.querySelector(`#${projects[project].abbr}-live-preview-link`).innerText = projects[project].liveText;
+        };
     });
 };
 
