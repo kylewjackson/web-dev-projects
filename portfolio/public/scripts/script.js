@@ -182,6 +182,15 @@ const projects = {
         live: '/',
         source: 'https://github.com/kylewjackson/web-dev-projects/tree/master/portfolio'
     },
+    productMock: {
+        abbr: 'product',
+        title: 'React Product Page',
+        description: 'Coming Soon. Mockup of React product page demo.',
+        tools: 'React, Sass, CSS',
+        thumb: '/',
+        live: '/',
+        source: '/'
+    },
     resumecss: {
         abbr: 'resumecss',
         title: 'CSS Resume',

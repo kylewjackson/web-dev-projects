@@ -32,6 +32,20 @@ Project Thumbnails
 
 }
 
+#product-thumbnail-preview {
+    //mobile portrait
+    @include thumbMobilePortrait('../images/thumbnails/product-mockup/thumbnail-phone-product-mock.png');
+
+    //mobile landscape
+    @include thumbMobileLandscape('../images/thumbnails/product-mockup/thumbnail-phone-landscape-product-mock.png');
+
+    //tablet
+    @include thumbTablet('../images/thumbnails/product-mockup/thumbnail-tablet-product-mock.png');
+
+    //large
+    @include thumbLarge('../images/thumbnails/product-mockup/thumbnail-large-product-mock.png');
+}
+
 #resumecss-thumbnail-preview {
     //mobile portrait
     @include thumbMobilePortrait('../images/thumbnails/resumecss/thumbnail-phone-resume.png');
