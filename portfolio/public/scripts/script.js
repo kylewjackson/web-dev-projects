@@ -187,10 +187,9 @@ const projects = {
         title: 'React Product Page',
         description: 'Coming Soon. Mockup of React product page demo.',
         tools: 'React, Sass, CSS',
-        thumb: '/',
-        live: '/',
-        source: '/',
-        srcText: 'Source',
+        thumb: 'https://github.com/kylewjackson/programming-projects/tree/master/React/Product%20Demo',
+        live: 'https://www.figma.com/file/fv202Jfted2mYOvnBm0hfZ/Shopping-Demo?node-id=0%3A1',
+        source: 'https://github.com/kylewjackson/programming-projects/tree/master/React/Product%20Demo',
         liveText: 'Mockup'
     },
     resumecss: {
@@ -248,6 +247,9 @@ if (document.body.id === 'index') {
     addProject(projects['rawr'].abbr, projects['rawr'].title, projects['rawr'].description, projects['rawr'].tools, projects['rawr'].thumb, projects['rawr'].live, projects['rawr'].source);
     //portfolio
     addProject(projects['portfolio'].abbr, projects['portfolio'].title, projects['portfolio'].description, projects['portfolio'].tools, projects['portfolio'].thumb, projects['portfolio'].live, projects['portfolio'].source);
+    //product mockup
+    addProject(projects['productMock'].abbr, projects['productMock'].title, projects['productMock'].description, projects['productMock'].tools, projects['productMock'].thumb, projects['productMock'].live, projects['productMock'].source);
+    document.querySelector(`#${projects['productMock'].abbr}-live-preview-link`).innerText = projects['productMock'].liveText;
 } else if (document.body.id === 'all-projects') {
     //projects page
     Object.keys(projects).forEach(project => {
