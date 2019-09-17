@@ -4,90 +4,90 @@ Project Thumbnails
 
 #rawr-thumbnail-preview {
     //mobile portratit
-    @include thumbMobilePortrait('../images/thumbnails/rawr/thumbnail-phone-rawr.png');
+    @include thumbMobilePortrait('../images/thumbnails/rawr/thumbnail-phone-rawr.jpg');
 
     //mobile landscape
-    @include thumbMobileLandscape('../images/thumbnails/rawr/thumbnail-phone-landscape-rawr.png');
+    @include thumbMobileLandscape('../images/thumbnails/rawr/thumbnail-phone-landscape-rawr.jpg');
 
     //tablet
-    @include thumbTablet('../images/thumbnails/rawr/thumbnail-tablet-rawr.png');
+    @include thumbTablet('../images/thumbnails/rawr/thumbnail-tablet-rawr.jpg');
 
     //large
-    @include thumbLarge('../images/thumbnails/rawr/thumbnail-large-rawr.png');
+    @include thumbLarge('../images/thumbnails/rawr/thumbnail-large-rawr.jpg');
 
 }
 
 #portfolio-thumbnail-preview {
     //mobile portrait
-    @include thumbMobilePortrait('../images/thumbnails/portfolio/thumbnail-phone-portfolio.png');
+    @include thumbMobilePortrait('../images/thumbnails/portfolio/thumbnail-phone-portfolio.jpg');
 
     //mobile landscape
-    @include thumbMobileLandscape('../images/thumbnails/portfolio/thumbnail-phone-landscape-portfolio.png');
+    @include thumbMobileLandscape('../images/thumbnails/portfolio/thumbnail-phone-landscape-portfolio.jpg');
 
     //tablet
-    @include thumbTablet('../images/thumbnails/portfolio/thumbnail-tablet-portfolio.png');
+    @include thumbTablet('../images/thumbnails/portfolio/thumbnail-tablet-portfolio.jpg');
 
     //large
-    @include thumbLarge('../images/thumbnails/portfolio/thumbnail-large-portfolio.png');
+    @include thumbLarge('../images/thumbnails/portfolio/thumbnail-large-portfolio.jpg');
 
 }
 
 #product-thumbnail-preview {
     //mobile portrait
-    @include thumbMobilePortrait('../images/thumbnails/product-mockup/thumbnail-phone-product-mock.png');
+    @include thumbMobilePortrait('../images/thumbnails/product-mockup/thumbnail-phone-product-mock.jpg');
 
     //mobile landscape
-    @include thumbMobileLandscape('../images/thumbnails/product-mockup/thumbnail-phone-landscape-product-mock.png');
+    @include thumbMobileLandscape('../images/thumbnails/product-mockup/thumbnail-phone-landscape-product-mock.jpg');
 
     //tablet
-    @include thumbTablet('../images/thumbnails/product-mockup/thumbnail-tablet-product-mock.png');
+    @include thumbTablet('../images/thumbnails/product-mockup/thumbnail-tablet-product-mock.jpg');
 
     //large
-    @include thumbLarge('../images/thumbnails/product-mockup/thumbnail-large-product-mock.png');
+    @include thumbLarge('../images/thumbnails/product-mockup/thumbnail-large-product-mock.jpg');
 }
 
 #resumecss-thumbnail-preview {
     //mobile portrait
-    @include thumbMobilePortrait('../images/thumbnails/resumecss/thumbnail-phone-resume.png');
+    @include thumbMobilePortrait('../images/thumbnails/resumecss/thumbnail-phone-resume.jpg');
 
     //mobile landscape
-    @include thumbMobileLandscape('../images/thumbnails/resumecss/thumbnail-phone-landscape-resume.png');
+    @include thumbMobileLandscape('../images/thumbnails/resumecss/thumbnail-phone-landscape-resume.jpg');
 
     //tablet
-    @include thumbTablet('../images/thumbnails/resumecss/thumbnail-tablet-resume.png');
+    @include thumbTablet('../images/thumbnails/resumecss/thumbnail-tablet-resume.jpg');
 
     //large
-    @include thumbLarge('../images/thumbnails/resumecss/thumbnail-large-resume.png');
+    @include thumbLarge('../images/thumbnails/resumecss/thumbnail-large-resume.jpg');
 
 }
 
 #jtodo-thumbnail-preview {
     //mobile portrait
-    @include thumbMobilePortrait('../images/thumbnails/jtodo/thumbnail-phone-jtodo.png');
+    @include thumbMobilePortrait('../images/thumbnails/jtodo/thumbnail-phone-jtodo.jpg');
 
     //mobile landscape
-    @include thumbMobileLandscape('../images/thumbnails/jtodo/thumbnail-phone-landscape-jtodo.png');
+    @include thumbMobileLandscape('../images/thumbnails/jtodo/thumbnail-phone-landscape-jtodo.jpg');
 
     //tablet
-    @include thumbTablet('../images/thumbnails/jtodo/thumbnail-tablet-jtodo.png');
+    @include thumbTablet('../images/thumbnails/jtodo/thumbnail-tablet-jtodo.jpg');
 
     //large
-    @include thumbLarge('../images/thumbnails/jtodo/thumbnail-large-jtodo.png');
+    @include thumbLarge('../images/thumbnails/jtodo/thumbnail-large-jtodo.jpg');
 
 }
 
 #bootcamp-thumbnail-preview {
     //mobile portrait
-    @include thumbMobilePortrait('../images/thumbnails/bootcamp/thumbnail-phone-bootcamp.png');
+    @include thumbMobilePortrait('../images/thumbnails/bootcamp/thumbnail-phone-bootcamp.jpg');
 
     //mobile landscape
-    @include thumbMobileLandscape('../images/thumbnails/bootcamp/thumbnail-phone-landscape-bootcamp.png');
+    @include thumbMobileLandscape('../images/thumbnails/bootcamp/thumbnail-phone-landscape-bootcamp.jpg');
 
     //tablet
-    @include thumbTablet('../images/thumbnails/bootcamp/thumbnail-tablet-bootcamp.png');
+    @include thumbTablet('../images/thumbnails/bootcamp/thumbnail-tablet-bootcamp.jpg');
 
     //large
-    @include thumbLarge('../images/thumbnails/bootcamp/thumbnail-large-bootcamp.png');
+    @include thumbLarge('../images/thumbnails/bootcamp/thumbnail-large-bootcamp.jpg');
 
 }
 
