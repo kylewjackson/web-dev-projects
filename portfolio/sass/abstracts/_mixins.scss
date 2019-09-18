@@ -273,6 +273,10 @@ Mixins
   transition: 1s;
 }
 
+@mixin transition-mid {
+  transition: .5s;
+}
+
 @mixin transition-quick {
   transition: .25s;
 }
