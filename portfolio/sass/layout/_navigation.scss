@@ -9,13 +9,6 @@ Navbar
   @include reset('top');
   @include whiteBlack;
 
-  .hidden {
-    @include transition-mid;
-    left: 0;
-    top: -85px;
-    opacity: 1;
-  }
-
   a,
   a:visited {
     @include fontWhite;
@@ -36,6 +29,13 @@ Navbar
 
   @include transition-mid;
 }
+
+  .navbar.hidden {
+      @include transition-mid;
+      left: 0;
+      top: -85px;
+      opacity: 1;
+  };
 
 .navigation {
   @include flexRow;

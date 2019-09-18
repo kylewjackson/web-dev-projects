@@ -1124,14 +1124,6 @@ Navbar
   transition: .5s;
 }
 
-.navbar .hidden {
-  -webkit-transition: .5s;
-  transition: .5s;
-  left: 0;
-  top: -85px;
-  opacity: 1;
-}
-
 .navbar a,
 .navbar a:visited {
   color: #EEEEEE;
@@ -1153,6 +1145,14 @@ Navbar
 .navbar .icon {
   width: 70%;
   min-width: 35px;
+}
+
+.navbar.hidden {
+  -webkit-transition: .5s;
+  transition: .5s;
+  left: 0;
+  top: -85px;
+  opacity: 1;
 }
 
 .navigation {
