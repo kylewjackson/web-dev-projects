@@ -381,8 +381,8 @@ Animations
   opacity: 0;
   -webkit-transform: translateY(100px);
           transform: translateY(100px);
-  -webkit-transition: 0;
-  transition: 0;
+  -webkit-transition: initial;
+  transition: initial;
 }
 
 .transition-1s {
