@@ -185,11 +185,11 @@ const projects = {
     productMock: {
         abbr: 'product',
         title: 'React Product Page',
-        description: 'Coming Soon. Mockup of React product page demo.',
+        description: 'Coming Soon. Mockup/Code of React product page demo.',
         tools: 'React, Sass, CSS',
         thumb: 'https://github.com/kylewjackson/programming-projects/tree/master/React/Product%20Demo',
         live: 'https://www.figma.com/file/fv202Jfted2mYOvnBm0hfZ/Shopping-Demo?node-id=0%3A1',
-        source: 'https://github.com/kylewjackson/programming-projects/tree/master/React/Product%20Demo',
+        source: 'https://github.com/kylewjackson/web-dev-projects/tree/master/React-Product-Page',
         liveText: 'Mockup'
     },
     resumecss: {
