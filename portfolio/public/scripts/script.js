@@ -313,11 +313,14 @@ if (document.body.id === 'index') {
         //     document.querySelector('.navbar').classList.toggle('hidden');
         //     navOff = true;
         // };
-        // if scrolled to top, fade top section of content
+        // if scrolled to top
         if (window.scrollY === 0) {
             //hide navbar if visible
-            document.querySelector('.navbar').classList.toggle('hidden');
-            navOff = !navOff;
+            if (!navOff) {
+                document.querySelector('.navbar').classList.toggle('hidden');
+                navOff = true;
+            };
+            //fade top section of content
             if (document.querySelectorAll('.top-faded').length === 0) {
                 document.querySelector('#intro-heading').classList.add('top-faded');
                 document.querySelector('#intro-icons').classList.add('top-faded');
@@ -326,8 +329,10 @@ if (document.body.id === 'index') {
             };
         } else {
             //unfade
-            document.querySelector('.navbar').classList.toggle('hidden');
-            navOff = !navOff;
+            if (navOff) {
+                document.querySelector('.navbar').classList.toggle('hidden');
+                navOff = false;
+            };
             if (document.querySelectorAll('.top-faded').length > 0) {
                 document.querySelector('#intro-heading').classList.remove('top-faded');
                 document.querySelector('#intro-icons').classList.remove('top-faded');
