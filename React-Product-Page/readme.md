@@ -1,0 +1,44 @@
+# React Product Page Demo
+
+Version 1.0 beta
+
+*September 26, 2019*
+
+This product page demo was made with React.JS, and is fully funtional, but not currently styled. A [Figma mockup](https://www.figma.com/file/fv202Jfted2mYOvnBm0hfZ/Shopping-Demo?node-id=0%3A1) can be found for a preview of what the final product will look like on completion. As of now the project is solely Front End, so any registration/login functionality is for demo purposes only.
+
+## Features
+
+* Custom SVG icons
+* Modal alerts/prompts
+  * Accessible tabbing
+  * Close on ESC or clicking outside of popup
+* Nav Category Dropdown
+* Login/Sign Up Demo
+  * User types in name to test
+  * Alerts user to registered status
+  * Guest cart is consolidated upon login, and saved on logout
+* Dynamic Cart
+  * Dynamic thumbnails based on option selection
+  * Remove items
+  * Cart status displayed in icon
+* Product thumbnails
+  * Buttons used to cycle through product images
+  * Modal popup enlarges the currently displayed image
+* Products have unique options and quantities
+  * If max quantity is reached, add to cart is disabled
+  * If quantity is exceeded on add or option change, user is alerted and quantity is maxed out in cart
+* Star Rating system
+  * Shows dynamic user averge and personal rating
+* Product Reviews
+  * Sort by helpful, recent, old, and star rating
+  * Reviews have feedback buttons, dynamically marked to indicate rating distribution, and whether or not the user has rated the review
+* Write a Review
+  * When user is logged in, their review is always shown at the bottom
+  * Review can be edited, with feedback reset on a change, but not if cancelled first.
+  * Rating of product may be changed without affecting previous review.
+
+## Future Updates
+
+* Increased accessibility in modal, namely the focused element upon closing
+* Responsive CSS stlying
+* Currency conversion
