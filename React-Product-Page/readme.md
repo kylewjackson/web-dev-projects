@@ -42,5 +42,5 @@ Readable [demo code](https://github.com/kylewjackson/web-dev-projects/tree/maste
 ## Future Updates
 
 * Increased accessibility in modal, namely the focused element upon closing
-* Responsive CSS stlying
+* Responsive CSS styling
 * Currency conversion
