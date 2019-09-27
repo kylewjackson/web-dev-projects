@@ -6,7 +6,7 @@ Version 1.0 beta
 
 This product page demo was made with React.JS, and is fully funtional, but not currently styled. A [Figma mockup](https://www.figma.com/file/fv202Jfted2mYOvnBm0hfZ/Shopping-Demo?node-id=0%3A1) can be found for a preview of what the final product will look like on completion. As of now the project is solely Front End, so any registration/login functionality is for demo purposes only.
 
-Readable [demo code](https://github.com/kylewjackson/web-dev-projects/tree/master/React-Product-Page/demo-code/demo.js) can be found in this repo as a [subfolder](https://github.com/kylewjackson/web-dev-projects/tree/master/React-Product-Page/demo-code).
+Readable [demo code](https://github.com/kylewjackson/web-dev-projects/tree/master/React-Product-Page/demo-code/demo.js) can be found in this repo as a [subfolder](https://github.com/kylewjackson/web-dev-projects/tree/master/React-Product-Page/demo-code). Bare-bones [live preview](https://www.kylejackson.dev/react-product-page/).
 
 ## Features
 
