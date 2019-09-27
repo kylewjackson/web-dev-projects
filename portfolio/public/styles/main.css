@@ -1120,6 +1120,8 @@ Navbar
   top: 0;
   color: #EEEEEE;
   background-color: #333333;
+  -webkit-transition: .5s;
+  transition: .5s;
 }
 
 .navbar a,
@@ -1143,6 +1145,14 @@ Navbar
 .navbar .icon {
   width: 70%;
   min-width: 35px;
+}
+
+.navbar.hidden {
+  -webkit-transition: .5s;
+  transition: .5s;
+  left: 0;
+  top: -85px;
+  opacity: 1;
 }
 
 .navigation {
