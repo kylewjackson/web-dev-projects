@@ -60,7 +60,7 @@ const tools = {
         },
         react: {
             abbr: 'react',
-            name: 'React.JS (Learning)',
+            name: 'React.JS',
             symbol: 'R',
             full: 'React.JS',
             url: 'https://reactjs.org/'
