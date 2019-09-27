@@ -27,15 +27,15 @@ Navbar
     min-width: 35px;
   }
 
-  // @include transition-mid;
+  @include transition-mid;
 }
 
-  // .navbar.hidden {
-  //     @include transition-mid;
-  //     left: 0;
-  //     top: -85px;
-  //     opacity: 1;
-  // };
+  .navbar.hidden {
+      @include transition-mid;
+      left: 0;
+      top: -85px;
+      opacity: 1;
+  };
 
 .navigation {
   @include flexRow;

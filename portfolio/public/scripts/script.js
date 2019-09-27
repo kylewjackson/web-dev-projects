@@ -302,20 +302,25 @@ if (document.body.id === 'index') {
         //check scroll position
         // console.log('scrollY ' + window.scrollY + ' and element ' + subtitlePos);
         //if further than element, reveal navbar if hidden
-        if (window.scrollY > subtitlePos + 75 && navOff) {
-            // console.log('show');
-            document.querySelector('.navbar').classList.toggle('hidden');
-            navOff = false;
-        };
-        //if navbar is visible and position is less than element, hide navbar
-        if (window.scrollY < subtitlePos && !navOff) {
-            // console.log('hide');
-            document.querySelector('.navbar').classList.toggle('hidden');
-            navOff = true;
-        };
-        // if scrolled to top, fade top section of content
+        // if (window.scrollY > subtitlePos + 75 && navOff) {
+        //     // console.log('show');
+        //     document.querySelector('.navbar').classList.toggle('hidden');
+        //     navOff = false;
+        // };
+        // //if navbar is visible and position is less than element, hide navbar
+        // if (window.scrollY < subtitlePos && !navOff) {
+        //     // console.log('hide');
+        //     document.querySelector('.navbar').classList.toggle('hidden');
+        //     navOff = true;
+        // };
+        // if scrolled to top
         if (window.scrollY === 0) {
             //hide navbar if visible
+            if (!navOff) {
+                document.querySelector('.navbar').classList.toggle('hidden');
+                navOff = true;
+            };
+            //fade top section of content
             if (document.querySelectorAll('.top-faded').length === 0) {
                 document.querySelector('#intro-heading').classList.add('top-faded');
                 document.querySelector('#intro-icons').classList.add('top-faded');
@@ -324,6 +329,10 @@ if (document.body.id === 'index') {
             };
         } else {
             //unfade
+            if (navOff) {
+                document.querySelector('.navbar').classList.toggle('hidden');
+                navOff = false;
+            };
             if (document.querySelectorAll('.top-faded').length > 0) {
                 document.querySelector('#intro-heading').classList.remove('top-faded');
                 document.querySelector('#intro-icons').classList.remove('top-faded');
