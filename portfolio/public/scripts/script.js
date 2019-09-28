@@ -322,6 +322,7 @@ if (document.body.id === 'index') {
             };
             //fade top section of content
             if (document.querySelectorAll('.top-faded').length === 0) {
+                document.querySelector('#self-portrait-icon').classList.add('top-faded');
                 document.querySelector('#intro-heading').classList.add('top-faded');
                 document.querySelector('#intro-icons').classList.add('top-faded');
                 document.querySelector('.intro-paragraph').classList.add('top-faded');
@@ -334,6 +335,7 @@ if (document.body.id === 'index') {
                 navOff = false;
             };
             if (document.querySelectorAll('.top-faded').length > 0) {
+                document.querySelector('#self-portrait-icon').classList.remove('top-faded');
                 document.querySelector('#intro-heading').classList.remove('top-faded');
                 document.querySelector('#intro-icons').classList.remove('top-faded');
                 document.querySelector('.intro-paragraph').classList.remove('top-faded');
