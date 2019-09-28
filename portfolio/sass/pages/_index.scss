@@ -15,7 +15,7 @@ Index Styles
         @include mobile('landscape') {
             margin-top: inherit;
         }
-        
+
         @include tablet {
             margin-top: -200px;
         }
@@ -26,5 +26,10 @@ Index Styles
 
     .top-faded {
         opacity: 0;
+    }
+
+    #self-portrait-icon {
+        width: 40vw;
+        max-width: 200px;
     }
 }

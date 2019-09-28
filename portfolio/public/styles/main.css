@@ -1665,6 +1665,11 @@ Index Styles
   opacity: 0;
 }
 
+#index #self-portrait-icon {
+  width: 40vw;
+  max-width: 200px;
+}
+
 /*===========
 About Styles
 ============*/
