@@ -4,9 +4,9 @@ Version 1.1 beta
 
 *September 30, 2019*
 
-This product page demo was made with React.JS, and is fully funtional, but is currently only styled for mobile. A [Figma mockup](https://www.figma.com/file/fv202Jfted2mYOvnBm0hfZ/Shopping-Demo?node-id=0%3A1) can be found for a preview of what the final product will look like on completion. As of now the project is solely Front End, so any registration/login functionality is for demo purposes only.
+This product page demo was made with React.JS. As of now the project is solely Front End, so any registration/login functionality is for demo purposes only.
 
-Readable [demo code](https://github.com/kylewjackson/web-dev-projects/tree/master/React-Product-Page/demo-code/demo.js) can be found in this repo as a [subfolder](https://github.com/kylewjackson/web-dev-projects/tree/master/React-Product-Page/demo-code). Mobile-first [live preview](https://www.kylejackson.dev/react-product-page/).
+Readable [demo code](https://github.com/kylewjackson/web-dev-projects/tree/master/React-Product-Page/demo-code/demo.js) can be found in this repo as a [subfolder](https://github.com/kylewjackson/web-dev-projects/tree/master/React-Product-Page/demo-code). [Live Preview](https://www.kylejackson.dev/react-product-page/).
 
 ## Features
 
@@ -42,8 +42,8 @@ Readable [demo code](https://github.com/kylewjackson/web-dev-projects/tree/maste
 ## Future Updates
 
 * Increased accessibility in modal, namely the focused element upon closing
-* Increased mobile optimization
-* Tablet/Large screen styling
+* Greater cross-browser consistency, namely Firefox layout tweaks
+* Refactor/rewrite HTML, and create favicon
 * Currency conversion
 
 ## Version History
