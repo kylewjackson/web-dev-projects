@@ -29,12 +29,6 @@ const colorDarkGrey = '#383838';
 const colorYellow = '#FFF59B';
 const colorRed =  '#9E1800';
 
-// const optionBG = '#F3F3F3';
-// const optionBorder = '#E9E9E9';
-
-// const reviewBG = '#EAEAEA';
-// const reviewBorder = '#E2E2E2';
-
 //regex
 function transformId(ele) {
   const symbols = /[-!$%^&*()_+|~=`{}[\]:";'<>?,./]/;
@@ -178,8 +172,8 @@ class Modal extends React.Component {
   render() {
     const showButton = this.props.btn && typeof this.props.btn.rmv === 'number' ?
     [
-      <button type="button" key="cancel-remove" ref={this.buttonFocus} onClick={() => this.props.handleModal({act: 'close'})}>Cancel</button>,
-      <button type="button" key="confirm-remove" onClick={() => this.props.handleModal({act: 'close', rmv: this.props.btn.rmv})}>Remove</button>
+      <button type="button" key="confirm-remove" ref={this.buttonFocus} onClick={() => this.props.handleModal({act: 'close', rmv: this.props.btn.rmv})}>Remove</button>,
+      <button type="button" key="cancel-remove" onClick={() => this.props.handleModal({act: 'close'})}>Cancel</button>,
     ] :
     <button type="button" onClick={() => this.props.handleModal({act: 'close'})} ref={this.buttonFocus}>Close</button>
     if (!this.props.show) {
@@ -840,17 +834,23 @@ class App extends React.Component {
             modal={props.modal}
             handleModal={props.handleModal}
             navOpen={props.navOpen}
+            cartClosed={props.cartClosed}
             itemCount={props.itemCount}
+            itemsInCart={props.itemsInCart}
             toggleMenu={props.toggleMenu}
             loggedIn={props.loggedIn}
             openLogin={props.openLogin}
             openSignup={props.openSignup}
             user={props.user}
+            preventEnter={props.preventEnter}
+            handleInput={props.handleInput}
+            handleButton={props.handleButton}
+            handleFocus={props.handleFocus}
             handleSubmit={props.handleSubmit}
             handleUsername={props.handleUsername}
             handleLogin={props.handleLogin}
           />
-          {!props.cartClosed ?
+          {/* {!props.cartClosed ?
             <Cart
               modal={props.modal}
               itemsInCart={props.itemsInCart}
@@ -862,7 +862,7 @@ class App extends React.Component {
               toggleMenu={props.toggleMenu}
             /> :
             ''
-          }
+          } */}
         </header>
       );
   };
@@ -874,8 +874,10 @@ class App extends React.Component {
             <li id="nav-home" className="links">
               <button type="button" tabIndex={props.modal ? -1 : null}>Home</button>
             </li>
-            <li id="nav-categories" className="links">
-              <button type="button" tabIndex={props.modal ? -1 : null} onClick={() => props.toggleMenu('nav')}>Categories</button>
+            <li id="nav-categories" className={props.navOpen ? 'active links' : 'links'}>
+              <button type="button" tabIndex={props.modal ? -1 : null} onClick={() => props.toggleMenu('nav')}>
+                Categories
+              </button>
               {props.navOpen ? <NavLinks modal={props.modal} handleModal={props.handleModal} /> : ''}
             </li>
             <LogIn
@@ -895,6 +897,19 @@ class App extends React.Component {
               handleButton={props.handleButton}
             />
           </ul>
+          {!props.cartClosed ?
+            <Cart
+              modal={props.modal}
+              itemsInCart={props.itemsInCart}
+              handleInput={props.handleInput}
+              handleFocus={props.handleFocus}
+              handleSubmit={props.handleSubmit}
+              handleButton={props.handleButton}
+              preventEnter={props.preventEnter}
+              toggleMenu={props.toggleMenu}
+            /> :
+            ''
+          }
         </nav>
       );
     };
@@ -902,10 +917,10 @@ class App extends React.Component {
       function NavLinks(props) {
         return (
           <ol id="categories-links" className="nav-links">
-            <li><button type="button" tabIndex={props.modal ? -1 : null} onClick={(e) => props.handleModal({msg: 'This link will go to a designated page, or some other action you decide on.'}, e)}>Category 1</button></li>
-            <li><button type="button" tabIndex={props.modal ? -1 : null} onClick={(e) => props.handleModal({msg: 'This link will go to a designated page, or some other action you decide on.'}, e)}>Category 2</button></li>
-            <li><button type="button" tabIndex={props.modal ? -1 : null} onClick={(e) => props.handleModal({msg: 'This link will go to a designated page, or some other action you decide on.'}, e)}>Category 3</button></li>
-            <li><button type="button" tabIndex={props.modal ? -1 : null} onClick={(e) => props.handleModal({msg: 'This link will go to a designated page, or some other action you decide on.'}, e)}>Category 4</button></li>
+            <li><button type="button" tabIndex={props.modal ? -1 : null} onClick={(e) => props.handleModal({msg: 'This link will go to a designated page, or some other action you decide on.'}, e)}>Cat. 1</button></li>
+            <li><button type="button" tabIndex={props.modal ? -1 : null} onClick={(e) => props.handleModal({msg: 'This link will go to a designated page, or some other action you decide on.'}, e)}>Cat. 2</button></li>
+            <li><button type="button" tabIndex={props.modal ? -1 : null} onClick={(e) => props.handleModal({msg: 'This link will go to a designated page, or some other action you decide on.'}, e)}>Cat. 3</button></li>
+            <li><button type="button" tabIndex={props.modal ? -1 : null} onClick={(e) => props.handleModal({msg: 'This link will go to a designated page, or some other action you decide on.'}, e)}>Cat. 4</button></li>
           </ol>
         );
       };
@@ -947,8 +962,10 @@ class App extends React.Component {
         return (
           <li id="nav-cart" className="links">
             <button type="button" onClick={() => props.toggleMenu('cart')} aria-label="open cart" tabIndex={props.modal ? -1 : null}>
-              <CartIcon fillColor={props.itemCount > 0 ? colorYellow : colorWhite} />
-              <span>Cart ({props.itemCount.toString()})</span>
+              <span id="cart-button-span">
+                <CartIcon fillColor={props.itemCount > 0 ? colorYellow : colorWhite} />
+                <span className={props.itemCount > 0 ? 'active' : null}>Cart ({props.itemCount.toString()})</span>
+              </span>
             </button>
           </li>
         );
@@ -1201,8 +1218,10 @@ class App extends React.Component {
               tabIndex={props.modal ? -1 : null}
               onClick={() => props.handleButton('checkout')}
             >
-              <span>Proceed to Checkout</span>
-              <CartIcon fillColor={colorRed} />
+              <span id="checkout-button-span">
+                <span>Proceed to Checkout</span>
+                <CartIcon fillColor={colorRed} />
+              </span>
             </button>
           );
         };
@@ -1342,7 +1361,7 @@ class App extends React.Component {
             <ProductForm
               modal={props.modal}
               itemsInCart={props.itemsInCart}
-              id={`${props.id}-product`}
+              id={`${props.prodId}-product`}
               prodId={props.prodId}
               qty={props.qty}
               opt={props.opt}
@@ -1565,9 +1584,9 @@ class App extends React.Component {
 
         function Price(props) {
           return (
-            <span id={`${props.prodId}-price`} className="prices">
+            <strong id={`${props.prodId}-price`} className="prices">
               ${props.price.toFixed(2)}
-            </span>
+            </strong>
           );
         };
 
@@ -1585,10 +1604,12 @@ class App extends React.Component {
               disabled={qtyTogther > maxQty ? true : false}
               tabIndex={props.modal ? -1 : null}
             >
-              <span>{!dupeInCart ? 'Add to Cart' : qtyTogther <= maxQty ? 'Update Cart' : 'Maxed Out'}</span>
-              <i>
-                <CartIcon fillColor={colorWhite} />
-              </i>
+              <span id="add-to-cart-span">
+                <span>{!dupeInCart ? 'Add to Cart' : qtyTogther <= maxQty ? 'Update Cart' : 'Maxed Out'}</span>
+                <i>
+                  <CartIcon fillColor={colorWhite} />
+                </i>
+              </span>
             </button>
           );
         };
@@ -1954,6 +1975,7 @@ class App extends React.Component {
         function WriteReview(props) {
           return (
             <fieldset>
+              <div>
               <span id="write-username" className="usernames">{props.loggedIn && !props.editOpen ? `Posting as ${props.user}` : ''}</span>
               <textarea
                 name="review-body"
@@ -1976,6 +1998,7 @@ class App extends React.Component {
                 rating={props.rating}
                 handleButton={props.handleButton}
               />
+              </div>
             </fieldset>
           );
         };
