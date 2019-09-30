@@ -1599,7 +1599,7 @@ class App extends React.Component {
             <button
               type="submit"
               id={`${props.id}-add-to-cart-button`}
-              className="add-to-cart buttons"
+              className={dupeInCart && qtyTogther > maxQty ? "add-to-cart buttons" : "add-to-cart buttons active"}
               aria-label="add to cart"
               disabled={qtyTogther > maxQty ? true : false}
               tabIndex={props.modal ? -1 : null}
@@ -1838,8 +1838,9 @@ class App extends React.Component {
             };
 
           function Review(props) {
+            const kindOfClass = props.userId === props.currentUser && props.editOpen ? "current-user reviews active" : props.userId === props.currentUser ? "current-user reviews" : "reviews";
             return (
-              <article id={`${props.userId}-review`} className={props.userId === props.currentUser ? "current-user reviews" : "reviews"}>
+              <article id={`${props.userId}-review`} className={kindOfClass}>
                 <h4 className="names">{props.user.toUpperCase()}</h4>
                 <span className="dates">{props.date}</span>
                 {props.editOpen && props.userId === props.currentUser ? (
@@ -1954,6 +1955,7 @@ class App extends React.Component {
               modal={props.modal}
               user={props.user}
               userId={props.userId}
+              prodId={props.prodId}
               loggedIn={props.loggedIn}
               reviewBody={props.reviewBody}
               editOpen={props.editOpen}
@@ -1964,7 +1966,7 @@ class App extends React.Component {
               handleText={props.handleText}
             />
             {props.loggedIn ?
-              <button type="submit" className="buttons" disabled={disableEdit} tabIndex={props.modal ? -1 : null}>Submit</button> :
+              <button type="submit" className={disableEdit ? "buttons" : "active buttons"} disabled={disableEdit} tabIndex={props.modal ? -1 : null}>Submit</button> :
               <button type="submit" className="buttons" disabled tabIndex={props.modal ? -1 : null}>Login First</button>
             }
             {props.editOpen ? <button type="button" className="buttons" onClick={(e) => props.handleButton('cancel', e)} tabIndex={props.modal ? -1 : null}>Cancel</button> : null}
@@ -1974,7 +1976,7 @@ class App extends React.Component {
 
         function WriteReview(props) {
           return (
-            <fieldset>
+            <fieldset className={props.editOpen ? 'active' : null}>
               <div>
               <span id="write-username" className="usernames">{props.loggedIn && !props.editOpen ? `Posting as ${props.user}` : ''}</span>
               <textarea
@@ -1993,6 +1995,7 @@ class App extends React.Component {
               <Rating
                 modal={props.modal}
                 user={props.userId}
+                prodId={props.prodId}
                 section="write"
                 kind="user"
                 rating={props.rating}
