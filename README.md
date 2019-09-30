@@ -13,4 +13,4 @@ My front-end portfolio, hosted by Netlify. HTML, CSS, Sass, and vanilla JS. View
 [![Netlify Status](https://api.netlify.com/api/v1/badges/38b0311d-6da0-46d6-977e-5e6102fe7948/deploy-status)](https://app.netlify.com/sites/kylewjackson/deploys)
 
 ## React Product Page Demo
-Coming soon. Source code and mockup available, styled product on its way.
+Demo made with React.JS and vanilla CSS. [Live](https://www.kylejackson.dev/productpage).
