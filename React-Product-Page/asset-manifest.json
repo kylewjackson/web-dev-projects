@@ -1,6 +1,6 @@
 {
   "files": {
-    "main.css": "/react-product-page/static/css/main.49a554fd.chunk.css",
+    "main.css": "/react-product-page/static/css/main.afe79de5.chunk.css",
     "main.js": "/react-product-page/static/js/main.7a117c3e.chunk.js",
     "main.js.map": "/react-product-page/static/js/main.7a117c3e.chunk.js.map",
     "runtime~main.js": "/react-product-page/static/js/runtime~main.296e7352.js",
@@ -8,8 +8,8 @@
     "static/js/2.a3a2298d.chunk.js": "/react-product-page/static/js/2.a3a2298d.chunk.js",
     "static/js/2.a3a2298d.chunk.js.map": "/react-product-page/static/js/2.a3a2298d.chunk.js.map",
     "index.html": "/react-product-page/index.html",
-    "precache-manifest.c7a9b67d34f20922b786b5cbc8ad07da.js": "/react-product-page/precache-manifest.c7a9b67d34f20922b786b5cbc8ad07da.js",
+    "precache-manifest.72492a1c379b3b12cd557e12217f828a.js": "/react-product-page/precache-manifest.72492a1c379b3b12cd557e12217f828a.js",
     "service-worker.js": "/react-product-page/service-worker.js",
-    "static/css/main.49a554fd.chunk.css.map": "/react-product-page/static/css/main.49a554fd.chunk.css.map"
+    "static/css/main.afe79de5.chunk.css.map": "/react-product-page/static/css/main.afe79de5.chunk.css.map"
   }
 }
