@@ -248,7 +248,6 @@ if (document.body.id === 'index') {
     addProject(projects['portfolio'].abbr, projects['portfolio'].title, projects['portfolio'].description, projects['portfolio'].tools, projects['portfolio'].thumb, projects['portfolio'].live, projects['portfolio'].source);
     //product mockup
     addProject(projects['productMock'].abbr, projects['productMock'].title, projects['productMock'].description, projects['productMock'].tools, projects['productMock'].thumb, projects['productMock'].live, projects['productMock'].source);
-    document.querySelector(`#${projects['productMock'].abbr}-live-preview-link`).innerText = projects['productMock'].liveText;
 } else if (document.body.id === 'all-projects') {
     //projects page
     Object.keys(projects).forEach(project => {
