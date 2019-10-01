@@ -4,6 +4,8 @@ const ie = /MSIE|Trident/.test(ua);
 
 let subtitlePos, navOff;
 
+//disclaimer about react warning message - 10/01/19
+console.log(`10/01/19: Hey, it's Kyle. Thanks for checking out my portfolio! Just wanted to let you know if there is a warning in the Chrome dev console about createClass being deprecated, that's an issue with my use of create-react-app for my Product Page demo, which I'm looking into.`);
 
 //add navbar
 document.querySelector('.header-content').insertAdjacentHTML('afterbegin', `
