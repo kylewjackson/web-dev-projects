@@ -1,0 +1,54 @@
+body {
+   margin: 2;
+   font-size: 9pt;
+   font-family: Tahoma;
+   color: #000000;
+}
+
+A:link {text-decoration: none; font-weight: bold; color: #FFFFFF; font-size: 9pt; font-family: verdana;}
+A:visited {text-decoration: none; font-weight: bold; color: #FFFFFF; font-size: 9pt; font-family: verdana;}
+A:active {text-decoration: none; font-weight: bold; color: #FFFFFF; font-size: 9pt; font-family: verdana;}
+A:hover {text-decoration: none; font-weight: bold; color: #FFFFFF; font-size: 9pt; font-family: verdana;}
+
+h1 {
+   border-bottom: 1px #FFFFFF solid;
+   font-size: 11pt;
+   font-weight: bold;
+   font-family: Century Gothic;
+   color: #FFFFFF;
+}
+
+h2 {
+   font-size: 7pt;
+   font-weight: bold;
+   font-family: Century Gothic;
+   color: #123444;
+}
+
+
+#main {
+   Z-INDEX: 1; 
+   LEFT: 200px; 
+   WIDTH: 0px; 
+   POSITION: absolute; 
+   TOP: 5px; 
+   HEIGHT: 0px;
+}
+
+#music {
+   Z-INDEX: 1; 
+   LEFT: 630px; 
+   WIDTH: 0px; 
+   POSITION: absolute; 
+   TOP: 115px; 
+   HEIGHT: 0px;
+}
+
+#hits {
+   Z-INDEX: 1; 
+   LEFT: 605px; 
+   WIDTH: 150px; 
+   POSITION: absolute; 
+   TOP: 165px; 
+   HEIGHT: 0px;
+}
