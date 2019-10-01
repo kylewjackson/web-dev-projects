@@ -9,6 +9,10 @@ Sites that have a working live sample are probably not up to snuff, so don't exp
 ## Directory
 
 [Cloudchaser Designs - Version 2](https://www.kylejackson.dev/retro/cloudchasers-v2/)
+[Cloudchaser Designs - Version 3](https://www.kylejackson.dev/retro/cloudchasers-v3/)
+[McDuh Blog](https://www.kylejackson.dev/retro/mcduh/)
+[No13 Premade Layout](https://www.kylejackson.dev/retro/no13/)
+[The Avatar Masters](https://www.kylejackson.dev/retro/tam3/)
 
 ### Disclaimer
 
