@@ -1,5 +1,9 @@
 # React Product Page Demo
 
+*October 1, 2019*
+
+Bug: There's a warning in the Chrome dev console about createClass being deprecated, which seems to be an issues with create-react-app, and I'm currently looking into it. It shouldn't be causing any issues within the app.
+
 Version 1.1 beta
 
 *September 30, 2019*

@@ -1,3 +1,6 @@
+//disclaimer about react warning message - 10/01/19
+console.log(`10/01/19: Hey, it's Kyle. Thanks for checking out my game! Just wanted to let you know if there is a warning in the Chrome dev console about createClass being deprecated, that's an issue with my use of create-react-app for my Product Page demo, which I'm looking into. It shouldn't be causing any issues.`);
+
 //Variables
 let currentMessage, currentGame, currentStats, gameStarted;
 const validWoofs = {
