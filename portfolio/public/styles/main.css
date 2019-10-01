@@ -1009,6 +1009,53 @@ Project Thumbnails
   }
 }
 
+@media (max-width: 499px) and (orientation: portrait) {
+  #retro-thumbnail-preview {
+    background-position: center;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-image: url("../images/thumbnails/retro/thumbnail-phone-retro.jpg");
+  }
+}
+
+@media (max-height: 499px) and (orientation: landscape) {
+  #retro-thumbnail-preview {
+    background-position: center;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-image: url("../images/thumbnails/retro/thumbnail-phone-landscape-retro.jpg");
+    width: 49%;
+    margin: 0;
+    left: 21%;
+  }
+}
+
+@media (min-width: 500px) and (min-height: 500px) {
+  #retro-thumbnail-preview {
+    background-position: center;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-image: url("../images/thumbnails/retro/thumbnail-tablet-retro.jpg");
+    background-position: inherit;
+    top: 7%;
+  }
+}
+
+@media (min-width: 768px) and (min-height: 500px) {
+  #retro-thumbnail-preview {
+    background-position: center;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-image: url("../images/thumbnails/retro/thumbnail-large-retro.jpg");
+  }
+}
+
+@media (min-width: 1300px) {
+  #retro-thumbnail-preview {
+    background-position: center 25%;
+  }
+}
+
 .thumbnail-preview {
   height: 60vw;
   margin: 5% 0 10% 0;

@@ -91,6 +91,21 @@ Project Thumbnails
 
 }
 
+#retro-thumbnail-preview {
+    //mobile portrait
+    @include thumbMobilePortrait('../images/thumbnails/retro/thumbnail-phone-retro.jpg');
+
+    //mobile landscape
+    @include thumbMobileLandscape('../images/thumbnails/retro/thumbnail-phone-landscape-retro.jpg');
+
+    //tablet
+    @include thumbTablet('../images/thumbnails/retro/thumbnail-tablet-retro.jpg');
+
+    //large
+    @include thumbLarge('../images/thumbnails/retro/thumbnail-large-retro.jpg');
+
+}
+
 .thumbnail-preview {
 
     height: 60vw;

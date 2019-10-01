@@ -217,6 +217,15 @@ const projects = {
         thumb: 'https://github.com/kylewjackson/web-dev-projects/tree/master/Udemy/Web%20Developer%20Bootcamp',
         live: 'https://www.udemy.com/certificate/UC-GCOQR6MA/',
         source: 'https://github.com/kylewjackson/web-dev-projects/tree/master/Udemy/Web%20Developer%20Bootcamp'
+    },
+    retro: {
+        abbr: 'retro',
+        title: 'Retro Projects',
+        description: 'Sites made as a hobby from 2006 - 2009.',
+        tools: 'HTML, CSS',
+        thumb: 'https://github.com/kylewjackson/web-dev-projects/tree/master/retro',
+        live: 'https://github.com/kylewjackson/web-dev-projects/tree/master/retro',
+        source: 'https://github.com/kylewjackson/web-dev-projects/tree/master/retro',
     }
 };
 
