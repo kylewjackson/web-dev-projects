@@ -194,6 +194,15 @@ const projects = {
         live: '/productpage',
         source: 'https://github.com/kylewjackson/web-dev-projects/tree/master/React-Product-Page',
     },
+    robo: {
+        abbr: 'robo',
+        title: 'Robo-Trek',
+        description: 'Travelling robot app made for an interview',
+        tools: 'React, CSS',
+        thumb: 'https://naughty-rosalind-487bdf.netlify.com/',
+        live: 'https://naughty-rosalind-487bdf.netlify.com/',
+        source: 'https://github.com/kylewjackson/robot'
+    },
     resumecss: {
         abbr: 'resumecss',
         title: 'CSS Resume',

@@ -869,6 +869,53 @@ Project Thumbnails
 }
 
 @media (max-width: 499px) and (orientation: portrait) {
+  #robo-thumbnail-preview {
+    background-position: center;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-image: url("../images/thumbnails/robo/thumbnail-phone-robo.jpg");
+  }
+}
+
+@media (max-height: 499px) and (orientation: landscape) {
+  #robo-thumbnail-preview {
+    background-position: center;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-image: url("../images/thumbnails/robo/thumbnail-phone-landscape-robo.jpg");
+    width: 49%;
+    margin: 0;
+    left: 21%;
+  }
+}
+
+@media (min-width: 500px) and (min-height: 500px) {
+  #robo-thumbnail-preview {
+    background-position: center;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-image: url("../images/thumbnails/robo/thumbnail-tablet-robo.jpg");
+    background-position: inherit;
+    top: 7%;
+  }
+}
+
+@media (min-width: 768px) and (min-height: 500px) {
+  #robo-thumbnail-preview {
+    background-position: center;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-image: url("../images/thumbnails/robo/thumbnail-large-robo.jpg");
+  }
+}
+
+@media (min-width: 1300px) {
+  #robo-thumbnail-preview {
+    background-position: center 25%;
+  }
+}
+
+@media (max-width: 499px) and (orientation: portrait) {
   #resumecss-thumbnail-preview {
     background-position: center;
     background-size: contain;

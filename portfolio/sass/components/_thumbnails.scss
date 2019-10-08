@@ -46,6 +46,20 @@ Project Thumbnails
     @include thumbLarge('../images/thumbnails/product-mockup/thumbnail-large-product-mock.jpg');
 }
 
+#robo-thumbnail-preview {
+    //mobile portrait
+    @include thumbMobilePortrait('../images/thumbnails/robo/thumbnail-phone-robo.jpg');
+
+    //mobile landscape
+    @include thumbMobileLandscape('../images/thumbnails/robo/thumbnail-phone-landscape-robo.jpg');
+
+    //tablet
+    @include thumbTablet('../images/thumbnails/robo/thumbnail-tablet-robo.jpg');
+
+    //large
+    @include thumbLarge('../images/thumbnails/robo/thumbnail-large-robo.jpg');
+}
+
 #resumecss-thumbnail-preview {
     //mobile portrait
     @include thumbMobilePortrait('../images/thumbnails/resumecss/thumbnail-phone-resume.jpg');
