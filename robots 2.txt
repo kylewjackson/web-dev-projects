@@ -1,0 +1,5 @@
+User-agent: *
+Disallow: /freeCodeCamp
+Disallow: /Udemy
+Disallow: /Lynda
+Disallow: /404.html

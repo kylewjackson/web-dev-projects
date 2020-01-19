@@ -1,0 +1,255 @@
+/* prefixed by https://autoprefixer.github.io (PostCSS: v7.0.26, autoprefixer: v9.7.3) */
+
+/* Global Styles */
+
+.red {
+    color: coral;
+}
+
+.yellow {
+    color: yellow;
+}
+
+.green {
+    color: lightgreen;
+}
+
+.grey {
+    color: lightgray;
+}
+
+/* Types */
+
+.normal {
+    background-color: #b5956c;
+}
+
+.fighting {
+    background-color: #ff6167;
+}
+
+.flying {
+    background-color: #828eca;
+}
+
+.poison {
+    background-color: #b563a1;
+}
+
+.ground {
+    background-color: #e8b268;
+}
+
+.rock {
+    background-color: #aaa063;
+}
+
+.bug {
+    background-color: #98ab42;
+}
+
+.ghost {
+    background-color: #846d99;
+}
+
+.steel {
+    background-color: #8cb4be;
+}
+
+.fire {
+    background-color: #fc7852;
+}
+
+.water {
+    background-color: #4fc8db;
+}
+
+.grass {
+    background-color: #79c85b;
+}
+
+.electric {
+    background-color: #ffd216;
+}
+
+.psychic {
+    background-color: #fd6389;
+}
+
+.ice {
+    background-color: #6ddcd3;
+}
+
+.dragon {
+    background-color: #5a62aa;
+}
+
+.dark {
+    background-color: #5a504f;
+}
+
+.fairy {
+    background-color: #fd79ab;
+}
+
+/* Flex */
+
+.flex, .flex-col {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-wrap: wrap;
+        flex-wrap: wrap;
+}
+
+.flex-col {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-flow: column;
+            flex-flow: column;
+}
+
+body {
+    width: 70%;
+    margin: 0 auto;
+    font-family: sans-serif;
+    font-size: 1.25rem;
+    background: grey;
+}
+
+    @media (max-width: 600px) {
+        body {
+            width: 90%;
+        }
+    }
+
+    h1, button, ul, li {
+        color: white;
+    }
+
+    h2 {
+        font-size: 1.5rem;
+    }
+
+    ul {
+        padding: 0;
+    }
+
+    li {
+        list-style: none;
+    }
+
+    button {
+        font-size: 1.1rem;
+        border-radius: 10px;
+        border: 0;
+    }
+
+        #close {
+            background-color: black;
+        }
+
+    .type-form {
+        -webkit-box-pack: center;
+            -ms-flex-pack: center;
+                justify-content: center;
+        text-align: center;
+        height: 50vh;
+    }
+
+        h1 {
+            width: 100%;
+        }
+
+            .info > h1 {
+                border-radius: 10px;
+                text-align: center;
+                padding: 3%;
+                width: 94%;
+            }
+
+        button {
+            margin: 2vw;
+            width: 20%;
+            padding: 2%;
+        }
+
+            .info {
+                text-align: center;
+            }
+
+            .info > ul > li.effect > ul.effect-types {
+                -webkit-box-pack: center;
+                    -ms-flex-pack: center;
+                        justify-content: center;
+            }
+
+            .effect-container,
+            .offense,
+            .defense {
+                width: 100%;
+                -webkit-box-pack: center;
+                    -ms-flex-pack: center;
+                        justify-content: center;
+            }
+
+            .effect {
+                width: 30%;
+                margin: 1.5%;
+                text-align: center;
+            }
+
+            .effect-types {
+                -webkit-box-pack: center;
+                    -ms-flex-pack: center;
+                        justify-content: center;
+                padding-top: 3%;
+            }
+
+                li.effect-type {
+                    width: 46%;
+                    margin: 2%;
+                    padding: 10% 0;
+                    border-radius: 10px;
+                }
+                    li.effect-type > button {
+                        width: 100%;
+                        padding: 0;
+                        margin: 0;
+                    }
+
+                    @media (max-width: 756px) {
+                        .effect {
+                            font-size: 14px;
+                        }
+                    }
+
+                    @media (max-width: 475px) {
+                        button {
+                            width: 40%;
+                            height: 12%;
+                        }
+
+                        .effect-container {
+                            -webkit-box-orient: vertical;
+                            -webkit-box-direction: normal;
+                                -ms-flex-direction: column;
+                                    flex-direction: column;
+                            -webkit-box-align: center;
+                                -ms-flex-align: center;
+                                    align-items: center;
+                        }
+
+                        .effect {
+                            width: 90%;
+                            font-size: 1.5rem;
+                        }
+
+                        .effect-type {
+                            margin: 4% 0;
+                        }
+
+                        #close {
+                            margin-bottom: 25%;
+                        }
+                    }
