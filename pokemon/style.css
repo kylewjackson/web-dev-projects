@@ -227,7 +227,7 @@ body {
                     @media (max-width: 475px) {
                         button {
                             width: 40%;
-                            height: 12%;
+                            /* height: 12%; */
                         }
 
                         .effect-container {
