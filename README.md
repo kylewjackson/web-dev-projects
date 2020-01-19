@@ -18,5 +18,8 @@ Demo made with React.JS and vanilla CSS. [Live](https://www.kylejackson.dev/prod
 ## Robo-Trek
 A small robot-travelling app made with React for a job interview. The assignment was to have a robot move forward in any of the 4 cardinal direcitons using supplied controls. View it [live](https://naughty-rosalind-487bdf.netlify.com/), or check out the [source code](https://github.com/kylewjackson/robot).
 
+## Pokemon Type Checker
+Basic move effectiveness type checker made with HTML, CSS, and Vanilla JS. [live](https://www.kylejackson.dev/pokemon)
+
 ## Retro Sites
 Screenshots, scraps of code, and, in some cases, working samples of websites designed as a pastime from 2006-2009. Basic HTML/CSS, some limited use of Javascript. Portal with links to each coming soon.
