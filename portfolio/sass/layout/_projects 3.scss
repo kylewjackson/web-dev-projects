@@ -1,0 +1,147 @@
+/*================
+Recent Projects
+=================*/
+
+#projects {
+    @include flexColCenter;
+    @include whiteBlack;
+
+    > * {
+        margin-bottom: 10%;
+    }
+
+    //bottom margin on project section heading
+    @include desktop {
+        @media (min-height: 25vw) {
+            > .content-heading,
+            > .icon {
+                margin-bottom: 5%;
+            }
+        }
+    }
+
+    .project-container {
+        @include flexRow;
+
+        //mobile - portrait
+        @include mobile {
+            @include rowContainer;
+        }
+
+        //tablet
+        @include tablet {
+            @include rowContainer;
+            max-height: 45vw;
+        }
+
+        //desktop
+        @include desktop {
+            min-width: 70vw;
+            margin-bottom: 50px;
+
+            @media (min-width: $breakpoint-xx-large) {
+                min-width: 50vw;
+            }
+        }
+
+        //@include transition-1s;
+    }
+
+        .thumbnail-link {
+            width: 100%;
+
+            //mobile - portrait
+            @include mobile('portrait') {
+                @include rowCol-1;
+            }
+
+            //tablet
+            @include tablet {
+                @include rowCol-1;
+            }
+        }
+
+        .project-description-container {
+
+            //mobile - portrait
+            @include mobile('portrait') {
+                @include rowCol-2;
+            }
+
+            //tablet
+            @include tablet {
+                @include rowCol-2;
+            }
+
+            //desktop
+            @include desktop {
+                @include flexCol;
+                justify-content: center;
+            }
+        }
+
+            //project description
+            .project-description {
+                font-family: $font-roboto;
+                font-size: 4vw;
+
+                @include tablet {
+                    font-size: 3vw;
+                }
+
+                @include large-screen {
+                    font-size: 24px;
+                }
+            }
+
+            //description of tools
+            .project-tools {
+                font-family: $font-roboto;
+                font-size: 4vw;
+                font-style: italic;
+
+                @include tablet {
+                    font-size: 3vw;
+                }
+
+                @include large-screen {
+                    font-size: 24px;
+                }
+            }
+
+            //project links container
+            .project-link-container {
+                display: flex;
+                justify-content: space-around;
+            }
+
+                .source-link,
+                .live-preview-link {
+                    font-weight: 700;
+                    padding: 2%;
+                }
+
+                    .source-link {
+                        color: $color-pink;
+
+                        &:hover {
+                            width: min-content;
+                            margin-bottom: -2%;
+                            background-color: $color-pink;
+                            color: $color-black;
+                        }
+                    }
+
+                    .live-preview-link {
+                        color: $color-blue;
+
+                        &:hover {
+                            width: min-content;
+                            margin-bottom: -2%;
+                            background-color: $color-blue;
+                            color: $color-black;
+                        }
+                    }
+
+    //@include transition-1s;
+}

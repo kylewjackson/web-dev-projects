@@ -1,0 +1,27 @@
+/*=============
+Projects Styles
+==============*/
+
+#all-projects {
+    //mark projects nav link as active
+    #projects-link {
+        @extend %active-nav;
+    }
+
+    #projects {
+        padding-top: 50%;
+
+        @include mobileMax {
+            padding-top: 30%;
+        }
+
+        @include large-screen {
+            padding-top: 15%;
+        }
+
+        @include desktop {
+            padding-top: 10%;
+        }
+    }
+}
+

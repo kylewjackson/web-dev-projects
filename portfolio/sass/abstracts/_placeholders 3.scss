@@ -1,0 +1,12 @@
+/*==============
+Placeholders
+===============*/
+
+//change style of active page link in navbar
+%active-nav {
+    background-color: $color-white;
+
+    a {
+        @include fontBlack;
+    }
+}

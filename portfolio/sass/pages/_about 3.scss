@@ -1,0 +1,160 @@
+/*===========
+About Styles
+============*/
+
+#about {
+    //highlight about page in navbar
+    #about-link {
+        @extend %active-nav;
+    }
+
+    a {
+        @include linkHover;
+    }
+
+    .pic {
+        border-radius: 25px;
+        max-width: 50vw;
+
+        @include tablet {
+            max-width: 30vw;
+        }
+
+        @include desktop {
+            max-width: 200px;
+        }
+
+        //@include transition-1s;
+    }
+
+    #intro {
+        padding-top: 50%;
+
+        @include mobileMax {
+            padding-top: 30%;
+        }
+
+        @include large-screen {
+            padding-top: 15%;
+        }
+
+        @include desktop {
+            padding-top: 10%;
+        }
+    }
+
+    .main-content {
+        @include flexContainer;
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .content {
+        @include whiteBlack;
+
+        .links {
+            color: $color-white;
+            @include linkHover;
+        }
+
+        .link-box {
+            @include blackWhite;
+            @include linkHover;
+        }
+
+        .link-name {
+            @include fontWhite;
+
+            @include linkHover;
+        }
+
+        .container {
+            @include flexRow;
+            justify-content: space-around;
+        }
+    }
+
+    #credentials-link-container {
+        .container {
+            padding: 2% 2% 3% 2%;
+        }
+    }
+
+    .certification-list {
+
+        li {
+            padding-bottom: 2%;
+        }
+
+        li::before {
+            content: '\2022';
+            padding-right: 5px;
+        }
+    }
+
+    #work-together-link-container,
+    #coding-link-container,
+    #art-link-container {
+        max-width: 600px;
+        margin: 0 auto;
+    }
+
+        #stackshare-box {
+            margin: 0 auto;
+
+            //@include transition-1s;
+        }
+
+        #work-together-link-container {
+            margin-bottom: 3%;
+        }
+
+    .button {
+        display: block;
+        margin: 10% auto;
+        width: 35%;
+        max-width: 200px;
+
+        @include linkHover;
+
+        //@include transition-1s;
+        transition-property: opacity, transform;
+    }
+
+    //used grid for this section, seemed simpler
+    #tool-container {
+        display: grid;
+        grid-template-columns: 40% 1fr;
+        flex-flow: inherit;
+        align-items: center;
+        column-gap: 5%;
+
+        .tool-box {
+            width: 100%;
+            max-width: 100px;
+            padding-bottom: 100px;
+            justify-self: end;
+
+            //@include transition-1s;
+        }
+
+        .links {
+            justify-self: start;
+            text-align: left;
+
+            @include aboutColorTools;
+
+            &#figma-link:hover {
+                background-color: $color-white;
+                color: $color-black;
+            }
+
+            @include desktop {
+                font-size: 1.25rem;
+            }
+
+            //@include transition-1s;
+            transition-property: opacity, transform;
+        }
+    }
+}

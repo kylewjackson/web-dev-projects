@@ -1,0 +1,11 @@
+/*===============
+Basic Buttons
+================*/
+
+.button {
+    @include blackWhite;
+    font-family: $font-roboto;
+    font-weight: 700;
+    border-radius: 5px;
+    padding: 3%;
+}
