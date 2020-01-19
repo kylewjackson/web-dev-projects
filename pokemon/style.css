@@ -245,8 +245,7 @@ body {
                             font-size: 1.5rem;
                         }
 
-                        .effect-type {
-                            margin: 4% 0;
+                        li.effect-type {
                             padding: 2% 0;
                         }
 
