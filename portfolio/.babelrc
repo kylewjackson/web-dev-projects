@@ -1,0 +1,23 @@
+// {
+//   "sourceType": "script",
+//   "presets": [
+//     [
+//       "@babel/preset-env",
+//       {
+//         "corejs": 3,
+//         "useBuiltIns": "usage"
+//       }
+//     ],
+//     "minify"
+//   ]
+// }
+
+{
+  "sourceType": "script",
+  "presets": [
+    [
+      "@babel/preset-env"
+    ],
+    "minify"
+  ]
+}
