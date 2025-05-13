@@ -234,8 +234,8 @@ const projects = {
 		title: "Robo-Trek",
 		description: "Travelling robot app made for an interview",
 		tools: "React, CSS",
-		thumb: "https://naughty-rosalind-487bdf.netlify.com/",
-		live: "https://naughty-rosalind-487bdf.netlify.com/",
+		thumb: "https://naughty-rosalind-487bdf.netlify.app/",
+		live: "https://naughty-rosalind-487bdf.netlify.app/",
 		source: "https://github.com/kylewjackson/robot",
 	},
 	resumecss: {
