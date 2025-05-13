@@ -234,8 +234,8 @@ const projects = {
 		title: "Robo-Trek",
 		description: "Travelling robot app made for an interview",
 		tools: "React, CSS",
-		thumb: "https://naughty-rosalind-487bdf.netlify.com/",
-		live: "https://naughty-rosalind-487bdf.netlify.com/",
+		thumb: "https://naughty-rosalind-487bdf.netlify.app/",
+		live: "https://naughty-rosalind-487bdf.netlify.app/",
 		source: "https://github.com/kylewjackson/robot",
 	},
 	resumecss: {
@@ -366,6 +366,7 @@ if (document.body.id === "index") {
 }
 
 //add footer
+const currentYear = new Date().getFullYear();
 document.querySelector(".footer-content").insertAdjacentHTML(
 	"beforeend",
 	`
@@ -392,7 +393,7 @@ document.querySelector(".footer-content").insertAdjacentHTML(
             <i id="contact-github-name" class="link-name">Github</i>
         </a>
     </div>
-    <small class="copyright">Site © Kyle Jackson 2023. All rights reserved.</small>
+    <small class="copyright">Site © Kyle Jackson ${currentYear}. All rights reserved.</small>
 `
 );
 
