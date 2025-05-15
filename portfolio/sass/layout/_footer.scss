@@ -1,7 +1,10 @@
+@use "../abstracts/mixins";
+@use "../abstracts/variables";
+
 .footer-content {
     padding: 2% 5% 5% 5%;
 
-    @include tablet {
+    @include mixins.tablet {
         font-size: 24px;
 
         .content-heading {
@@ -10,10 +13,10 @@
     }
 
     .container {
-        @include flexColCenter;
+        @include mixins.flexColCenter;
         margin-bottom: 10%;
 
-        @include tablet {
+        @include mixins.tablet {
             margin-bottom: 30px;
         }
     }
@@ -21,8 +24,8 @@
         .container:not(#social-profiles-container) {
             a,
             a:visited {
-                @include fontBlack;
-                @include linkHover;
+                @include mixins.fontBlack;
+                @include mixins.linkHover;
             }
         }
 
@@ -31,17 +34,17 @@
             justify-content: space-around;
             padding: 5% 10%;
 
-            @include mobileMax {
+            @include mixins.mobileMax {
                 justify-content: center;
             }
 
-            @include tablet {
+            @include mixins.tablet {
                 padding: 0;
             }
         }
 
     .contact-link {
-        @include flexColCenter;
+        @include mixins.flexColCenter;
     }
 
     .icon {
@@ -57,7 +60,7 @@
     small {
         display: flex;
         justify-content: flex-end;
-        font-family: $font-roboto;
+        font-family: variables.$font-roboto;
         font-size: 14px;
     }
 }

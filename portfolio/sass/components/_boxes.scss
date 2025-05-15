@@ -1,3 +1,7 @@
+@use "../abstracts/functions";
+@use "../abstracts/mixins";
+@use "../abstracts/variables";
+
 /*==============
 Toolbox
 ===============*/
@@ -5,34 +9,34 @@ Toolbox
 #tools {
 
     .tool-box {
-        @include boxStyles(30%);
-        @include fontWhite;
+        @include mixins.boxStyles(30%);
+        @include mixins.fontWhite;
         margin: 1%;
         overflow: hidden;
 
-        @include mobileMax {
+        @include mixins.mobileMax {
             max-width: 100px;
             padding-bottom: 100px;
         }
     }
 
-    @include colorTools($tool-map);
+    @include mixins.colorTools(variables.$tool-map);
 
     .tool-symbol {
-        @include boxSymbols(15vw);
+        @include mixins.boxSymbols(15vw);
         top: 5%;
 
-        @include mobileMax {
-            font-size: fontSize(55);
+        @include mixins.mobileMax {
+            font-size: functions.fontSize(55);
         }
     }
 
     .tool-name {
-        @include boxNames(3.5vw);
+        @include mixins.boxNames(3.5vw);
         bottom: 10%;
 
-        @include mobileMax {
-            font-size: fontSize(14);
+        @include mixins.mobileMax {
+            font-size: functions.fontSize(14);
         }
     }
         //irregular boxes
@@ -40,8 +44,8 @@ Toolbox
             top: 15%;
             font-size: 11vw;
 
-            @include mobileMax {
-                font-size: fontSize(40);
+            @include mixins.mobileMax {
+                font-size: functions.fontSize(40);
             }
         }
 }
@@ -51,41 +55,41 @@ Linkbox
 ===============*/
 
 .link-box {
-    @include boxStyles(20%);
-    @include whiteBlack;
+    @include mixins.boxStyles(20%);
+    @include mixins.whiteBlack;
 
-    @include mobileMax {
+    @include mixins.mobileMax {
         margin: 1% 1% 10% 1%;
     }
 
-    @include tablet {
+    @include mixins.tablet {
         max-width: 75px;
         padding-bottom: 75px;
     }
 }
 
     .link-symbol {
-        @include boxSymbols(10vw);
+        @include mixins.boxSymbols(10vw);
         top: 15%;
 
-        @include mobileMax {
-            font-size: fontSize(36);
+        @include mixins.mobileMax {
+            font-size: functions.fontSize(36);
         }
 
-        @include tablet {
+        @include mixins.tablet {
             top: 25%;
         }
     }
 
     .link-name {
-        @include boxNames(3.5vw);
+        @include mixins.boxNames(3.5vw);
         bottom: -35%;
-        @include fontBlack;
+        @include mixins.fontBlack;
         text-decoration: underline;
 
-        @include linkHover;
+        @include mixins.linkHover;
 
-        @include mobileMax {
-            font-size: fontSize(14);
+        @include mixins.mobileMax {
+            font-size: functions.fontSize(14);
         }
     }

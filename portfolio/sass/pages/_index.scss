@@ -1,3 +1,5 @@
+@use "../abstracts/mixins";
+
 /*===========
 Index Styles
 ============*/
@@ -12,14 +14,14 @@ Index Styles
     .main-content {
         margin-top: -300px;
 
-        @include mobile('landscape') {
+        @include mixins.mobile('landscape') {
             margin-top: inherit;
         }
 
-        @include tablet {
+        @include mixins.tablet {
             margin-top: -200px;
         }
-        @include desktop {
+        @include mixins.desktop {
             margin-top: inherit;
         }
     }

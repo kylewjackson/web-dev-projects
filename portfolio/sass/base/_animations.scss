@@ -1,3 +1,5 @@
+@use "../abstracts/mixins";
+
 /*================
 Animations
 =================*/
@@ -10,5 +12,5 @@ Animations
 }
 
 .transition-1s {
-    @include transition-1s;
+    @include mixins.transition-1s;
 }

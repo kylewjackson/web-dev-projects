@@ -1,3 +1,5 @@
+@use "functions";
+
 /*===========
 Variables
 ============*/
@@ -35,11 +37,11 @@ $font-playfair: 'Playfair Display', serif;
 
 //max fonts
 $font-map: (
-    'body': fontSize(28),
-    '.title-heading': fontSize(110),
-    '.content-heading': fontSize(75),
-    '.sub-heading': fontSize(35),
-    '.project-title': fontSize(30)
+    'body': functions.fontSize(28),
+    '.title-heading': functions.fontSize(110),
+    '.content-heading': functions.fontSize(75),
+    '.sub-heading': functions.fontSize(35),
+    '.project-title': functions.fontSize(30)
 );
 
 //breakpoints

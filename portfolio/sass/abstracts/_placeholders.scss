@@ -1,12 +1,15 @@
+@use "mixins";
+@use "variables";
+
 /*==============
 Placeholders
 ===============*/
 
 //change style of active page link in navbar
 %active-nav {
-    background-color: $color-white;
+    background-color: variables.$color-white;
 
     a {
-        @include fontBlack;
+        @include mixins.fontBlack;
     }
 }
