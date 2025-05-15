@@ -60,6 +60,21 @@ Work Project Styles
 
 			li {
 				list-style-type: disc;
+				padding-bottom: 0.5em;
+			}
+
+			&--sub {
+				padding-left: 30px;
+
+				li {
+					list-style-type: circle;
+				}
+			}
+
+			&--2xspace {
+				> li {
+					padding-bottom: 1em;
+				}
 			}
 		}
 
@@ -98,7 +113,7 @@ Work Project Styles
 					color: $color-black;
 
 					th {
-						text-align: center;
+						text-align: left;
 						padding: 0.25em 1em;
 						font-weight: bold;
 					}
@@ -118,7 +133,7 @@ Work Project Styles
 					}
 
 					td {
-						padding: 0.75em 1em;
+						padding: 1em;
 						vertical-align: top;
 						font-size: 0.85em;
 					}
@@ -139,10 +154,13 @@ Work Project Styles
 			background-color: $color-black;
 			color: $color-white;
 			padding: 2%;
+			padding-bottom: clamp(10px, 2%, 2%);
 			border-radius: 2px;
 
 			&--full {
-				margin: 2% 10%;
+				margin: 2% auto;
+				width: fit-content;
+				max-width: 80%;
 			}
 
 			figcaption {
