@@ -17,19 +17,19 @@ Work Project Styles
 		width: 90%;
 		font-size: 12px;
 
-			@include mixins.mobileMax {
-				padding-top: 30%;
-				font-size: 14px;
-			}
+		@include mixins.mobileMax {
+			padding-top: 30%;
+			font-size: 14px;
+		}
 
-			@include mixins.large-screen {
-				padding-top: 15%;
-			}
+		@include mixins.large-screen {
+			padding-top: 15%;
+		}
 
-			@include mixins.desktop {
-				padding-top: 10%;
-				font-size: 16px;
-			}
+		@include mixins.desktop {
+			padding-top: 10%;
+			font-size: 16px;
+		}
 	}
 
 	.work-project {
@@ -63,8 +63,67 @@ Work Project Styles
 			}
 		}
 
-		&__table {
+		&__table-container {
 			margin: 2em auto;
+			border: 4px solid $color-pink;
+			border-radius: 2px;
+			width: 90%;
+
+			@include mixins.large-screen {
+				width: 75%;
+			}
+		}
+
+		&__table {
+			border-collapse: separate;
+			border-spacing: 0;
+			overflow: hidden;
+			width: 100%;
+
+			caption {
+				background-color: $color-black;
+				color: $color-pink;
+				padding: 0.75em 1em;
+				font-weight: bold;
+				text-align: left;
+				caption-side: top;
+				font-size: 1.2em;
+				text-align: center;
+				padding: 1.4em 0;
+			}
+
+			thead {
+				tr {
+					background-color: $color-white;
+					color: $color-black;
+
+					th {
+						text-align: center;
+						padding: 0.25em 1em;
+						font-weight: bold;
+					}
+				}
+			}
+
+			tbody {
+				tr {
+					&:nth-child(odd) {
+						background-color: #444;
+						color: $color-white;
+					}
+
+					&:nth-child(even) {
+						background-color: #DDDDDD;
+						color: $color-black;
+					}
+
+					td {
+						padding: 0.75em 1em;
+						vertical-align: top;
+						font-size: 0.85em;
+					}
+				}
+			}
 		}
 
 		&__figure-grid {

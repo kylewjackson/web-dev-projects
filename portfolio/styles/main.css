@@ -1760,8 +1760,55 @@ Work Project Styles
 #work .work-project__bullet-list li {
   list-style-type: disc;
 }
-#work .work-project__table {
+#work .work-project__table-container {
   margin: 2em auto;
+  border: 4px solid #FF61AD;
+  border-radius: 2px;
+  width: 90%;
+}
+@media (min-width: 768px) and (min-height: 500px) {
+  #work .work-project__table-container {
+    width: 75%;
+  }
+}
+#work .work-project__table {
+  border-collapse: separate;
+  border-spacing: 0;
+  overflow: hidden;
+  width: 100%;
+}
+#work .work-project__table caption {
+  background-color: #333333;
+  color: #FF61AD;
+  padding: 0.75em 1em;
+  font-weight: bold;
+  text-align: left;
+  caption-side: top;
+  font-size: 1.2em;
+  text-align: center;
+  padding: 1.4em 0;
+}
+#work .work-project__table thead tr {
+  background-color: #EEEEEE;
+  color: #333333;
+}
+#work .work-project__table thead tr th {
+  text-align: center;
+  padding: 0.25em 1em;
+  font-weight: bold;
+}
+#work .work-project__table tbody tr:nth-child(odd) {
+  background-color: #444;
+  color: #EEEEEE;
+}
+#work .work-project__table tbody tr:nth-child(even) {
+  background-color: #DDDDDD;
+  color: #333333;
+}
+#work .work-project__table tbody tr td {
+  padding: 0.75em 1em;
+  vertical-align: top;
+  font-size: 0.85em;
 }
 #work .work-project__figure-grid {
   display: grid;
