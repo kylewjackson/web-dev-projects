@@ -1,32 +1,99 @@
 @use "../abstracts/mixins";
+@use '../abstracts/variables' as *;
 
 /*=============
 Work Project Styles
 ==============*/
 
 #work {
-	padding-top: 50%;
-	margin: 0 auto;
-	width: 90%;
 
-        @include mixins.mobileMax {
-            padding-top: 30%;
-        }
+	.navbar {
+		transition: none;
+	}
 
-        @include mixins.large-screen {
-            padding-top: 15%;
-        }
+	#work-main {
+		padding-top: 50%;
+		margin: 0 auto;
+		width: 90%;
+		font-size: 12px;
 
-        @include mixins.desktop {
-            padding-top: 10%;
-        }
+			@include mixins.mobileMax {
+				padding-top: 30%;
+				font-size: 14px;
+			}
+
+			@include mixins.large-screen {
+				padding-top: 15%;
+			}
+
+			@include mixins.desktop {
+				padding-top: 10%;
+				font-size: 16px;
+			}
+	}
 
 	.work-project {
+		header {
+			background-color: $color-black;
+			padding: 0.75em;
+		}
+
+		&__heading {
+			color: $color-blue;
+
+			em {
+				color: $color-pink;
+			}
+		}
+
+		&__info {
+			color: $color-white;
+		}
+
+		&__text {
+			line-height: 1.4em;
+		}
+
 		&__bullet-list {
 			padding: revert;
+			line-height: 1.3em;
 
 			li {
 				list-style-type: disc;
+			}
+		}
+
+		&__table {
+			margin: 2em auto;
+		}
+
+		&__figure-grid {
+			display: grid;
+			grid-template-columns: 1fr;
+
+			@include mixins.large-screen {
+				grid-template-columns: repeat(auto-fit, minmax(0, 1fr));
+			}
+		}
+
+		&__figure {
+			background-color: $color-black;
+			color: $color-white;
+			padding: 2%;
+			border-radius: 2px;
+
+			&--full {
+				margin: 2% 10%;
+			}
+
+			figcaption {
+				text-align: center;
+				margin-top: 2%;
+			}
+
+			img {
+				max-width: 100%;
+				height: auto;
 			}
 		}
 	}

@@ -46,6 +46,10 @@ body {
   @include mixins.hide;
 }
 
+.sr-only {
+	@include mixins.sr-only;
+}
+
 .content {
   padding: 2% 10% 10% 10%;
 }
