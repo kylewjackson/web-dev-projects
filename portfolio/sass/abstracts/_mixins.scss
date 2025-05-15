@@ -150,15 +150,15 @@ Mixins
   }
 
 @mixin tablet {
-  @media (min-width: variables.$breakpoint-medium) and (min-height: variables.$breakpoint-max-small + 1) { @content; }
+  @media (min-width: variables.$breakpoint-medium) and (min-height: #{variables.$breakpoint-max-small + 1}) { @content; }
 }
 
 @mixin large-screen {
-  @media (min-width: variables.$breakpoint-large) and (min-height: variables.$breakpoint-max-small + 1) { @content; }
+  @media (min-width: variables.$breakpoint-large) and (min-height: #{variables.$breakpoint-max-small + 1}) { @content; }
 }
 
 @mixin desktop {
-  @media (min-width: variables.$breakpoint-x-large) and (min-height: variables.$breakpoint-max-small + 1) { @content; }
+  @media (min-width: variables.$breakpoint-x-large) and (min-height: #{variables.$breakpoint-max-small + 1}) { @content; }
 }
 
 

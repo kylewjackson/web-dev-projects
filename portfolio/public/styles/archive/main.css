@@ -10,8 +10,10 @@ Partials
  * 2. Prevent adjustments of font size after orientation changes in iOS.
  */
 html {
-  line-height: 1.15; /* 1 */
-  -webkit-text-size-adjust: 100%; /* 2 */
+  line-height: 1.15;
+  /* 1 */
+  -webkit-text-size-adjust: 100%;
+  /* 2 */
 }
 
 /* Sections
@@ -46,9 +48,12 @@ h1 {
  * 2. Show the overflow in Edge and IE.
  */
 hr {
-  box-sizing: content-box; /* 1 */
-  height: 0; /* 1 */
-  overflow: visible; /* 2 */
+  box-sizing: content-box;
+  /* 1 */
+  height: 0;
+  /* 1 */
+  overflow: visible;
+  /* 2 */
 }
 
 /**
@@ -56,8 +61,10 @@ hr {
  * 2. Correct the odd `em` font sizing in all browsers.
  */
 pre {
-  font-family: monospace, monospace; /* 1 */
-  font-size: 1em; /* 2 */
+  font-family: monospace, monospace;
+  /* 1 */
+  font-size: 1em;
+  /* 2 */
 }
 
 /* Text-level semantics
@@ -74,9 +81,12 @@ a {
  * 2. Add the correct text decoration in Chrome, Edge, IE, Opera, and Safari.
  */
 abbr[title] {
-  border-bottom: none; /* 1 */
-  text-decoration: underline; /* 2 */
-  text-decoration: underline dotted; /* 2 */
+  border-bottom: none;
+  /* 1 */
+  text-decoration: underline;
+  /* 2 */
+  text-decoration: underline dotted;
+  /* 2 */
 }
 
 /**
@@ -94,8 +104,10 @@ strong {
 code,
 kbd,
 samp {
-  font-family: monospace, monospace; /* 1 */
-  font-size: 1em; /* 2 */
+  font-family: monospace, monospace;
+  /* 1 */
+  font-size: 1em;
+  /* 2 */
 }
 
 /**
@@ -145,10 +157,14 @@ input,
 optgroup,
 select,
 textarea {
-  font-family: inherit; /* 1 */
-  font-size: 100%; /* 1 */
-  line-height: 1.15; /* 1 */
-  margin: 0; /* 2 */
+  font-family: inherit;
+  /* 1 */
+  font-size: 100%;
+  /* 1 */
+  line-height: 1.15;
+  /* 1 */
+  margin: 0;
+  /* 2 */
 }
 
 /**
@@ -156,7 +172,8 @@ textarea {
  * 1. Show the overflow in Edge.
  */
 button,
-input { /* 1 */
+input {
+  /* 1 */
   overflow: visible;
 }
 
@@ -165,7 +182,8 @@ input { /* 1 */
  * 1. Remove the inheritance of text transform in Firefox.
  */
 button,
-select { /* 1 */
+select {
+  /* 1 */
   text-transform: none;
 }
 
@@ -214,12 +232,18 @@ fieldset {
  *    `fieldset` elements in all browsers.
  */
 legend {
-  box-sizing: border-box; /* 1 */
-  color: inherit; /* 2 */
-  display: table; /* 1 */
-  max-width: 100%; /* 1 */
-  padding: 0; /* 3 */
-  white-space: normal; /* 1 */
+  box-sizing: border-box;
+  /* 1 */
+  color: inherit;
+  /* 2 */
+  display: table;
+  /* 1 */
+  max-width: 100%;
+  /* 1 */
+  padding: 0;
+  /* 3 */
+  white-space: normal;
+  /* 1 */
 }
 
 /**
@@ -242,8 +266,10 @@ textarea {
  */
 [type=checkbox],
 [type=radio] {
-  box-sizing: border-box; /* 1 */
-  padding: 0; /* 2 */
+  box-sizing: border-box;
+  /* 1 */
+  padding: 0;
+  /* 2 */
 }
 
 /**
@@ -259,8 +285,10 @@ textarea {
  * 2. Correct the outline style in Safari.
  */
 [type=search] {
-  -webkit-appearance: textfield; /* 1 */
-  outline-offset: -2px; /* 2 */
+  -webkit-appearance: textfield;
+  /* 1 */
+  outline-offset: -2px;
+  /* 2 */
 }
 
 /**
@@ -275,8 +303,10 @@ textarea {
  * 2. Change font properties to `inherit` in Safari.
  */
 ::-webkit-file-upload-button {
-  -webkit-appearance: button; /* 1 */
-  font: inherit; /* 2 */
+  -webkit-appearance: button;
+  /* 1 */
+  font: inherit;
+  /* 2 */
 }
 
 /* Interactive
@@ -374,7 +404,7 @@ body a {
   color: #EEEEEE;
 }
 body a:hover, body a:active {
-  color: rgb(233, 166, 66);
+  color: #e9a642;
 }
 body address {
   font-style: normal;
@@ -461,15 +491,19 @@ Max Fonts
   body {
     font-size: 1.75rem;
   }
+
   .title-heading {
     font-size: 6.875rem;
   }
+
   .content-heading {
     font-size: 4.6875rem;
   }
+
   .sub-heading {
     font-size: 2.1875rem;
   }
+
   .project-title {
     font-size: 1.875rem;
   }
@@ -625,7 +659,7 @@ Linkbox
   text-decoration: underline;
 }
 .link-name:hover, .link-name:active {
-  color: rgb(233, 166, 66);
+  color: #e9a642;
 }
 @media (min-width: 375px) {
   .link-name {
@@ -1093,7 +1127,7 @@ Navbar
 .navbar a:hover, .navbar a:active,
 .navbar a:visited:hover,
 .navbar a:visited:active {
-  color: rgb(233, 166, 66);
+  color: #e9a642;
 }
 .navbar .home-button {
   border: none;
@@ -1188,7 +1222,7 @@ Header Style
 }
 @media only screen and (min-device-width: 375px) and (max-device-width: 812px) and (-webkit-device-pixel-ratio: 3) and (orientation: landscape) {
   .header-content .title-heading,
-  .header-content .sub-heading {
+.header-content .sub-heading {
     width: 90%;
     padding-left: 5%;
     padding-right: 5%;
@@ -1255,7 +1289,7 @@ Recent Projects
 }
 @media (min-width: 1000px) and (min-height: 500px) and (min-height: 25vw) {
   #projects > .content-heading,
-  #projects > .icon {
+#projects > .icon {
     margin-bottom: 5%;
   }
 }
@@ -1403,7 +1437,7 @@ Recent Projects
 .footer-content .container:not(#social-profiles-container) a:hover, .footer-content .container:not(#social-profiles-container) a:active,
 .footer-content .container:not(#social-profiles-container) a:visited:hover,
 .footer-content .container:not(#social-profiles-container) a:visited:active {
-  color: rgb(233, 166, 66);
+  color: #e9a642;
 }
 .footer-content #social-profiles-container {
   flex-flow: row;
@@ -1475,7 +1509,7 @@ Index Styles
 About Styles
 ============*/
 #about a:hover, #about a:active {
-  color: rgb(233, 166, 66);
+  color: #e9a642;
 }
 #about .pic {
   border-radius: 25px;
@@ -1522,20 +1556,20 @@ About Styles
   color: #EEEEEE;
 }
 #about .content .links:hover, #about .content .links:active {
-  color: rgb(233, 166, 66);
+  color: #e9a642;
 }
 #about .content .link-box {
   color: #333333;
   background-color: #EEEEEE;
 }
 #about .content .link-box:hover, #about .content .link-box:active {
-  color: rgb(233, 166, 66);
+  color: #e9a642;
 }
 #about .content .link-name {
   color: #EEEEEE;
 }
 #about .content .link-name:hover, #about .content .link-name:active {
-  color: rgb(233, 166, 66);
+  color: #e9a642;
 }
 #about .content .container {
   display: flex;
@@ -1572,7 +1606,7 @@ About Styles
   transition-property: opacity, transform;
 }
 #about .button:hover, #about .button:active {
-  color: rgb(233, 166, 66);
+  color: #e9a642;
 }
 #about #tool-container {
   display: grid;
@@ -1591,10 +1625,6 @@ About Styles
   justify-self: start;
   text-align: left;
   transition-property: opacity, transform;
-}
-#about #tool-container .links#figma-link:hover {
-  background-color: #EEEEEE;
-  color: #333333;
 }
 #about #tool-container .links#html-link:hover {
   background-color: #EAB361;
@@ -1668,6 +1698,10 @@ About Styles
   padding: 2%;
   border-radius: 5px;
 }
+#about #tool-container .links#figma-link:hover {
+  background-color: #EEEEEE;
+  color: #333333;
+}
 @media (min-width: 1000px) and (min-height: 500px) {
   #about #tool-container .links {
     font-size: 1.25rem;
@@ -1694,16 +1728,6 @@ Projects Styles
   #all-projects #projects {
     padding-top: 10%;
   }
-}
-
-/*=============
-Work Project Styles
-==============*/
-#work .work-project__bullet-list {
-  padding: revert;
-}
-#work .work-project__bullet-list li {
-  list-style-type: disc;
 }
 
 /*# sourceMappingURL=main.css.map */

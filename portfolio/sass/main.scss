@@ -24,7 +24,8 @@ Partials
 @use 'layout/projects';
 @use 'layout/footer';
 
+//Page-specific styles
 @use 'pages/index';
 @use 'pages/about';
-@use 'pages/projects' as projects2;
+@use 'pages/projects' as projectsPage;
 @use 'pages/work';
