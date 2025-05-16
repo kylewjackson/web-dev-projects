@@ -44,7 +44,7 @@
 
 	<main id="work-main" class="main-content faded">
 		<h1>Work Portfolio</h1>
-		<p>Blurb about projects, etc.</p>
+		<p>Every project here reflects my belief that great front-end work balances creativity, structure, and performance. From building design systems in Storybook to optimizing user flows with semantic SEO and accessibility in mind, I strive to make the web not just work—but work beautifully. These highlights capture how I approach front-end challenges across teams, tools, and user goals.</p>
 
 		<nav id="work-toc" class="work-toc" aria-label="Table of contents">
 			<h2 class="work-toc__heading">Table of Contents</h2>
@@ -54,7 +54,7 @@
 				<li><a href="javascript:void(0);" onclick="scrollToSection('project_similar-items')">Similar Items Experience</a></li>
 				<li><a href="javascript:void(0);" onclick="scrollToSection('project_storybook')">Storybook</a></li>
 				<li><a href="javascript:void(0);" onclick="scrollToSection('project_footer-redesign')">Footer Redesign</a></li>
-				<li><a href="javascript:void(0);" onclick="scrollToSection('project_promo-discalimer')">Promo Disclaimer</a></li>
+				<li><a href="javascript:void(0);" onclick="scrollToSection('project_promo-disclaimer')">Promo Disclaimer</a></li>
 				<li><a href="javascript:void(0);" onclick="scrollToSection('project_mindful-lp')">Landing Page: Mindful</a></li>
 				<li><a href="javascript:void(0);" onclick="scrollToSection('project_hispanic-heritage')">Landing Page: Hispanic Heritage Month</a></li>
 			</ul>
@@ -270,9 +270,9 @@
 
 			<article>
 				<h3 class="work-project__sub-heading">Overview</h3>
-				<p class="work-project__text">This <strong>Simiar Items Comparions Chart</strong> experience was built
+				<p class="work-project__text">This <strong>Similar Items Comparison Chart</strong> experience was built
 					as an A/B split test in Monetate to determine the effectiveness of product comparison information vs
-					a product carousel. The experiement was a successs, determining that users preferred seeing detailed
+					a product carousel. The experiement was a success, determining that users preferred seeing detailed
 					product information up front, and were more likely to add products to bag directly from the chart
 					and reach the conversion stage more quickly.</p>
 
@@ -378,7 +378,7 @@
 
 			<article>
 				<h3 class="work-project__sub-heading">Overview</h3>
-				<p class="work-project__text"></p>
+				<p class="work-project__text"><p class="work-project__text">Working in collaboration with UX, I began laying the foundation for a scalable design system using Storybook. My goal was to provide developers with accessible documentation and reusable components that reflected our approved brand tokens. I established the structure, architecture, and tooling that could support long-term adoption and handoff.</p>
 
 				<figure class="work-project__figure work-project__figure--full">
 					<a href="images/samples/storybook_component.png">
@@ -423,7 +423,7 @@
 					</ul>
 					<li><strong>Typography & Layout:</strong> </li>
 					<ul class="work-project__bullet-list work-project__bullet-list--sub">
-						<li>ypography tokens defined in <code>_typography.scss</code> and referenced in MDX files</li>
+						<li>Typography tokens defined in <code>_typography.scss</code> and referenced in MDX files</li>
 						<li>SCSS modifiers applied using structured class patterns: <code>.df_template--[variant]</code>
 							and <code>.df_template--[status]</code></li>
 					</ul>
@@ -555,7 +555,7 @@
 
 			<article>
 				<h3 class="work-project__sub-heading">Overview</h3>
-				<p class="work-project__text">Implemented a redesign of the global footer based on comps from UX. Modified exisiting footer architecture for an MVP experience by using JavaScript and CSS overrides. Navigation and interactivty is fully accessible and ADA-compliant. Design is responsive across mobile, tablet, and desktop viewports.</p>
+				<p class="work-project__text">Implemented a redesign of the global footer based on comps from UX. Modified existing footer architecture for an MVP experience by using JavaScript and CSS overrides. Navigation and interactivity is fully accessible and ADA-compliant. Design is responsive across mobile, tablet, and desktop viewports.</p>
 
 				<figure class="work-project__figure work-project__figure--full">
 					<a href="images/samples/footer_desktop.png">
@@ -578,7 +578,7 @@
 		</section>
 
 		<!-- Promo Disclaimer -->
-		<section id="project_promo-discalimer" class="work-project">
+		<section id="project_promo-disclaimer" class="work-project">
 			<header>
 				<h2 class="work-project__heading">Promo Disclaimer</h2>
 				<p class="work-project__info">Sr. Front End Developer · 04-2024</p>
@@ -887,7 +887,7 @@
 		class="back-to-top-float"
 		onclick="scrollToSection('work-toc')"
 		aria-label="Back to Top: Return to Table of Contents">
-		⬆
+		⬆<span class="sr-only">Back to Top</span>
 	</button>
 	<script src="scripts/script.js" async defer></script>
 </body>
