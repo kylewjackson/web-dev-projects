@@ -1754,6 +1754,9 @@ Projects Styles
 /*=============
 Work Project Styles
 ==============*/
+#work hr {
+  margin-bottom: 1em;
+}
 #work .navbar {
   transition: none;
 }
@@ -1848,8 +1851,8 @@ Work Project Styles
   width: 100%;
 }
 #work .work-project__table caption {
-  background-color: #333333;
-  color: #FF61AD;
+  background-color: #EEEEEE;
+  color: #333333;
   padding: 0.75em 1em;
   font-weight: bold;
   text-align: left;
@@ -1859,8 +1862,8 @@ Work Project Styles
   padding: 1.4em 0;
 }
 #work .work-project__table thead tr {
-  background-color: #EEEEEE;
-  color: #333333;
+  background-color: #333333;
+  color: #EEEEEE;
 }
 #work .work-project__table thead tr th {
   text-align: left;
@@ -1868,8 +1871,8 @@ Work Project Styles
   font-weight: bold;
 }
 #work .work-project__table tbody tr:nth-child(odd) {
-  background-color: #444;
-  color: #EEEEEE;
+  background-color: #EEEEEE;
+  color: #333333;
 }
 #work .work-project__table tbody tr:nth-child(even) {
   background-color: #DDDDDD;
