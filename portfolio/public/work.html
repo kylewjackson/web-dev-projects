@@ -4,7 +4,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>Kyle Jackson - About Me | kylejackson.dev</title>
+	<title>Kyle Jackson - Work Projects | kylejackson.dev</title>
 	<meta name="description"
 		content="Hi, I'm Kyle Jackson, a Front End Web Developer based in the Dallas-Fort Worth area. I'm all about creative, responsive, and practical website solutions.">
 	<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
@@ -46,7 +46,21 @@
 		<h1>Work Portfolio</h1>
 		<p>Blurb about projects, etc.</p>
 
-		<!-- <section id="project_x" class="work-project faded">
+		<nav id="work-toc" class="work-toc" aria-label="Table of contents">
+			<h2 class="work-toc__heading">Table of Contents</h2>
+			<ul class="work-toc__list">
+				<li><a href="javascript:void(0);" onclick="scrollToSection('project_agile')">Agile Workflow Implementation</a></li>
+				<li><a href="javascript:void(0);" onclick="scrollToSection('project_seo')">SEO & Accessibility</a></li>
+				<li><a href="javascript:void(0);" onclick="scrollToSection('project_similar-items')">Similar Items Experience</a></li>
+				<li><a href="javascript:void(0);" onclick="scrollToSection('project_storybook')">Storybook</a></li>
+				<li><a href="javascript:void(0);" onclick="scrollToSection('project_footer-redesign')">Footer Redesign</a></li>
+				<li><a href="javascript:void(0);" onclick="scrollToSection('project_promo-discalimer')">Promo Disclaimer</a></li>
+				<li><a href="javascript:void(0);" onclick="scrollToSection('project_mindful-lp')">Landing Page: Mindful</a></li>
+				<li><a href="javascript:void(0);" onclick="scrollToSection('project_hispanic-heritage')">Landing Page: Hispanic Heritage Month</a></li>
+			</ul>
+		</nav>
+
+		<!-- <section id="project_x" class="work-project">
 				<header>
 					<h2 class="work-project__heading"></h2>
 					<p class="work-project__info">Sr. Front End Developer · MM-YYYY</p>
@@ -75,7 +89,7 @@
 			</section> -->
 
 		<!-- Agile Workflow Implementation & Jira Project Management -->
-		<section id="project_agile" class="work-project faded">
+		<section id="project_agile" class="work-project">
 			<header>
 				<h2 class="work-project__heading">Agile Workflow Implementation & Jira Project Management</h2>
 				<p class="work-project__info">Sr. Front End Developer · 2023-2025</p>
@@ -132,7 +146,7 @@
 		</section>
 
 		<!-- SEO & Accessibility: Hair Color Landing Page -->
-		<section id="project_seo" class="work-project faded">
+		<section id="project_seo" class="work-project">
 			<header>
 				<h2 class="work-project__heading">SEO & Accessibility: <em>Hair Color Landing Page</em></h2>
 				<p class="work-project__info">Sr. Front End Developer · 2023</p>
@@ -248,7 +262,7 @@
 		</section>
 
 		<!-- Similar Items -->
-		<section id="project_similar-items" class="work-project faded">
+		<section id="project_similar-items" class="work-project">
 			<header>
 				<h2 class="work-project__heading">Similar Items Experience</h2>
 				<p class="work-project__info">Sr. Front End Developer · 03-2025</p>
@@ -356,7 +370,7 @@
 		</section>
 
 		<!-- Story book -->
-		<section id="project_storybook" class="work-project faded">
+		<section id="project_storybook" class="work-project">
 			<header>
 				<h2 class="work-project__heading">Storybook</h2>
 				<p class="work-project__info">Sr. Front End Developer · 04-2025</p>
@@ -533,7 +547,7 @@
 		</section>
 
 		<!-- Footer Redesign -->
-		<section id="project_footer-redesign" class="work-project faded">
+		<section id="project_footer-redesign" class="work-project">
 			<header>
 				<h2 class="work-project__heading">Footer Redesign</h2>
 				<p class="work-project__info">Sr. Front End Developer · 02-2025</p>
@@ -541,7 +555,7 @@
 
 			<article>
 				<h3 class="work-project__sub-heading">Overview</h3>
-				<p class="work-project__text"></p>
+				<p class="work-project__text">Implemented a redesign of the global footer based on comps from UX. Modified exisiting footer architecture for an MVP experience by using JavaScript and CSS overrides. Navigation and interactivty is fully accessible and ADA-compliant. Design is responsive across mobile, tablet, and desktop viewports.</p>
 
 				<figure class="work-project__figure work-project__figure--full">
 					<a href="images/samples/footer_desktop.png">
@@ -564,7 +578,7 @@
 		</section>
 
 		<!-- Promo Disclaimer -->
-		<section id="project_promo-discalimer" class="work-project faded">
+		<section id="project_promo-discalimer" class="work-project">
 			<header>
 				<h2 class="work-project__heading">Promo Disclaimer</h2>
 				<p class="work-project__info">Sr. Front End Developer · 04-2024</p>
@@ -588,7 +602,7 @@
 		</section>
 
 		<!-- Mindful at Sally -->
-		<section id="project_mindful-lp" class="work-project faded">
+		<section id="project_mindful-lp" class="work-project">
 			<header>
 				<h2 class="work-project__heading">E-Commerce Landing Page: <em>Mindful at Sally</em></h2>
 				<p class="work-project__info">Sr. Front End Developer · 04-2024</p>
@@ -725,7 +739,7 @@
 		</section>
 
 		<!-- Hispanic Heritage -->
-		<section id="project_hispanic-heritage" class="work-project faded">
+		<section id="project_hispanic-heritage" class="work-project">
 			<header>
 				<h2 class="work-project__heading">Campaign Landing Page: <em>Hispanic Heritage Month</em></h2>
 				<p class="work-project__info">Sr. Front End Developer · 03-2023</p>
@@ -869,6 +883,12 @@
 		<!-- Insert Footer -->
 
 	</footer>
+	<button id="backToTopBtn"
+		class="back-to-top-float"
+		onclick="scrollToSection('work-toc')"
+		aria-label="Back to Top: Return to Table of Contents">
+		⬆
+	</button>
 	<script src="scripts/script.js" async defer></script>
 </body>
 

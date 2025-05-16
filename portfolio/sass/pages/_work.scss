@@ -32,6 +32,30 @@ Work Project Styles
 		}
 	}
 
+	.work-toc {
+		a {
+			color: $color-black;
+
+			&:hover {
+				color: $color-orange;
+			}
+		}
+
+		&__heading {
+			font-size: 1.25em;
+		}
+
+		&__list {
+			padding: revert;
+			margin-bottom: 2em;
+
+			li {
+				list-style-type: disc;
+				padding-bottom: 1.5%;
+			}
+		}
+	}
+
 	.work-project {
 		header {
 			background-color: $color-black;
@@ -175,3 +199,34 @@ Work Project Styles
 		}
 	}
 }
+
+.back-to-top-float {
+	position: fixed;
+	bottom: 2rem;
+	right: 1.5rem;
+	background-color: $color-black;
+	color: $color-white;
+	border: none;
+	border-radius: 50%;
+	width: 3rem;
+	height: 3rem;
+	font-size: 1.5rem;
+	cursor: pointer;
+	z-index: 1000;
+	box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+	opacity: 0;
+	pointer-events: none;
+	transition: opacity 0.3s ease;
+
+	&:hover,
+	&:focus {
+		color: $color-orange;
+		outline: none;
+	}
+
+	&.visible {
+		opacity: 1;
+		pointer-events: auto;
+	}
+}
+

@@ -1737,6 +1737,23 @@ Work Project Styles
     font-size: 16px;
   }
 }
+#work .work-toc a {
+  color: #333333;
+}
+#work .work-toc a:hover {
+  color: rgb(233, 166, 66);
+}
+#work .work-toc__heading {
+  font-size: 1.25em;
+}
+#work .work-toc__list {
+  padding: revert;
+  margin-bottom: 2em;
+}
+#work .work-toc__list li {
+  list-style-type: disc;
+  padding-bottom: 1.5%;
+}
 #work .work-project header {
   background-color: #333333;
   padding: 0.75em;
@@ -1848,6 +1865,33 @@ Work Project Styles
 #work .work-project__figure img {
   max-width: 100%;
   height: auto;
+}
+
+.back-to-top-float {
+  position: fixed;
+  bottom: 2rem;
+  right: 1.5rem;
+  background-color: #333333;
+  color: #EEEEEE;
+  border: none;
+  border-radius: 50%;
+  width: 3rem;
+  height: 3rem;
+  font-size: 1.5rem;
+  cursor: pointer;
+  z-index: 1000;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+}
+.back-to-top-float:hover, .back-to-top-float:focus {
+  color: rgb(233, 166, 66);
+  outline: none;
+}
+.back-to-top-float.visible {
+  opacity: 1;
+  pointer-events: auto;
 }
 
 /*# sourceMappingURL=main.css.map */
