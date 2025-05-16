@@ -7,7 +7,8 @@
     "scss": "sass sass:styles",
     "prefix": "postcss styles/*.css  --use autoprefixer postcss-clean -d styles/min --no-map",
 	"copy-css": "mkdir -p public/styles && cp styles/min/*.css public/styles/",
-    "build": "run-s transpile scss prefix copy-css"
+	"copy-js": "mkdir -p public/scripts && cp babel/*.js public/scripts/",
+    "build": "run-s transpile scss prefix copy-css copy-js"
   },
   "author": "",
   "license": "ISC",

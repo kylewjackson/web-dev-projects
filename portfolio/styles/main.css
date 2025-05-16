@@ -649,6 +649,49 @@ Linkbox
 Project Thumbnails
 ==================*/
 @media (max-width: 499px) and (orientation: portrait) {
+  #work-thumbnail-preview {
+    background-position: center;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-image: url("../images/thumbnails/work/thumbnail-phone-work.jpg");
+  }
+}
+@media (max-height: 499px) and (orientation: landscape) {
+  #work-thumbnail-preview {
+    background-position: center;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-image: url("../images/thumbnails/work/thumbnail-phone-landscape-work.jpg");
+    width: 49%;
+    margin: 0;
+    left: 21%;
+  }
+}
+@media (min-width: 500px) and (min-height: 500px) {
+  #work-thumbnail-preview {
+    background-position: center;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-image: url("../images/thumbnails/work/thumbnail-tablet-work.jpg");
+    background-position: inherit;
+    top: 7%;
+  }
+}
+@media (min-width: 768px) and (min-height: 500px) {
+  #work-thumbnail-preview {
+    background-position: center;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-image: url("../images/thumbnails/work/thumbnail-large-work.jpg");
+  }
+}
+@media (min-width: 1300px) {
+  #work-thumbnail-preview {
+    background-position: center 25%;
+  }
+}
+
+@media (max-width: 499px) and (orientation: portrait) {
   #rawr-thumbnail-preview {
     background-position: center;
     background-size: contain;

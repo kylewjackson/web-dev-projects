@@ -371,6 +371,7 @@ if (document.body.id === "index") {
 }
 
 //add footer
+const currentYear = new Date().getFullYear();
 document.querySelector(".footer-content").insertAdjacentHTML(
 	"beforeend",
 	`
@@ -397,7 +398,7 @@ document.querySelector(".footer-content").insertAdjacentHTML(
             <i id="contact-github-name" class="link-name">Github</i>
         </a>
     </div>
-    <small class="copyright">Site © Kyle Jackson 2019. All rights reserved.</small>
+    <small class="copyright">Site © Kyle Jackson ${currentYear}. All rights reserved.</small>
 `
 );
 
@@ -522,17 +523,3 @@ document.addEventListener(
 document.querySelectorAll(".faded").forEach((element) => {
 	element.classList.add("transition-1s");
 });
-
-//scroll function
-function scrollToSection(id) {
-	const el = document.getElementById(id);
-	if (!el) return;
-
-	const yOffset = -82; // Offset in pixels (navbar height)
-	const y = el.getBoundingClientRect().top + window.pageYOffset + yOffset;
-
-	window.scrollTo({
-		top: y,
-		behavior: 'smooth'
-	});
-}
