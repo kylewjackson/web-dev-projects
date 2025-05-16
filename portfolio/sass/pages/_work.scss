@@ -7,6 +7,10 @@ Work Project Styles
 
 #work {
 
+	hr {
+		margin-bottom: 1em;
+	}
+
 	.navbar {
 		transition: none;
 	}
@@ -120,8 +124,8 @@ Work Project Styles
 			width: 100%;
 
 			caption {
-				background-color: $color-black;
-				color: $color-pink;
+				background-color: $color-white;
+				color: $color-black;
 				padding: 0.75em 1em;
 				font-weight: bold;
 				text-align: left;
@@ -133,8 +137,8 @@ Work Project Styles
 
 			thead {
 				tr {
-					background-color: $color-white;
-					color: $color-black;
+					background-color: $color-black;
+					color: $color-white;
 
 					th {
 						text-align: left;
@@ -147,8 +151,8 @@ Work Project Styles
 			tbody {
 				tr {
 					&:nth-child(odd) {
-						background-color: #444;
-						color: $color-white;
+						background-color: $color-white;
+						color: $color-black;
 					}
 
 					&:nth-child(even) {
