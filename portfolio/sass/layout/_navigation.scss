@@ -1,3 +1,7 @@
+@use "../abstracts/functions";
+@use "../abstracts/mixins";
+@use "../abstracts/variables";
+
 /*===========
 Navbar
 ============*/
@@ -6,15 +10,15 @@ Navbar
   position: fixed;
   z-index: 2;
   width: 100vw;
-  @include reset('top');
-  @include whiteBlack;
+  @include mixins.reset('top');
+  @include mixins.whiteBlack;
 
   a,
   a:visited {
-    @include fontWhite;
+    @include mixins.fontWhite;
     text-decoration: none;
     text-align: center;
-    @include linkHover;
+    @include mixins.linkHover;
   }
 
   //home
@@ -27,32 +31,32 @@ Navbar
     min-width: 35px;
   }
 
-  @include transition-mid;
+  @include mixins.transition-mid;
 }
 
   .navbar.hidden {
-      @include transition-mid;
+      @include mixins.transition-mid;
       left: 0;
       top: -85px;
       opacity: 1;
   };
 
 .navigation {
-  @include flexRow;
+  @include mixins.flexRow;
   min-height: 80px;
 
-  font-size: fontSize(20);
+  font-size: functions.fontSize(20);
   font-weight: 700;
 
-  @include setAfter;
+  @include mixins.setAfter;
   &::after {
-    background-image: $gradient-blue-pink;
+    background-image: variables.$gradient-blue-pink;
     height: 5%;
     top: 100%;
   }
 
   .nav-link {
-    @include flexRow;
+    @include mixins.flexRow;
     align-items: center;
     padding: 0 3%;
   }

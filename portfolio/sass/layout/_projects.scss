@@ -1,17 +1,20 @@
+@use "../abstracts/mixins";
+@use "../abstracts/variables";
+
 /*================
 Recent Projects
 =================*/
 
 #projects {
-    @include flexColCenter;
-    @include whiteBlack;
+    @include mixins.flexColCenter;
+    @include mixins.whiteBlack;
 
     > * {
         margin-bottom: 10%;
     }
 
     //bottom margin on project section heading
-    @include desktop {
+    @include mixins.desktop {
         @media (min-height: 25vw) {
             > .content-heading,
             > .icon {
@@ -21,25 +24,25 @@ Recent Projects
     }
 
     .project-container {
-        @include flexRow;
+        @include mixins.flexRow;
 
         //mobile - portrait
-        @include mobile {
-            @include rowContainer;
+        @include mixins.mobile {
+            @include mixins.rowContainer;
         }
 
         //tablet
-        @include tablet {
-            @include rowContainer;
+        @include mixins.tablet {
+            @include mixins.rowContainer;
             max-height: 45vw;
         }
 
         //desktop
-        @include desktop {
+        @include mixins.desktop {
             min-width: 70vw;
             margin-bottom: 50px;
 
-            @media (min-width: $breakpoint-xx-large) {
+            @media (min-width: variables.$breakpoint-xx-large) {
                 min-width: 50vw;
             }
         }
@@ -51,60 +54,60 @@ Recent Projects
             width: 100%;
 
             //mobile - portrait
-            @include mobile('portrait') {
-                @include rowCol-1;
+            @include mixins.mobile('portrait') {
+                @include mixins.rowCol-1;
             }
 
             //tablet
-            @include tablet {
-                @include rowCol-1;
+            @include mixins.tablet {
+                @include mixins.rowCol-1;
             }
         }
 
         .project-description-container {
 
             //mobile - portrait
-            @include mobile('portrait') {
-                @include rowCol-2;
+            @include mixins.mobile('portrait') {
+                @include mixins.rowCol-2;
             }
 
             //tablet
-            @include tablet {
-                @include rowCol-2;
+            @include mixins.tablet {
+                @include mixins.rowCol-2;
             }
 
             //desktop
-            @include desktop {
-                @include flexCol;
+            @include mixins.desktop {
+                @include mixins.flexCol;
                 justify-content: center;
             }
         }
 
             //project description
             .project-description {
-                font-family: $font-roboto;
+                font-family: variables.$font-roboto;
                 font-size: 4vw;
 
-                @include tablet {
+                @include mixins.tablet {
                     font-size: 3vw;
                 }
 
-                @include large-screen {
+                @include mixins.large-screen {
                     font-size: 24px;
                 }
             }
 
             //description of tools
             .project-tools {
-                font-family: $font-roboto;
+                font-family: variables.$font-roboto;
                 font-size: 4vw;
                 font-style: italic;
 
-                @include tablet {
+                @include mixins.tablet {
                     font-size: 3vw;
                 }
 
-                @include large-screen {
+                @include mixins.large-screen {
                     font-size: 24px;
                 }
             }
@@ -122,24 +125,24 @@ Recent Projects
                 }
 
                     .source-link {
-                        color: $color-pink;
+                        color: variables.$color-pink;
 
                         &:hover {
                             width: min-content;
                             margin-bottom: -2%;
-                            background-color: $color-pink;
-                            color: $color-black;
+                            background-color: variables.$color-pink;
+                            color: variables.$color-black;
                         }
                     }
 
                     .live-preview-link {
-                        color: $color-blue;
+                        color: variables.$color-blue;
 
                         &:hover {
                             width: min-content;
                             margin-bottom: -2%;
-                            background-color: $color-blue;
-                            color: $color-black;
+                            background-color: variables.$color-blue;
+                            color: variables.$color-black;
                         }
                     }
 

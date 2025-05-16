@@ -1,15 +1,18 @@
+@use "../abstracts/mixins";
+@use "../abstracts/variables";
+
 /*===========
 Global Styles
 ============*/
 
 body {
-  @include blackWhite;
+  @include mixins.blackWhite;
 
-  font-family: $font-playfair;
+  font-family: variables.$font-playfair;
   font-size: 5vw;
 
   ul {
-    @include reset('margin', 'padding');
+    @include mixins.reset('margin', 'padding');
   }
 
   li {
@@ -18,9 +21,9 @@ body {
 
   a {
     cursor: pointer;
-    color: $color-white;
+    color: variables.$color-white;
 
-    @include linkHover;
+    @include mixins.linkHover;
   }
 
   address {
@@ -40,7 +43,11 @@ body {
 }
 
 .hidden {
-  @include hide;
+  @include mixins.hide;
+}
+
+.sr-only {
+	@include mixins.sr-only;
 }
 
 .content {
@@ -64,7 +71,7 @@ body {
   margin-top: 0;
   text-align: center;
 
-  @include tablet {
+  @include mixins.tablet {
     font-size: 8vw;
   }
 
@@ -76,7 +83,7 @@ body {
   font-weight: 400;
   letter-spacing: -0.085rem;
 
-  @include tablet {
+  @include mixins.tablet {
     font-size: 4vw;
   }
 
@@ -89,7 +96,7 @@ body {
   font-size: 5vw;
   font-weight: 700;
 
-  @include tablet {
+  @include mixins.tablet {
     font-size: 4vw;
   }
 }
@@ -101,11 +108,11 @@ h4 {
 .icon {
   max-width: 15vw;
 
-  @include tablet {
+  @include mixins.tablet {
     max-width: 10vw;
   }
 
-  @include large-screen {
+  @include mixins.large-screen {
     max-width: 80px;
   }
 
@@ -117,11 +124,11 @@ h4 {
 /* Text Accents */
 
 .accent-pink {
-  color: $color-pink;
+  color: variables.$color-pink;
 }
 
 .accent-blue {
-  color: $color-blue;
+  color: variables.$color-blue;
 }
 
 
@@ -130,7 +137,7 @@ h4 {
 Max Fonts
 ==============*/
 
-@include large-screen {
+@include mixins.large-screen {
   //maximum fonts sizes at large breakpoint
-  @include maxFonts($font-map);
+  @include mixins.maxFonts(variables.$font-map);
 };

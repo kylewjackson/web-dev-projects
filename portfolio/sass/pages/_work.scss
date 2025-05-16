@@ -1,0 +1,232 @@
+@use "../abstracts/mixins";
+@use '../abstracts/variables' as *;
+
+/*=============
+Work Project Styles
+==============*/
+
+#work {
+
+	.navbar {
+		transition: none;
+	}
+
+	#work-main {
+		padding-top: 50%;
+		margin: 0 auto;
+		width: 90%;
+		font-size: 12px;
+
+		@include mixins.mobileMax {
+			padding-top: 30%;
+			font-size: 14px;
+		}
+
+		@include mixins.large-screen {
+			padding-top: 15%;
+		}
+
+		@include mixins.desktop {
+			padding-top: 10%;
+			font-size: 16px;
+		}
+	}
+
+	.work-toc {
+		a {
+			color: $color-black;
+
+			&:hover {
+				color: $color-orange;
+			}
+		}
+
+		&__heading {
+			font-size: 1.25em;
+		}
+
+		&__list {
+			padding: revert;
+			margin-bottom: 2em;
+
+			li {
+				list-style-type: disc;
+				padding-bottom: 1.5%;
+			}
+		}
+	}
+
+	.work-project {
+		header {
+			background-color: $color-black;
+			padding: 0.75em;
+		}
+
+		&__heading {
+			color: $color-blue;
+
+			em {
+				color: $color-pink;
+			}
+		}
+
+		&__info {
+			color: $color-white;
+		}
+
+		&__text {
+			line-height: 1.4em;
+		}
+
+		&__bullet-list {
+			padding: revert;
+			line-height: 1.3em;
+
+			li {
+				list-style-type: disc;
+				padding-bottom: 0.5em;
+			}
+
+			&--sub {
+				padding-left: 30px;
+
+				li {
+					list-style-type: circle;
+				}
+			}
+
+			&--2xspace {
+				> li {
+					padding-bottom: 1em;
+				}
+			}
+		}
+
+		&__table-container {
+			margin: 2em auto;
+			border: 4px solid $color-pink;
+			border-radius: 2px;
+			width: 90%;
+
+			@include mixins.large-screen {
+				width: 75%;
+			}
+		}
+
+		&__table {
+			border-collapse: separate;
+			border-spacing: 0;
+			overflow: hidden;
+			width: 100%;
+
+			caption {
+				background-color: $color-black;
+				color: $color-pink;
+				padding: 0.75em 1em;
+				font-weight: bold;
+				text-align: left;
+				caption-side: top;
+				font-size: 1.2em;
+				text-align: center;
+				padding: 1.4em 0;
+			}
+
+			thead {
+				tr {
+					background-color: $color-white;
+					color: $color-black;
+
+					th {
+						text-align: left;
+						padding: 0.25em 1em;
+						font-weight: bold;
+					}
+				}
+			}
+
+			tbody {
+				tr {
+					&:nth-child(odd) {
+						background-color: #444;
+						color: $color-white;
+					}
+
+					&:nth-child(even) {
+						background-color: #DDDDDD;
+						color: $color-black;
+					}
+
+					td {
+						padding: 1em;
+						vertical-align: top;
+						font-size: 0.85em;
+					}
+				}
+			}
+		}
+
+		&__figure-grid {
+			display: grid;
+			grid-template-columns: 1fr;
+
+			@include mixins.large-screen {
+				grid-template-columns: repeat(auto-fit, minmax(0, 1fr));
+			}
+		}
+
+		&__figure {
+			background-color: $color-black;
+			color: $color-white;
+			padding: 2%;
+			padding-bottom: clamp(10px, 2%, 2%);
+			border-radius: 2px;
+
+			&--full {
+				margin: 2% auto;
+				width: fit-content;
+				max-width: 80%;
+			}
+
+			figcaption {
+				text-align: center;
+				margin-top: 2%;
+			}
+
+			img {
+				max-width: 100%;
+				height: auto;
+			}
+		}
+	}
+}
+
+.back-to-top-float {
+	position: fixed;
+	bottom: 2rem;
+	right: 1.5rem;
+	background-color: $color-black;
+	color: $color-white;
+	border: none;
+	border-radius: 50%;
+	width: 3rem;
+	height: 3rem;
+	font-size: 1.5rem;
+	cursor: pointer;
+	z-index: 1000;
+	box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+	opacity: 0;
+	pointer-events: none;
+	transition: opacity 0.3s ease;
+
+	&:hover,
+	&:focus {
+		color: $color-orange;
+		outline: none;
+	}
+
+	&.visible {
+		opacity: 1;
+		pointer-events: auto;
+	}
+}
+

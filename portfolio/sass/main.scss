@@ -2,28 +2,30 @@
 Partials
 ============*/
 
-@import 'vendors/normalize';
+@use 'vendors/normalize';
 
-@import 'abstracts/functions';
-@import 'abstracts/variables';
-@import 'abstracts/mixins';
-@import 'abstracts/placeholders';
+@use 'abstracts/functions';
+@use 'abstracts/variables';
+@use 'abstracts/mixins';
+@use 'abstracts/placeholders';
 
 
-@import 'base/animations';
-@import 'base/global';
+@use 'base/animations';
+@use 'base/global';
 
-@import 'components/boxes';
-@import 'components/thumbnails';
-@import 'components/buttons.scss';
+@use 'components/boxes';
+@use 'components/thumbnails';
+@use 'components/buttons.scss';
 
-@import 'layout/navigation';
-@import 'layout/header';
-@import 'layout/intro';
-@import 'layout/tools';
-@import 'layout/projects';
-@import 'layout/footer';
+@use 'layout/navigation';
+@use 'layout/header';
+@use 'layout/intro';
+@use 'layout/tools';
+@use 'layout/projects';
+@use 'layout/footer';
 
-@import 'pages/index';
-@import 'pages/about';
-@import 'pages/projects';
+//Page-specific styles
+@use 'pages/index';
+@use 'pages/about';
+@use 'pages/projects' as projectsPage;
+@use 'pages/work';

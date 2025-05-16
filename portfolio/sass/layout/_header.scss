@@ -1,10 +1,12 @@
+@use "../abstracts/mixins";
+
 /*============
 Header Style
 =============*/
 
 .header-content {
     .container {
-        @include flexCol;
+        @include mixins.flexCol;
         height: 110vh;
     }
 
@@ -17,7 +19,7 @@ Header Style
     }
 
         .title-heading {
-            @include blackWhite;
+            @include mixins.blackWhite;
             align-items: flex-end;
             flex: 1.3;
             margin-bottom: 1%;
@@ -28,7 +30,7 @@ Header Style
         }
 
         .sub-heading {
-            @include whiteBlack;
+            @include mixins.whiteBlack;
             justify-content: flex-end;
             flex: 2;
 

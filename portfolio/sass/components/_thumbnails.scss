@@ -1,122 +1,140 @@
+@use "../abstracts/mixins";
+@use "../abstracts/variables";
+
 /*=================
 Project Thumbnails
 ==================*/
 
-#rawr-thumbnail-preview {
+#work-thumbnail-preview {
     //mobile portratit
-    @include thumbMobilePortrait('../images/thumbnails/rawr/thumbnail-phone-rawr.jpg');
+    @include mixins.thumbMobilePortrait('../images/thumbnails/work/thumbnail-phone-work.jpg');
 
     //mobile landscape
-    @include thumbMobileLandscape('../images/thumbnails/rawr/thumbnail-phone-landscape-rawr.jpg');
+    @include mixins.thumbMobileLandscape('../images/thumbnails/work/thumbnail-phone-landscape-work.jpg');
 
     //tablet
-    @include thumbTablet('../images/thumbnails/rawr/thumbnail-tablet-rawr.jpg');
+    @include mixins.thumbTablet('../images/thumbnails/work/thumbnail-tablet-work.jpg');
 
     //large
-    @include thumbLarge('../images/thumbnails/rawr/thumbnail-large-rawr.jpg');
+    @include mixins.thumbLarge('../images/thumbnails/work/thumbnail-large-work.jpg');
+
+}
+
+#rawr-thumbnail-preview {
+    //mobile portratit
+    @include mixins.thumbMobilePortrait('../images/thumbnails/rawr/thumbnail-phone-rawr.jpg');
+
+    //mobile landscape
+    @include mixins.thumbMobileLandscape('../images/thumbnails/rawr/thumbnail-phone-landscape-rawr.jpg');
+
+    //tablet
+    @include mixins.thumbTablet('../images/thumbnails/rawr/thumbnail-tablet-rawr.jpg');
+
+    //large
+    @include mixins.thumbLarge('../images/thumbnails/rawr/thumbnail-large-rawr.jpg');
 
 }
 
 #portfolio-thumbnail-preview {
     //mobile portrait
-    @include thumbMobilePortrait('../images/thumbnails/portfolio/thumbnail-phone-portfolio.jpg');
+    @include mixins.thumbMobilePortrait('../images/thumbnails/portfolio/thumbnail-phone-portfolio.jpg');
 
     //mobile landscape
-    @include thumbMobileLandscape('../images/thumbnails/portfolio/thumbnail-phone-landscape-portfolio.jpg');
+    @include mixins.thumbMobileLandscape('../images/thumbnails/portfolio/thumbnail-phone-landscape-portfolio.jpg');
 
     //tablet
-    @include thumbTablet('../images/thumbnails/portfolio/thumbnail-tablet-portfolio.jpg');
+    @include mixins.thumbTablet('../images/thumbnails/portfolio/thumbnail-tablet-portfolio.jpg');
 
     //large
-    @include thumbLarge('../images/thumbnails/portfolio/thumbnail-large-portfolio.jpg');
+    @include mixins.thumbLarge('../images/thumbnails/portfolio/thumbnail-large-portfolio.jpg');
 
 }
 
 #product-thumbnail-preview {
     //mobile portrait
-    @include thumbMobilePortrait('../images/thumbnails/product-mockup/thumbnail-phone-product-mock.jpg');
+    @include mixins.thumbMobilePortrait('../images/thumbnails/product-mockup/thumbnail-phone-product-mock.jpg');
 
     //mobile landscape
-    @include thumbMobileLandscape('../images/thumbnails/product-mockup/thumbnail-phone-landscape-product-mock.jpg');
+    @include mixins.thumbMobileLandscape('../images/thumbnails/product-mockup/thumbnail-phone-landscape-product-mock.jpg');
 
     //tablet
-    @include thumbTablet('../images/thumbnails/product-mockup/thumbnail-tablet-product-mock.jpg');
+    @include mixins.thumbTablet('../images/thumbnails/product-mockup/thumbnail-tablet-product-mock.jpg');
 
     //large
-    @include thumbLarge('../images/thumbnails/product-mockup/thumbnail-large-product-mock.jpg');
+    @include mixins.thumbLarge('../images/thumbnails/product-mockup/thumbnail-large-product-mock.jpg');
 }
 
 #robo-thumbnail-preview {
     //mobile portrait
-    @include thumbMobilePortrait('../images/thumbnails/robo/thumbnail-phone-robo.jpg');
+    @include mixins.thumbMobilePortrait('../images/thumbnails/robo/thumbnail-phone-robo.jpg');
 
     //mobile landscape
-    @include thumbMobileLandscape('../images/thumbnails/robo/thumbnail-phone-landscape-robo.jpg');
+    @include mixins.thumbMobileLandscape('../images/thumbnails/robo/thumbnail-phone-landscape-robo.jpg');
 
     //tablet
-    @include thumbTablet('../images/thumbnails/robo/thumbnail-tablet-robo.jpg');
+    @include mixins.thumbTablet('../images/thumbnails/robo/thumbnail-tablet-robo.jpg');
 
     //large
-    @include thumbLarge('../images/thumbnails/robo/thumbnail-large-robo.jpg');
+    @include mixins.thumbLarge('../images/thumbnails/robo/thumbnail-large-robo.jpg');
 }
 
 #resumecss-thumbnail-preview {
     //mobile portrait
-    @include thumbMobilePortrait('../images/thumbnails/resumecss/thumbnail-phone-resume.jpg');
+    @include mixins.thumbMobilePortrait('../images/thumbnails/resumecss/thumbnail-phone-resume.jpg');
 
     //mobile landscape
-    @include thumbMobileLandscape('../images/thumbnails/resumecss/thumbnail-phone-landscape-resume.jpg');
+    @include mixins.thumbMobileLandscape('../images/thumbnails/resumecss/thumbnail-phone-landscape-resume.jpg');
 
     //tablet
-    @include thumbTablet('../images/thumbnails/resumecss/thumbnail-tablet-resume.jpg');
+    @include mixins.thumbTablet('../images/thumbnails/resumecss/thumbnail-tablet-resume.jpg');
 
     //large
-    @include thumbLarge('../images/thumbnails/resumecss/thumbnail-large-resume.jpg');
+    @include mixins.thumbLarge('../images/thumbnails/resumecss/thumbnail-large-resume.jpg');
 
 }
 
 #jtodo-thumbnail-preview {
     //mobile portrait
-    @include thumbMobilePortrait('../images/thumbnails/jtodo/thumbnail-phone-jtodo.jpg');
+    @include mixins.thumbMobilePortrait('../images/thumbnails/jtodo/thumbnail-phone-jtodo.jpg');
 
     //mobile landscape
-    @include thumbMobileLandscape('../images/thumbnails/jtodo/thumbnail-phone-landscape-jtodo.jpg');
+    @include mixins.thumbMobileLandscape('../images/thumbnails/jtodo/thumbnail-phone-landscape-jtodo.jpg');
 
     //tablet
-    @include thumbTablet('../images/thumbnails/jtodo/thumbnail-tablet-jtodo.jpg');
+    @include mixins.thumbTablet('../images/thumbnails/jtodo/thumbnail-tablet-jtodo.jpg');
 
     //large
-    @include thumbLarge('../images/thumbnails/jtodo/thumbnail-large-jtodo.jpg');
+    @include mixins.thumbLarge('../images/thumbnails/jtodo/thumbnail-large-jtodo.jpg');
 
 }
 
 #bootcamp-thumbnail-preview {
     //mobile portrait
-    @include thumbMobilePortrait('../images/thumbnails/bootcamp/thumbnail-phone-bootcamp.jpg');
+    @include mixins.thumbMobilePortrait('../images/thumbnails/bootcamp/thumbnail-phone-bootcamp.jpg');
 
     //mobile landscape
-    @include thumbMobileLandscape('../images/thumbnails/bootcamp/thumbnail-phone-landscape-bootcamp.jpg');
+    @include mixins.thumbMobileLandscape('../images/thumbnails/bootcamp/thumbnail-phone-landscape-bootcamp.jpg');
 
     //tablet
-    @include thumbTablet('../images/thumbnails/bootcamp/thumbnail-tablet-bootcamp.jpg');
+    @include mixins.thumbTablet('../images/thumbnails/bootcamp/thumbnail-tablet-bootcamp.jpg');
 
     //large
-    @include thumbLarge('../images/thumbnails/bootcamp/thumbnail-large-bootcamp.jpg');
+    @include mixins.thumbLarge('../images/thumbnails/bootcamp/thumbnail-large-bootcamp.jpg');
 
 }
 
 #retro-thumbnail-preview {
     //mobile portrait
-    @include thumbMobilePortrait('../images/thumbnails/retro/thumbnail-phone-retro.jpg');
+    @include mixins.thumbMobilePortrait('../images/thumbnails/retro/thumbnail-phone-retro.jpg');
 
     //mobile landscape
-    @include thumbMobileLandscape('../images/thumbnails/retro/thumbnail-phone-landscape-retro.jpg');
+    @include mixins.thumbMobileLandscape('../images/thumbnails/retro/thumbnail-phone-landscape-retro.jpg');
 
     //tablet
-    @include thumbTablet('../images/thumbnails/retro/thumbnail-tablet-retro.jpg');
+    @include mixins.thumbTablet('../images/thumbnails/retro/thumbnail-tablet-retro.jpg');
 
     //large
-    @include thumbLarge('../images/thumbnails/retro/thumbnail-large-retro.jpg');
+    @include mixins.thumbLarge('../images/thumbnails/retro/thumbnail-large-retro.jpg');
 
 }
 
@@ -125,17 +143,17 @@ Project Thumbnails
     height: 60vw;
     margin: 5% 0 10% 0;
 
-    @include setBefore;
+    @include mixins.setBefore;
 
-    @include setAfter;
+    @include mixins.setAfter;
 
     //mobile - portrait
-    @include mobile('portrait') {
+    @include mixins.mobile('portrait') {
 
         top: 5%;
 
         &::before {
-            background: $color-black;
+            background: variables.$color-black;
             top: 90%;
         }
 
@@ -148,12 +166,12 @@ Project Thumbnails
     }
 
         //mobile - landscape {
-        @include mobile('landscape') {
+        @include mixins.mobile('landscape') {
 
             height: 20vw;
 
             &::before {
-                background: $color-black;
+                background: variables.$color-black;
                 right: 96%;
             }
 
@@ -166,7 +184,7 @@ Project Thumbnails
         }
 
     //tablet
-    @include tablet {
+    @include mixins.tablet {
         &::after {
             background: url('../images/icons/device-tablet-icon.svg') no-repeat;
             width: 110%;
@@ -176,7 +194,7 @@ Project Thumbnails
     }
 
     //large screen
-    @include large-screen {
+    @include mixins.large-screen {
         height: 20vw;
         top: 10%;
 
@@ -187,7 +205,7 @@ Project Thumbnails
     }
 
     //desktop
-    @include desktop {
+    @include mixins.desktop {
         &::after {
             top: 5%;
         }

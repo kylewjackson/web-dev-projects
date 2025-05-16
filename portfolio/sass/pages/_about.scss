@@ -1,3 +1,7 @@
+@use "../abstracts/mixins";
+@use "../abstracts/variables";
+@use '../abstracts/placeholders';
+
 /*===========
 About Styles
 ============*/
@@ -9,18 +13,18 @@ About Styles
     }
 
     a {
-        @include linkHover;
+        @include mixins.linkHover;
     }
 
     .pic {
         border-radius: 25px;
         max-width: 50vw;
 
-        @include tablet {
+        @include mixins.tablet {
             max-width: 30vw;
         }
 
-        @include desktop {
+        @include mixins.desktop {
             max-width: 200px;
         }
 
@@ -30,46 +34,46 @@ About Styles
     #intro {
         padding-top: 50%;
 
-        @include mobileMax {
+        @include mixins.mobileMax {
             padding-top: 30%;
         }
 
-        @include large-screen {
+        @include mixins.large-screen {
             padding-top: 15%;
         }
 
-        @include desktop {
+        @include mixins.desktop {
             padding-top: 10%;
         }
     }
 
     .main-content {
-        @include flexContainer;
+        @include mixins.flexContainer;
         flex-direction: column;
         text-align: center;
     }
 
     .content {
-        @include whiteBlack;
+        @include mixins.whiteBlack;
 
         .links {
-            color: $color-white;
-            @include linkHover;
+            color: variables.$color-white;
+            @include mixins.linkHover;
         }
 
         .link-box {
-            @include blackWhite;
-            @include linkHover;
+            @include mixins.blackWhite;
+            @include mixins.linkHover;
         }
 
         .link-name {
-            @include fontWhite;
+            @include mixins.fontWhite;
 
-            @include linkHover;
+            @include mixins.linkHover;
         }
 
         .container {
-            @include flexRow;
+            @include mixins.flexRow;
             justify-content: space-around;
         }
     }
@@ -115,10 +119,10 @@ About Styles
         width: 35%;
         max-width: 200px;
 
-        @include linkHover;
-
-        //@include transition-1s;
+		//@include transition-1s;
         transition-property: opacity, transform;
+
+        @include mixins.linkHover;
     }
 
     //used grid for this section, seemed simpler
@@ -142,19 +146,19 @@ About Styles
             justify-self: start;
             text-align: left;
 
-            @include aboutColorTools;
+			//@include transition-1s;
+            transition-property: opacity, transform;
 
-            &#figma-link:hover {
-                background-color: $color-white;
-                color: $color-black;
+			&#figma-link:hover {
+                background-color: variables.$color-white;
+                color: variables.$color-black;
             }
 
-            @include desktop {
+            @include mixins.aboutColorTools;
+
+            @include mixins.desktop {
                 font-size: 1.25rem;
             }
-
-            //@include transition-1s;
-            transition-property: opacity, transform;
         }
     }
 }

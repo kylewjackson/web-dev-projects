@@ -10,10 +10,8 @@ Partials
  * 2. Prevent adjustments of font size after orientation changes in iOS.
  */
 html {
-  line-height: 1.15;
-  /* 1 */
-  -webkit-text-size-adjust: 100%;
-  /* 2 */
+  line-height: 1.15; /* 1 */
+  -webkit-text-size-adjust: 100%; /* 2 */
 }
 
 /* Sections
@@ -48,12 +46,9 @@ h1 {
  * 2. Show the overflow in Edge and IE.
  */
 hr {
-  box-sizing: content-box;
-  /* 1 */
-  height: 0;
-  /* 1 */
-  overflow: visible;
-  /* 2 */
+  box-sizing: content-box; /* 1 */
+  height: 0; /* 1 */
+  overflow: visible; /* 2 */
 }
 
 /**
@@ -61,10 +56,8 @@ hr {
  * 2. Correct the odd `em` font sizing in all browsers.
  */
 pre {
-  font-family: monospace, monospace;
-  /* 1 */
-  font-size: 1em;
-  /* 2 */
+  font-family: monospace, monospace; /* 1 */
+  font-size: 1em; /* 2 */
 }
 
 /* Text-level semantics
@@ -81,12 +74,9 @@ a {
  * 2. Add the correct text decoration in Chrome, Edge, IE, Opera, and Safari.
  */
 abbr[title] {
-  border-bottom: none;
-  /* 1 */
-  text-decoration: underline;
-  /* 2 */
-  text-decoration: underline dotted;
-  /* 2 */
+  border-bottom: none; /* 1 */
+  text-decoration: underline; /* 2 */
+  text-decoration: underline dotted; /* 2 */
 }
 
 /**
@@ -104,10 +94,8 @@ strong {
 code,
 kbd,
 samp {
-  font-family: monospace, monospace;
-  /* 1 */
-  font-size: 1em;
-  /* 2 */
+  font-family: monospace, monospace; /* 1 */
+  font-size: 1em; /* 2 */
 }
 
 /**
@@ -157,14 +145,10 @@ input,
 optgroup,
 select,
 textarea {
-  font-family: inherit;
-  /* 1 */
-  font-size: 100%;
-  /* 1 */
-  line-height: 1.15;
-  /* 1 */
-  margin: 0;
-  /* 2 */
+  font-family: inherit; /* 1 */
+  font-size: 100%; /* 1 */
+  line-height: 1.15; /* 1 */
+  margin: 0; /* 2 */
 }
 
 /**
@@ -172,8 +156,7 @@ textarea {
  * 1. Show the overflow in Edge.
  */
 button,
-input {
-  /* 1 */
+input { /* 1 */
   overflow: visible;
 }
 
@@ -182,8 +165,7 @@ input {
  * 1. Remove the inheritance of text transform in Firefox.
  */
 button,
-select {
-  /* 1 */
+select { /* 1 */
   text-transform: none;
 }
 
@@ -232,18 +214,12 @@ fieldset {
  *    `fieldset` elements in all browsers.
  */
 legend {
-  box-sizing: border-box;
-  /* 1 */
-  color: inherit;
-  /* 2 */
-  display: table;
-  /* 1 */
-  max-width: 100%;
-  /* 1 */
-  padding: 0;
-  /* 3 */
-  white-space: normal;
-  /* 1 */
+  box-sizing: border-box; /* 1 */
+  color: inherit; /* 2 */
+  display: table; /* 1 */
+  max-width: 100%; /* 1 */
+  padding: 0; /* 3 */
+  white-space: normal; /* 1 */
 }
 
 /**
@@ -266,10 +242,8 @@ textarea {
  */
 [type=checkbox],
 [type=radio] {
-  box-sizing: border-box;
-  /* 1 */
-  padding: 0;
-  /* 2 */
+  box-sizing: border-box; /* 1 */
+  padding: 0; /* 2 */
 }
 
 /**
@@ -285,10 +259,8 @@ textarea {
  * 2. Correct the outline style in Safari.
  */
 [type=search] {
-  -webkit-appearance: textfield;
-  /* 1 */
-  outline-offset: -2px;
-  /* 2 */
+  -webkit-appearance: textfield; /* 1 */
+  outline-offset: -2px; /* 2 */
 }
 
 /**
@@ -303,10 +275,8 @@ textarea {
  * 2. Change font properties to `inherit` in Safari.
  */
 ::-webkit-file-upload-button {
-  -webkit-appearance: button;
-  /* 1 */
-  font: inherit;
-  /* 2 */
+  -webkit-appearance: button; /* 1 */
+  font: inherit; /* 2 */
 }
 
 /* Interactive
@@ -404,7 +374,7 @@ body a {
   color: #EEEEEE;
 }
 body a:hover, body a:active {
-  color: #e9a642;
+  color: rgb(233, 166, 66);
 }
 body address {
   font-style: normal;
@@ -414,6 +384,18 @@ body address {
   position: absolute;
   left: -9999px;
   opacity: 0;
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
 }
 
 .content {
@@ -491,19 +473,15 @@ Max Fonts
   body {
     font-size: 1.75rem;
   }
-
   .title-heading {
     font-size: 6.875rem;
   }
-
   .content-heading {
     font-size: 4.6875rem;
   }
-
   .sub-heading {
     font-size: 2.1875rem;
   }
-
   .project-title {
     font-size: 1.875rem;
   }
@@ -659,7 +637,7 @@ Linkbox
   text-decoration: underline;
 }
 .link-name:hover, .link-name:active {
-  color: #e9a642;
+  color: rgb(233, 166, 66);
 }
 @media (min-width: 375px) {
   .link-name {
@@ -670,6 +648,49 @@ Linkbox
 /*=================
 Project Thumbnails
 ==================*/
+@media (max-width: 499px) and (orientation: portrait) {
+  #work-thumbnail-preview {
+    background-position: center;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-image: url("../images/thumbnails/work/thumbnail-phone-work.jpg");
+  }
+}
+@media (max-height: 499px) and (orientation: landscape) {
+  #work-thumbnail-preview {
+    background-position: center;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-image: url("../images/thumbnails/work/thumbnail-phone-landscape-work.jpg");
+    width: 49%;
+    margin: 0;
+    left: 21%;
+  }
+}
+@media (min-width: 500px) and (min-height: 500px) {
+  #work-thumbnail-preview {
+    background-position: center;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-image: url("../images/thumbnails/work/thumbnail-tablet-work.jpg");
+    background-position: inherit;
+    top: 7%;
+  }
+}
+@media (min-width: 768px) and (min-height: 500px) {
+  #work-thumbnail-preview {
+    background-position: center;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-image: url("../images/thumbnails/work/thumbnail-large-work.jpg");
+  }
+}
+@media (min-width: 1300px) {
+  #work-thumbnail-preview {
+    background-position: center 25%;
+  }
+}
+
 @media (max-width: 499px) and (orientation: portrait) {
   #rawr-thumbnail-preview {
     background-position: center;
@@ -1127,7 +1148,7 @@ Navbar
 .navbar a:hover, .navbar a:active,
 .navbar a:visited:hover,
 .navbar a:visited:active {
-  color: #e9a642;
+  color: rgb(233, 166, 66);
 }
 .navbar .home-button {
   border: none;
@@ -1222,7 +1243,7 @@ Header Style
 }
 @media only screen and (min-device-width: 375px) and (max-device-width: 812px) and (-webkit-device-pixel-ratio: 3) and (orientation: landscape) {
   .header-content .title-heading,
-.header-content .sub-heading {
+  .header-content .sub-heading {
     width: 90%;
     padding-left: 5%;
     padding-right: 5%;
@@ -1289,7 +1310,7 @@ Recent Projects
 }
 @media (min-width: 1000px) and (min-height: 500px) and (min-height: 25vw) {
   #projects > .content-heading,
-#projects > .icon {
+  #projects > .icon {
     margin-bottom: 5%;
   }
 }
@@ -1437,7 +1458,7 @@ Recent Projects
 .footer-content .container:not(#social-profiles-container) a:hover, .footer-content .container:not(#social-profiles-container) a:active,
 .footer-content .container:not(#social-profiles-container) a:visited:hover,
 .footer-content .container:not(#social-profiles-container) a:visited:active {
-  color: #e9a642;
+  color: rgb(233, 166, 66);
 }
 .footer-content #social-profiles-container {
   flex-flow: row;
@@ -1509,7 +1530,7 @@ Index Styles
 About Styles
 ============*/
 #about a:hover, #about a:active {
-  color: #e9a642;
+  color: rgb(233, 166, 66);
 }
 #about .pic {
   border-radius: 25px;
@@ -1556,20 +1577,20 @@ About Styles
   color: #EEEEEE;
 }
 #about .content .links:hover, #about .content .links:active {
-  color: #e9a642;
+  color: rgb(233, 166, 66);
 }
 #about .content .link-box {
   color: #333333;
   background-color: #EEEEEE;
 }
 #about .content .link-box:hover, #about .content .link-box:active {
-  color: #e9a642;
+  color: rgb(233, 166, 66);
 }
 #about .content .link-name {
   color: #EEEEEE;
 }
 #about .content .link-name:hover, #about .content .link-name:active {
-  color: #e9a642;
+  color: rgb(233, 166, 66);
 }
 #about .content .container {
   display: flex;
@@ -1606,7 +1627,7 @@ About Styles
   transition-property: opacity, transform;
 }
 #about .button:hover, #about .button:active {
-  color: #e9a642;
+  color: rgb(233, 166, 66);
 }
 #about #tool-container {
   display: grid;
@@ -1625,6 +1646,10 @@ About Styles
   justify-self: start;
   text-align: left;
   transition-property: opacity, transform;
+}
+#about #tool-container .links#figma-link:hover {
+  background-color: #EEEEEE;
+  color: #333333;
 }
 #about #tool-container .links#html-link:hover {
   background-color: #EAB361;
@@ -1698,10 +1723,6 @@ About Styles
   padding: 2%;
   border-radius: 5px;
 }
-#about #tool-container .links#figma-link:hover {
-  background-color: #EEEEEE;
-  color: #333333;
-}
 @media (min-width: 1000px) and (min-height: 500px) {
   #about #tool-container .links {
     font-size: 1.25rem;
@@ -1728,6 +1749,192 @@ Projects Styles
   #all-projects #projects {
     padding-top: 10%;
   }
+}
+
+/*=============
+Work Project Styles
+==============*/
+#work .navbar {
+  transition: none;
+}
+#work #work-main {
+  padding-top: 50%;
+  margin: 0 auto;
+  width: 90%;
+  font-size: 12px;
+}
+@media (min-width: 375px) {
+  #work #work-main {
+    padding-top: 30%;
+    font-size: 14px;
+  }
+}
+@media (min-width: 768px) and (min-height: 500px) {
+  #work #work-main {
+    padding-top: 15%;
+  }
+}
+@media (min-width: 1000px) and (min-height: 500px) {
+  #work #work-main {
+    padding-top: 10%;
+    font-size: 16px;
+  }
+}
+#work .work-toc a {
+  color: #333333;
+}
+#work .work-toc a:hover {
+  color: rgb(233, 166, 66);
+}
+#work .work-toc__heading {
+  font-size: 1.25em;
+}
+#work .work-toc__list {
+  padding: revert;
+  margin-bottom: 2em;
+}
+#work .work-toc__list li {
+  list-style-type: disc;
+  padding-bottom: 1.5%;
+}
+#work .work-project header {
+  background-color: #333333;
+  padding: 0.75em;
+}
+#work .work-project__heading {
+  color: #00F0FF;
+}
+#work .work-project__heading em {
+  color: #FF61AD;
+}
+#work .work-project__info {
+  color: #EEEEEE;
+}
+#work .work-project__text {
+  line-height: 1.4em;
+}
+#work .work-project__bullet-list {
+  padding: revert;
+  line-height: 1.3em;
+}
+#work .work-project__bullet-list li {
+  list-style-type: disc;
+  padding-bottom: 0.5em;
+}
+#work .work-project__bullet-list--sub {
+  padding-left: 30px;
+}
+#work .work-project__bullet-list--sub li {
+  list-style-type: circle;
+}
+#work .work-project__bullet-list--2xspace > li {
+  padding-bottom: 1em;
+}
+#work .work-project__table-container {
+  margin: 2em auto;
+  border: 4px solid #FF61AD;
+  border-radius: 2px;
+  width: 90%;
+}
+@media (min-width: 768px) and (min-height: 500px) {
+  #work .work-project__table-container {
+    width: 75%;
+  }
+}
+#work .work-project__table {
+  border-collapse: separate;
+  border-spacing: 0;
+  overflow: hidden;
+  width: 100%;
+}
+#work .work-project__table caption {
+  background-color: #333333;
+  color: #FF61AD;
+  padding: 0.75em 1em;
+  font-weight: bold;
+  text-align: left;
+  caption-side: top;
+  font-size: 1.2em;
+  text-align: center;
+  padding: 1.4em 0;
+}
+#work .work-project__table thead tr {
+  background-color: #EEEEEE;
+  color: #333333;
+}
+#work .work-project__table thead tr th {
+  text-align: left;
+  padding: 0.25em 1em;
+  font-weight: bold;
+}
+#work .work-project__table tbody tr:nth-child(odd) {
+  background-color: #444;
+  color: #EEEEEE;
+}
+#work .work-project__table tbody tr:nth-child(even) {
+  background-color: #DDDDDD;
+  color: #333333;
+}
+#work .work-project__table tbody tr td {
+  padding: 1em;
+  vertical-align: top;
+  font-size: 0.85em;
+}
+#work .work-project__figure-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+}
+@media (min-width: 768px) and (min-height: 500px) {
+  #work .work-project__figure-grid {
+    grid-template-columns: repeat(auto-fit, minmax(0, 1fr));
+  }
+}
+#work .work-project__figure {
+  background-color: #333333;
+  color: #EEEEEE;
+  padding: 2%;
+  padding-bottom: clamp(10px, 2%, 2%);
+  border-radius: 2px;
+}
+#work .work-project__figure--full {
+  margin: 2% auto;
+  width: fit-content;
+  max-width: 80%;
+}
+#work .work-project__figure figcaption {
+  text-align: center;
+  margin-top: 2%;
+}
+#work .work-project__figure img {
+  max-width: 100%;
+  height: auto;
+}
+
+.back-to-top-float {
+  position: fixed;
+  bottom: 2rem;
+  right: 1.5rem;
+  background-color: #333333;
+  color: #EEEEEE;
+  border: none;
+  border-radius: 50%;
+  width: 3rem;
+  height: 3rem;
+  font-size: 1.5rem;
+  cursor: pointer;
+  z-index: 1000;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+}
+.back-to-top-float:hover, .back-to-top-float:focus {
+  color: rgb(233, 166, 66);
+  outline: none;
+}
+.back-to-top-float.visible {
+  opacity: 1;
+  pointer-events: auto;
 }
 
 /*# sourceMappingURL=main.css.map */

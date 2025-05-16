@@ -1,10 +1,13 @@
+@use "../abstracts/mixins";
+@use "../abstracts/variables";
+
 /*===============
 Basic Buttons
 ================*/
 
 .button {
-    @include blackWhite;
-    font-family: $font-roboto;
+    @include mixins.blackWhite;
+    font-family: variables.$font-roboto;
     font-weight: 700;
     border-radius: 5px;
     padding: 3%;

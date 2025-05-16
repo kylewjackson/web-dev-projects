@@ -1,3 +1,6 @@
+@use "../abstracts/mixins";
+@use '../abstracts/placeholders';
+
 /*=============
 Projects Styles
 ==============*/
@@ -11,15 +14,15 @@ Projects Styles
     #projects {
         padding-top: 50%;
 
-        @include mobileMax {
+        @include mixins.mobileMax {
             padding-top: 30%;
         }
 
-        @include large-screen {
+        @include mixins.large-screen {
             padding-top: 15%;
         }
 
-        @include desktop {
+        @include mixins.desktop {
             padding-top: 10%;
         }
     }

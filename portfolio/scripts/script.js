@@ -4,11 +4,6 @@ const ie = /MSIE|Trident/.test(ua);
 
 let subtitlePos, navOff;
 
-//disclaimer about react warning message - 10/01/19
-console.log(
-	`10/01/19: Hey, it's Kyle. Thanks for checking out my portfolio! Just wanted to let you know if there is a warning in the Chrome dev console about createClass being deprecated, that's an issue with my use of create-react-app for my Product Page demo, which I'm looking into. It shouldn't be causing any issues.`
-);
-
 //add navbar
 document.querySelector(".header-content").insertAdjacentHTML(
 	"afterbegin",
@@ -197,6 +192,16 @@ if (document.body.id === "about") {
 
 //projects
 const projects = {
+	work: {
+		abbr: "work",
+		title: "Work Portfolio",
+		description:
+			"Showcase of development work at Sally Beauty Holdings.",
+		tools: "Front End Development, SFCC, SEO, Accessibility",
+		thumb: "/work",
+		live: "/work",
+		source: "https://github.com/kylewjackson/web-dev-projects/tree/master/portfolio/public/work.html",
+	},
 	rawr: {
 		abbr: "rawr",
 		title: "Rawr You the One?",
@@ -309,6 +314,16 @@ function addProject(abbr, title, description, tools, thumb, live, source) {
 
 //specific projects for index page
 if (document.body.id === "index") {
+	//work
+	addProject(
+		projects["work"].abbr,
+		projects["work"].title,
+		projects["work"].description,
+		projects["work"].tools,
+		projects["work"].thumb,
+		projects["work"].live,
+		projects["work"].source
+	);
 	//rawr
 	addProject(
 		projects["rawr"].abbr,
@@ -318,16 +333,6 @@ if (document.body.id === "index") {
 		projects["rawr"].thumb,
 		projects["rawr"].live,
 		projects["rawr"].source
-	);
-	//portfolio
-	addProject(
-		projects["portfolio"].abbr,
-		projects["portfolio"].title,
-		projects["portfolio"].description,
-		projects["portfolio"].tools,
-		projects["portfolio"].thumb,
-		projects["portfolio"].live,
-		projects["portfolio"].source
 	);
 	//product mockup
 	addProject(
@@ -517,3 +522,17 @@ document.addEventListener(
 document.querySelectorAll(".faded").forEach((element) => {
 	element.classList.add("transition-1s");
 });
+
+//scroll function
+function scrollToSection(id) {
+	const el = document.getElementById(id);
+	if (!el) return;
+
+	const yOffset = -82; // Offset in pixels (navbar height)
+	const y = el.getBoundingClientRect().top + window.pageYOffset + yOffset;
+
+	window.scrollTo({
+		top: y,
+		behavior: 'smooth'
+	});
+}

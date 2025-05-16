@@ -1,3 +1,6 @@
+@use "sass:map";
+@use "variables";
+
 /*===========
 Mixins
 ============*/
@@ -16,9 +19,9 @@ Mixins
   //for each property passed in
   @each $prop in $props {
       //see if map has property as key
-      @if map-has-key($types, $prop) {
+      @if map.has-key($types, $prop) {
         //if it does, get the value
-        $value: map-get($types, $prop);
+        $value: map.get($types, $prop);
         //set property to the value from key in map
         #{$prop}: $value;
       } @else {
@@ -58,6 +61,18 @@ Mixins
   opacity: 0;
 }
 
+@mixin sr-only {
+	position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+}
+
 @mixin flexContainer {
   display: flex;
 }
@@ -92,29 +107,29 @@ Mixins
 
 /* Font Styles */
 @mixin fontBlack {
-  color: $color-black;
+  color: variables.$color-black;
 }
 
 @mixin fontWhite {
-  color: $color-white;
+  color: variables.$color-white;
 }
 
 @mixin linkHover {
   &:hover,
   &:active {
-    color: $color-orange;
+    color: variables.$color-orange;
   }
 }
 
 //font color on background color
 @mixin whiteBlack {
   @include fontWhite;
-  background-color: $color-black;
+  background-color: variables.$color-black;
 }
 
 @mixin blackWhite {
   @include fontBlack;
-  background-color: $color-white;
+  background-color: variables.$color-white;
 }
 
 //maximum font sizes
@@ -131,31 +146,31 @@ Mixins
 @mixin mobile($orientation: null) {
   @if $orientation {
     @if $orientation == 'portrait' {
-      @media (max-width: $breakpoint-max-small) and (orientation: portrait) { @content; }
+      @media (max-width: variables.$breakpoint-max-small) and (orientation: portrait) { @content; }
     } @else if $orientation == 'landscape' {
-      @media (max-height: $breakpoint-max-small) and (orientation: landscape) { @content; }
+      @media (max-height: variables.$breakpoint-max-small) and (orientation: landscape) { @content; }
     } @else {
-      @media (max-width: $breakpoint-max-small) and (#{$orientation}) { @content; }
+      @media (max-width: variables.$breakpoint-max-small) and (#{$orientation}) { @content; }
     }
   } @else {
-    @media (max-width: $breakpoint-max-small) { @content; }
+    @media (max-width: variables.$breakpoint-max-small) { @content; }
   }
 }
   // starting at mobile max
   @mixin mobileMax {
-      @media (min-width: $breakpoint-small) { @content; }
+      @media (min-width: variables.$breakpoint-small) { @content; }
   }
 
 @mixin tablet {
-  @media (min-width: $breakpoint-medium) and (min-height: $breakpoint-max-small + 1) { @content; }
+  @media (min-width: variables.$breakpoint-medium) and (min-height: #{variables.$breakpoint-max-small + 1}) { @content; }
 }
 
 @mixin large-screen {
-  @media (min-width: $breakpoint-large) and (min-height: $breakpoint-max-small + 1) { @content; }
+  @media (min-width: variables.$breakpoint-large) and (min-height: #{variables.$breakpoint-max-small + 1}) { @content; }
 }
 
 @mixin desktop {
-  @media (min-width: $breakpoint-x-large) and (min-height: $breakpoint-max-small + 1) { @content; }
+  @media (min-width: variables.$breakpoint-x-large) and (min-height: #{variables.$breakpoint-max-small + 1}) { @content; }
 }
 
 
@@ -199,7 +214,7 @@ Mixins
     @include thumbnail($image);
   }
   //xx large
-  @media (min-width: $breakpoint-xx-large) {
+  @media (min-width: variables.$breakpoint-xx-large) {
     background-position: center 25%;
   }
 }
@@ -230,10 +245,10 @@ Mixins
 
 //tool name link hover color
 @mixin aboutColorTools {
-  @each $tool, $color in $tool-map {
+  @each $tool, $color in variables.$tool-map {
     &##{$tool}#{'-link'}:hover {
       background-color: $color;
-      color: $color-white;
+      color: variables.$color-white;
       padding: 2%;
       border-radius: 5px;
     }
@@ -254,7 +269,7 @@ Mixins
 
 @mixin boxSymbols($size: 15vw) {
   position: absolute;
-  font-family: $font-roboto;
+  font-family: variables.$font-roboto;
   font-size: $size;
   font-weight: 700;
 }

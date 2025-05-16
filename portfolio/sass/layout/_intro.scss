@@ -1,13 +1,15 @@
+@use "../abstracts/mixins";
+
 /*==============
 Intro Section
 ===============*/
 
 #intro {
-    @include whiteBlack;
+    @include mixins.whiteBlack;
     text-align: center;
 
     #intro-icons {
-        @include flexContainer;
+        @include mixins.flexContainer;
         justify-content: space-around;
     }
 
@@ -18,7 +20,7 @@ Intro Section
             line-height: 6vw;
         }
 
-        @include large-screen {
+        @include mixins.large-screen {
             line-height: 75px;
         }
     }
