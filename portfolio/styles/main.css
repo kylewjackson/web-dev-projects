@@ -526,9 +526,9 @@ Toolbox
   background-color: #2C5CDA;
 }
 #tools #bootstrap-box {
-  background-color: #982CDA;
+  background-color: #6d41f0;
 }
-#tools #sass-box {
+#tools #scss-box {
   background-color: #CA7AB4;
 }
 #tools #figma-box {
@@ -545,6 +545,45 @@ Toolbox
 }
 #tools #git-box {
   background-color: #D48D23;
+}
+#tools #sfcc-box {
+  background-color: #459cd5;
+}
+#tools #storybook-box {
+  background-color: #ec5785;
+}
+#tools #github-box {
+  background-color: #202328;
+}
+#tools #bitbucket-box {
+  background-color: #4185f7;
+}
+#tools #agile-box {
+  background-color: #235db3;
+}
+#tools #scrum-box {
+  background-color: #46586e;
+}
+#tools #kanban-box {
+  background-color: #df8a93;
+}
+#tools #jira-box {
+  background-color: #2f69d4;
+}
+#tools #ab-box {
+  background-color: #8fb951;
+}
+#tools #ga-box {
+  background-color: #e8a93b;
+}
+#tools #qm-box {
+  background-color: #d42e5e;
+}
+#tools #mt-box {
+  background-color: #8069a7;
+}
+#tools #sheets-box {
+  background-color: #4da954;
 }
 #tools .tool-symbol {
   position: absolute;
@@ -1682,12 +1721,12 @@ About Styles
   border-radius: 5px;
 }
 #about #tool-container .links#bootstrap-link:hover {
-  background-color: #982CDA;
+  background-color: #6d41f0;
   color: #EEEEEE;
   padding: 2%;
   border-radius: 5px;
 }
-#about #tool-container .links#sass-link:hover {
+#about #tool-container .links#scss-link:hover {
   background-color: #CA7AB4;
   color: #EEEEEE;
   padding: 2%;
@@ -1719,6 +1758,84 @@ About Styles
 }
 #about #tool-container .links#git-link:hover {
   background-color: #D48D23;
+  color: #EEEEEE;
+  padding: 2%;
+  border-radius: 5px;
+}
+#about #tool-container .links#sfcc-link:hover {
+  background-color: #459cd5;
+  color: #EEEEEE;
+  padding: 2%;
+  border-radius: 5px;
+}
+#about #tool-container .links#storybook-link:hover {
+  background-color: #ec5785;
+  color: #EEEEEE;
+  padding: 2%;
+  border-radius: 5px;
+}
+#about #tool-container .links#github-link:hover {
+  background-color: #202328;
+  color: #EEEEEE;
+  padding: 2%;
+  border-radius: 5px;
+}
+#about #tool-container .links#bitbucket-link:hover {
+  background-color: #4185f7;
+  color: #EEEEEE;
+  padding: 2%;
+  border-radius: 5px;
+}
+#about #tool-container .links#agile-link:hover {
+  background-color: #235db3;
+  color: #EEEEEE;
+  padding: 2%;
+  border-radius: 5px;
+}
+#about #tool-container .links#scrum-link:hover {
+  background-color: #46586e;
+  color: #EEEEEE;
+  padding: 2%;
+  border-radius: 5px;
+}
+#about #tool-container .links#kanban-link:hover {
+  background-color: #df8a93;
+  color: #EEEEEE;
+  padding: 2%;
+  border-radius: 5px;
+}
+#about #tool-container .links#jira-link:hover {
+  background-color: #2f69d4;
+  color: #EEEEEE;
+  padding: 2%;
+  border-radius: 5px;
+}
+#about #tool-container .links#ab-link:hover {
+  background-color: #8fb951;
+  color: #EEEEEE;
+  padding: 2%;
+  border-radius: 5px;
+}
+#about #tool-container .links#ga-link:hover {
+  background-color: #e8a93b;
+  color: #EEEEEE;
+  padding: 2%;
+  border-radius: 5px;
+}
+#about #tool-container .links#qm-link:hover {
+  background-color: #d42e5e;
+  color: #EEEEEE;
+  padding: 2%;
+  border-radius: 5px;
+}
+#about #tool-container .links#mt-link:hover {
+  background-color: #8069a7;
+  color: #EEEEEE;
+  padding: 2%;
+  border-radius: 5px;
+}
+#about #tool-container .links#sheets-link:hover {
+  background-color: #4da954;
   color: #EEEEEE;
   padding: 2%;
   border-radius: 5px;

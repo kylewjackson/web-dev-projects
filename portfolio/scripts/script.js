@@ -40,14 +40,14 @@ const tools = {
 	code: {
 		html: {
 			abbr: "html",
-			name: "HTML 5",
+			name: "HTML5",
 			symbol: "5",
 			full: "HyperText Markup Language 5",
 			url: "https://www.w3.org/html/",
 		},
 		css: {
 			abbr: "css",
-			name: "CSS 3",
+			name: "CSS3",
 			symbol: "3",
 			full: "Cascading StyleSheets 3",
 			url: "https://www.w3.org/Style/CSS/",
@@ -59,12 +59,42 @@ const tools = {
 			full: "JavaScript EcmaScript6",
 			url: "https://developer.mozilla.org/en-US/docs/Web/JavaScript",
 		},
+		scss: {
+			abbr: "scss",
+			name: "SCSS",
+			symbol: "S",
+			full: "Sass / SCSS",
+			url: "https://sass-lang.com/",
+		},
+	},
+	frameworks: {
 		react: {
 			abbr: "react",
-			name: "React.JS",
+			name: "React",
 			symbol: "R",
 			full: "React.JS",
 			url: "https://reactjs.org/",
+		},
+		bootstrap: {
+			abbr: "bootstrap",
+			name: "Bootstrap 5",
+			symbol: "Bs",
+			full: "Bootstrap 4 / 5",
+			url: "https://getbootstrap.com/",
+		},
+		sfcc: {
+			abbr: "sfcc",
+			name: "SalesForce",
+			symbol: "SF",
+			full: "SalesForce Commerce Cloud (SFRA)",
+			url: "https://www.salesforce.com/commerce/",
+		},
+		storybook: {
+			abbr: "storybook",
+			name: "Storybook",
+			symbol: "Sb",
+			full: "Storybook",
+			url: "https://storybook.js.org/",
 		},
 		jquery: {
 			abbr: "jquery",
@@ -73,29 +103,59 @@ const tools = {
 			full: "jQuery",
 			url: "https://jquery.com/",
 		},
-		bootstrap: {
-			abbr: "bootstrap",
-			name: "Bootstrap 4",
-			symbol: "B",
-			full: "Bootstrap 4",
-			url: "https://getbootstrap.com/",
+	},
+	version: {
+		git: {
+			abbr: "git",
+			name: "Git",
+			symbol: "G",
+			full: "Git",
+			url: "https://git-scm.com/",
 		},
-		sass: {
-			abbr: "sass",
-			name: "Sass",
-			symbol: "S",
-			full: "Sass",
-			url: "https://sass-lang.com/",
+		github: {
+			abbr: "github",
+			name: "GitHub",
+			symbol: "GH",
+			full: "GitHub",
+			url: "https://github.com/kylewjackson",
+		},
+		bitbucket: {
+			abbr: "bitbucket",
+			name: "Bitbucket",
+			symbol: "Bb",
+			full: "Bitbucket",
+			url: "https://bitbucket.org/",
+		},
+		agile: {
+			abbr: "agile",
+			name: "Agile",
+			symbol: "Ag",
+			full: "Agile Methodologies",
+			url: "https://en.wikipedia.org/wiki/Agile_software_development",
+		},
+		scrum: {
+			abbr: "scrum",
+			name: "Scrum",
+			symbol: "Sc",
+			full: "Scrum Framework",
+			url: "https://www.scrum.org/resources/what-scrum-module",
+		},
+		kanban: {
+			abbr: "kanban",
+			name: "Kanban",
+			symbol: "Kb",
+			full: "Kanban Framework",
+			url: "https://www.atlassian.com/agile/kanban",
+		},
+		jira: {
+			abbr: "jira",
+			name: "Jira",
+			symbol: "Ji",
+			full: "Jira Project Management",
+			url: "https://www.atlassian.com/software/jira",
 		},
 	},
 	design: {
-		photoshop: {
-			abbr: "photoshop",
-			name: "Photoshop",
-			symbol: "Ps",
-			full: "PhotoShop CS6 / Creative Cloud",
-			url: "https://www.adobe.com/products/photoshop.html",
-		},
 		figma: {
 			abbr: "figma",
 			name: "Figma",
@@ -103,21 +163,51 @@ const tools = {
 			full: "Figma",
 			url: "https://www.figma.com",
 		},
+		photoshop: {
+			abbr: "photoshop",
+			name: "Photoshop",
+			symbol: "Ps",
+			full: "PhotoShop CS6 / Creative Cloud",
+			url: "https://www.adobe.com/products/photoshop.html",
+		},
 	},
-	version: {
+	testing: {
+		ab: {
+			abbr: "ab",
+			name: "A/B Testing",
+			symbol: "AB",
+			full: "A/B Split Testing",
+			url: "https://www.oracle.com/cx/marketing/what-is-ab-testing/",
+		},
+		ga: {
+			abbr: "ga",
+			name: "Google Analytics",
+			symbol: "GA",
+			full: "Google Analytics 3 / 4",
+			url: "https://marketingplatform.google.com/about/analytics/",
+		},
+		qm: {
+			abbr: "qm",
+			name: "Quantum Metric",
+			symbol: "QM",
+			full: "Quantum Metric",
+			url: "https://www.quantummetric.com/",
+		},
+		mt: {
+			abbr: "mt",
+			name: "Monetate",
+			symbol: "Mt",
+			full: "Monetate Personalization",
+			url: "https://monetate.com/",
+		},
+	},
+	additional: {
 		vscode: {
 			abbr: "vscode",
 			name: "VSCode",
 			symbol: "VSC",
 			full: "Visual Studio Code",
 			url: "https://code.visualstudio.com/",
-		},
-		git: {
-			abbr: "git",
-			name: "Git",
-			symbol: "G",
-			full: "Git",
-			url: "https://git-scm.com/",
 		},
 		macos: {
 			abbr: "macos",
@@ -126,7 +216,14 @@ const tools = {
 			full: "Apple MacOS",
 			url: "https://www.apple.com/macos/",
 		},
-	},
+		sheets: {
+			abbr: "sheets",
+			name: "Google Sheets",
+			symbol: "GS",
+			full: "Google Sheets",
+			url: "https://workspace.google.com/products/sheets/",
+		},
+	}
 };
 
 //add tools
@@ -151,12 +248,12 @@ if (document.body.id === "index") {
 			tools.code[key].symbol
 		);
 	});
-	Object.keys(tools.design).forEach((key) => {
+	Object.keys(tools.frameworks).forEach((key) => {
 		addTool(
-			document.querySelector("#design-container"),
-			tools.design[key].abbr,
-			tools.design[key].name,
-			tools.design[key].symbol
+			document.querySelector("#frameworks-container"),
+			tools.frameworks[key].abbr,
+			tools.frameworks[key].name,
+			tools.frameworks[key].symbol
 		);
 	});
 	Object.keys(tools.version).forEach((key) => {
@@ -165,6 +262,22 @@ if (document.body.id === "index") {
 			tools.version[key].abbr,
 			tools.version[key].name,
 			tools.version[key].symbol
+		);
+	});
+	Object.keys(tools.design).forEach((key) => {
+		addTool(
+			document.querySelector("#design-container"),
+			tools.design[key].abbr,
+			tools.design[key].name,
+			tools.design[key].symbol
+		);
+	});
+	Object.keys(tools.testing).forEach((key) => {
+		addTool(
+			document.querySelector("#testing-container"),
+			tools.testing[key].abbr,
+			tools.testing[key].name,
+			tools.testing[key].symbol
 		);
 	});
 }
@@ -397,7 +510,7 @@ document.querySelector(".footer-content").insertAdjacentHTML(
             <i id="contact-github-name" class="link-name">Github</i>
         </a>
     </div>
-    <small class="copyright">Site © Kyle Jackson 2019. All rights reserved.</small>
+    <small class="copyright">Site © Kyle Jackson ${new Date().getFullYear()}. All rights reserved.</small>
 `
 );
 
