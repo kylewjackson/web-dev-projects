@@ -510,7 +510,7 @@ document.querySelector(".footer-content").insertAdjacentHTML(
             <i id="contact-github-name" class="link-name">Github</i>
         </a>
     </div>
-    <small class="copyright">Site © Kyle Jackson 2019. All rights reserved.</small>
+    <small class="copyright">Site © Kyle Jackson ${new Date().getFullYear()}. All rights reserved.</small>
 `
 );
 
