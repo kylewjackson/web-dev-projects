@@ -1,0 +1,13 @@
+@mixin text-display-xl {
+  font-family: $font-family-base;
+  font-weight: $font-weight-regular;
+  font-size: $text-display-xl-font-size;
+  line-height: $text-display-xl-line-height;
+}
+
+@mixin text-heading-md {
+  font-family: $font-family-base;
+  font-weight: $font-weight-medium;
+  font-size: $text-heading-md-font-size;
+  line-height: $text-heading-md-line-height;
+}
