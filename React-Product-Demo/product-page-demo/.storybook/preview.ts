@@ -1,5 +1,6 @@
 import type { Preview } from '@storybook/react-vite'
 import '../src/styles/_globals.scss'
+import withPseudo from 'storybook-addon-pseudo-states';
 
 const preview: Preview = {
   parameters: {
@@ -19,4 +20,7 @@ const preview: Preview = {
   },
 };
 
-export default preview;
+export default {
+	...preview,
+	...withPseudo
+};
