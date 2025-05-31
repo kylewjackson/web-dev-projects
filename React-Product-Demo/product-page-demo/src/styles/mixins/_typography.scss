@@ -1,13 +1,37 @@
+@use '@styles/variables/typography' as *;
+
 @mixin text-display-xl {
-  font-family: $font-family-base;
-  font-weight: $font-weight-regular;
-  font-size: $text-display-xl-font-size;
-  line-height: $text-display-xl-line-height;
+	font-weight: $font-weight-regular;
+	font-size: $text-display-xl-font-size;
+	line-height: $text-display-xl-line-height;
+}
+
+@mixin text-heading-lg {
+	font-weight: $font-weight-regular;
+	font-size: $text-heading-lg-font-size;
+	line-height: $text-heading-lg-line-height;
 }
 
 @mixin text-heading-md {
-  font-family: $font-family-base;
-  font-weight: $font-weight-medium;
-  font-size: $text-heading-md-font-size;
-  line-height: $text-heading-md-line-height;
+	font-weight: $font-weight-medium;
+	font-size: $text-heading-md-font-size;
+	line-height: $text-heading-md-line-height;
+}
+
+@mixin text-body-md {
+	font-weight: $font-weight-regular;
+	font-size: $text-body-md-font-size;
+	line-height: $text-body-md-line-height;
+}
+
+@mixin text-label-sm {
+	font-weight: $font-weight-medium;
+	font-size: $text-label-sm-font-size;
+	line-height: $text-label-sm-line-height;
+}
+
+@mixin text-button-md {
+	font-weight: $font-weight-medium;
+	font-size: $text-button-md-font-size;
+	line-height: $text-button-md-line-height;
 }

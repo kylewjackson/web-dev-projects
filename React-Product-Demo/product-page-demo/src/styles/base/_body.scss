@@ -1,3 +1,6 @@
+@use '@index' as *;
+
 body {
-	
+	font-family: var(--font-family-base);
+	color: var(--neutral-900);
 }

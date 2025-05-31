@@ -1,4 +1,7 @@
-@use 'base/root';
+//Base
+@use 'base/root' as *;
+@use 'base/body' as *;
 
 //Utils
-@use 'utilities/colors';
+@use 'utilities/colors' as *;
+@use 'utilities/typography' as *;

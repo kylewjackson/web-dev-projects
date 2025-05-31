@@ -1,0 +1,25 @@
+@use '@index' as *;
+
+.ppd-type--text-display-xl {
+	@include text-display-xl;
+}
+
+.ppd-type--text-heading-lg {
+	@include text-heading-lg;
+}
+
+.ppd-type--text-heading-md {
+	@include text-heading-md;
+}
+
+.ppd-type--text-body-md {
+	@include text-body-md;
+}
+
+.ppd-type--text-label-sm {
+	@include text-label-sm;
+}
+
+.ppd-type--text-button-md {
+	@include text-button-md;
+}

@@ -3,7 +3,7 @@ $neutral-900: #0F0F0F; // Primary text, base background (dark theme)
 $neutral-700: #4B4B4B; // Secondary text, borders
 $neutral-500: #9B9B9B; // Disabled text, dividers
 $neutral-200: #EFEFEF; // Backgrounds, form fields (light theme)
-$neutral-50:  #FAFAFA; // Surfaces, hover states
+$neutral-50: #FAFAFA; // Surfaces, hover states
 $neutral-mid: #D1D1D1; // Accent for balance
 
 // Red Colors
@@ -11,14 +11,14 @@ $red-900: #7A1300; // Hover/focus states for buttons
 $red-700: #9E1800; // Primary red
 $red-500: #C42C16; // Secondary red, alert text
 $red-200: #FFD4D1; // Background for error alerts
-$red-50:  #FFF1F0; // Very subtle background / focus ring
+$red-50: #FFF1F0; // Very subtle background / focus ring
 
 // Yellow Colors
 $yellow-900: #D1C300; // Focus ring, dark mode emphasis
 $yellow-700: #FFF59B; // Primary yellow, warning fill
 $yellow-500: #FFF799; // Hover state, lighter tone
 $yellow-200: #FFFAC9; // Background highlight
-$yellow-50:  #FFFEF0; // Subtle accent background
+$yellow-50: #FFFEF0; // Subtle accent background
 
 // Blue Colors
 $blue-700: #005FA3; // Buttons, links, emphasis
@@ -31,26 +31,26 @@ $green-500: #4CAF50; // UI confirmation states
 $green-200: #C8E6C9; // Success alert background
 
 $ppd-colors: (
-  neutral-900: $neutral-900,
-  neutral-700: $neutral-700,
-  neutral-500: $neutral-500,
-  neutral-200: $neutral-200,
-  neutral-50: $neutral-50,
-  neutral-mid: $neutral-mid,
-  red-900: $red-900,
-  red-700: $red-700,
-  red-500: $red-500,
-  red-200: $red-200,
-  red-50: $red-50,
-  yellow-900: $yellow-900,
-  yellow-700: $yellow-700,
-  yellow-500: $yellow-500,
-  yellow-200: $yellow-200,
-  yellow-50: $yellow-50,
-  blue-700: $blue-700,
-  blue-500: $blue-500,
-  blue-200: $blue-200,
-  green-700: $green-700,
-  green-500: $green-500,
-  green-200: $green-200
+	neutral-900: $neutral-900,
+	neutral-700: $neutral-700,
+	neutral-500: $neutral-500,
+	neutral-200: $neutral-200,
+	neutral-50: $neutral-50,
+	neutral-mid: $neutral-mid,
+	red-900: $red-900,
+	red-700: $red-700,
+	red-500: $red-500,
+	red-200: $red-200,
+	red-50: $red-50,
+	yellow-900: $yellow-900,
+	yellow-700: $yellow-700,
+	yellow-500: $yellow-500,
+	yellow-200: $yellow-200,
+	yellow-50: $yellow-50,
+	blue-700: $blue-700,
+	blue-500: $blue-500,
+	blue-200: $blue-200,
+	green-700: $green-700,
+	green-500: $green-500,
+	green-200: $green-200
 );

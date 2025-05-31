@@ -1,13 +1,13 @@
 @mixin generate-utilities($map, $prefix, $property) {
-  @each $name, $value in $map {
-    .ppd-#{$prefix}--#{$name} {
-      #{$property}: #{$value};
-    }
-  }
+	@each $name, $value in $map {
+		.ppd-#{$prefix}--#{$name} {
+			#{$property}: #{$value};
+		}
+	}
 }
 
 @mixin generate-css-vars($map) {
-    @each $name, $value in $map {
-      --#{$name}: #{$value};
-    }
+	@each $name, $value in $map {
+		--#{$name}: #{$value};
+	}
 }
