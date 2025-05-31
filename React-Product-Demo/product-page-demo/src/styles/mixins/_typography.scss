@@ -1,4 +1,4 @@
-@use '@styles/variables/typography' as *;
+@use '@styles/variables/index' as *;
 
 @mixin text-display-xl {
 	font-weight: $font-weight-regular;
