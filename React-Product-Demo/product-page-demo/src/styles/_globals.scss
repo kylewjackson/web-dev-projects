@@ -2,6 +2,9 @@
 @use 'base/root' as *;
 @use 'base/body' as *;
 
+//Components
+@use 'components/button' as *;
+
 //Utils
 @use 'utilities/colors' as *;
 @use 'utilities/typography' as *;

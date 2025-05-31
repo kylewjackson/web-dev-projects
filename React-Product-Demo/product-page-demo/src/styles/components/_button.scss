@@ -1,0 +1,38 @@
+@use '@index' as *;
+
+.ppd-button {
+	@include text-button-md;
+	border-radius: $radius-sm;
+	border: 1px solid;
+	padding: $spacing-sm $spacing-xl;
+	box-shadow: $elevation-2;
+	transition: border-color 0.2s ease, background-color 0.2s ease, box-shadow 0.2s ease;
+
+	&:hover {
+		cursor: pointer;
+	}
+
+	&:active {
+		box-shadow: none;
+	}
+
+	&--add-to-cart {
+		color: $neutral-50;
+		background-color: $blue-700;
+		border-color: $blue-500;
+
+		&:hover {
+			border-color: $blue-700;
+		}
+	}
+
+	&--neutral {
+		color: $neutral-700;
+		background-color: $neutral-200;
+		border-color: $neutral-500;
+
+		&:hover {
+			border-color: rgba($neutral-500, 0.5);
+		}
+	}
+}
