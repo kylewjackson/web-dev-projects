@@ -9,7 +9,7 @@ const meta: Meta<typeof Button> = {
 		variant: {
 			description: "Contexual button variant",
 			control: {type: 'radio'},
-			options: ['add-to-cart', 'neutral']
+			options: ['add-to-cart', 'neutral', 'submit']
 		}
 	},
 	args: {
@@ -28,5 +28,13 @@ export const Neutral: Story = {
     args: {
         children: "Click Me",
         variant: "neutral"
+    }
+};
+
+export const Submit: Story = {
+    args: {
+        children: "Submit Review",
+        variant: "submit",
+        type: "submit"
     }
 };

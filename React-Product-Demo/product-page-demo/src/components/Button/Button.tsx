@@ -5,7 +5,7 @@ interface ButtonProps {
 	children: React.ReactNode;
 	onClick?: () => void;
 	type?: 'button' | 'submit' | 'reset';
-	variant: 'add-to-cart' | 'neutral';
+	variant: 'add-to-cart' | 'neutral' | 'submit';
 };
 
 export const Button = ({ children, onClick, type = 'button', variant = 'add-to-cart'}: ButtonProps) => {

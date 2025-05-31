@@ -1,12 +1,13 @@
 @use '@index' as *;
 
 .ppd-button {
+	@include focus-ring($yellow-900);
 	@include text-button-md;
 	border-radius: $radius-sm;
 	border: 1px solid;
 	padding: $spacing-sm $spacing-xl;
 	box-shadow: $elevation-2;
-	transition: border-color 0.2s ease, background-color 0.2s ease, box-shadow 0.2s ease;
+	transition: border-color 0.15s ease, background-color 0.15s ease, box-shadow 0.15s ease;
 
 	&:hover {
 		cursor: pointer;
@@ -33,6 +34,16 @@
 
 		&:hover {
 			border-color: rgba($neutral-500, 0.5);
+		}
+	}
+
+	&--submit {
+		color: $neutral-50;
+		background-color: $green-700;
+		border-color: $green-500;
+
+		&:hover {
+			border-color: $green-700;
 		}
 	}
 }
