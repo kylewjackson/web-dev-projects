@@ -29,3 +29,28 @@ $blue-200: #D6EFFF; // Info alert background
 $green-700: #008751; // Confirm buttons, success states
 $green-500: #4CAF50; // UI confirmation states
 $green-200: #C8E6C9; // Success alert background
+
+$ppd-colors: (
+  neutral-900: $neutral-900,
+  neutral-700: $neutral-700,
+  neutral-500: $neutral-500,
+  neutral-200: $neutral-200,
+  neutral-50: $neutral-50,
+  neutral-mid: $neutral-mid,
+  red-900: $red-900,
+  red-700: $red-700,
+  red-500: $red-500,
+  red-200: $red-200,
+  red-50: $red-50,
+  yellow-900: $yellow-900,
+  yellow-700: $yellow-700,
+  yellow-500: $yellow-500,
+  yellow-200: $yellow-200,
+  yellow-50: $yellow-50,
+  blue-700: $blue-700,
+  blue-500: $blue-500,
+  blue-200: $blue-200,
+  green-700: $green-700,
+  green-500: $green-500,
+  green-200: $green-200
+);
