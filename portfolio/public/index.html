@@ -88,7 +88,7 @@
 	<main id="index-main" class="main-content">
 		<section id="intro" class="content" tabindex="0">
 			<figure>
-				<img src="images/icons/self-portrait-icon.svg" alt="" id="self-portrait-icon" class="icon faded" />
+				<img src="images/icons/self-portrait-icon.svg" alt="" id="self-portrait-icon" class="icon faded hidden-on-load"/>
 			</figure>
 			<h2 id="intro-heading" class="content-heading faded">Hey, I'm Kyle.</h2>
 			<figure id="intro-icons" class="container faded">
@@ -153,6 +153,15 @@
 	</footer>
 
 	<script src="scripts/script.js" async defer></script>
+	<script>
+		//Reveal icon after DOM is loaded to prevent iOS flicker
+		document.addEventListener("DOMContentLoaded", function () {
+			const icon = document.getElementById("self-portrait-icon");
+			if (icon) {
+				icon.classList.remove("hidden-on-load");
+			}
+		});
+	</script>
 	<!--
             ================================================================
             ================================================================
