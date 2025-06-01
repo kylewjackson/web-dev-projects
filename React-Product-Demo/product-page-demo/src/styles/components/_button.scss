@@ -17,6 +17,10 @@
 		box-shadow: none;
 	}
 
+	&--full {
+		width: 100%;
+	}
+
 	&--add-to-cart {
 		color: $neutral-50;
 		background-color: $blue-700;

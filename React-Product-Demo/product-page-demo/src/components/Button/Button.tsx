@@ -6,11 +6,13 @@ interface ButtonProps {
 	onClick?: () => void;
 	type?: 'button' | 'submit' | 'reset';
 	variant: 'add-to-cart' | 'neutral' | 'submit';
+	fullWidth?: boolean;
 };
 
-export const Button = ({ children, onClick, type = 'button', variant = 'add-to-cart'}: ButtonProps) => {
+export const Button = ({ children, onClick, type = 'button', variant = 'add-to-cart', fullWidth = false}: ButtonProps) => {
 	const classes = classNames('ppd-button', {
-		[`ppd-button--${variant}`] : variant
+		[`ppd-button--${variant}`] : variant,
+		'ppd-button--full': fullWidth
 	});
 
 	return (

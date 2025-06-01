@@ -10,12 +10,18 @@ const meta: Meta<typeof Button> = {
 			description: "Contexual button variant",
 			control: {type: 'radio'},
 			options: ['add-to-cart', 'neutral', 'submit']
+		},
+		fullWidth: {
+			description: "Button spans full width of container",
+			control: 'boolean'
 		}
 	},
 	args: {
+		type: 'button',
 		children: 'Add to Cart',
-		variant: 'add-to-cart'
-	},
+		variant: 'add-to-cart',
+		fullWidth: false
+	}
 };
 
 export default meta;
