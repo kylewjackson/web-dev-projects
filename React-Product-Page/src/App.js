@@ -1,6 +1,7 @@
 import React from 'react';
 import './App.css';
 import { CartIcon, CloseArrowIcon, StarIcon, StarOutline, StarHalf, PlusIcon, MinusIcon, ThumbsUpIcon, ThumbsDownIcon } from './Icons';
+import { CSSTransition } from 'react-transition-group';
 
 const imagePath = process.env.PUBLIC_URL + '/images/';
 
@@ -903,7 +904,7 @@ function Navbar(props) {
 					handleButton={props.handleButton}
 				/>
 			</ul>
-			{!props.cartClosed ?
+			{/* {!props.cartClosed ?
 				<Cart
 					modal={props.modal}
 					itemsInCart={props.itemsInCart}
@@ -915,7 +916,24 @@ function Navbar(props) {
 					toggleMenu={props.toggleMenu}
 				/> :
 				''
-			}
+			} */}
+			<CSSTransition
+				in={!props.cartClosed}
+				timeout={300}
+				classNames="cart-flyout"
+				unmountOnExit
+			>
+				<Cart
+					modal={props.modal}
+					itemsInCart={props.itemsInCart}
+					handleInput={props.handleInput}
+					handleFocus={props.handleFocus}
+					handleSubmit={props.handleSubmit}
+					handleButton={props.handleButton}
+					preventEnter={props.preventEnter}
+					toggleMenu={props.toggleMenu}
+				/> 
+			</CSSTransition>
 		</nav>
 	);
 };

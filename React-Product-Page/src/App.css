@@ -119,6 +119,56 @@ nav .active.links>button {
 	box-shadow: 0px 3px 12px rgba(0, 0, 0, 0.14);
 }
 
+/* -------------------
+Cart Flyout Base Styles
+-------------------- */
+
+#cart {
+  position: absolute;
+  top: 100%; /* aligns to bottom of nav */
+  left: 0;
+  right: 0;
+  z-index: 10;
+
+  background-color: #EFEFEF;
+  box-shadow: 0px 3px 12px rgba(0, 0, 0, 0.14);
+  border-left: 5px solid #383838;
+  border-bottom: 5px solid #383838;
+  border-radius: 0 0 6px 6px;
+
+  transform-origin: top;
+}
+
+/* -------------------
+Cart Flyout Animation (react-transition-group)
+-------------------- */
+
+/* Initial state when entering */
+.cart-flyout-enter {
+  transform: scaleY(0);
+  opacity: 0.5;
+}
+
+/* Animate in */
+.cart-flyout-enter-active {
+  transform: scaleY(1);
+  opacity: 1;
+  transition: transform 200ms ease-out, opacity 200ms ease-out;
+}
+
+/* Initial state when exiting */
+.cart-flyout-exit {
+  transform: scaleY(1);
+  opacity: 1;
+}
+
+/* Animate out */
+.cart-flyout-exit-active {
+  transform: scaleY(0);
+  opacity: 0.5;
+  transition: transform 200ms ease-in, opacity 200ms ease-in;
+}
+
 nav>ul>li:nth-of-type(4) {
 	justify-self: end;
 }
@@ -306,6 +356,14 @@ nav aside {
 @media (min-width: 350px) and (max-width: 599px) {
 	#cart {
 		width: 100vw;
+		position: absolute;
+		top: 100%;
+		z-index: 2;
+		background-color: #EFEFEF;
+		display: grid;
+		justify-self: end;
+		gap: 1vw;
+		border-left: none;
 		border-bottom: 5px solid #383838;
 	}
 
