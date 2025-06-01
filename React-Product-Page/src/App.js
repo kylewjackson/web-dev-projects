@@ -225,6 +225,9 @@ class App extends React.Component {
 			cartClosed: true,
 		};
 
+		this.cartRef = React.createRef();
+		this.navRef = React.createRef();
+
 		this.prodName = currentProduct.prodName;
 		this.prodId = currentProduct.prodId;
 		this.price = currentProduct.price;
@@ -247,6 +250,28 @@ class App extends React.Component {
 		this.handleText = this.handleText.bind(this);
 		this.handleLogin = this.handleLogin.bind(this);
 		this.handleFilterReviews = this.handleFilterReviews.bind(this);
+	};
+
+	componentDidMount() {
+		document.addEventListener('mousedown', this.handleClickOutside);
+	}
+
+	componentWillUnmount() {
+		document.removeEventListener('mousedown', this.handleClickOutside);
+	}
+
+	handleClickOutside = (event) => {
+		if (this.cartRef.current && !this.cartRef.current.contains(event.target)) {
+			if (!this.state.cartClosed) {
+				this.setState({ cartClosed: true });
+			}
+		}
+
+		if (this.navRef.current && !this.navRef.current.contains(event.target)) {
+			if (this.state.navOpen) {
+				this.setState({ navOpen: false });
+			}
+		}
 	};
 
 	handleModal(params, e) {
@@ -555,8 +580,21 @@ class App extends React.Component {
 	};
 
 	toggleMenu(type) {
-		type === 'cart' ? this.setState({ cartClosed: !this.state.cartClosed }) : this.setState({ navOpen: !this.state.navOpen });
-	};
+		this.setState(prevState => {
+			if (type === 'cart') {
+				return {
+					cartClosed: !prevState.cartClosed,
+					navOpen: false
+				};
+			} else if (type === 'nav') {
+				return {
+					navOpen: !prevState.navOpen,
+					cartClosed: true
+				};
+			}
+			return null;
+		});
+	}
 
 	handleUsername(e) {
 		// const formattedUser = e.target.value.split('').filter(i => i.match(/\S/g)).join('');
@@ -790,6 +828,8 @@ class App extends React.Component {
 					handleUsername={this.handleUsername}
 					handleLogin={this.handleLogin}
 					handleButton={this.handleButton}
+					navRef={this.navRef}
+					cartRef={this.cartRef}
 				/>
 				<Main
 					modal={this.state.modal}
@@ -856,6 +896,8 @@ function Header(props) {
 				handleSubmit={props.handleSubmit}
 				handleUsername={props.handleUsername}
 				handleLogin={props.handleLogin}
+				navRef={props.navRef}
+				cartRef={props.cartRef}
 			/>
 			{/* {!props.cartClosed ?
             <Cart
@@ -878,14 +920,22 @@ function Navbar(props) {
 	return (
 		<nav id="navbar">
 			<ul id="nav-link-container">
-				<li id="nav-home" className="links">
+				{/* <li id="nav-home" className="links">
 					<button type="button" tabIndex={props.modal ? -1 : null}>Home</button>
-				</li>
-				<li id="nav-categories" className={props.navOpen ? 'active links' : 'links'}>
+				</li> */}
+				<li id="nav-categories" className={props.navOpen ? 'active links' : 'links'} ref={props.navRef}>
 					<button type="button" tabIndex={props.modal ? -1 : null} onClick={() => props.toggleMenu('nav')}>
 						Categories
 					</button>
-					{props.navOpen ? <NavLinks modal={props.modal} handleModal={props.handleModal} /> : ''}
+					{/* {props.navOpen ? <NavLinks modal={props.modal} handleModal={props.handleModal} /> : ''} */}
+					<CSSTransition
+						in={props.navOpen}
+						timeout={300}
+						classNames="category-flyout"
+						unmountOnExit
+					>
+						<NavLinks modal={props.modal} handleModal={props.handleModal} toggleMenu={props.toggleMenu} />
+					</CSSTransition>
 				</li>
 				<LogIn
 					modal={props.modal}
@@ -932,7 +982,8 @@ function Navbar(props) {
 					handleButton={props.handleButton}
 					preventEnter={props.preventEnter}
 					toggleMenu={props.toggleMenu}
-				/> 
+					cartRef={props.cartRef}
+				/>
 			</CSSTransition>
 		</nav>
 	);
@@ -945,6 +996,9 @@ function NavLinks(props) {
 			<li><button type="button" tabIndex={props.modal ? -1 : null} onClick={(e) => props.handleModal({ msg: 'This link will go to a designated page, or some other action you decide on.' }, e)}>Cat. 2</button></li>
 			<li><button type="button" tabIndex={props.modal ? -1 : null} onClick={(e) => props.handleModal({ msg: 'This link will go to a designated page, or some other action you decide on.' }, e)}>Cat. 3</button></li>
 			<li><button type="button" tabIndex={props.modal ? -1 : null} onClick={(e) => props.handleModal({ msg: 'This link will go to a designated page, or some other action you decide on.' }, e)}>Cat. 4</button></li>
+			<button type="button" tabIndex={props.modal ? -1 : null} onClick={() => props.toggleMenu('nav')}>
+				<CloseArrowIcon fillColor={colorDarkGrey} />
+			</button>
 		</ol>
 	);
 };
@@ -997,7 +1051,7 @@ function NavCart(props) {
 
 function Cart(props) {
 	return (
-		<aside id="cart">
+		<aside id="cart" ref={props.cartRef}>
 			{props.itemsInCart.length > 0 ?
 				<>
 					<InCart

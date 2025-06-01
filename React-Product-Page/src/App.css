@@ -63,6 +63,12 @@ form .options label {
 	margin-right: 10px;
 }
 
+@media (min-width: 600px) {
+	form .options label {
+		margin-right: 0;
+	}
+}
+
 button:hover,
 select:hover {
 	cursor: pointer;
@@ -77,15 +83,21 @@ nav {
 	display: grid;
 	background-color: #383838;
 	color: #EFEFEF;
+	/* height: 90px; */
 }
 
 /* navigation */
 nav>ul {
-	padding: 1vw;
-	gap: 1vw;
+	/* padding: 1vw; */
+	/* gap: 1vw;
 	display: grid;
 	grid-auto-flow: column;
-	grid-template-columns: 1fr 2fr 1fr;
+	grid-template-columns: 1fr 2fr 1fr; */
+	display: flex;
+	padding: 10px;
+	margin: 0;
+	/* width: 100%; */
+	justify-content: space-between;
 }
 
 #nav-categories {
@@ -98,8 +110,17 @@ nav>ul {
 	}
 }
 
+#categories-links > button {
+	background-color: #EFEFEF;
+}
+
+#categories-links > button > svg {
+	width: 20px;
+}
+
 nav ol {
 	display: grid;
+	transform-origin: top;
 }
 
 nav ol>li,
@@ -114,9 +135,51 @@ nav .active.links>button {
 	color: #FFF59B;
 }
 
-/* cart */
-#cart {
-	box-shadow: 0px 3px 12px rgba(0, 0, 0, 0.14);
+/* -------------------
+Category Flyout Animation
+-------------------- */
+
+.category-flyout-enter {
+  transform: scaleY(0);
+  transform-origin: top;
+  opacity: 0;
+}
+
+.category-flyout-enter-active {
+  transform: scaleY(1);
+  opacity: 1;
+  transition: transform 200ms ease-out, opacity 200ms ease-out;
+}
+
+.category-flyout-exit {
+  transform: scaleY(1);
+  opacity: 1;
+}
+
+.category-flyout-exit-active {
+  transform: scaleY(0);
+  opacity: 0;
+  transition: transform 150ms ease-in, opacity 150ms ease-in;
+}
+
+#nav-categories ol {
+  background-color: #EFEFEF;
+  padding: 5px;
+  border: 1px solid #E2E2E2;
+  border-radius: 0 0 6px 6px;
+  z-index: 9;
+  box-shadow: 0px 3px 12px rgba(0, 0, 0, 0.14);
+}
+
+#nav-categories {
+  position: relative;
+}
+
+#nav-categories ol {
+  position: absolute;
+  top: calc(100% + 10px);
+  left: 0;
+  right: 0;
 }
 
 /* -------------------
@@ -184,9 +247,18 @@ nav a:active {
 	gap: 1vw;
 }
 
-#nav-login,
+/* #nav-login,
 #nav-cart {
 	grid-row: span 2;
+} */
+
+#nav-login {
+	width: 100%;
+	display: grid;
+}
+
+#nav-cart {
+	display: grid;
 }
 
 /* signin/login form */
@@ -259,7 +331,7 @@ span.active {
 }
 
 #cart-button-span>svg {
-	width: 35%;
+	width: 45%;
 }
 
 /*====================
@@ -597,7 +669,8 @@ figure>ol>li>button>img {
 	gap: 5vw;
 }
 
-.product-info>.form .options {
+.product-info>.form .options,
+#your-product-product-options-container {
 	display: flex;
 	align-items: center;
 }
