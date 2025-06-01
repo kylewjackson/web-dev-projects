@@ -8,9 +8,14 @@ Animations
 .top-faded {
     opacity: 0;
     transform: translateY(100px);
+	visibility: hidden;
     transition: initial;
 }
 
 .transition-1s {
     @include mixins.transition-1s;
+}
+
+.hidden-on-load {
+	display: none;
 }
