@@ -1,0 +1,708 @@
+import React from 'react';
+//Variables & utils
+import { currentProduct, initInCart , maxQty, initReviews } from './variables';
+import { deepCopy, transformId, itemOptions } from './utilities';
+//Components
+import Modal from './components/Modal';
+import Header from './components/Header';
+import Main from './components/Main';
+import Footer from './components/Footer';
+//Stylesheet
+import './App.css';
+
+const freshState = {
+	qty: parseInt(currentProduct.qty),
+	opt: currentProduct.opt,
+	sort: 'helpful',
+	stars: 0,
+	rated: [],
+	loggedIn: null,
+	openLogin: false,
+	openSignup: false,
+	user: null,
+	userId: null,
+	rating: null,
+	publishedRating: null,
+	reviewBody: '',
+	reviewSubmitted: false,
+	edit: false,
+	itemsInCart: [],
+	cartClosed: true,
+};
+
+class App extends React.Component {
+	constructor(props) {
+		super(props);
+		this.state = {
+			modal: false,
+			modalImg: null,
+			modalMsg: null,
+			modalBtn: null,
+			prevEle: null,
+			navOpen: false,
+			qty: parseInt(currentProduct.qty),
+			opt: currentProduct.opt,
+			reviews: deepCopy(initReviews),
+			sort: 'helpful',
+			stars: 0,
+			rated: [],
+			loggedIn: null,
+			openLogin: false,
+			openSignup: false,
+			user: null,
+			userId: null,
+			rating: null,
+			publishedRating: null,
+			reviewBody: '',
+			reviewSubmitted: false,
+			edit: false,
+			itemsInCart: deepCopy(initInCart),
+			cartClosed: true,
+		};
+
+		this.cartRef = React.createRef();
+		this.navRef = React.createRef();
+
+		this.prodName = currentProduct.prodName;
+		this.prodId = currentProduct.prodId;
+		this.price = currentProduct.price;
+		this.subthumbs = [...currentProduct.thumb];
+
+		this.checkIfInCart = this.checkIfInCart.bind(this);
+		this.checkFeedback = this.checkFeedback.bind(this);
+
+		this.handleModal = this.handleModal.bind(this);
+
+		this.toggleMenu = this.toggleMenu.bind(this);
+		this.editReview = this.editReview.bind(this);
+
+		this.handleInput = this.handleInput.bind(this);
+		this.handleFocus = this.handleFocus.bind(this);
+		this.handleSubmit = this.handleSubmit.bind(this);
+		this.preventEnter = this.preventEnter.bind(this);
+		this.handleButton = this.handleButton.bind(this);
+		this.handleUsername = this.handleUsername.bind(this);
+		this.handleText = this.handleText.bind(this);
+		this.handleLogin = this.handleLogin.bind(this);
+		this.handleFilterReviews = this.handleFilterReviews.bind(this);
+	};
+
+	componentDidMount() {
+		document.addEventListener('mousedown', this.handleClickOutside);
+	}
+
+	componentWillUnmount() {
+		document.removeEventListener('mousedown', this.handleClickOutside);
+	}
+
+	handleClickOutside = (event) => {
+		if (this.cartRef.current && !this.cartRef.current.contains(event.target)) {
+			if (!this.state.cartClosed) {
+				this.setState({ cartClosed: true });
+			}
+		}
+
+		if (this.navRef.current && !this.navRef.current.contains(event.target)) {
+			if (this.state.navOpen) {
+				this.setState({ navOpen: false });
+			}
+		}
+	};
+
+	handleModal(params, e) {
+		//set passed in element
+		if (e) {
+			params.prev = e.target;
+		};
+		if (params.act === 'close') {
+			//focus previously focused element
+			if (this.state.prevEle) {
+				this.state.prevEle.focus();
+			};
+			//remove item from cart, with rmv being index of item in cart
+			if (typeof params.rmv === 'number') {
+				this.setState({ itemsInCart: deepCopy(this.state.itemsInCart).filter((item, i) => i !== params.rmv) });
+			};
+			this.setState({
+				modal: false,
+				modalImg: false,
+				modalMsg: null,
+				modalBtn: null,
+				prevEle: null,
+			});
+		} else {
+			this.setState({
+				modal: true,
+				modalImg: params.img ? params.img : null,
+				modalMsg: params.msg ? params.msg : null,
+				modalBtn: params.btn ? params.btn : null,
+				prevEle: params.prev ? params.prev : null,
+			});
+		};
+	};
+
+	//accepts index as ind, type of input, and event as e
+	handleInput(params, e) {
+		if (params === 'ratings') {
+			const starFilter = parseInt(e.target.value);
+			//filter out all reviews that are not of that star rating
+			this.setState({
+				stars: starFilter,
+				reviews: starFilter < 1 ?
+					this.state.reviews.map(review => {
+						if (review.hidden) {
+							review.hidden = false;
+						};
+						return review;
+					}) :
+					this.state.reviews.map(review => {
+						review.rating === starFilter ? review.hidden = false : review.hidden = true;
+						return review;
+					}),
+			});
+		} else {
+			this.handleOptions(params, e);
+		};
+	};
+
+	handleOptions(params, e) {
+		//set e based on input type
+		let val = typeof e !== 'number' ? e.target.value : e;
+		if (typeof e === 'number') {
+			if (params.add) {
+				val++;
+			} else {
+				val--;
+			};
+		};
+		if (params.type === 'qty') {
+			//max out qty at max qty
+			if (val > maxQty) {
+				val = maxQty;
+				// alert(`Sorry, you can't have more than ${maxQty} of an item`);
+				this.handleModal({ msg: `Sorry, you can't have more than ${maxQty} of an item`, prev: e.target });
+			} else if (val - 1 === -1) {
+				//make sure input doesn't go lower than 1
+				val = 1;
+			}
+		};
+		if (params.ind > -1) {
+			//make a copy of the itemsInCart state array
+			const itemArray = deepCopy(this.state.itemsInCart);
+			//set object at array index's key to whatever was selected
+			if (params.type === 'qty') {
+				itemArray[params.ind].qty = parseInt(val);
+				//update state with new array
+				this.setState({ itemsInCart: itemArray });
+			} else if (params.type === 'opt') {
+				//set option
+				itemArray[params.ind].opt = val;
+				//splice item out of cart to compare for dupes
+				const arrayToCheck = deepCopy(itemArray);
+				const itemToCheck = arrayToCheck.splice(params.ind, 1);
+				const checkedCart = this.checkIfInCart(itemToCheck[0], arrayToCheck, 'opt');
+				//if there's a dupe, run addItem with spliced item
+				if (checkedCart.hasDupe) {
+					this.setState({ itemsInCart: this.addItem(itemToCheck[0], checkedCart.cart) });
+				} else {
+					//else set cart state with spliced element intact
+					this.setState({ itemsInCart: itemArray });
+				}
+			};
+		} else {
+			//reset quantity on option change
+			if (params.type === "opt" && val !== this.state.opt) {
+				this.setState({ qty: 1 });
+			};
+			this.setState({ [params.type]: val });
+		};
+	};
+
+	handleFocus(e) {
+		e.target.select();
+	};
+
+	preventEnter(e) {
+		if (e.which === 13) {
+			e.preventDefault();
+		};
+	};
+
+	handleSubmit(ind, type, e) {
+		e.preventDefault();
+
+		//remove from cart
+		if (type === 'cart' && ind > -1) {
+			this.handleModal({ msg: 'Are you sure you want to delete this item?', btn: { rmv: ind } });
+		} else if (type === 'cart') {
+			//add to cart
+			const itemToAdd = {
+				prodName: this.prodName,
+				prodId: this.prodId,
+				thumb: this.subthumbs,
+				opt: this.state.opt,
+				qty: this.state.qty,
+				price: this.price,
+			};
+			this.setState({ itemsInCart: this.addItem(itemToAdd), qty: freshState.qty, opt: freshState.opt });
+		};
+
+		//sign in/out
+		if (type === 'login') {
+			//make sure user exists
+			if (this.state.reviews.some(review => review.id === this.state.userId)) {
+				//get user review
+				const userReview = this.state.reviews.filter(review => review.id === this.state.userId)[0];
+				this.setState({
+					loggedIn: true,
+					openLogin: false,
+					rating: userReview.rating,
+					publishedRating: userReview.publishedRating,
+					reviewBody: userReview.review ? userReview.review : "",
+					reviewSubmitted: userReview.review ? true : false,
+					rated: userReview.rated,
+				});
+				//check for cart
+				userReview.cart ?
+					this.combineCarts(userReview.cart) :
+					this.setState({ itemsInCart: this.state.itemsInCart.length > 0 ? deepCopy(this.state.itemsInCart) : [] });
+				//resort reviews with user's review at bottom, if applicable
+				this.handleFilterReviews(this.state.sort);
+			} else {
+				// alert(`There's no user named ${this.state.user}. Trying signing up instead.`);
+				this.handleModal({ msg: `There's no user named ${this.state.user}. Trying signing up instead.`, prev: document.querySelector('form input') })
+				this.setState({ openLogin: false, openSignup: true });
+			};
+		} else if (type === 'signup') {
+			// create review entry for user, if not already
+			if (!this.state.reviews.some(review => review.id === this.state.userId)) {
+				const userToAdd = {
+					user: this.state.user,
+					id: this.state.userId,
+					rating: this.state.rating,
+					rated: this.state.rated,
+				};
+				this.setState({
+					reviews: deepCopy(this.state.reviews).concat(userToAdd),
+					loggedIn: true,
+					openSignup: false,
+				});
+			} else {
+				// alert(`The user ${this.state.user} already exists. Try signing in instead.`);
+				this.handleModal({ msg: `The user ${this.state.user} already exists. Try signing in instead.`, prev: document.querySelector('form input') });
+				this.setState({ openSignup: false, openLogin: true });
+			};
+		} else if (type === 'logout') {
+			//empty cart and reset states on logout
+			if (this.state.loggedIn) {
+				//retain cart in review
+				const userCart = this.state.itemsInCart.length > 0 ? deepCopy(this.state.itemsInCart) : [];
+				const reviewFeedback = this.state.rated.length > 0 ? deepCopy(this.state.rated) : [];
+				const userReviews = this.state.reviews.map(review => {
+					if (review.id === this.state.userId) {
+						review.cart = userCart;
+						review.rated = reviewFeedback;
+					};
+					if (review.hidden) {
+						review.hidden = false;
+					};
+					return review;
+				});
+				this.handleFilterReviews(this.state.sort, userReviews);
+				//reset other states
+				this.setState(freshState);
+			};
+		};
+
+		//leave review
+		if (type === 'write' && this.state.rating) {
+			//copy reviews array
+			const reviewArray = deepCopy(this.state.reviews).map(item => {
+				//map to find array with userId, and add review properties
+				if (item.id === this.state.userId) {
+					item.rating = this.state.rating;
+					item.review = this.state.reviewBody;
+					item.hidden = false;
+					item.feedback = { up: 0, down: 0 };
+					item.publishedRating = this.state.rating;
+					item.date = new Intl.DateTimeFormat('en', { dateStyle: "medium", timeStyle: "medium" }).format(new Date());
+				} else if (this.state.edit && item.rated) {
+					//remove user from rated array in other reviews on edit
+					item.rated.forEach((obj, i) => {
+						if (obj[this.state.userId]) {
+							item.rated.splice(i, 1);
+						};
+					});
+				};
+				return item;
+			});
+			//set review
+			this.setState({ reviews: reviewArray, reviewSubmitted: true, publishedRating: this.state.rating });
+			if (this.state.edit) {
+				this.editReview();
+			};
+			//modal thank you message
+			this.handleModal({ msg: 'Thanks for your feedback!' });
+		} else if (type === 'write') {
+			// alert('Sorry, you must leave a rating first.');
+			this.handleModal({ msg: 'Sorry, you must leave a rating first.', prev: e.target.querySelector('.empty-4-star') });
+		};
+	};
+
+	checkIfInCart(itemToCheck, currentCart, type) {
+		//map items, return index of matching items, and filter out -1
+		const duplicateItems = currentCart.map((item, i) => {
+			if (item.prodId === itemToCheck.prodId && item[type] === itemToCheck[type]) {
+				return i;
+			} else {
+				return -1;
+			};
+		}).filter(i => i > -1);
+		//return dupe
+		if (duplicateItems.length > 0) {
+			return {
+				hasDupe: true,
+				dupe: currentCart[duplicateItems[0]],
+				dupeIndex: duplicateItems[0],
+				cart: currentCart,
+			};
+		} else {
+			return {
+				hasDupe: false,
+				cart: currentCart,
+			};
+		};
+	};
+
+	addItem(itemToAdd, customCart, loop) {
+		const checkedCart = this.checkIfInCart(itemToAdd, customCart ? customCart : deepCopy(this.state.itemsInCart), 'opt');
+		//consolidate duplicate items
+		if (checkedCart.hasDupe) {
+			const totalQty = parseInt(checkedCart.dupe.qty) + parseInt(itemToAdd.qty);
+			if (totalQty <= maxQty) {
+				//increase item in cart qty by item qty from product page, if not exceeding max qty
+				checkedCart.cart[checkedCart.dupeIndex].qty = totalQty;
+			} else {
+				//max out at max qty
+				if (!loop) {
+					//only alert if not being used in a loop
+					// alert(`The max amount of ${itemToAdd.prodName} - ${itemToAdd.opt} allowed is ${maxQty}`);
+					this.handleModal({ msg: `The max amount of ${itemToAdd.prodName} - ${itemToAdd.opt} allowed is ${maxQty}`, prev: document.querySelector('#nav-cart button') });
+				};
+				checkedCart.cart[checkedCart.dupeIndex].qty = maxQty;
+			};
+			return checkedCart.cart;
+		} else {
+			//add to entry if unique
+			return checkedCart.cart.concat(itemToAdd);
+		};
+	};
+
+	combineCarts(userCart) {
+		//if current state cart and user cart have items, consolidate them
+		if (this.state.itemsInCart.length > 0) {
+			let combinedCart = deepCopy(this.state.itemsInCart);
+			//map through user's previous cart and use add item function with state cart
+			userCart.forEach(item => {
+				combinedCart = this.addItem(item, combinedCart, true);
+			});
+			this.setState({ itemsInCart: combinedCart });
+			// alert('Your previously saved items have been combined with your current cart.');
+			this.handleModal({ msg: 'Your previously saved items have been combined with your current cart.', prev: document.querySelector('#nav-cart button') });
+		} else {
+			this.setState({ itemsInCart: userCart });
+		};
+	};
+
+	toggleMenu(type) {
+		this.setState(prevState => {
+			if (type === 'cart') {
+				return {
+					cartClosed: !prevState.cartClosed,
+					navOpen: false
+				};
+			} else if (type === 'nav') {
+				return {
+					navOpen: !prevState.navOpen,
+					cartClosed: true
+				};
+			}
+			return null;
+		});
+	}
+
+	handleUsername(e) {
+		// const formattedUser = e.target.value.split('').filter(i => i.match(/\S/g)).join('');
+		//erase if has invalid characters
+		if (!transformId(e.target.value)) {
+			this.handleModal({ msg: `Your username contains one or more invalid characters. Try again, making sure to avoid: -!$%^&*()_+|~=\`{}[]:";'<>?,./`, prev: e.target });
+			e.target.value = '';
+		};
+		this.setState({ user: e.target.value, userId: transformId(e.target.value) });
+	};
+
+	handleButton(type, e) {
+		//checkout alert
+		if (type === 'checkout' && this.state.itemsInCart && this.state.itemsInCart.length > 0) {
+			this.handleModal({ msg: `Thanks for your hypothetical purchase! Since this is just a demo, your cart will be reset.`, prev: document.querySelector('#nav-cart button') });
+			this.setState({ itemsInCart: [] });
+		} else if (type === 'checkout') {
+			//shouldn't ever happen
+			this.handleModal({ msg: `Sorry, there aren't any items in your cart.` });
+		};
+
+		if (type === 'star' && this.state.loggedIn) {
+			const val = e.currentTarget.value
+			//update rating for logged in user in review array
+			const reviewsArr = this.state.reviews.map(item => {
+				if (item.id === this.state.userId) {
+					item.rating = parseInt(val);
+				};
+				return item;
+			});
+			this.setState({ rating: parseInt(val), reviews: reviewsArr });
+		} else if (type === 'star') {
+			// alert('You must be logged in to rate this product.');
+			this.handleModal({ msg: 'You must be logged in to rate this product.', prev: document.querySelector('form button') });
+		};
+
+		if (type === 'thumb') {
+			const val = e.currentTarget.value;
+			this.setState({ opt: itemOptions.map(item => item.id)[val] });
+		};
+
+		if (type.type === 'feedback') {
+			const val = e.currentTarget.value;
+			const userToRate = type.user;
+			//make sure user is signed in to rate a review
+			if (this.state.loggedIn) {
+				//user cannot rate their own review
+				if (this.state.userId === userToRate) {
+					// alert('You cannot rate your own review');
+					this.handleModal({ msg: 'You cannot rate your own review' });
+				} else {
+					//only change if val is opposite or not currently set
+					const shouldUpdate =
+						this.state.rated.length < 1 ?
+							true :
+							this.state.rated.filter(user => user[userToRate]).length < 1 ?
+								true :
+								this.state.rated.filter(user => user[userToRate])[0][userToRate] !== val ?
+									true : false;
+					if (shouldUpdate) {
+						const updatedReview = deepCopy(this.state.reviews).map(review => {
+							if (review.id === userToRate) {
+								if (val === 'up') {
+									review.feedback.up++;
+									//only decrease opposite if previously rated by the same user
+									if (this.state.rated.some(item => item[userToRate])) {
+										review.feedback.down > 0 ? review.feedback.down-- : review.feedback.down = 0;
+									};
+								} else if (val === 'down') {
+									review.feedback.down++;
+									if (this.state.rated.some(item => item[userToRate])) {
+										review.feedback.up > 0 ? review.feedback.up-- : review.feedback.up = 0;
+									};
+								};
+							};
+							return review;
+						});
+						this.setState({ reviews: updatedReview });
+					};
+
+					//keep track of which reviewers the current user has rated
+					const updateRated = deepCopy(this.state.rated);
+					const shouldAdd = !updateRated.some(item => item[userToRate]);
+					const updatedArray = shouldAdd ? updateRated.concat({ [userToRate]: val }) : updateRated.map(item => {
+						if (item[userToRate]) {
+							item[userToRate] = val;
+						};
+						return item;
+					});
+					this.setState({ rated: updatedArray });
+				};
+			} else {
+				// alert('You must be logged in to rate a review');
+				this.handleModal({ msg: 'You must be logged in to rate a review', prev: document.querySelector('form button') });
+			}
+		};
+
+		if (type === 'cancel') {
+			this.editReview();
+			//revert review body
+			const submittedReview = deepCopy(this.state.reviews).filter(review => review.id === this.state.userId)[0].review;
+			if (submittedReview !== this.state.reviewBody) {
+				this.setState({ reviewBody: submittedReview });
+			};
+		};
+	};
+
+	checkFeedback(reviewer) {
+		//if current user's rated array contains the reviewer, return that thumb rating
+		return this.state.rated.some(user => user[reviewer]) ? this.state.rated.filter(user => user[reviewer])[0][reviewer] : false;
+	};
+
+	editReview() {
+		const toggle = !this.state.edit;
+		this.setState({ edit: toggle });
+	};
+
+	handleFilterReviews(e, custom) {
+		const reviewsToFilter = custom ? custom : deepCopy(this.state.reviews);
+		const sortOption = typeof e === 'string' ? e : e.target.value;
+		const currentUser = custom ? false : this.state.userId;
+		if (sortOption === 'helpful') {
+			this.setState({
+				sort: 'helpful', reviews: reviewsToFilter.map(review => {
+					if (review.publishedRating) {
+						//include if published
+						return review;
+					} else {
+						//hide if not
+						review.hidden = true;
+						return review;
+					}
+				}).sort((a, b) =>
+					//sort current user to end, and ignore hidden users
+					(((a.id === currentUser) !== (b.id === currentUser)) || a.hidden || b.hidden) ?
+						(a.id === currentUser || a.hidden ? 1 : -1) : b.feedback.up - a.feedback.up
+				)
+			});
+		} else if (sortOption === 'recent') {
+			this.setState({
+				sort: 'recent', reviews: reviewsToFilter.map(review => {
+					if (review.publishedRating) {
+						return review;
+					} else {
+						review.hidden = true;
+						return review;
+					}
+				}).sort((a, b) =>
+					(((a.id === currentUser) !== (b.id === currentUser)) || a.hidden || b.hidden) ?
+						(a.id === currentUser || a.hidden ? 1 : -1) : Date.parse(b.date) - Date.parse(a.date)
+				)
+			});
+		} else if (sortOption === 'old') {
+			this.setState({
+				sort: 'old', reviews: reviewsToFilter.map(review => {
+					if (review.publishedRating) {
+						return review;
+					} else {
+						review.hidden = true;
+						return review;
+					}
+				}).sort((a, b) =>
+					(((a.id === currentUser) !== (b.id === currentUser)) || a.hidden || b.hidden) ?
+						(a.id === currentUser || a.hidden ? 1 : -1) : Date.parse(a.date) - Date.parse(b.date)
+				)
+			});
+		};
+		// } else if (sortOption === 'controversial') {
+		//   this.setState({sort: 'controversial', hiddenReviews: reviewsToFilter.filter(review => review.publishedRating).sort((a, b) =>
+		//     ((a.id === currentUser) !== (b.id === currentUser)) ? (a.id === currentUser ? 1 : -1) : b.feedback.down - a.feedback.down
+		//     )});
+		// };
+	};
+
+	handleText(e) {
+		const text = e.target.value;
+		this.setState({ reviewBody: text });
+	};
+
+	handleLogin(e) {
+		if (e.target.value === 'login') {
+			this.setState({ openLogin: true, openSignup: false }, () => document.querySelector('#login-form input').focus());
+		} else {
+			this.setState({ openSignup: true, openLogin: false });
+		};
+	};
+
+	render() {
+		let itemCount;
+		if (this.state.itemsInCart.length > 0) {
+			//number of items in cart based on quantity present
+			this.state.itemsInCart.forEach(item => {
+				//increment if itemCount is set
+				if (itemCount) {
+					itemCount += parseInt(item.qty);
+				} else {
+					//set
+					itemCount = parseInt(item.qty);
+				};
+			});
+		} else {
+			itemCount = 0;
+		};
+
+		return (
+			<>
+				<Modal
+					show={this.state.modal}
+					img={this.state.modalImg}
+					msg={this.state.modalMsg}
+					btn={this.state.modalBtn}
+					prev={this.state.prevEle}
+					handleModal={this.handleModal}
+				/>
+				<Header
+					modal={this.state.modal}
+					handleModal={this.handleModal}
+					navOpen={this.state.navOpen}
+					itemsInCart={this.state.itemsInCart}
+					itemCount={itemCount}
+					cartClosed={this.state.cartClosed}
+					handleInput={this.handleInput}
+					handleFocus={this.handleFocus}
+					handleSubmit={this.handleSubmit}
+					preventEnter={this.preventEnter}
+					toggleMenu={this.toggleMenu}
+					user={this.state.user}
+					loggedIn={this.state.loggedIn}
+					openLogin={this.state.openLogin}
+					openSignup={this.state.openSignup}
+					handleUsername={this.handleUsername}
+					handleLogin={this.handleLogin}
+					handleButton={this.handleButton}
+					navRef={this.navRef}
+					cartRef={this.cartRef}
+				/>
+				<Main
+					modal={this.state.modal}
+					handleModal={this.handleModal}
+					user={this.state.user ? this.state.user : 'Your Name'}
+					userId={this.state.userId ? this.state.userId : 'your-name'}
+					loggedIn={this.state.loggedIn}
+					rating={this.state.rating}
+					itemsInCart={this.state.itemsInCart}
+					prodName={this.prodName}
+					prodId={this.prodId}
+					thumb={this.subthumbs[this.state.opt ? itemOptions.map(opt => opt.id).indexOf(this.state.opt) : 0]}
+					subthumbs={this.subthumbs}
+					qty={this.state.qty}
+					opt={this.state.opt}
+					price={this.price}
+					reviews={this.state.reviews}
+					sort={this.state.sort}
+					stars={this.state.stars}
+					checkFeedback={this.checkFeedback}
+					reviewBody={this.state.reviewBody}
+					publishedRating={this.state.publishedRating}
+					reviewSubmitted={this.state.reviewSubmitted}
+					editReview={this.editReview}
+					editOpen={this.state.edit}
+					checkIfInCart={this.checkIfInCart}
+					handleInput={this.handleInput}
+					handleFocus={this.handleFocus}
+					handleSubmit={this.handleSubmit}
+					handleButton={this.handleButton}
+					handleUsername={this.handleUsername}
+					handleText={this.handleText}
+					handleFilterReviews={this.handleFilterReviews}
+				/>
+				<Footer modal={this.state.modal} />
+			</>
+		);
+	};
+};
+
+export default App;
