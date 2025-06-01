@@ -50,4 +50,22 @@
 			border-color: $green-700;
 		}
 	}
+
+	&--cancel {
+		color: $neutral-50;
+		background-color: $red-700;
+		border-color: $red-500;
+
+		&:hover {
+			border-color: $red-700;
+		}
+	}
+
+	&:disabled {
+		color: $neutral-500;
+		background-color: $neutral-200;
+		border-color: $neutral-200;
+		cursor: not-allowed;
+		box-shadow: none;
+	}
 }

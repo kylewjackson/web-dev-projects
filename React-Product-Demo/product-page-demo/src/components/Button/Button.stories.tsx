@@ -9,18 +9,26 @@ const meta: Meta<typeof Button> = {
 		variant: {
 			description: "Contexual button variant",
 			control: {type: 'radio'},
-			options: ['add-to-cart', 'neutral', 'submit']
+			options: ['add-to-cart', 'neutral', 'submit', 'cancel']
 		},
 		fullWidth: {
 			description: "Button spans full width of container",
 			control: 'boolean'
+		},
+		disabled: {
+			description: "Button disabled state",
+			control: 'boolean'
+		},
+		ariaLabel: {
+			description: "Aria attribute for buttons without text"
 		}
 	},
 	args: {
 		type: 'button',
 		children: 'Add to Cart',
 		variant: 'add-to-cart',
-		fullWidth: false
+		fullWidth: false,
+		disabled: false,
 	}
 };
 
@@ -42,5 +50,15 @@ export const Submit: Story = {
         children: "Submit Review",
         variant: "submit",
         type: "submit"
+    }
+};
+
+export const Cancel: Story = {
+    args: {
+        type: "submit",
+        children: "Remove From Cart",
+        variant: "cancel",
+        fullWidth: false,
+        disabled: false
     }
 };
