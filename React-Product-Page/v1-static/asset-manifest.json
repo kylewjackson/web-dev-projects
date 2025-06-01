@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/react-product-page/static/css/main.245db7cf.chunk.css",
+    "main.js": "/react-product-page/static/js/main.7300a9bd.chunk.js",
+    "main.js.map": "/react-product-page/static/js/main.7300a9bd.chunk.js.map",
+    "runtime~main.js": "/react-product-page/static/js/runtime~main.296e7352.js",
+    "runtime~main.js.map": "/react-product-page/static/js/runtime~main.296e7352.js.map",
+    "static/js/2.55de121f.chunk.js": "/react-product-page/static/js/2.55de121f.chunk.js",
+    "static/js/2.55de121f.chunk.js.map": "/react-product-page/static/js/2.55de121f.chunk.js.map",
+    "index.html": "/react-product-page/index.html",
+    "precache-manifest.b1bc355fc19ad5257984224b348635a0.js": "/react-product-page/precache-manifest.b1bc355fc19ad5257984224b348635a0.js",
+    "service-worker.js": "/react-product-page/service-worker.js",
+    "static/css/main.245db7cf.chunk.css.map": "/react-product-page/static/css/main.245db7cf.chunk.css.map"
+  }
+}

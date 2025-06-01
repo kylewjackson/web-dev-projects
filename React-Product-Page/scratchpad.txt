@@ -1,0 +1,197 @@
+=====================
+Identify State
+=====================
+Products in Cart - Header
+Current Product - App
+Ratings - Main
+Reviews - Main
+
+******Component Hierarchy******
+
+Navbar
+-Nav Links
+--Home Link
+--Category Link
+--Open Cart
+---Item Count
+Cart Display
+-Product(s) In Cart
+--Main Thumbnail
+--Product Title
+--Product Qty
+---Adjust
+--Remove Item
+-Close Cart
+
+Product Display
+-Product Title
+-Product Images
+--Main Thumbnail
+--Sub Thumbnails
+---Cycle Thumbnails
+-Product Rating
+--User Rating
+-Product Reviews Link
+--Review Count
+-Product Description
+-Product Price
+-Product Qty
+--Increase
+--Decrease
+-Product Options
+--Dropdown
+-Add to Cart
+
+Review Display
+-Review Title
+-Avg Rating
+-User Rating
+-User Review
+--Reviewer Name
+--Reviewer Comment
+--Reviewer Rating
+--Date/Time
+--Thumb
+---Thumbs Up
+---Thumbs Down
+-Write Title
+-Name Field
+-Review Field
+--Char count
+-User Rating
+-Submit Review
+
+
+******Classes and IDs******
+
+colors:
+$white #EFEFEF
+$black #0F0F0F
+$dark-grey #383838
+$yellow #FFF59B
+$red #9E1800
+
+$option-bg #F3F3F3
+$option-border #E9E9E9
+
+$review-bg #EAEAEA
+$review-border #E2E2E2
+
+font:
+Montserrat, regular, semi-bold
+
+classes:
+.icons
+.links
+    .active-links
+.cart-products
+    .cart-titles
+    .cart-quantities
+    .remove-items
+.Titles
+.stars
+    .red-stars
+    .black-stars
+    .empty-stars
+.thumbnails
+.paragraphs
+.prices
+.Options
+.quantities
+.buttons
+.reviews
+    .names
+    .comments
+    .dates
+    .thumbs
+        .thumbs-Up
+        .thumbs-down
+.write-username
+.write-review
+
+ids:
+#Navbar
+    #home-link
+    #categories-link
+    #open-cart-link
+#cart
+#your-product
+#your-product-title
+#your-product-Rating
+#your-product-reviews-link
+#your-product-thumbnail
+#your-product-Description
+#your-product-price
+#your-product-quantity
+#your-product-Options
+#your-product-add-to-cart
+#your-product-reviews
+    #your-product-reviews-avg-Rating
+    #your-product-reviews-user-rating
+    #your-product-reviews-container
+        #your-product-reviews-userid
+#write-review-container
+    #write-username
+    #write-review
+    #write-rating
+    #submit-review
+
+
+
+====================================================
+====================================================
+====================================================
+====================================================
+====================================================
+
+******Checklist******
+
+Review Display
+-Review Title
+-Avg Rating
+-User Rating
+-User Review
+--Reviewer Name
+--Reviewer Comment
+--Reviewer Rating
+--Date/Time
+--Thumb
+---Thumbs Up
+---Thumbs Down
+-Write Title
+-Name Field
+-Review Field
+--Char count
+-User Rating
+-Submit Review
+
+
+******Classes and IDs******
+
+classes:
+.icons
+.links
+    .active-links
+.Titles
+.stars
+    .red-stars
+    .black-stars
+    .empty-stars
+.paragraphs
+.buttons
+.write-username
+.write-review
+
+ids:
+
+
+user={props.user}
+userId={props.userId}
+loggedIn={props.loggedIn}
+reviewBody={props.reviewBody}
+rating={props.rating}
+handleButton={props.handleButton}
+handleFocus={props.handleFocus}
+handleUsername={props.handleUsername}
+handleText={props.handleText}
+handleSubmit={props.handleSubmit}
