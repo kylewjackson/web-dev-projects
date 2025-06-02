@@ -1,4 +1,4 @@
-export default function LogIn(props) {
+export function LogIn(props) {
 	return (
 		<li id="nav-login" className="login">
 			{props.loggedIn ? (

@@ -1,6 +1,6 @@
 import { CSSTransition } from 'react-transition-group';
 import { Cart } from './Cart';
-import LogIn from './LogIn';
+import { LogIn } from './LogIn';
 import { CloseArrowIcon, CartIcon } from './Icons';
 import { colorDarkGrey, colorYellow, colorWhite } from '../variables';
 
