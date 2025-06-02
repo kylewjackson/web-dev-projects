@@ -7,19 +7,19 @@ export function LogIn(props) {
 					<button type="submit" name="signout" value="signout" tabIndex={props.modal ? -1 : null}>Sign Out</button>
 				</form>
 			) : props.openLogin ? (
-				<form id="login-form" onSubmit={(e) => props.handleSubmit(null, 'login', e)}>
-					<label htmlFor="login-input">You are not signed in.</label>
-					<input type='text' id="login-input" name="login-input" placeholder="enter a name to test" onChange={(e) => props.handleUsername(e)} required tabIndex={props.modal ? -1 : null} />
-					<button type="submit" name="login" value="login" tabIndex={props.modal ? -1 : null}>Log In</button>
-					<button type="button" name="signup" value="signup" onClick={(e) => props.handleLogin(e)} tabIndex={props.modal ? -1 : null}>Need an account? Sign Up</button>
-				</form>
+				<LogInForm
+					modal={props.modal}
+					handleSubmit={props.handleSubmit}
+					handleUsername={props.handleUsername}
+					handleLogin={props.handleLogin}
+				/>
 			) : props.openSignup ? (
-				<form id="sign-up-form" onSubmit={(e) => props.handleSubmit(null, 'signup', e)}>
-					<label htmlFor="login-input">You are not signed in.</label>
-					<input type='text' id="login-input" name="login-input" placeholder="enter a name to test" onChange={(e) => props.handleUsername(e)} required tabIndex={props.modal ? -1 : null} />
-					<button type="submit" name="signup" value="signup" tabIndex={props.modal ? -1 : null}>Sign Up</button>
-					<button type="button" name="login" value="login" onClick={(e) => props.handleLogin(e)} tabIndex={props.modal ? -1 : null}>Already have an account? Log In</button>
-				</form>
+				<SignUpForm
+					modal={props.modal}
+					handleSubmit={props.handleSubmit}
+					handleUsername={props.handleUsername}
+					handleLogin={props.handleLogin}
+				/>
 			) : (
 				<form id="sign-in-form">
 					<label htmlFor="login-input">You are not signed in.</label>
@@ -30,3 +30,25 @@ export function LogIn(props) {
 		</li>
 	);
 };
+
+export function LogInForm(props) {
+	return (
+		<form id="login-form" onSubmit={(e) => props.handleSubmit(null, 'login', e)}>
+			<label htmlFor="login-input">You are not signed in.</label>
+			<input type='text' id="login-input" name="login-input" placeholder="enter a name to test" onChange={(e) => props.handleUsername(e)} required tabIndex={props.modal ? -1 : null} />
+			<button type="submit" name="login" value="login" tabIndex={props.modal ? -1 : null}>Log In</button>
+			<button type="button" name="signup" value="signup" onClick={(e) => props.handleLogin(e)} tabIndex={props.modal ? -1 : null}>Need an account? Sign Up</button>
+		</form>
+	)
+}
+
+export function SignUpForm(props) {
+	return (
+		<form id="sign-up-form" onSubmit={(e) => props.handleSubmit(null, 'signup', e)}>
+			<label htmlFor="login-input">You are not signed in.</label>
+			<input type='text' id="login-input" name="login-input" placeholder="enter a name to test" onChange={(e) => props.handleUsername(e)} required tabIndex={props.modal ? -1 : null} />
+			<button type="submit" name="signup" value="signup" tabIndex={props.modal ? -1 : null}>Sign Up</button>
+			<button type="button" name="login" value="login" onClick={(e) => props.handleLogin(e)} tabIndex={props.modal ? -1 : null}>Already have an account? Log In</button>
+		</form>
+	)
+}

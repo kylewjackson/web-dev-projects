@@ -38,6 +38,7 @@ class App extends React.Component {
 			modalImg: null,
 			modalMsg: null,
 			modalBtn: null,
+			modalContent: null,
 			prevEle: null,
 			navOpen: false,
 			qty: parseInt(currentProduct.qty),
@@ -137,6 +138,7 @@ class App extends React.Component {
 				modalImg: false,
 				modalMsg: null,
 				modalBtn: null,
+				modalContent: null,
 				prevEle: null,
 			});
 		} else {
@@ -145,6 +147,7 @@ class App extends React.Component {
 				modalImg: params.img ? params.img : null,
 				modalMsg: params.msg ? params.msg : null,
 				modalBtn: params.btn ? params.btn : null,
+				modalContent: params.content || null,
 				prevEle: params.prev ? params.prev : null,
 			});
 		};
@@ -234,6 +237,15 @@ class App extends React.Component {
 	preventEnter(e) {
 		if (e.which === 13) {
 			e.preventDefault();
+		};
+	};
+
+	handleLogin(e) {
+		if (e.target.value === 'login') {
+
+			this.setState({ openLogin: true, openSignup: false }, () => document.querySelector('#login-form input').focus());
+		} else {
+			this.setState({ openSignup: true, openLogin: false });
 		};
 	};
 
@@ -611,14 +623,6 @@ class App extends React.Component {
 	handleText(e) {
 		const text = e.target.value;
 		this.setState({ reviewBody: text });
-	};
-
-	handleLogin(e) {
-		if (e.target.value === 'login') {
-			this.setState({ openLogin: true, openSignup: false }, () => document.querySelector('#login-form input').focus());
-		} else {
-			this.setState({ openSignup: true, openLogin: false });
-		};
 	};
 
 	render() {
