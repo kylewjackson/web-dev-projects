@@ -1,6 +1,6 @@
 import React from 'react';
 //Variables & utils
-import { currentProduct, initInCart , maxQty, initReviews } from './variables';
+import { currentProduct, initInCart, maxQty, initReviews } from './variables';
 import { deepCopy, transformId, itemOptions } from './utilities';
 //Components
 import Modal from './components/Modal';
@@ -61,6 +61,7 @@ class App extends React.Component {
 		};
 
 		this.cartRef = React.createRef();
+		this.cartButtonRef = React.createRef();
 		this.navRef = React.createRef();
 
 		this.prodName = currentProduct.prodName;
@@ -96,18 +97,26 @@ class App extends React.Component {
 	}
 
 	handleClickOutside = (event) => {
-		if (this.cartRef.current && !this.cartRef.current.contains(event.target)) {
-			if (!this.state.cartClosed) {
+		// Only try closing if cart is currently open:
+		if (!this.state.cartClosed) {
+			const clickedInsideCart =
+				this.cartRef.current && this.cartRef.current.contains(event.target);
+			const clickedOnButton =
+				this.cartButtonRef.current && this.cartButtonRef.current.contains(event.target);
+
+			if (!clickedInsideCart && !clickedOnButton) {
 				this.setState({ cartClosed: true });
 			}
 		}
 
+		// Nav logic unchanged (or add navButtonRef similarly if needed):
 		if (this.navRef.current && !this.navRef.current.contains(event.target)) {
 			if (this.state.navOpen) {
 				this.setState({ navOpen: false });
 			}
 		}
 	};
+
 
 	handleModal(params, e) {
 		//set passed in element
@@ -660,6 +669,7 @@ class App extends React.Component {
 					handleButton={this.handleButton}
 					navRef={this.navRef}
 					cartRef={this.cartRef}
+					cartButtonRef={this.cartButtonRef}
 				/>
 				<Main
 					modal={this.state.modal}

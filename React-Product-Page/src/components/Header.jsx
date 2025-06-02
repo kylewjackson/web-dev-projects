@@ -25,6 +25,7 @@ export default function Header(props) {
 				handleLogin={props.handleLogin}
 				navRef={props.navRef}
 				cartRef={props.cartRef}
+				cartButtonRef={props.cartButtonRef}
 			/>
 			{/* {!props.cartClosed ?
             <Cart

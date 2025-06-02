@@ -36,6 +36,7 @@ export function Navbar(props) {
 					itemCount={props.itemCount}
 					toggleMenu={props.toggleMenu}
 					handleButton={props.handleButton}
+					cartButtonRef={props.cartButtonRef}
 				/>
 			</ul>
 			<CSSTransition
@@ -77,7 +78,7 @@ export function NavLinks(props) {
 export function NavCart(props) {
 	return (
 		<li id="nav-cart" className="links">
-			<button type="button" onClick={() => props.toggleMenu('cart')} aria-label="open cart" tabIndex={props.modal ? -1 : null}>
+			<button type="button" onClick={() => props.toggleMenu('cart')} aria-label="open cart" ref={props.cartButtonRef} tabIndex={props.modal ? -1 : null}>
 				<span id="cart-button-span">
 					<CartIcon fillColor={props.itemCount > 0 ? colorYellow : colorWhite} />
 					<span className={props.itemCount > 0 ? 'active' : null}>Cart ({props.itemCount.toString()})</span>
