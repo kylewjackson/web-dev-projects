@@ -150,10 +150,10 @@ export function AddToCart(props) {
 			tabIndex={props.modal ? -1 : null}
 		>
 			<span id="add-to-cart-span">
-				<span>{!dupeInCart ? 'Add to Cart' : qtyTogther <= maxQty ? 'Update Cart' : 'Maxed Out'}</span>
 				<i>
 					<CartIcon fillColor={colorWhite} />
 				</i>
+				<span>{!dupeInCart ? 'Add to Cart' : qtyTogther <= maxQty ? 'Update Cart' : 'Maxed Out'}</span>
 			</span>
 		</button>
 	);

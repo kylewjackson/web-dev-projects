@@ -58,6 +58,7 @@ export default class Modal extends React.Component {
 
 						{/* Still give them a default “Close” button (or you can let the content include its own) */}
 						<button
+							id="modal-close"
 							ref={this.buttonFocus}
 							onClick={() => this.props.handleModal({ act: 'close' })}
 						>

@@ -236,7 +236,7 @@ export function Description(props) {
 
 export function ReviewsLink(props) {
 	return (
-		<button type="button" id={`${props.prodId}-reviews-link`} className="links" tabIndex={props.modal ? -1 : null}>
+		<button type="button" id={`${props.prodId}-reviews-link`} className="links" tabIndex={props.modal ? -1 : null} onClick={(e) => document.querySelector('.review-displays').scrollIntoView()}>
 			Reviews ({props.reviewCount.toString()})
 		</button>
 	);

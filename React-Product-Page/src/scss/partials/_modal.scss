@@ -12,15 +12,22 @@
 	width: 100vw;
 	height: 100vh;
 	background-color: rgba(0, 0, 0, 0.5);
+
+	.btn--modal-two-line {
+		display: flex;
+		flex-flow: column;
+		gap: 5px;
+	}
 }
 
 .modal-window {
-	display: grid;
+	// display: grid;
 	place-items: center;
 	place-content: center;
 	background-color: white;
 	grid-auto-columns: minmax(40vw, 75vw);
 	min-height: 20vh;
+	max-width: 80vw;
 }
 
 .modal-images {
@@ -34,4 +41,8 @@
 
 .modal button {
 	margin: 3% 0;
+}
+
+#modal-close {
+	margin-bottom: 15px;
 }

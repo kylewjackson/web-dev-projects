@@ -50,10 +50,11 @@ export function LogInForm(props) {
 					type="button"
 					name="signup"
 					value="signup"
+					className="btn--modal-two-line"
 					onClick={(e) => props.handleModal({ view: 'signup' }, e)}
 					tabIndex={props.modal ? -1 : null}
 				>
-					Need an account? Sign Up
+					<span>Need an account?</span><span>Sign Up</span>
 				</button>
 			}
 		</form>
@@ -78,10 +79,11 @@ export function SignUpForm(props) {
 					type="button"
 					name="login"
 					value="login"
+					className="btn--modal-two-line"
 					onClick={(e) => props.handleModal({ view: 'login' }, e)}
 					tabIndex={props.modal ? -1 : null}
 				>
-					Already have an account? Log In
+					<span>Already have an account?</span><span>Log In</span>
 				</button>
 			}
 		</form>
