@@ -153,7 +153,7 @@ export function Options(props) {
 export function ProductInfo(props) {
 	return (
 		<section id={`${props.prodId}-info-container`} className="product-info">
-			<h1 id={`${props.prodId}-title`} className="titles">{props.prodName}</h1>
+			<h1 id={`${props.prodId}-title-m`} className="titles titles--m">{props.prodName}</h1>
 			<figure id={`${props.prodId}-thumbnails`} className="thumbnail-container">
 				<button
 					type="button"
@@ -173,32 +173,35 @@ export function ProductInfo(props) {
 					handleButton={props.handleButton}
 				/>
 			</figure>
-			<form>
-				{props.rating ? (
-					<Rating
-						modal={props.modal}
-						prodId={props.prodId}
-						user={props.userId}
-						kind="user"
-						section="info"
-						reviewer={false}
-						rating={props.rating}
-						handleButton={props.handleButton}
-					/>
-				) : (
-					<Rating
-						modal={props.modal}
-						prodId={props.prodId}
-						kind='avg'
-						section="info"
-						whole={props.whole}
-						half={props.half}
-						empty={props.empty}
-						handleButton={props.handleButton}
-					/>
-				)}
-			</form>
-			<ReviewsLink modal={props.modal} prodId={props.prodId} reviewCount={props.reviewCount} />
+			<h1 id={`${props.prodId}-title-d`} className="titles titles--d">{props.prodName}</h1>
+			<div className="product-info-reviews-container">
+				<form>
+					{props.rating ? (
+						<Rating
+							modal={props.modal}
+							prodId={props.prodId}
+							user={props.userId}
+							kind="user"
+							section="info"
+							reviewer={false}
+							rating={props.rating}
+							handleButton={props.handleButton}
+						/>
+					) : (
+						<Rating
+							modal={props.modal}
+							prodId={props.prodId}
+							kind='avg'
+							section="info"
+							whole={props.whole}
+							half={props.half}
+							empty={props.empty}
+							handleButton={props.handleButton}
+						/>
+					)}
+				</form>
+				<ReviewsLink modal={props.modal} prodId={props.prodId} reviewCount={props.reviewCount} />
+			</div>
 			<Description prodId={props.prodId} />
 			<Price prodId={props.prodId} price={props.price} />
 			<ProductForm

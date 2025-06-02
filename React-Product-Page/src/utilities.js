@@ -22,11 +22,22 @@ export function genThumbs(amt, def) {
 export function transformId(ele) {
 	// const symbols = /[-!$%^&*()_+|~=`{}[\]:";'<>?,./]/;
 	const invalidChars = /[^A-Za-z0-9_-]/;
-	if (ele.match(invalidChars)) {
+	if (!ele.match(invalidChars)) {
 		return false;
 	} else {
 		const whitespace = /\s/g;
 		return ele.split('').map(i => i.match(whitespace) ? '-' : i.toLowerCase()).join('');
+	};
+};
+
+export function transformUserId(ele) {
+	// const symbols = /[-!$%^&*()_+|~=`{}[\]:";'<>?,./]/;
+	const invalidChars = /[^A-Za-z0-9_-]/;
+	if (ele.match(invalidChars)) {
+		return false;
+	} else {
+		const whitespace = /\s/g;
+		return ele.split('').map(i => i.match(whitespace) ? '-' : i).join('');
 	};
 };
 

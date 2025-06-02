@@ -6,6 +6,20 @@
 	grid-template-columns: 1fr 1fr;
 	gap: 2vw 10%;
 	margin: 5%;
+
+	& > div {
+		height: 45px;
+	}
+
+	@media (min-width: 600px) {
+		row-gap: 15px;
+
+		& > div {
+			grid-row: 2;
+			grid-column: 1;
+			// justify-self: end;
+		}
+	}
 }
 
 .product-reviews .stars {
@@ -15,11 +29,21 @@
 .product-reviews>h2 {
 	grid-column: span 2;
 	font-size: 2rem;
+	margin-bottom: 0.5rem;
+
+	@media (min-width: 600px) {
+		// grid-column: span 1;
+		margin-top: 0;
+		grid-row: 1;
+		grid-column: 1;
+	}
 }
 
 .product-reviews .rating {
-	display: grid;
-	grid-auto-flow: column;
+	// display: grid;
+	// grid-auto-flow: column;
+	display: flex;
+	gap: 5px;
 }
 
 .reviews-container {
@@ -28,15 +52,26 @@
 
 .reviews-container>form {
 	margin: 2vw;
+	padding: 12px 0 10px 0;
+
+	@media (min-width: 600px) {
+		margin: 0;
+		align-self: end;
+	}
 }
 
-#review-ratings-form {
-	margin-bottom: 10%;
-}
+// #review-ratings-form {
+// 	margin-bottom: 10%;
+// }
 
 #review-ratings-form div {
 	display: flex;
 	align-items: center;
+	margin: 10px 0;
+
+	@media (min-width: 600px) {
+		margin: 5px 0;
+	}
 }
 
 #review-ratings-form div>label {
@@ -46,14 +81,21 @@
 }
 
 #review-ratings-form div>label>svg {
-	min-width: 40px;
+	min-width: 25px;
+
+	@media (min-width: 600px) {
+		min-width: 15px;
+	}
 }
 
 //media query for large screens muilti column
 
 @media (min-width: 600px) {
 	.product-reviews {
-		grid-template-columns: repeat(2, 1fr);
+		// grid-template-columns: repeat(2, 1fr);
+		grid-template-columns: 1fr 2fr 2fr 2fr;
+        grid-template-rows: 1fr 1fr 3fr;
+        gap: 0;
 	}
 
 	.product-reviews .rating {
@@ -62,22 +104,43 @@
 
 	.product-reviews #my-rating {
 		grid-column: 1;
+		grid-row: 3;
 	}
 
 	.product-reviews .stars {
-		max-width: 50px;
+		max-width: 30px;
 	}
 
 	.reviews-container {
 		display: grid;
 		grid-template-columns: repeat(2, 1fr);
 		column-gap: 15px;
+		grid-column: 2 / 5;
+		grid-row: 1 / 4;
+		padding-left: 20px;
 	}
 
 	#review-ratings-form {
-		grid-column: span 2;
-		margin-bottom: 30px;
+		grid-column: span 1;
+		display: grid;
+		grid-template-columns: repeat(2, 1fr);
+		// margin-bottom: 30px;
+
+		label,
+		div:first-of-type {
+			grid-column: span 1;
+		}
 	}
+
+	// #my-rating {
+	// 	width: 20vw;
+
+	// 	.rating {
+	// 		display: block;
+	// 		position: relative;
+	// 		left: -2px;
+	// 	}
+	// }
 }
 
 ///*====================
@@ -111,7 +174,7 @@ article.reviews>.rating {
 	grid-column: 1;
 
 	display: grid;
-	grid-template-columns: repeat(4, 1fr);
+	grid-template-columns: repeat(4, 26px);
 }
 
 article.reviews>.feedback {
@@ -125,6 +188,11 @@ article.reviews>.feedback {
 	border: unset;
 	padding: 0;
 	width: 35%;
+
+	svg {
+		max-width: 22px;
+		max-height: 22px;
+	}
 }
 
 @media (max-width: 400px) {
@@ -194,8 +262,9 @@ article.reviews>.feedback {
 }
 
 .write-review-form>.review-prompts {
-	font-size: 1.5rem;
+	font-size: 1rem;
 	margin: 5%;
+	text-align: center;
 }
 
 fieldset {
@@ -205,6 +274,11 @@ fieldset {
 	padding: 5%;
 	border: 1.5px solid $review-border;
 	border-radius: 5px;
+	background-color: $review-bg;
+
+	@media (min-width: 1000px) {
+		width: 50vw;
+	}
 }
 
 fieldset>div {
@@ -220,11 +294,12 @@ fieldset>div>span {
 
 fieldset>div>.rating {
 	display: flex;
+	justify-content: center;
 	width: 60%;
 }
 
 .write-review-form>button {
-	width: 30%;
+	width: 30% !important;
 	margin-top: 5%;
 	padding: 2%;
 }
@@ -284,4 +359,14 @@ article.current-user.active {
 
 article .write-review-form {
 	grid-column: span 2;
+}
+
+#my-rating {
+	label {
+		margin-left: 5px;
+
+		@media (min-width: 600px) {
+			margin-left: 0;
+		}
+	}
 }

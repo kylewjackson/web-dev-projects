@@ -1,7 +1,7 @@
 import React from 'react';
 //Variables & utils
 import { currentProduct, initInCart, maxQty, initReviews } from './variables';
-import { deepCopy, transformId, itemOptions } from './utilities';
+import { deepCopy, transformUserId, itemOptions } from './utilities';
 //Components
 import Modal from './components/Modal';
 import Header from './components/Header';
@@ -298,6 +298,7 @@ class App extends React.Component {
 				qty: freshState.qty,
 				opt: freshState.opt,
 			});
+			this.handleModal({ msg: `${this.prodName} - ${this.state.opt} x ${this.state.qty} added to cart succesfully!`});
 			return;
 		}
 
@@ -532,14 +533,15 @@ class App extends React.Component {
 
 	handleUsername(e) {
 		const raw = e.target.value;
+		console.log(`raw: ${raw}`);
 		const newError =
-			!transformId(raw) && raw.length > 0
+			!transformUserId(raw) && raw.length > 0
 				? "Invalid character detected. Avoid: -!$%^&*()_+|~=`{}[]:\";'<>?,./"
 				: "";
 
 		this.setState({
 			user: raw,
-			userId: transformId(raw),
+			userId: transformUserId(raw),
 			userNameError: newError
 		});
 	}

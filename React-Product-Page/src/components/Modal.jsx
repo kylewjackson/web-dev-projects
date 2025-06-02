@@ -74,6 +74,7 @@ export default class Modal extends React.Component {
 			this.props.btn && typeof this.props.btn.rmv === 'number' ? (
 				[
 					<button
+						className='mr-10'
 						type="button"
 						key="confirm-remove"
 						ref={this.buttonFocus}
@@ -103,12 +104,12 @@ export default class Modal extends React.Component {
 
 		return (
 			<div id="modal" className="modal" ref={this.container}>
-				<aside id="modal-window" className="modal-window" role="dialog" aria-labelledby="modal-message">
+				<aside id="modal-window" className={`modal-window${this.props.img ? ' modal-window--with-image' : ''}`} role="dialog" aria-labelledby="modal-message">
 					{this.props.content ? this.props.content : this.props.img ? (
 						<img
 							src={this.props.img}
-							alt="modal‐image"
-							className="modal‐images"
+							alt="modal-image"
+							className="modal-images"
 						/>
 					) : (
 						<p id="modal-message">{this.props.msg || ''}</p>

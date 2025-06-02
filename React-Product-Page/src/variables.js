@@ -1,4 +1,4 @@
-import { genThumbs, transformId, itemOptions } from "./utilities";
+import { genThumbs, transformId, transformUserId, itemOptions } from "./utilities";
 
 export const imagePath = process.env.PUBLIC_URL + '/images/';
 
@@ -49,7 +49,7 @@ const userNames = ['Cool User', 'Troll'];
 export const initReviews = [
 	{
 		user: userNames[0],
-		id: transformId(userNames[0]),
+		id: transformUserId(userNames[0]),
 		rating: 4,
 		rated: [],
 		publishedRating: 4,
@@ -60,7 +60,7 @@ export const initReviews = [
 	},
 	{
 		user: userNames[1],
-		id: transformId(userNames[1]),
+		id: transformUserId(userNames[1]),
 		rating: 1,
 		rated: [],
 		publishedRating: 1,

@@ -1,6 +1,6 @@
 @use './variables' as *;
 
-main form button {
+main form button:not(.stars) {
 	width: 100%;
 }
 

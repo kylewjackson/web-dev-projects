@@ -177,7 +177,7 @@ export function ReviewRatings(props) {
 	};
 	return (
 		<form id="review-ratings-form">
-			<label htmlFor="review-ratings-form">Sort By Rating</label>
+			<label htmlFor="review-ratings-form">Filter By Rating</label>
 			<div>
 				<input
 					type="radio"
@@ -213,6 +213,7 @@ export function ReviewRatingInputs(props) {
 				checked={props.stars === props.val}
 				onChange={(e) => props.handleInput('ratings', e)}
 				tabIndex={props.modal ? -1 : null}
+				disabled={num === 0}
 			/>
 			<label htmlFor={`${props.val}-star`} aria-label={`sort by ${props.val}`}>
 				{stars}
@@ -226,7 +227,7 @@ export function Review(props) {
 	const kindOfClass = props.userId === props.currentUser && props.editOpen ? "current-user reviews active" : props.userId === props.currentUser ? "current-user reviews" : "reviews";
 	return (
 		<article id={`${props.userId}-review`} className={kindOfClass}>
-			<h4 className="names">{props.user.toUpperCase()}</h4>
+			<h4 className="names">{props.user.toUpperCase()}{props.currentUser && ' (Your Review)'}</h4>
 			<span className="dates">{props.date}</span>
 			{props.editOpen && props.userId === props.currentUser ? (
 				<WriteProductReview
@@ -314,7 +315,7 @@ export function Feedback(props) {
 				tabIndex={props.modal ? -1 : null}
 			>
 				<ThumbsUpIcon
-					fillColor={thumbed === 'up' ? colorRed : colorDarkGrey}
+					fillColor={thumbed === 'up' ? 'green' : colorDarkGrey}
 					opacity={thumbed === 'up' ? 1 : thumbed === 'down' ? 0.25 : props.feedback.down < props.feedback.up ? 1 : 0.25}
 				/>
 				({props.feedback.up})
