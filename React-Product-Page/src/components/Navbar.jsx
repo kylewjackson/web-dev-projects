@@ -8,14 +8,10 @@ export function Navbar(props) {
 	return (
 		<nav id="navbar">
 			<ul id="nav-link-container">
-				{/* <li id="nav-home" className="links">
-					<button type="button" tabIndex={props.modal ? -1 : null}>Home</button>
-				</li> */}
 				<li id="nav-categories" className={props.navOpen ? 'active links' : 'links'} ref={props.navRef}>
 					<button type="button" tabIndex={props.modal ? -1 : null} onClick={() => props.toggleMenu('nav')}>
 						Categories
 					</button>
-					{/* {props.navOpen ? <NavLinks modal={props.modal} handleModal={props.handleModal} /> : ''} */}
 					<CSSTransition
 						in={props.navOpen}
 						timeout={300}
@@ -42,19 +38,6 @@ export function Navbar(props) {
 					handleButton={props.handleButton}
 				/>
 			</ul>
-			{/* {!props.cartClosed ?
-				<Cart
-					modal={props.modal}
-					itemsInCart={props.itemsInCart}
-					handleInput={props.handleInput}
-					handleFocus={props.handleFocus}
-					handleSubmit={props.handleSubmit}
-					handleButton={props.handleButton}
-					preventEnter={props.preventEnter}
-					toggleMenu={props.toggleMenu}
-				/> :
-				''
-			} */}
 			<CSSTransition
 				in={!props.cartClosed}
 				timeout={300}

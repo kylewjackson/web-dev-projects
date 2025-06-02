@@ -597,11 +597,6 @@ class App extends React.Component {
 				)
 			});
 		};
-		// } else if (sortOption === 'controversial') {
-		//   this.setState({sort: 'controversial', hiddenReviews: reviewsToFilter.filter(review => review.publishedRating).sort((a, b) =>
-		//     ((a.id === currentUser) !== (b.id === currentUser)) ? (a.id === currentUser ? 1 : -1) : b.feedback.down - a.feedback.down
-		//     )});
-		// };
 	};
 
 	handleText(e) {

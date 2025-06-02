@@ -53,6 +53,11 @@
 						width: 20px;
 					}
 				}
+
+				//Link hover
+				li > button:hover {
+					color: $red;
+				}
 			}
 		}
 
@@ -144,8 +149,4 @@ nav #sign-up-form>button:last-of-type {
 
 span.active {
 	color: $yellow;
-}
-
-.nav-links button:hover {
-	color: $red;
 }
