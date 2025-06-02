@@ -20,8 +20,9 @@ export function genThumbs(amt, def) {
 
 //regex
 export function transformId(ele) {
-	const symbols = /[-!$%^&*()_+|~=`{}[\]:";'<>?,./]/;
-	if (ele.match(symbols)) {
+	// const symbols = /[-!$%^&*()_+|~=`{}[\]:";'<>?,./]/;
+	const invalidChars = /[^A-Za-z0-9_-]/;
+	if (ele.match(invalidChars)) {
 		return false;
 	} else {
 		const whitespace = /\s/g;

@@ -533,7 +533,7 @@ class App extends React.Component {
 	handleUsername(e) {
 		const raw = e.target.value;
 		const newError =
-			!transformId(raw)
+			!transformId(raw) && raw.length > 0
 				? "Invalid character detected. Avoid: -!$%^&*()_+|~=`{}[]:\";'<>?,./"
 				: "";
 

@@ -44,7 +44,7 @@ export function LogInForm(props) {
 				<label htmlFor="login-input">You are not signed in.</label>
 			}
 			<input type='text' id="login-input" name="login-input" placeholder="enter a name to test" onChange={(e) => props.handleUsername(e)} required value={props.user ?? ''} tabIndex={props.modal ? -1 : null} />
-			<button type="submit" name="login" value="login" tabIndex={props.modal ? -1 : null} disabled={!!props.userNameError}>Log In</button>
+			<button type="submit" name="login" value="login" tabIndex={props.modal ? -1 : null} disabled={!!props.userNameError && !props.userNameError.includes('Log In')}>Log In</button>
 			{props.fullForm &&
 				<button
 					type="button"
@@ -72,7 +72,7 @@ export function SignUpForm(props) {
 				<label htmlFor="login-input">You are not signed in.</label>
 			}
 			<input type='text' id="login-input" name="login-input" placeholder="enter a name to test" onChange={(e) => props.handleUsername(e)} required value={props.user ?? ''} tabIndex={props.modal ? -1 : null} />
-			<button type="submit" name="signup" value="signup" tabIndex={props.modal ? -1 : null} disabled={!!props.userNameError}>Sign Up</button>
+			<button type="submit" name="signup" value="signup" tabIndex={props.modal ? -1 : null} disabled={!!props.userNameError && !props.userNameError.includes('Sign Up')}>Sign Up</button>
 			{props.fullForm &&
 				<button
 					type="button"
