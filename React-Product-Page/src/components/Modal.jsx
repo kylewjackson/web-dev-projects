@@ -21,17 +21,20 @@ export default class Modal extends React.Component {
 
 	componentDidUpdate() {
 		if (this.props.show) {
-			// 1) Focus the primary button (if there is one)
-			if (this.buttonFocus.current) {
+			// Prevent body from scrolling:
+			document.body.style.overflow = 'hidden';
+
+			// Only focus the close‐button if we’re *not* rendering custom content.
+			// If `props.content` exists, assume it contains its own focusable input/button.
+			if (!this.props.content && this.buttonFocus.current) {
 				this.buttonFocus.current.focus();
 			}
-			// 2) Prevent body from scrolling
-			document.body.style.overflow = 'hidden';
-			// 3) Attach listeners
+
+			// Attach listeners for Escape/backdrop‐click:
 			document.addEventListener('keydown', this.keydownCallback);
 			document.addEventListener('click', this.clickCallback);
 		} else {
-			// Remove overflow and listeners on close
+			// Remove scrolling lock & listeners when modal goes away:
 			if (document.body.style.overflow === 'hidden') {
 				document.body.style.overflow = 'unset';
 				document.removeEventListener('keydown', this.keydownCallback);
@@ -65,7 +68,7 @@ export default class Modal extends React.Component {
 			);
 		}
 
-		// Otherwise, fall back to your existing logic (msg/img + buttons):
+		// Otherwise, fall back to existing logic (msg/img + buttons):
 		const showButton =
 			this.props.btn && typeof this.props.btn.rmv === 'number' ? (
 				[
@@ -100,7 +103,7 @@ export default class Modal extends React.Component {
 		return (
 			<div id="modal" className="modal" ref={this.container}>
 				<aside id="modal-window" className="modal-window" role="dialog" aria-labelledby="modal-message">
-					{this.props.img ? (
+					{this.props.content ? this.props.content : this.props.img ? (
 						<img
 							src={this.props.img}
 							alt="modal‐image"

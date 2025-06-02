@@ -9,6 +9,7 @@ import Main from './components/Main';
 import Footer from './components/Footer';
 //Stylesheet
 import './scss/global.scss';
+import { LogInForm, SignUpForm } from './components/LogIn';
 
 const freshState = {
 	qty: parseInt(currentProduct.qty),
@@ -38,7 +39,7 @@ class App extends React.Component {
 			modalImg: null,
 			modalMsg: null,
 			modalBtn: null,
-			modalContent: null,
+			modalView: null,
 			prevEle: null,
 			navOpen: false,
 			qty: parseInt(currentProduct.qty),
@@ -52,6 +53,7 @@ class App extends React.Component {
 			openSignup: false,
 			user: null,
 			userId: null,
+			userNameError: '',
 			rating: null,
 			publishedRating: null,
 			reviewBody: '',
@@ -120,38 +122,64 @@ class App extends React.Component {
 
 
 	handleModal(params, e) {
-		//set passed in element
 		if (e) {
 			params.prev = e.target;
-		};
+		}
+
 		if (params.act === 'close') {
-			//focus previously focused element
+			// If closing, clear modal and modalView:
 			if (this.state.prevEle) {
 				this.state.prevEle.focus();
-			};
-			//remove item from cart, with rmv being index of item in cart
+			}
 			if (typeof params.rmv === 'number') {
-				this.setState({ itemsInCart: deepCopy(this.state.itemsInCart).filter((item, i) => i !== params.rmv) });
-			};
+				this.setState({
+					itemsInCart: deepCopy(this.state.itemsInCart).filter((item, i) => i !== params.rmv),
+				});
+			}
 			this.setState({
 				modal: false,
-				modalImg: false,
+				modalImg: null,
 				modalMsg: null,
 				modalBtn: null,
-				modalContent: null,
+				modalView: null,
 				prevEle: null,
 			});
-		} else {
+		}
+		else if (params.view === 'login') {
+			// When caller wants to open the login form
 			this.setState({
 				modal: true,
-				modalImg: params.img ? params.img : null,
-				modalMsg: params.msg ? params.msg : null,
-				modalBtn: params.btn ? params.btn : null,
-				modalContent: params.content || null,
-				prevEle: params.prev ? params.prev : null,
+				modalImg: null,
+				modalMsg: null,
+				modalBtn: null,
+				modalView: 'login',
+				prevEle: params.prev || null,
 			});
-		};
-	};
+		}
+		else if (params.view === 'signup') {
+			// When caller wants to open the signup form
+			this.setState({
+				modal: true,
+				modalImg: null,
+				modalMsg: null,
+				modalBtn: null,
+				modalView: 'signup',
+				prevEle: params.prev || null,
+			});
+		}
+		else {
+			// Fallback: still allow showing a one‐off message or image
+			this.setState({
+				modal: true,
+				modalImg: params.img || null,
+				modalMsg: params.msg || null,
+				modalBtn: params.btn || null,
+				modalView: null,
+				prevEle: params.prev || null,
+			});
+		}
+	}
+
 
 	//accepts index as ind, type of input, and event as e
 	handleInput(params, e) {
@@ -242,7 +270,6 @@ class App extends React.Component {
 
 	handleLogin(e) {
 		if (e.target.value === 'login') {
-
 			this.setState({ openLogin: true, openSignup: false }, () => document.querySelector('#login-form input').focus());
 		} else {
 			this.setState({ openSignup: true, openLogin: false });
@@ -252,11 +279,12 @@ class App extends React.Component {
 	handleSubmit(ind, type, e) {
 		e.preventDefault();
 
-		//remove from cart
+		//CART LOGIC
 		if (type === 'cart' && ind > -1) {
 			this.handleModal({ msg: 'Are you sure you want to delete this item?', btn: { rmv: ind } });
+			return;
 		} else if (type === 'cart') {
-			//add to cart
+			// Add to cart
 			const itemToAdd = {
 				prodName: this.prodName,
 				prodId: this.prodId,
@@ -265,110 +293,160 @@ class App extends React.Component {
 				qty: this.state.qty,
 				price: this.price,
 			};
-			this.setState({ itemsInCart: this.addItem(itemToAdd), qty: freshState.qty, opt: freshState.opt });
-		};
+			this.setState({
+				itemsInCart: this.addItem(itemToAdd),
+				qty: freshState.qty,
+				opt: freshState.opt,
+			});
+			return;
+		}
 
-		//sign in/out
+		// 2) SIGN-IN / SIGN-UP / LOGOUT
 		if (type === 'login') {
-			//make sure user exists
-			if (this.state.reviews.some(review => review.id === this.state.userId)) {
-				//get user review
-				const userReview = this.state.reviews.filter(review => review.id === this.state.userId)[0];
+			// Attempt to sign in: check if a review with this.state.userId exists
+			const found = this.state.reviews.some((r) => r.id === this.state.userId);
+
+			if (found) {
+				// > SUCCESSFUL LOGIN:
+				const userReview = this.state.reviews.find((r) => r.id === this.state.userId);
 				this.setState({
 					loggedIn: true,
 					openLogin: false,
 					rating: userReview.rating,
 					publishedRating: userReview.publishedRating,
-					reviewBody: userReview.review ? userReview.review : "",
-					reviewSubmitted: userReview.review ? true : false,
+					reviewBody: userReview.review || '',
+					reviewSubmitted: !!userReview.review,
 					rated: userReview.rated,
+					userNameError: '', // clear any previous error
 				});
-				//check for cart
-				userReview.cart ?
-					this.combineCarts(userReview.cart) :
-					this.setState({ itemsInCart: this.state.itemsInCart.length > 0 ? deepCopy(this.state.itemsInCart) : [] });
-				//resort reviews with user's review at bottom, if applicable
+
+				// combine carts if they had one saved
+				if (userReview.cart) {
+					this.combineCarts(userReview.cart);
+				} else {
+					// if no saved cart, keep whatever is currently in state
+					this.setState({
+						itemsInCart: this.state.itemsInCart.length > 0
+							? deepCopy(this.state.itemsInCart)
+							: [],
+					});
+				}
+
 				this.handleFilterReviews(this.state.sort);
+				// Close the modal entirely
+				this.handleModal({ act: 'close' });
 			} else {
-				// alert(`There's no user named ${this.state.user}. Trying signing up instead.`);
-				this.handleModal({ msg: `There's no user named ${this.state.user}. Trying signing up instead.`, prev: document.querySelector('form input') })
-				this.setState({ openLogin: false, openSignup: true });
-			};
-		} else if (type === 'signup') {
-			// create review entry for user, if not already
-			if (!this.state.reviews.some(review => review.id === this.state.userId)) {
-				const userToAdd = {
+				// > LOGIN FAILED: no such user
+				this.setState({
+					userNameError: `There's no user named "${this.state.user}". Sign Up instead?`,
+				}, () => {
+					// After setting the error, switch to the SIGNUP view
+					// (the input will stay prefilled, so they can correct or sign up with same name)
+					this.handleModal({ view: 'signup' });
+				});
+			}
+
+			return;
+		}
+		else if (type === 'signup') {
+			// Signing up: check if a review with this.state.userId already exists
+			const exists = this.state.reviews.some((r) => r.id === this.state.userId);
+
+			if (!exists) {
+				// > SUCCESSFUL SIGNUP:
+				const newUser = {
 					user: this.state.user,
 					id: this.state.userId,
-					rating: this.state.rating,
-					rated: this.state.rated,
+					rating: this.state.rating, // might be null initially
+					rated: this.state.rated,  // might be []
 				};
 				this.setState({
-					reviews: deepCopy(this.state.reviews).concat(userToAdd),
+					reviews: deepCopy(this.state.reviews).concat(newUser),
 					loggedIn: true,
 					openSignup: false,
+					userNameError: '', // clear any previous error
 				});
+				// Close the modal
+				this.handleModal({ act: 'close' });
 			} else {
-				// alert(`The user ${this.state.user} already exists. Try signing in instead.`);
-				this.handleModal({ msg: `The user ${this.state.user} already exists. Try signing in instead.`, prev: document.querySelector('form input') });
-				this.setState({ openSignup: false, openLogin: true });
-			};
-		} else if (type === 'logout') {
-			//empty cart and reset states on logout
-			if (this.state.loggedIn) {
-				//retain cart in review
-				const userCart = this.state.itemsInCart.length > 0 ? deepCopy(this.state.itemsInCart) : [];
-				const reviewFeedback = this.state.rated.length > 0 ? deepCopy(this.state.rated) : [];
-				const userReviews = this.state.reviews.map(review => {
-					if (review.id === this.state.userId) {
-						review.cart = userCart;
-						review.rated = reviewFeedback;
-					};
-					if (review.hidden) {
-						review.hidden = false;
-					};
-					return review;
+				// > SIGNUP FAILED: user already exists
+				this.setState({
+					userNameError: `User "${this.state.user}" already exists. Log In instead?`,
+				}, () => {
+					// After the error is set, switch back to the LOGIN view (input remains prefilled)
+					this.handleModal({ view: 'login' });
 				});
-				this.handleFilterReviews(this.state.sort, userReviews);
-				//reset other states
-				this.setState(freshState);
-			};
-		};
+			}
 
-		//leave review
+			return;
+		}
+		else if (type === 'logout') {
+			// LOGOUT: preserve cart into user’s review
+			if (this.state.loggedIn) {
+				const userCart = this.state.itemsInCart.length > 0
+					? deepCopy(this.state.itemsInCart)
+					: [];
+				const reviewFeedback = this.state.rated.length > 0
+					? deepCopy(this.state.rated)
+					: [];
+				const updatedReviews = this.state.reviews.map((r) => {
+					if (r.id === this.state.userId) {
+						r.cart = userCart;
+						r.rated = reviewFeedback;
+					}
+					if (r.hidden) {
+						r.hidden = false;
+					}
+					return r;
+				});
+				this.handleFilterReviews(this.state.sort, updatedReviews);
+				// Finally, reset everything except we keep cart saved in reviews
+				this.setState(freshState);
+			}
+			return;
+		}
+
+		// “WRITE REVIEW” LOGIC
 		if (type === 'write' && this.state.rating) {
-			//copy reviews array
-			const reviewArray = deepCopy(this.state.reviews).map(item => {
-				//map to find array with userId, and add review properties
+			const reviewArray = deepCopy(this.state.reviews).map((item) => {
 				if (item.id === this.state.userId) {
 					item.rating = this.state.rating;
 					item.review = this.state.reviewBody;
 					item.hidden = false;
 					item.feedback = { up: 0, down: 0 };
 					item.publishedRating = this.state.rating;
-					item.date = new Intl.DateTimeFormat('en', { dateStyle: "medium", timeStyle: "medium" }).format(new Date());
+					item.date = new Intl.DateTimeFormat('en', {
+						dateStyle: 'medium',
+						timeStyle: 'medium',
+					}).format(new Date());
 				} else if (this.state.edit && item.rated) {
-					//remove user from rated array in other reviews on edit
 					item.rated.forEach((obj, i) => {
 						if (obj[this.state.userId]) {
 							item.rated.splice(i, 1);
-						};
+						}
 					});
-				};
+				}
 				return item;
 			});
-			//set review
-			this.setState({ reviews: reviewArray, reviewSubmitted: true, publishedRating: this.state.rating });
+
+			this.setState({
+				reviews: reviewArray,
+				reviewSubmitted: true,
+				publishedRating: this.state.rating,
+			});
 			if (this.state.edit) {
 				this.editReview();
-			};
-			//modal thank you message
+			}
 			this.handleModal({ msg: 'Thanks for your feedback!' });
-		} else if (type === 'write') {
-			// alert('Sorry, you must leave a rating first.');
-			this.handleModal({ msg: 'Sorry, you must leave a rating first.', prev: e.target.querySelector('.empty-4-star') });
-		};
-	};
+		}
+		else if (type === 'write') {
+			this.handleModal({
+				msg: 'Sorry, you must leave a rating first.',
+				prev: e.target.querySelector('.empty-4-star'),
+			});
+		}
+	}
+
 
 	checkIfInCart(itemToCheck, currentCart, type) {
 		//map items, return index of matching items, and filter out -1
@@ -453,14 +531,18 @@ class App extends React.Component {
 	}
 
 	handleUsername(e) {
-		// const formattedUser = e.target.value.split('').filter(i => i.match(/\S/g)).join('');
-		//erase if has invalid characters
-		if (!transformId(e.target.value)) {
-			this.handleModal({ msg: `Your username contains one or more invalid characters. Try again, making sure to avoid: -!$%^&*()_+|~=\`{}[]:";'<>?,./`, prev: e.target });
-			e.target.value = '';
-		};
-		this.setState({ user: e.target.value, userId: transformId(e.target.value) });
-	};
+		const raw = e.target.value;
+		const newError =
+			!transformId(raw)
+				? "Invalid character detected. Avoid: -!$%^&*()_+|~=`{}[]:\";'<>?,./"
+				: "";
+
+		this.setState({
+			user: raw,
+			userId: transformId(raw),
+			userNameError: newError
+		});
+	}
 
 	handleButton(type, e) {
 		//checkout alert
@@ -651,6 +733,29 @@ class App extends React.Component {
 					btn={this.state.modalBtn}
 					prev={this.state.prevEle}
 					handleModal={this.handleModal}
+					content={
+						this.state.modalView === 'login' ? (
+							<LogInForm
+								user={this.state.user}
+								userNameError={this.state.userNameError}
+								modal={this.state.modal}
+								handleSubmit={this.handleSubmit}
+								handleUsername={this.handleUsername}
+								handleModal={this.handleModal}
+								fullForm={true}
+							/>
+						) : this.state.modalView === 'signup' ? (
+							<SignUpForm
+								user={this.state.user}
+								userNameError={this.state.userNameError}
+								modal={this.state.modal}
+								handleSubmit={this.handleSubmit}
+								handleUsername={this.handleUsername}
+								handleModal={this.handleModal}
+								fullForm={true}
+							/>
+						) : null
+					}
 				/>
 				<Header
 					modal={this.state.modal}
@@ -665,6 +770,7 @@ class App extends React.Component {
 					preventEnter={this.preventEnter}
 					toggleMenu={this.toggleMenu}
 					user={this.state.user}
+					userNameError={this.state.userNameError}
 					loggedIn={this.state.loggedIn}
 					openLogin={this.state.openLogin}
 					openSignup={this.state.openSignup}

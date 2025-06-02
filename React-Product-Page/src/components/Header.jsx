@@ -16,6 +16,7 @@ export default function Header(props) {
 				openLogin={props.openLogin}
 				openSignup={props.openSignup}
 				user={props.user}
+				userNameError={props.userNameError}
 				preventEnter={props.preventEnter}
 				handleInput={props.handleInput}
 				handleButton={props.handleButton}
@@ -27,19 +28,6 @@ export default function Header(props) {
 				cartRef={props.cartRef}
 				cartButtonRef={props.cartButtonRef}
 			/>
-			{/* {!props.cartClosed ?
-            <Cart
-              modal={props.modal}
-              itemsInCart={props.itemsInCart}
-              handleInput={props.handleInput}
-              handleFocus={props.handleFocus}
-              handleSubmit={props.handleSubmit}
-              handleButton={props.handleButton}
-              preventEnter={props.preventEnter}
-              toggleMenu={props.toggleMenu}
-            /> :
-            ''
-          } */}
 		</header>
 	);
 };

@@ -24,12 +24,11 @@ export function Navbar(props) {
 				<LogIn
 					modal={props.modal}
 					loggedIn={props.loggedIn}
-					openLogin={props.openLogin}
-					openSignup={props.openSignup}
 					user={props.user}
+					userNameError={props.userNameError}
 					handleSubmit={props.handleSubmit}
 					handleUsername={props.handleUsername}
-					handleLogin={props.handleLogin}
+					handleModal={props.handleModal}
 				/>
 				<NavCart
 					modal={props.modal}
