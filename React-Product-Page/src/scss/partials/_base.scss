@@ -1,5 +1,9 @@
 @use './variables' as *;
 
+html {
+	scroll-behavior: smooth;
+}
+
 svg {
 	max-width: 100px;
 }
