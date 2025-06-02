@@ -1,0 +1,54 @@
+@use './variables' as *;
+
+//-------------------
+//Category Flyout Animation
+//--------------------
+
+.category-flyout-enter {
+	transform: scaleY(0);
+	transform-origin: top;
+	opacity: 0;
+}
+
+.category-flyout-enter-active {
+	transform: scaleY(1);
+	opacity: 1;
+	transition: transform 200ms ease-out, opacity 200ms ease-out;
+}
+
+.category-flyout-exit {
+	transform: scaleY(1);
+	opacity: 1;
+}
+
+.category-flyout-exit-active {
+	transform: scaleY(0);
+	opacity: 0;
+	transition: transform 150ms ease-in, opacity 150ms ease-in;
+}
+
+//-------------------
+//Cart Flyout Animation (react-transition-group)
+//--------------------
+
+.cart-flyout-enter {
+	transform: scaleY(0);
+	opacity: 0.5;
+}
+
+.cart-flyout-enter-active {
+	transform: scaleY(1);
+	opacity: 1;
+	transition: transform 200ms ease-out, opacity 200ms ease-out;
+}
+
+.cart-flyout-exit {
+	transform: scaleY(1);
+	opacity: 1;
+}
+
+.cart-flyout-exit-active {
+	transform: scaleY(0);
+	opacity: 0.5;
+	transition: transform 200ms ease-in, opacity 200ms ease-in;
+}

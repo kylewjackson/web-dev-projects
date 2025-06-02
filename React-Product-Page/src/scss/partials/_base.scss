@@ -1,0 +1,59 @@
+@use './variables' as *;
+
+svg {
+	max-width: 100px;
+}
+
+.icons {
+	min-width: 40px;
+}
+
+body {
+	background-color: $white;
+	color: $black;
+	font-family: 'Montserrat', sans-serif;
+	font-size: .85rem;
+}
+
+main {
+	max-width: 1000px;
+	margin: 0 auto;
+}
+
+.dimmed {
+	opacity: .5;
+}
+
+ul,
+ol {
+	padding: 0;
+	list-style-type: none;
+}
+
+button {
+	border: 1px solid $option-border;
+	border-radius: 5px;
+	background-color: $option-bg;
+	padding: 5px;
+}
+
+button:focus,
+input:focus {
+	outline-width: 2px;
+	outline-color: $yellow;
+}
+
+form .options label {
+	margin-right: 10px;
+}
+
+@media (min-width: 600px) {
+	form .options label {
+		margin-right: 0;
+	}
+}
+
+button:hover,
+select:hover {
+	cursor: pointer;
+}

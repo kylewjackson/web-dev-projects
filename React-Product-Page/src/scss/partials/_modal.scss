@@ -1,0 +1,37 @@
+@use './variables' as *;
+
+.modal {
+	display: grid;
+	place-items: center;
+	position: fixed;
+	z-index: 3;
+	margin: 0;
+	padding: 0;
+	top: 0;
+	bottom: 0;
+	width: 100vw;
+	height: 100vh;
+	background-color: rgba(0, 0, 0, 0.5);
+}
+
+.modal-window {
+	display: grid;
+	place-items: center;
+	place-content: center;
+	background-color: white;
+	grid-auto-columns: minmax(40vw, 75vw);
+	min-height: 20vh;
+}
+
+.modal-images {
+	max-width: 100%;
+}
+
+.modal p {
+	padding: 2vw;
+	text-align: center;
+}
+
+.modal button {
+	margin: 3% 0;
+}

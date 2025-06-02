@@ -1,0 +1,160 @@
+@use './variables' as *;
+
+.product-info {
+	display: grid;
+	justify-items: center;
+	justify-content: center;
+}
+
+h1 {
+	font-size: 2.5rem;
+	text-align: center;
+}
+
+.product-info>figure>button {
+	background-color: unset;
+	border: unset;
+}
+
+.product-info>figure>ol {
+	display: flex;
+	justify-content: center;
+	margin: 0;
+	padding: 0;
+}
+
+figure>ol>li>button {
+	background-color: unset;
+	border: unset;
+	padding: 5%;
+}
+
+figure>ol>li>button>img {
+	border-bottom: 1px solid;
+	padding-bottom: 5px;
+}
+
+.product-info>form>.rating {
+	display: flex;
+}
+
+.product-info>form>.rating button {
+	min-width: 50px;
+}
+
+.product-info p {
+	width: 80%;
+}
+
+.product-info strong.prices {
+	font-size: 2rem;
+	padding-top: 5%;
+	padding-bottom: 5%;
+}
+
+.product-info>.forms {
+	display: grid;
+	gap: 5vw;
+}
+
+.product-info>.form .options,
+#your-product-product-options-container {
+	display: flex;
+	align-items: center;
+}
+
+.product-info .quantities {
+	display: flex;
+	align-items: center;
+}
+
+.product-info .quantities button {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	background: none;
+	border: none;
+}
+
+.product-info .quantities button svg {
+	width: 15px;
+}
+
+.product-info .quantities>input {
+	min-width: 25px;
+	text-align: center;
+}
+
+.product-info>.forms>button {
+	grid-column: span 2;
+
+	max-width: 45vw;
+	place-self: center;
+}
+
+.product-info>.forms>button.active {
+	background-color: $red;
+	color: $white;
+}
+
+#add-to-cart-span {
+	display: grid;
+	grid-template-columns: 3.33fr 1fr;
+	place-items: center;
+}
+
+#add-to-cart-span svg {
+	width: 90%;
+	padding: 5%;
+}
+
+//Media Query for large screen multi-column
+
+@media (min-width: 600px) {
+	.product-info {
+		grid-template-columns: repeat(2, 1fr);
+		padding: 2vw;
+	}
+
+	.product-info>h1 {
+		grid-column: span 2;
+	}
+
+	.product-info>figure {
+		grid-row: span 6;
+		place-self: center;
+	}
+
+	.product-info .options {
+		align-self: center;
+
+		display: grid;
+		grid-auto-flow: column;
+		place-items: center;
+		gap: 10px;
+	}
+
+	.product-info .quantities>button {
+		display: flex;
+		justify-content: center;
+		padding: 0;
+		width: 60%;
+	}
+
+	.product-info .quantities>input {
+		min-width: 35px;
+	}
+
+	.product-info .quantities>label {
+		align-self: center;
+		justify-self: end;
+	}
+
+	.product-info .forms {
+		gap: 20px 10px;
+	}
+
+	.product-info .forms>button {
+		max-width: 175px;
+	}
+}

@@ -1,0 +1,287 @@
+@use './variables' as *;
+
+.product-reviews {
+	display: grid;
+	place-self: center;
+	grid-template-columns: 1fr 1fr;
+	gap: 2vw 10%;
+	margin: 5%;
+}
+
+.product-reviews .stars {
+	padding: 0;
+}
+
+.product-reviews>h2 {
+	grid-column: span 2;
+	font-size: 2rem;
+}
+
+.product-reviews .rating {
+	display: grid;
+	grid-auto-flow: column;
+}
+
+.reviews-container {
+	grid-column: span 2;
+}
+
+.reviews-container>form {
+	margin: 2vw;
+}
+
+#review-ratings-form {
+	margin-bottom: 10%;
+}
+
+#review-ratings-form div {
+	display: flex;
+	align-items: center;
+}
+
+#review-ratings-form div>label {
+	display: flex;
+	align-items: center;
+	margin-left: 10px;
+}
+
+#review-ratings-form div>label>svg {
+	min-width: 40px;
+}
+
+//media query for large screens muilti column
+
+@media (min-width: 600px) {
+	.product-reviews {
+		grid-template-columns: repeat(2, 1fr);
+	}
+
+	.product-reviews .rating {
+		grid-auto-columns: 60px;
+	}
+
+	.product-reviews #my-rating {
+		grid-column: 1;
+	}
+
+	.product-reviews .stars {
+		max-width: 50px;
+	}
+
+	.reviews-container {
+		display: grid;
+		grid-template-columns: repeat(2, 1fr);
+		column-gap: 15px;
+	}
+
+	#review-ratings-form {
+		grid-column: span 2;
+		margin-bottom: 30px;
+	}
+}
+
+///*====================
+//User Reviews
+//=====================*/
+
+article.reviews {
+	background-color: $review-bg;
+	border: 1px solid $review-border;
+	border-radius: 5px;
+
+	margin-bottom: 10px;
+	padding: 10px;
+
+	display: grid;
+	column-gap: 5%;
+	grid-template-columns: 6fr 3.5fr;
+	grid-template-rows: .15fr 2fr 1fr;
+}
+
+article.reviews>.names {
+	margin: 0;
+	align-self: center;
+}
+
+article.reviews>span {
+	text-align: right;
+}
+
+article.reviews>.rating {
+	grid-column: 1;
+
+	display: grid;
+	grid-template-columns: repeat(4, 1fr);
+}
+
+article.reviews>.feedback {
+	display: grid;
+	grid-template-columns: repeat(2, 1fr);
+	place-items: center;
+}
+
+.reviews>.feedback>button {
+	background-color: unset;
+	border: unset;
+	padding: 0;
+	width: 35%;
+}
+
+@media (max-width: 400px) {
+	.reviews>.feedback>button {
+		width: 60%;
+	}
+}
+
+.reviews .stars {
+	width: 80%;
+}
+
+@media (min-width: 400px) {
+	.reviews .stars {
+		width: 60%;
+	}
+}
+
+@media (min-width: 600px) {
+
+	article.reviews>.rating {
+		max-width: 175px;
+		align-items: end;
+	}
+
+	article.reviews>.feedback {
+		place-items: center;
+		place-self: end;
+		max-width: 125px;
+	}
+
+	.current-user {
+		grid-column: span 2;
+		width: 60%;
+		justify-self: center;
+	}
+
+}
+
+@media (min-width: 600px) and (max-width: 899px) {
+	article.reviews>.feedback>button {
+		width: 20px;
+		margin: 0 15px;
+	}
+}
+
+@media (min-width: 900px) {
+	article.reviews>.feedback>button {
+		width: 30px;
+		margin: 0 15px;
+	}
+}
+
+
+///*====================
+//Write Review
+//=====================*/
+
+.write-review-form {
+	display: flex;
+	flex-flow: column;
+	align-items: center;
+}
+
+.write-review-form>.titles {
+	font-size: 2rem;
+}
+
+.write-review-form>.review-prompts {
+	font-size: 1.5rem;
+	margin: 5%;
+}
+
+fieldset {
+	width: 70vw;
+	text-align: center;
+	margin: 0;
+	padding: 5%;
+	border: 1.5px solid $review-border;
+	border-radius: 5px;
+}
+
+fieldset>div {
+	display: flex;
+	flex-flow: column;
+	align-items: center;
+	align-self: center;
+}
+
+fieldset>div>span {
+	margin: 10px auto;
+}
+
+fieldset>div>.rating {
+	display: flex;
+	width: 60%;
+}
+
+.write-review-form>button {
+	width: 30%;
+	margin-top: 5%;
+	padding: 2%;
+}
+
+.write-review-form>button.active {
+	background-color: $red;
+	color: $review-border;
+}
+
+#review-submitted {
+	font-size: 1.5rem;
+	text-align: center;
+}
+
+@media (min-width: 600px) {
+	fieldset>div>.rating {
+		width: 250px;
+	}
+
+	fieldset.active {
+		width: 80%;
+		margin: 5% 0 0 0;
+	}
+
+	textarea {
+		width: 80%;
+		max-width: 450px;
+	}
+
+	.write-review-form>button {
+		max-width: 200px;
+		margin-top: 20px;
+	}
+
+}
+
+///*====================
+//Edit
+//=====================*/
+
+button#edit-review {
+	grid-column: span 2;
+	width: 40%;
+	padding: 1%;
+	margin: 5% 0;
+	justify-self: center;
+}
+
+article.current-user {
+	grid-template-rows: .5fr 3fr 1fr;
+}
+
+//change last row on edit open
+article.current-user.active {
+	grid-template-rows: .5fr 3fr .2fr;
+}
+
+article .write-review-form {
+	grid-column: span 2;
+}

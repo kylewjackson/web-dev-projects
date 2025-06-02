@@ -1,0 +1,151 @@
+@use './variables' as *;
+
+//====================
+//Navbar
+//=====================
+
+#navbar {
+	position: relative;
+	display: grid;
+	background-color: $dark-grey;
+	color: $white;
+
+	//Nav sections
+	#nav-link-container {
+		display: flex;
+		padding: 10px;
+		margin: 0;
+		justify-content: space-between;
+
+		//*Category menu*
+		#nav-categories {
+			display: grid;
+			gap: 1vw;
+			grid-row: 2;
+			justify-items: start;
+			position: relative;
+
+			//Mobile categories button
+			@media (max-width: 400px) {
+				& > button {
+					justify-self: start;
+				}
+			}
+
+			//Category menu items
+			#categories-links {
+				position: absolute;
+				top: calc(100% + 10px);
+				left: 0;
+				right: 0;
+				background-color: $white;
+				padding: 5px;
+				border: 1px solid $review-border;
+				border-radius: 0 0 6px 6px;
+				z-index: 9;
+				box-shadow: 0px 3px 12px rgba(0, 0, 0, 0.14);
+
+				& > button {
+					background-color: $white;
+
+					//Collapse button
+					& > svg {
+						width: 20px;
+					}
+				}
+			}
+		}
+
+		//*Login menu*
+		#nav-login {
+			width: 100%;
+			display: grid;
+
+			// signin/login forms
+			form {
+				display: grid;
+				gap: 3vw;
+				place-items: center;
+				font-size: .75rem;
+
+				@media (min-width: 600px) {
+					gap: 1.5vw;
+				}
+			}
+		}
+
+		//*Cart menu*
+		//Cart flyout styles in _cart.scss
+		#nav-cart {
+			display: grid;
+		}
+
+	}
+
+	//Nav nested menus (categories and products)
+	ol {
+		display: grid;
+		transform-origin: top;
+
+		& > li,
+		& > li > button {
+			background-color: $white;
+			color: $dark-grey;
+			text-align: center;
+			padding: 5px;
+		}
+	}
+
+	//Active nav link styling
+	.active.links > button,
+	a:active {
+		color: $yellow;
+	}
+}
+
+nav input[type="text"] {
+	max-width: 30vw;
+	font-size: .6rem;
+}
+
+/* sign in prompt */
+#sign-in-form>label {
+	grid-column: span 2;
+}
+
+/* button before interacting */
+#sign-in-form>button:first-of-type {
+	justify-self: end;
+}
+
+#sign-in-form>button:last-of-type {
+	justify-self: start;
+}
+
+/* switch to other button link */
+
+#login-form>button:last-of-type,
+#sign-up-form>button:last-of-type {
+	max-width: 60%;
+}
+
+/* button styles in nav field */
+nav :not(form)>button,
+nav #login-form>button:last-of-type,
+nav #sign-up-form>button:last-of-type {
+	border: none;
+	border-radius: 0;
+
+	background-color: $dark-grey;
+	color: $white;
+
+	text-decoration: underline;
+}
+
+span.active {
+	color: $yellow;
+}
+
+.nav-links button:hover {
+	color: $red;
+}

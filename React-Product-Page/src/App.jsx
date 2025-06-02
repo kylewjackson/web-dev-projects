@@ -8,7 +8,7 @@ import Header from './components/Header';
 import Main from './components/Main';
 import Footer from './components/Footer';
 //Stylesheet
-import './App.css';
+import './scss/global.scss';
 
 const freshState = {
 	qty: parseInt(currentProduct.qty),

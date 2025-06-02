@@ -1,0 +1,270 @@
+@use './variables' as *;
+
+#cart {
+	position: absolute;
+	top: 100%;
+	//aligns to bottom of nav
+	left: 0;
+	right: 0;
+	z-index: 10;
+
+	background-color: $white;
+	box-shadow: 0px 3px 12px rgba(0, 0, 0, 0.14);
+	border-left: 5px solid $dark-grey;
+	border-bottom: 5px solid $dark-grey;
+	border-radius: 0 0 6px 6px;
+
+	transform-origin: top;
+
+	//Option/qty/remove form
+	form {
+		display: grid;
+		gap: 3vw;
+		place-items: center;
+		font-size: .75rem;
+
+		@media (min-width: 600px) {
+			gap: 1.5vw;
+		}
+	}
+
+}
+
+nav aside {
+	display: grid;
+	background-color: $white;
+}
+
+#cart-button-span {
+	display: grid;
+	place-items: end;
+	gap: 1vw;
+}
+
+#cart-button-span>svg {
+	width: 45%;
+}
+
+
+#cart svg {
+	max-width: 25px;
+}
+
+.cart-products {
+	display: grid;
+}
+
+#cart button {
+	background-color: $white;
+	color: $black;
+}
+
+.cart-products {
+	place-items: center;
+}
+
+.cart-products>img {
+	grid-row: span 2;
+}
+
+.cart-products>h3,
+.cart-products>form {
+	grid-column: 2;
+}
+
+#checkout-button {
+	justify-self: center;
+	margin: 1vw;
+}
+
+@media (max-width: 599px) {
+	#checkout-button {
+		margin: 6vw;
+	}
+}
+
+#checkout-button-span {
+	/* display: grid;
+      place-items: center;
+      grid-auto-flow: column; */
+	display: flex;
+	align-items: center;
+	padding: 15px;
+	gap: 10px;
+
+	border: 1px solid $option-border;
+	border-radius: 5px;
+	background-color: $option-bg;
+}
+
+#checkout-button-span>svg {
+	width: 20px;
+}
+
+#cart .quantities {
+	/* display: grid;
+      grid-auto-flow: column;
+      place-items: center; */
+	display: flex;
+	align-items: center;
+	width: 85%;
+	justify-content: space-around;
+}
+
+@media (max-width: 349px) {
+	.cart-products {
+		place-content: center;
+		grid-auto-columns: 35vw;
+	}
+
+	#cart .cart-products img {
+		width: 100%;
+	}
+}
+
+@media (max-width: 320px) {
+	#cart .cart-products img {
+		width: 60%;
+	}
+}
+
+@media (min-width: 350px) and (max-width: 599px) {
+	#cart {
+		width: 100vw;
+		position: absolute;
+		top: 100%;
+		z-index: 2;
+		background-color: $white;
+		display: grid;
+		justify-self: end;
+		gap: 1vw;
+		border-left: none;
+		border-bottom: 5px solid $dark-grey;
+	}
+
+	.cart-products {
+		gap: 3vw;
+		grid-auto-columns: minmax(40vw, 1fr);
+		margin-bottom: 1rem;
+	}
+
+	.cart-products>img {
+		justify-self: end;
+		align-self: center;
+		width: 70%;
+	}
+
+	.cart-products>h3,
+	.cart-products>form {
+		justify-self: start;
+		align-self: center;
+		width: 100%;
+		margin: 0;
+	}
+}
+
+@media (min-width: 600px) {
+	#cart {
+		position: absolute;
+		top: 100%;
+		z-index: 2;
+		background-color: $white;
+		display: grid;
+		justify-self: end;
+		gap: 1vw;
+		border-left: 5px solid $dark-grey;
+		border-bottom: 5px solid $dark-grey;
+	}
+
+	.cart-products {
+		place-items: center;
+		grid-auto-columns: minmax(200px, 1fr);
+	}
+
+	.quantities {
+		grid-auto-columns: minmax(60px, 1fr);
+	}
+}
+
+.cart-totals {
+	display: flex;
+	flex-flow: column;
+	align-items: end;
+	gap: 10px;
+	width: 80%;
+	margin: 0 auto;
+	color: $black;
+	text-align: center;
+}
+
+#empty-cart {
+	color: $black;
+	padding: 10px;
+	text-align: center;
+}
+
+/* FINAL responsive cart layout — overrides old styles above */
+
+.cart-products {
+	display: grid;
+	gap: 1rem;
+	padding: 1rem;
+	border-bottom: 1px solid $review-border;
+}
+
+/* Mobile: stack vertically */
+@media (max-width: 599px) {
+	.cart-products {
+		grid-template-columns: 1fr;
+		justify-items: center;
+		text-align: center;
+	}
+
+	.cart-products>img {
+		width: 80%;
+		max-width: 200px;
+		aspect-ratio: 3 / 2;
+		object-fit: cover;
+	}
+
+	.cart-products>h3 {
+		margin: 0.5rem 0;
+	}
+
+	.cart-products>form {
+		width: 100%;
+	}
+}
+
+/* Desktop: side-by-side layout */
+@media (min-width: 600px) {
+	.cart-products {
+		grid-template-columns: 1fr 2fr;
+		align-items: center;
+	}
+
+	.cart-products>img {
+		width: 100%;
+		max-width: 150px;
+		aspect-ratio: 3 / 2;
+		object-fit: cover;
+		justify-self: center;
+	}
+
+	.cart-products>h3 {
+		margin: 0;
+		align-self: start;
+	}
+
+	.cart-products>form {
+		width: 100%;
+	}
+}
+
+.remove-items {
+	background-color: $option-bg !important;
+}
+
+#cart-final-total {
+	font-size: 1rem;
+}
