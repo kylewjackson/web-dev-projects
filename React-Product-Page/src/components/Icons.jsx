@@ -1,5 +1,3 @@
-import React from 'react';
-
 function CartIcon(props) {
     return (
         <svg viewBox="0 0 161 118" fill={props.fillColor} xmlns="http://www.w3.org/2000/svg">
@@ -110,4 +108,4 @@ function ThumbsDownIcon(props) {
     );
 };
 
-export {CartIcon, CloseArrowIcon, StarIcon, StarOutline, StarHalf, StarHalfNoOutline, PlusIcon, MinusIcon, ThumbsUpIcon, ThumbsDownIcon};
+export { CartIcon, CloseArrowIcon, StarIcon, StarOutline, StarHalf, StarHalfNoOutline, PlusIcon, MinusIcon, ThumbsUpIcon, ThumbsDownIcon };

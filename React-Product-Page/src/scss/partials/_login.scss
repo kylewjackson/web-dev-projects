@@ -1,0 +1,10 @@
+@use './variables' as *;
+
+#login-form,
+#sign-up-form {
+	display: flex;
+	flex-flow: column;
+	padding: 20px;
+	gap: 15px;
+	width: 200px;
+}
