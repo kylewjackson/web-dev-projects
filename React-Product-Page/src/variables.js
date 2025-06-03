@@ -6,6 +6,7 @@ export const imagePath = process.env.PUBLIC_URL + '/images/';
 export const colorWhite = '#EFEFEF';
 export const colorBlack = '#0F0F0F';
 export const colorDarkGrey = '#383838';
+export const colorLightGrey = 'rgba(56, 56, 56, 0.25)';
 export const colorYellow = '#FFF59B';
 export const colorRed = '#9E1800';
 

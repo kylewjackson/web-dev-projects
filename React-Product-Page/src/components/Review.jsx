@@ -1,6 +1,6 @@
 import { Rating } from "./Rating";
 import { ThumbsUpIcon, ThumbsDownIcon, StarIcon } from "./Icons";
-import { maxRating, colorDarkGrey, colorRed } from "../variables";
+import { maxRating, colorDarkGrey, colorRed, colorLightGrey } from "../variables";
 
 export function ReviewDisplay(props) {
 	return (
@@ -200,7 +200,7 @@ export function ReviewRatingInputs(props) {
 	const num = props.reviews.filter(review => review.publishedRating === props.val).length;
 	for (let i = 0; i < props.val; i++) {
 		stars.push(
-			<StarIcon key={`${props.val}-star-${i + 1}`} fillColor={colorDarkGrey} />
+			<StarIcon key={`${props.val}-star-${i + 1}`} fillColor={ num !== 0 ? colorDarkGrey : colorLightGrey } />
 		);
 	};
 	return (
