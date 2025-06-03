@@ -227,7 +227,7 @@ export function Review(props) {
 	const kindOfClass = props.userId === props.currentUser && props.editOpen ? "current-user reviews active" : props.userId === props.currentUser ? "current-user reviews" : "reviews";
 	return (
 		<article id={`${props.userId}-review`} className={kindOfClass}>
-			<h4 className="names">{props.user.toUpperCase()}{props.currentUser && ' (Your Review)'}</h4>
+			<h4 className="names">{props.user.toUpperCase()}{props.userId === props.currentUser && ' (Your Review)'}</h4>
 			<span className="dates">{props.date}</span>
 			{props.editOpen && props.userId === props.currentUser ? (
 				<WriteProductReview
@@ -315,7 +315,7 @@ export function Feedback(props) {
 				tabIndex={props.modal ? -1 : null}
 			>
 				<ThumbsUpIcon
-					fillColor={thumbed === 'up' ? 'green' : colorDarkGrey}
+					fillColor={thumbed === 'up' ? colorRed : colorDarkGrey}
 					opacity={thumbed === 'up' ? 1 : thumbed === 'down' ? 0.25 : props.feedback.down < props.feedback.up ? 1 : 0.25}
 				/>
 				({props.feedback.up})

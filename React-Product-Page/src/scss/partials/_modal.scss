@@ -16,20 +16,22 @@
 	.btn--modal-two-line {
 		display: flex;
 		flex-flow: column;
+		align-items: center;
 		gap: 5px;
 	}
 }
 
 .modal-window {
+	display: grid;
 	place-items: center;
-	place-content: center;
 	background-color: white;
-	grid-auto-columns: minmax(40vw, 75vw);
-	min-height: 20vh;
-	max-width: 80vw;
+	max-width: 95vw;
+	box-shadow: 0 4px 16px rgba(0, 0, 0, 0.35);
 
 	&--with-image {
-		display: grid;
+		// grid-auto-columns: minmax(40vw, 75vw);
+		place-content: center;
+		min-height: 20vh;
 
 		@media (min-width: 600px) {
 			max-width: 60vw;

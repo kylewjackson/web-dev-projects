@@ -74,7 +74,6 @@ export default class Modal extends React.Component {
 			this.props.btn && typeof this.props.btn.rmv === 'number' ? (
 				[
 					<button
-						className='mr-10'
 						type="button"
 						key="confirm-remove"
 						ref={this.buttonFocus}

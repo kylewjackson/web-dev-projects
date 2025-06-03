@@ -35,11 +35,31 @@ ol {
 	list-style-type: none;
 }
 
+input,
+select,
+textarea {
+	font-size: 16px;
+}
+
 button {
 	border: 1px solid $option-border;
 	border-radius: 5px;
 	background-color: $option-bg;
 	padding: 5px;
+	color: $black;
+}
+
+[type="radio"] {
+	accent-color: $red;
+}
+
+button:disabled,
+input:disabled {
+	color: rgba($black, 0.4);
+
+	&:hover {
+		cursor: not-allowed;
+	}
 }
 
 button:focus,
@@ -58,11 +78,21 @@ form .options label {
 	}
 }
 
+select {
+	color: $black;
+}
+
 button:hover,
-select:hover {
+select:hover,
+input:hover {
 	cursor: pointer;
 }
 
 .mr-10 {
 	margin-right: 10px !important;
+}
+
+.comments {
+	word-break: break-word;
+	overflow-wrap: anywhere;
 }
