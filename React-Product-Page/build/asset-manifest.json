@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/React-Product-Page/build/static/css/main.faf56b3c.css",
+    "main.js": "/React-Product-Page/build/static/js/main.6042ce66.js",
+    "index.html": "/React-Product-Page/build/index.html",
+    "main.faf56b3c.css.map": "/React-Product-Page/build/static/css/main.faf56b3c.css.map",
+    "main.6042ce66.js.map": "/React-Product-Page/build/static/js/main.6042ce66.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.faf56b3c.css",
+    "static/js/main.6042ce66.js"
+  ]
+}

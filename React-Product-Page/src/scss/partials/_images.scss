@@ -1,0 +1,28 @@
+@use './variables' as *;
+
+@media (max-width: 349px) {
+	#cart .thumbnails {
+		width: 50%;
+	}
+}
+
+@media (max-width: 420px) {
+	#cart .thumbnails {
+		width: 85%;
+	}
+}
+
+@media (min-width: 600px) {
+	#cart .thumbnails {
+		width: 120px;
+	}
+}
+
+.main-image {
+	width: 100%;
+}
+
+//Thumbnails
+figure>ol>li>button>img {
+	max-width: 100%;
+}

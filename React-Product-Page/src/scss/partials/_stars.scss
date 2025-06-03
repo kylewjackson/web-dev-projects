@@ -1,0 +1,10 @@
+@use './variables' as *;
+
+main form button:not(.stars) {
+	width: 100%;
+}
+
+.stars {
+	background-color: unset;
+	border: unset;
+}

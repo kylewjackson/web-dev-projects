@@ -1,5 +1,7 @@
 Rawr-You-The-One/.DS_Store
 .DS_Store
+node_modules
+**/node_modules/
 
 # Local Netlify folder
 .netlify
