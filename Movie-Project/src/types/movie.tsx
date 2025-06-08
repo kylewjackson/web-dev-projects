@@ -1,5 +1,6 @@
 import type { JSX } from "react";
 
+//Title + Year format for various contexts
 type FormatTitleOptions = {
   title: string;
   year: Year;
