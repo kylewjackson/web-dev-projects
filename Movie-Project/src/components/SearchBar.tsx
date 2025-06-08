@@ -1,10 +1,10 @@
 import { useId, useState } from "react";
 
 type Props = {
-	onSearch: (query: string) => void;
-}
+  onSearch: (query: string) => void;
+};
 
-export default function SearchBar({onSearch}: Props) {
+export default function SearchBar({ onSearch }: Props) {
   const [query, setQuery] = useState("");
   const searchId = useId();
 
@@ -15,8 +15,8 @@ export default function SearchBar({onSearch}: Props) {
   }
 
   return (
-		//gx-1 class to correct Bootstrap floating form padding
-    <form onSubmit={handleSearch} className="row gx-1">
+    //gx-1 class to correct Bootstrap floating form padding
+    <form onSubmit={handleSearch} className="mb-4 row gx-1">
       <div className="form-floating col-9">
         <input
           id={searchId}
@@ -29,9 +29,13 @@ export default function SearchBar({onSearch}: Props) {
         />
         <label htmlFor={searchId}>Search Movies:</label>
       </div>
-      <button type="submit" className="col-3 btn btn-primary" disabled={!query.trim()}>
-          Search
-        </button>
+      <button
+        type="submit"
+        className="col-3 btn btn-primary"
+        disabled={!query.trim()}
+      >
+        Search
+      </button>
     </form>
   );
 }
