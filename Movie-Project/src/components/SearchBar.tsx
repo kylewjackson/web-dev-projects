@@ -15,6 +15,7 @@ export default function SearchBar({onSearch}: Props) {
   }
 
   return (
+		//gx-1 class to correct Bootstrap floating form padding
     <form onSubmit={handleSearch} className="row gx-1">
       <div className="form-floating col-9">
         <input
