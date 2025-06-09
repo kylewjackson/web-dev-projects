@@ -23,10 +23,10 @@ export function formatTitleWithYear({
   return `${title} (${year})`;
 }
 
-//Future proofing for eventual API usage
-type Year = number & { __brand: "Year" };
+export type Year = number & { __brand: "Year" };
 
-export function makeYear(year: number) {
+export function makeYear(input: string | number): Year {
+  const year = typeof input === "string" ? Number(input.split("-")[0]) : input;
   if (!Number.isInteger(year) || year < 1888) {
     throw new ReferenceError("Invalid year: must be an integer ≥ 1888");
   }
