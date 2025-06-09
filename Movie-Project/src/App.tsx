@@ -1,7 +1,8 @@
 import { useState } from "react";
 import MovieCard from "./components/MovieCard";
 import SearchBar from "./components/SearchBar";
-import { type Movie, makeYear } from "./types/movie";
+import { type Movie } from "./types/movie";
+import { makeYear } from "./utils/movie";
 
 function Main() {
   const [movieResults, setMovieResults] = useState<Movie[]>([]);

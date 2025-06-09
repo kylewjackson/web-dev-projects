@@ -1,4 +1,5 @@
-import { type Movie, formatTitleWithYear } from "../types/movie";
+import { type Movie } from "../types/movie";
+import { formatTitleWithYear } from "../utils/movie";
 
 type Props = {
   movie: Movie;
