@@ -9,7 +9,7 @@ function Main() {
 
   //Communicate with SearchBar
   function onSearch(query: string) {
-		setHasSearched(true);
+    setHasSearched(true);
     console.log("Searching for:", query);
     //Mock results
     setMovieResults([
