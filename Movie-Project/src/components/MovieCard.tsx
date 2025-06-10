@@ -1,12 +1,12 @@
 import { type Movie } from "../types/movie";
-import { formatTitleWithYear } from "../utils/movie";
+import { formatTitleWithYear } from "../utils/movieUtils";
 
 type Props = {
   movie: Movie;
 };
 
 export default function MovieCard({ movie }: Props) {
-  const { title, year, poster } = movie;
+  const { title, year, poster, overview } = movie;
   return (
     <div className="card mb-3">
       <div className="row">
@@ -22,6 +22,7 @@ export default function MovieCard({ movie }: Props) {
             <h3 className="card-title">
               {formatTitleWithYear({ title, year, variant: "card" })}
             </h3>
+            <p className="card-text truncate-5">{overview}</p>
           </div>
         </div>
       </div>

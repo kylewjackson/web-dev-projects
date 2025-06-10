@@ -5,7 +5,7 @@ export type FormatTitleOptions = {
   variant?: "card" | "raw";
 };
 
-export type Year = number & { __brand: "Year" };
+export type Year = (number & { __brand: "Year" }) | null;
 
 export type Movie = {
   id: string;

@@ -1,6 +1,6 @@
 import type { Movie } from "../types/movie";
 import type { MovieApiResponse, MovieApiResult } from "../types/tmdb";
-import { makeYear } from "../utils/movie";
+import { makeYear } from "../utils/movieUtils";
 
 export function mapMovieResultToMovie(result: MovieApiResult): Movie {
   return {
@@ -26,7 +26,6 @@ export async function fetchMovies(query: string): Promise<Movie[]> {
     }
 
     const json: MovieApiResponse = await response.json();
-    console.log(json); //Remove after testing
     return json.results.map(mapMovieResultToMovie);
   } catch (error) {
     console.error(error);
