@@ -1,11 +1,12 @@
-import { useId, useState } from "react";
+import { useId } from "react";
 
 type Props = {
   onSearch: (query: string) => void;
+  query: string;
+  setQuery: (query: string) => void;
 };
 
-export default function SearchBar({ onSearch }: Props) {
-  const [query, setQuery] = useState("");
+export default function SearchBar({ onSearch, query, setQuery }: Props) {
   const searchId = useId();
 
   function handleSearch(e: React.FormEvent<HTMLFormElement>) {
