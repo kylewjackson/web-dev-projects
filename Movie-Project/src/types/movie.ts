@@ -12,4 +12,5 @@ export type Movie = {
   title: string;
   year: Year;
   poster: string;
+  overview: string;
 };
