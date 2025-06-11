@@ -36,7 +36,7 @@ function Main({
       if (movies.length > 0) {
         setAriaMessage(
           `Found ${movies.length} result${
-            movies.length > 1 && "s"
+            movies.length === 1 ? "" : "s"
           } for ${query}`
         );
       } else {

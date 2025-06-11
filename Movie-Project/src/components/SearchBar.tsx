@@ -44,7 +44,7 @@ export default function SearchBar({
       <button
         type="submit"
         className="col-3 btn btn-primary"
-        disabled={apiLoading && !query.trim()}
+        disabled={apiLoading || !query.trim()}
       >
         Search
       </button>
