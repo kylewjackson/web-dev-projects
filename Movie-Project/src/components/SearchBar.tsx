@@ -1,11 +1,20 @@
-import { useId, useState } from "react";
+import { useId } from "react";
 
 type Props = {
   onSearch: (query: string) => void;
+  query: string;
+  setQuery: (query: string) => void;
+  apiLoading: boolean;
+  setHasSearched: (val: boolean) => void;
 };
 
-export default function SearchBar({ onSearch }: Props) {
-  const [query, setQuery] = useState("");
+export default function SearchBar({
+  onSearch,
+  query,
+  setQuery,
+  apiLoading,
+  setHasSearched,
+}: Props) {
   const searchId = useId();
 
   function handleSearch(e: React.FormEvent<HTMLFormElement>) {
@@ -23,7 +32,10 @@ export default function SearchBar({ onSearch }: Props) {
           type="search"
           name="searchQuery"
           value={query}
-          onChange={(e) => setQuery(e.target.value)}
+          onChange={(e) => {
+            setQuery(e.target.value);
+            setHasSearched(false);
+          }}
           placeholder=" " //For Bootstrap floating form
           className="form-control"
         />
@@ -32,7 +44,7 @@ export default function SearchBar({ onSearch }: Props) {
       <button
         type="submit"
         className="col-3 btn btn-primary"
-        disabled={!query.trim()}
+        disabled={apiLoading || !query.trim()}
       >
         Search
       </button>
