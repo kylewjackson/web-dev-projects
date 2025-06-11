@@ -11,6 +11,8 @@ type Props = {
   apiError: Error | null;
   setApiError: (error: Error | null) => void;
   setAriaMessage: (message: string) => void;
+	watchlist: Movie[],
+	setWatchlist: (results: Movie[]) => void;
 };
 
 function Main({
@@ -19,6 +21,8 @@ function Main({
   apiError,
   setApiError,
   setAriaMessage,
+	watchlist,
+	setWatchlist
 }: Props) {
   const [movieResults, setMovieResults] = useState<Movie[]>([]);
   const [hasSearched, setHasSearched] = useState(false);
@@ -116,6 +120,7 @@ function App() {
   const [apiLoading, setApiLoading] = useState<boolean>(false);
   const [apiError, setApiError] = useState<Error | null>(null);
   const [ariaMessage, setAriaMessage] = useState<string>("");
+	const [watchlist, setWatchlist] = useState<Movie[]>([]);
 
   return (
     <div className="container py-4">
@@ -132,6 +137,8 @@ function App() {
         setApiLoading={setApiLoading}
         setApiError={setApiError}
         setAriaMessage={setAriaMessage}
+				watchlist={watchlist}
+				setWatchlist={setWatchlist}
       />
     </div>
   );
