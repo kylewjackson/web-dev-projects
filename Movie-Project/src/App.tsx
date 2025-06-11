@@ -1,138 +1,16 @@
 import "./App.css";
+import Logo from "./assets/logo.svg";
 import { useState } from "react";
-import MovieCard from "./components/MovieCard";
-import SearchBar from "./components/SearchBar";
 import { type Movie } from "./types/movie";
-import { fetchMovies } from "./api/tmdb";
-
-type Props = {
-  apiLoading: boolean;
-  setApiLoading: (loading: boolean) => void;
-  apiError: Error | null;
-  setApiError: (error: Error | null) => void;
-  setAriaMessage: (message: string) => void;
-  watchlist: Movie[];
-  setWatchlist: React.Dispatch<React.SetStateAction<Movie[]>>;
-};
-
-function Main({
-  apiLoading,
-  setApiLoading,
-  apiError,
-  setApiError,
-  setAriaMessage,
-  watchlist,
-  setWatchlist,
-}: Props) {
-  const [movieResults, setMovieResults] = useState<Movie[]>([]);
-  const [hasSearched, setHasSearched] = useState(false);
-  const [query, setQuery] = useState<string>("");
-
-  //Communicate with SearchBar
-  async function onSearch(query: string) {
-    setApiLoading(true);
-    setAriaMessage(`Loading results for ${query}`);
-    setApiError(null);
-    setHasSearched(true);
-    try {
-      const movies = await fetchMovies(query);
-      setMovieResults(movies);
-      if (movies.length > 0) {
-        setAriaMessage(
-          `Found ${movies.length} result${
-            movies.length === 1 ? "" : "s"
-          } for ${query}`
-        );
-      } else {
-        setAriaMessage(
-          `No results found for ${query}. Please try a new search.`
-        );
-      }
-    } catch (error) {
-      if (error instanceof Error) {
-        setApiError(error);
-        console.log(error);
-      }
-      setMovieResults([]);
-      setAriaMessage("Something went wrong. Please try a new search.");
-    } finally {
-      setApiLoading(false);
-    }
-  }
-
-  function onAddToWatchlist(movie: Movie) {
-    setWatchlist((previousWatchlist) =>
-      previousWatchlist.some((listMovie) => listMovie.id === movie.id)
-        ? previousWatchlist
-        : [movie, ...previousWatchlist]
-    );
-  }
-
-  // useEffect(() => {
-  //   if (hasSearched && query !== "") {
-  //     console.log("Query change: " + query);
-  // 		fetchMovies(query);
-  //   }
-  // }, [query, hasSearched]);
-
-  return (
-    <main className="row justify-content-center">
-      <section className="col-11 col-lg-6">
-        <SearchBar
-          onSearch={onSearch}
-          query={query}
-          setQuery={setQuery}
-          apiLoading={apiLoading}
-          setHasSearched={setHasSearched}
-        />
-        {apiLoading && (
-          <div className="text-center">
-            <div className="spinner-border" role="status">
-              <span className="visually-hidden">Loading results...</span>
-            </div>
-          </div>
-        )}
-        {apiError && (
-          <div className="alert alert-danger">
-            Something went wrong: {apiError.message}
-          </div>
-        )}
-        {movieResults.length > 0 ? (
-          <>
-            <div className="alert alert-info">
-              {movieResults.length} result{movieResults.length > 1 && "s"} found
-            </div>
-            <ul className="list-unstyled">
-              {movieResults.map((movie) => (
-                <li key={movie.id}>
-                  <MovieCard
-                    movie={movie}
-                    watchlist={watchlist}
-                    onAddToWatchlist={onAddToWatchlist}
-                  />
-                </li>
-              ))}
-            </ul>
-          </>
-        ) : (
-          movieResults.length === 0 &&
-          hasSearched &&
-          !apiLoading && (
-            <p className="alert alert-warning text-center">
-              No results found for {query}. Please try a new search.
-            </p>
-          )
-        )}
-      </section>
-    </main>
-  );
-}
+import Main from "./views/Main";
+import WatchlistView from "./views/WatchlistView";
 
 function App() {
   const [apiLoading, setApiLoading] = useState<boolean>(false);
   const [apiError, setApiError] = useState<Error | null>(null);
   const [ariaMessage, setAriaMessage] = useState<string>("");
   const [watchlist, setWatchlist] = useState<Movie[]>([]);
+  const [view, setView] = useState("main");
 
   return (
     <div className="container py-4">
@@ -140,18 +18,69 @@ function App() {
       <div id="announce" aria-live="polite" className="visually-hidden">
         <p>{ariaMessage}</p>
       </div>
-      <header className="text-center mb-2">
-        <h1>Movie Watchlist</h1>
+      <header className="text-center mb-4">
+        <nav className="navbar navbar-expand-sm bg-body-tertiary">
+          <div className="container-fluid">
+            <button className="nav-link" onClick={() => setView("main")}>
+              <h1 className="navbar-brand mb-0 d-flex align-items-center">
+                <img
+                  src={Logo}
+                  alt="Movie Watchlist App"
+                  width={30}
+                  height={40}
+                />
+                <p className="d-sm-none m-0 ps-3">Watchlist App</p>
+              </h1>
+            </button>
+            <button
+              className="navbar-toggler"
+              type="button"
+              data-bs-toggle="collapse"
+              data-bs-target="#Navbar"
+              aria-controls="Navbar"
+              aria-expanded="false"
+              aria-label="Toggle navigation"
+            >
+              <span className="navbar-toggler-icon"></span>
+            </button>
+            <div className="collapse navbar-collapse" id="Navbar">
+              <ul className="navbar-nav">
+                <button
+                  className={`nav-link ${view === "main" && "active"}`}
+                  aria-current={view === "main" && "page"}
+                  disabled={view === "main" && true}
+                  onClick={() => setView("main")}
+                >
+                  Search
+                </button>
+                <button
+                  className={`nav-link ${view === "watchlist" && "active"}`}
+                  aria-current={view === "watchlist" && "page"}
+                  onClick={() => setView("watchlist")}
+                  disabled={view === "watchlist" && true}
+                >
+                  Watchlist
+                </button>
+              </ul>
+            </div>
+          </div>
+        </nav>
       </header>
-      <Main
-        apiLoading={apiLoading}
-        apiError={apiError}
-        setApiLoading={setApiLoading}
-        setApiError={setApiError}
-        setAriaMessage={setAriaMessage}
-        watchlist={watchlist}
-        setWatchlist={setWatchlist}
-      />
+      {view === "main" ? (
+        <Main
+          apiLoading={apiLoading}
+          apiError={apiError}
+          setApiLoading={setApiLoading}
+          setApiError={setApiError}
+          setAriaMessage={setAriaMessage}
+          watchlist={watchlist}
+          setWatchlist={setWatchlist}
+        />
+      ) : (
+        view === "watchlist" && (
+          <WatchlistView watchlist={watchlist} setWatchlist={setWatchlist} />
+        )
+      )}
     </div>
   );
 }

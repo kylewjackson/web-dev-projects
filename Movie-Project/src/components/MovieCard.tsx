@@ -4,13 +4,15 @@ import { formatTitleWithYear } from "../utils/movieUtils";
 type Props = {
   movie: Movie;
   watchlist: Movie[];
-  onAddToWatchlist: (movie: Movie) => void;
+  onAddToWatchlist?: (movie: Movie) => void;
+  onRemoveFromWatchlist?: (movie: Movie) => void;
 };
 
 export default function MovieCard({
   movie,
   watchlist,
   onAddToWatchlist,
+  onRemoveFromWatchlist,
 }: Props) {
   const { title, year, poster, overview } = movie;
   const isInWatchlist = watchlist.some(
@@ -18,7 +20,11 @@ export default function MovieCard({
   );
 
   function handleAddToWatchlist() {
-    onAddToWatchlist(movie);
+    if (onAddToWatchlist) {
+      onAddToWatchlist(movie);
+    } else if (onRemoveFromWatchlist) {
+      onRemoveFromWatchlist(movie);
+    }
   }
 
   return (
@@ -39,11 +45,15 @@ export default function MovieCard({
             <p className="card-text truncate">{overview}</p>
             <button
               type="button"
-              className="btn btn-sm btn-outline-primary"
+              className={`btn btn-sm ${
+                onAddToWatchlist ? "btn-outline-primary" : "btn-danger"
+              }`}
               onClick={handleAddToWatchlist}
-              disabled={isInWatchlist && true}
+              disabled={onAddToWatchlist && isInWatchlist && true}
             >
-              {isInWatchlist ? "In" : "Add to"} Watchlist
+              {onAddToWatchlist
+                ? `${isInWatchlist ? "In" : "Add to"} Watchlist`
+                : "Remove From Watchlist"}
             </button>
           </div>
         </div>
