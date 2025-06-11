@@ -1,8 +1,16 @@
-.truncate-5 {
+.truncate {
 	display: -webkit-box;
-	line-clamp: 5;
-	-webkit-line-clamp: 5;
+	line-clamp: 3;
 	/* number of lines */
+	-webkit-line-clamp: 3;
 	-webkit-box-orient: vertical;
 	overflow: hidden;
+}
+
+@media (min-width: 769px) {
+	.truncate {
+		line-clamp: 5;
+		/* number of lines */
+		-webkit-line-clamp: 5;
+	}
 }
