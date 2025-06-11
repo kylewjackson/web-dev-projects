@@ -11,8 +11,8 @@ type Props = {
   apiError: Error | null;
   setApiError: (error: Error | null) => void;
   setAriaMessage: (message: string) => void;
-	watchlist: Movie[],
-	setWatchlist: (results: Movie[]) => void;
+  watchlist: Movie[];
+  setWatchlist: React.Dispatch<React.SetStateAction<Movie[]>>;
 };
 
 function Main({
@@ -21,8 +21,8 @@ function Main({
   apiError,
   setApiError,
   setAriaMessage,
-	watchlist,
-	setWatchlist
+  watchlist,
+  setWatchlist,
 }: Props) {
   const [movieResults, setMovieResults] = useState<Movie[]>([]);
   const [hasSearched, setHasSearched] = useState(false);
@@ -58,6 +58,14 @@ function Main({
     } finally {
       setApiLoading(false);
     }
+  }
+
+  function onAddToWatchlist(movie: Movie) {
+    setWatchlist((previousWatchlist) =>
+      previousWatchlist.some((listMovie) => listMovie.id === movie.id)
+        ? previousWatchlist
+        : [movie, ...previousWatchlist]
+    );
   }
 
   // useEffect(() => {
@@ -97,7 +105,11 @@ function Main({
             <ul className="list-unstyled">
               {movieResults.map((movie) => (
                 <li key={movie.id}>
-                  <MovieCard movie={movie} />
+                  <MovieCard
+                    movie={movie}
+                    watchlist={watchlist}
+                    onAddToWatchlist={onAddToWatchlist}
+                  />
                 </li>
               ))}
             </ul>
@@ -120,7 +132,7 @@ function App() {
   const [apiLoading, setApiLoading] = useState<boolean>(false);
   const [apiError, setApiError] = useState<Error | null>(null);
   const [ariaMessage, setAriaMessage] = useState<string>("");
-	const [watchlist, setWatchlist] = useState<Movie[]>([]);
+  const [watchlist, setWatchlist] = useState<Movie[]>([]);
 
   return (
     <div className="container py-4">
@@ -137,8 +149,8 @@ function App() {
         setApiLoading={setApiLoading}
         setApiError={setApiError}
         setAriaMessage={setAriaMessage}
-				watchlist={watchlist}
-				setWatchlist={setWatchlist}
+        watchlist={watchlist}
+        setWatchlist={setWatchlist}
       />
     </div>
   );

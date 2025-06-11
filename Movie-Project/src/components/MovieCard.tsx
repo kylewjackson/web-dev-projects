@@ -3,10 +3,24 @@ import { formatTitleWithYear } from "../utils/movieUtils";
 
 type Props = {
   movie: Movie;
+  watchlist: Movie[];
+  onAddToWatchlist: (movie: Movie) => void;
 };
 
-export default function MovieCard({ movie }: Props) {
+export default function MovieCard({
+  movie,
+  watchlist,
+  onAddToWatchlist,
+}: Props) {
   const { title, year, poster, overview } = movie;
+  const isInWatchlist = watchlist.some(
+    (listMovie) => listMovie.id === movie.id
+  );
+
+  function handleAddToWatchlist() {
+    onAddToWatchlist(movie);
+  }
+
   return (
     <div className="card mb-3">
       <div className="row">
@@ -23,6 +37,14 @@ export default function MovieCard({ movie }: Props) {
               {formatTitleWithYear({ title, year, variant: "card" })}
             </h3>
             <p className="card-text truncate">{overview}</p>
+            <button
+              type="button"
+              className="btn btn-sm btn-outline-primary"
+              onClick={handleAddToWatchlist}
+              disabled={isInWatchlist && true}
+            >
+              {isInWatchlist ? "In" : "Add to"} Watchlist
+            </button>
           </div>
         </div>
       </div>
