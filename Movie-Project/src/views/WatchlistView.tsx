@@ -8,8 +8,7 @@ type Props = {
 
 export default function WatchlistView({ watchlist, setWatchlist }: Props) {
   function onRemoveFromWatchlist(movie: Movie) {
-    setWatchlist(watchlist.filter((listMovie) => listMovie.id !== movie.id)
-    );
+    setWatchlist(watchlist.filter((listMovie) => listMovie.id !== movie.id));
   }
   return (
     <main className="row justify-content-center">

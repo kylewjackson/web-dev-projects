@@ -108,6 +108,9 @@ export default function Main({
                     movie={movie}
                     watchlist={watchlist}
                     onAddToWatchlist={onAddToWatchlist}
+                    isInWatchlist={watchlist.some(
+                      (listMovie) => listMovie.id === movie.id
+                    )}
                   />
                 </li>
               ))}

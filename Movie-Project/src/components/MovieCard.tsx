@@ -6,18 +6,16 @@ type Props = {
   watchlist: Movie[];
   onAddToWatchlist?: (movie: Movie) => void;
   onRemoveFromWatchlist?: (movie: Movie) => void;
+  isInWatchlist?: boolean;
 };
 
 export default function MovieCard({
   movie,
-  watchlist,
   onAddToWatchlist,
   onRemoveFromWatchlist,
+  isInWatchlist,
 }: Props) {
   const { title, year, poster, overview } = movie;
-  const isInWatchlist = watchlist.some(
-    (listMovie) => listMovie.id === movie.id
-  );
 
   function handleAddToWatchlist() {
     if (onAddToWatchlist) {
