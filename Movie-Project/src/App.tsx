@@ -1,31 +1,17 @@
 import "./App.css";
 import Logo from "./assets/logo.svg";
-import { useEffect, useState } from "react";
-import { type Movie } from "./types/movie";
+import { useState } from "react";
 import Main from "./views/Main";
 import WatchlistView from "./views/WatchlistView";
+import useLocalStorage from "./hooks/useLocalStorage";
+import type { Movie } from "./types/movie";
 
 function App() {
   const [view, setView] = useState("main");
   const [apiLoading, setApiLoading] = useState<boolean>(false);
   const [apiError, setApiError] = useState<Error | null>(null);
   const [ariaMessage, setAriaMessage] = useState<string>("");
-  const [watchlist, setWatchlist] = useState<Movie[]>(() => {
-    const localWatchlist = localStorage.getItem("watchlist");
-    if (!localWatchlist) {
-      return [];
-    }
-    try {
-      return JSON.parse(localWatchlist) as Movie[];
-    } catch (error) {
-      console.error(`Failed to parse local watchlist JSON: ${error}`);
-      return [];
-    }
-  });
-
-  useEffect(() => {
-    localStorage.setItem("watchlist", JSON.stringify(watchlist));
-  }, [watchlist]);
+  const [watchlist, setWatchlist] = useLocalStorage<Movie[]>('watchlist', []);
 
   return (
     <div className="container py-4">
