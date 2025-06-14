@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { type Movie } from "../types/movie";
 import { formatTitleWithYear } from "../utils/movieUtils";
 
@@ -15,7 +16,8 @@ export default function MovieCard({
   onRemoveFromWatchlist,
   isInWatchlist,
 }: Props) {
-  const { title, year, poster, overview } = movie;
+  const { id, title, year, poster, overview } = movie;
+  const [expanded, setExpanded] = useState(false);
 
   function handleAddToWatchlist() {
     if (onAddToWatchlist) {
@@ -37,23 +39,47 @@ export default function MovieCard({
         </div>
         <div className="col-7 col-md-8">
           <div className="card-body p-1 p-md-3">
-            <h3 className="card-title">
+            <h2 className="card-title h4">
               {formatTitleWithYear({ title, year, variant: "card" })}
-            </h3>
-            <p className="card-text truncate">{overview}</p>
-            <button
-              type="button"
-              className={`btn btn-sm ${
-                onAddToWatchlist ? "btn-outline-primary" : "btn-danger"
-              }`}
-              onClick={handleAddToWatchlist}
-              disabled={onAddToWatchlist && isInWatchlist && true}
-            >
-              {onAddToWatchlist
-                ? `${isInWatchlist ? "In" : "Add to"} Watchlist`
-                : "Remove From Watchlist"}
-            </button>
+            </h2>
+            <div>
+              <button
+                type="button"
+                className={`btn btn-sm ${
+                  onAddToWatchlist ? "btn-outline-primary" : "btn-danger"
+                }`}
+                onClick={handleAddToWatchlist}
+                disabled={onAddToWatchlist && isInWatchlist && true}
+              >
+                {onAddToWatchlist
+                  ? `${isInWatchlist ? "In" : "Add to"} Watchlist`
+                  : "Remove From Watchlist"}
+              </button>
+            </div>
           </div>
+        </div>
+        <button
+          className="col-12 mt-2 btn btn-link text-dark-emphasis text-decoration-none"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target={`#collapse-${id}`}
+          aria-expanded="false"
+          aria-controls={`collapse-${id}`}
+          onClick={() => setExpanded(!expanded)}
+        >
+          {expanded === false ? (
+            <>
+              Show More <i className="bi bi-chevron-down"></i>
+            </>
+          ) : (
+            <>
+              Show Less <i className="bi bi-chevron-up"></i>
+            </>
+          )}
+        </button>
+        <div className="collapse col-11 mx-auto row" id={`collapse-${id}`}>
+					<h3 className="h5">Overview</h3>
+          <p>{overview}</p>
         </div>
       </div>
     </div>
