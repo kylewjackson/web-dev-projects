@@ -1,17 +1,19 @@
-import "./App.css";
-import Logo from "./assets/logo.svg";
 import { useState } from "react";
-import Main from "./views/Main";
+import { Routes, Route, Navigate } from "react-router";
+import type { Movie } from "./types/movie";
+import SearchResults from "./views/SearchResults";
 import WatchlistView from "./views/WatchlistView";
 import useLocalStorage from "./hooks/useLocalStorage";
-import type { Movie } from "./types/movie";
+import renderRoutes from "./utils/renderRoutes";
+import "./App.css";
+import Logo from "./assets/logo.svg";
 
 function App() {
   const [view, setView] = useState("main");
   const [apiLoading, setApiLoading] = useState<boolean>(false);
   const [apiError, setApiError] = useState<Error | null>(null);
   const [ariaMessage, setAriaMessage] = useState<string>("");
-  const [watchlist, setWatchlist] = useLocalStorage<Movie[]>('watchlist', []);
+  const [watchlist, setWatchlist] = useLocalStorage<Movie[]>("watchlist", []);
 
   return (
     <div className="container py-4">
@@ -67,21 +69,27 @@ function App() {
           </div>
         </nav>
       </header>
-      {view === "main" ? (
-        <Main
-          apiLoading={apiLoading}
-          apiError={apiError}
-          setApiLoading={setApiLoading}
-          setApiError={setApiError}
-          setAriaMessage={setAriaMessage}
-          watchlist={watchlist}
-          setWatchlist={setWatchlist}
+      <Routes>
+        {renderRoutes(
+          ["/", "/search"],
+          <SearchResults
+            apiLoading={apiLoading}
+            apiError={apiError}
+            setApiLoading={setApiLoading}
+            setApiError={setApiError}
+            setAriaMessage={setAriaMessage}
+            watchlist={watchlist}
+            setWatchlist={setWatchlist}
+          />
+        )}
+        <Route
+          path="/watchlist"
+          element={
+            <WatchlistView watchlist={watchlist} setWatchlist={setWatchlist} />
+          }
         />
-      ) : (
-        view === "watchlist" && (
-          <WatchlistView watchlist={watchlist} setWatchlist={setWatchlist} />
-        )
-      )}
+        <Route path="*" element={<Navigate to="/search" replace />} />
+      </Routes>
     </div>
   );
 }

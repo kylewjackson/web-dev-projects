@@ -1,8 +1,8 @@
 import { useState } from "react";
 import { fetchMovies } from "../api/tmdb";
+import type { Movie } from "../types/movie";
 import MovieCard from "../components/MovieCard";
 import SearchBar from "../components/SearchBar";
-import type { Movie } from "../types/movie";
 
 type Props = {
   apiLoading: boolean;
@@ -14,7 +14,7 @@ type Props = {
   setWatchlist: React.Dispatch<React.SetStateAction<Movie[]>>;
 };
 
-export default function Main({
+export default function SearchResults({
   apiLoading,
   setApiLoading,
   apiError,
