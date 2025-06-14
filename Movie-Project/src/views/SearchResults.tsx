@@ -76,6 +76,7 @@ export default function SearchResults({
 
   return (
     <main className="row justify-content-center">
+      <h1 className="visually-hidden">Search for Movies</h1>
       <section className="col-11 col-lg-6">
         <SearchBar
           onSearch={onSearch}

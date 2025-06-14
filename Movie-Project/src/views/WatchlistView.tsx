@@ -12,6 +12,7 @@ export default function WatchlistView({ watchlist, setWatchlist }: Props) {
   }
   return (
     <main className="row justify-content-center">
+      <h1 className="visually-hidden">Your Watchlist</h1>
       <section className="col-11 col-lg-6">
         {watchlist.length > 0 ? (
           <ul className="list-unstyled">
