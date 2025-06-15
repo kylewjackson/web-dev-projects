@@ -9,7 +9,7 @@ export default function useLocalStorage<T>(key: string, initialValue: T) {
     try {
       return JSON.parse(localStorageObject) as T;
     } catch (error) {
-      console.error(`Failed to parse local watchlist JSON: ${error}`);
+      console.error(`Failed to parse local JSON: ${error}`);
       return initialValue;
     }
   });

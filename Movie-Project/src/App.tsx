@@ -1,10 +1,11 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Routes, Route, Navigate, NavLink, Link } from "react-router";
-import type { Movie } from "./types/movie";
+import type { GenreMap, Movie } from "./types/movie";
 import SearchResults from "./views/SearchResults";
 import WatchlistView from "./views/WatchlistView";
 import useLocalStorage from "./hooks/useLocalStorage";
 import renderRoutes from "./utils/renderRoutes";
+import { createGenreMap, getGenres } from "./api/tmdb";
 import "./App.css";
 import Logo from "./assets/logo.svg";
 
@@ -12,7 +13,18 @@ function App() {
   const [apiLoading, setApiLoading] = useState<boolean>(false);
   const [apiError, setApiError] = useState<Error | null>(null);
   const [ariaMessage, setAriaMessage] = useState<string>("");
+  const [genreMap, setGenreMap] = useState<GenreMap>({});
   const [watchlist, setWatchlist] = useLocalStorage<Movie[]>("watchlist", []);
+
+  useEffect(() => {
+    //Init genres at start
+    async function loadGenres() {
+      const genres = createGenreMap(await getGenres());
+      setGenreMap(genres);
+    }
+
+    loadGenres();
+  });
 
   return (
     <div className="container py-4">
@@ -75,6 +87,7 @@ function App() {
             setAriaMessage={setAriaMessage}
             watchlist={watchlist}
             setWatchlist={setWatchlist}
+            genreMap={genreMap}
           />
         )}
         <Route

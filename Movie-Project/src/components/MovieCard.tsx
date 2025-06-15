@@ -16,7 +16,17 @@ export default function MovieCard({
   onRemoveFromWatchlist,
   isInWatchlist,
 }: Props) {
-  const { id, title, year, poster, overview } = movie;
+  const {
+    id,
+    title,
+    year,
+    poster,
+    overview,
+    rating,
+    release,
+    language,
+    genres,
+  } = movie;
   const [expanded, setExpanded] = useState(false);
 
   function handleAddToWatchlist() {
@@ -26,6 +36,8 @@ export default function MovieCard({
       onRemoveFromWatchlist(movie);
     }
   }
+
+  console.log(movie);
 
   return (
     <div className="card mb-3">
@@ -78,8 +90,16 @@ export default function MovieCard({
           )}
         </button>
         <div className="collapse col-11 mx-auto row" id={`collapse-${id}`}>
-					<h3 className="h5">Overview</h3>
+          <h3 className="h5">Overview</h3>
           <p>{overview}</p>
+          <p>Rating {rating}</p>
+          <p>Release {release}</p>
+          <p>Langauge {language}</p>
+          <ul>
+            {genres.map((genre) => (
+              <li key={`${movie.id}--${genre.id}`}>{genre.name}</li>
+            ))}
+          </ul>
         </div>
       </div>
     </div>

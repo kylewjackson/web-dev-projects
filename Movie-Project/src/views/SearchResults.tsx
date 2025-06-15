@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { fetchMovies } from "../api/tmdb";
-import type { Movie } from "../types/movie";
+import type { GenreMap, Movie } from "../types/movie";
 import MovieCard from "../components/MovieCard";
 import SearchBar from "../components/SearchBar";
 
@@ -12,6 +12,7 @@ type Props = {
   setAriaMessage: (message: string) => void;
   watchlist: Movie[];
   setWatchlist: React.Dispatch<React.SetStateAction<Movie[]>>;
+  genreMap: GenreMap;
 };
 
 export default function SearchResults({
@@ -22,6 +23,7 @@ export default function SearchResults({
   setAriaMessage,
   watchlist,
   setWatchlist,
+  genreMap,
 }: Props) {
   const [movieResults, setMovieResults] = useState<Movie[]>([]);
   const [hasSearched, setHasSearched] = useState(false);
@@ -34,7 +36,7 @@ export default function SearchResults({
     setApiError(null);
     setHasSearched(true);
     try {
-      const movies = await fetchMovies(query);
+      const movies = await fetchMovies(query, genreMap);
       setMovieResults(movies);
       if (movies.length > 0) {
         setAriaMessage(
