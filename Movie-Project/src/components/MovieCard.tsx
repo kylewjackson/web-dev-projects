@@ -34,7 +34,7 @@ export default function MovieCard({
           <img
             src={poster}
             alt={"poster for: " + title}
-            className="img-fluid rounded-start"
+            className="img-fluid movie-card--rounded-top-left"
           />
         </div>
         <div className="col-7 col-md-8">
