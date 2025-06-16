@@ -47,7 +47,7 @@ export default function MovieCard({
             className="img-fluid movie-card--rounded-top-left"
           />
         </div>
-        <div className="col-7 col-md-8">
+        <div className="col-7 col-md-8 pe-4">
           <div className="card-body p-1 p-md-3">
             <h2 className="card-title h4">
               {formatTitleWithYear({ title, year, variant: "card" })}
@@ -87,18 +87,50 @@ export default function MovieCard({
             </>
           )}
         </button>
-        <div className="collapse col-11 mx-auto row" id={`collapse-${id}`}>
+        <div className="mt-2 collapse col-11 mx-auto row" id={`collapse-${id}`}>
           <h3 className="h5">Overview</h3>
-          <p>{overview}</p>
-          <p>Rating {rating}</p>
-          <p>Release {release}</p>
-          <p>Langauge {language}</p>
           {genres.length > 0 && (
-            <ul>
-              {genres.map((genre) => (
-                <li key={`${movie.id}--${genre.id}`}>{genre.name}</li>
-              ))}
-            </ul>
+            <>
+              <h4 className="visually-hidden">Genre</h4>
+              <ul className="list-unstyled d-flex flex-wrap mb-2">
+                {genres.map((genre) => (
+                  <li key={`${movie.id}--${genre.id}`}>
+                    <span className="me-1 badge text-bg-secondary">
+                      {genre.name}
+                    </span>
+                  </li>
+                ))}
+              </ul>
+            </>
+          )}
+          {overview && (
+            <>
+              <h4 className="visually-hidden">Synopsis</h4>
+              <p>{overview}</p>
+            </>
+          )}
+
+          {language && (
+            <>
+              <h4 className="h6">Language</h4>
+              <p>
+                {new Intl.DisplayNames(undefined, { type: "language" }).of(
+                  language
+                )}
+              </p>
+            </>
+          )}
+          {release && (
+            <>
+              <h4 className="h6">Release</h4>
+              <p>{release}</p>
+            </>
+          )}
+          {rating != null && rating > 0 && (
+            <>
+              <h4 className="h6">Avg. Rating</h4>
+              <p>{Math.round(rating)}</p>
+            </>
           )}
         </div>
       </div>
