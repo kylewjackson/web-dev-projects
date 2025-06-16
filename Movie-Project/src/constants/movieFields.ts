@@ -1,6 +1,6 @@
 import type { Movie } from "../types/movie";
 
-type MovieField = keyof Movie;
+export type MovieField = keyof Movie;
 
 export const MOVIE_FIELDS: MovieField[] = [
   "id",
@@ -13,4 +13,13 @@ export const MOVIE_FIELDS: MovieField[] = [
   "release",
   "genres",
   "language",
+] as const;
+
+export const EXTENDED_MOVIE_FIELDS = [
+	"runtime",
+	"tagline",
+] as const;
+
+export const CREDIT_MOVIE_FIELDS = [
+
 ] as const;

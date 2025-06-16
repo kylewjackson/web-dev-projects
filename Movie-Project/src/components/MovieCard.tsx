@@ -37,8 +37,6 @@ export default function MovieCard({
     }
   }
 
-  console.log(movie);
-
   return (
     <div className="card mb-3">
       <div className="row">
@@ -95,11 +93,13 @@ export default function MovieCard({
           <p>Rating {rating}</p>
           <p>Release {release}</p>
           <p>Langauge {language}</p>
-          <ul>
-            {genres.map((genre) => (
-              <li key={`${movie.id}--${genre.id}`}>{genre.name}</li>
-            ))}
-          </ul>
+          {genres.length > 0 && (
+            <ul>
+              {genres.map((genre) => (
+                <li key={`${movie.id}--${genre.id}`}>{genre.name}</li>
+              ))}
+            </ul>
+          )}
         </div>
       </div>
     </div>

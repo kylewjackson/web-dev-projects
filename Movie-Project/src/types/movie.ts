@@ -6,6 +6,7 @@ export type FormatTitleOptions = {
 };
 
 export type Year = (number & { __brand: "Year" }) | null;
+export type ISODateString = string & { __brand: "ISODateString"};
 
 export interface Genre {
   id: number;
@@ -17,12 +18,17 @@ export type GenreMap = Record<number, string>;
 export type Movie = {
   id: string;
   title: string;
-  year: Year;
+  year: Year | null;
   poster: string;
-  overview: string;
-  popularity: number;
-  rating: number;
-  language: string;
-  release: string;
+  overview: string | null;
+  popularity: number | null;
+  rating: number | null;
+  language: string | null;
+  release: string | null;
   genres: Genre[];
+	lastUpdated?: ISODateString
+};
+
+export type FullMovie = Movie & {
+  director: string;
 };

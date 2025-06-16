@@ -19,6 +19,10 @@ export interface MovieApiResult {
   vote_average: number;
 }
 
+export type MovieDetailsApiResult = Omit<MovieApiResult, "genre_ids"> & {
+  genres: Genre[];
+};
+
 export interface MovieGenresResponse {
   genres: Genre[];
 }

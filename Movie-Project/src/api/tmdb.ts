@@ -2,30 +2,45 @@ import type { Genre, GenreMap, Movie } from "../types/movie";
 import type {
   MovieApiResponse,
   MovieApiResult,
+  MovieDetailsApiResult,
   MovieGenresResponse,
 } from "../types/tmdb";
 import { makeYear } from "../utils/movieUtils";
 
 const apiKey = import.meta.env.VITE_TMDB_API_KEY;
 
-export function mapMovieResultToMovie(
-  result: MovieApiResult,
-  genreMap: GenreMap
+function baseMapToMovie(
+  result: MovieApiResult | MovieDetailsApiResult,
+  genres: Genre[]
 ): Movie {
   return {
     id: result.id.toString(),
-    title: result.title,
+    title: result.title ?? "Untitled",
     poster: result.poster_path
       ? `https://image.tmdb.org/t/p/w500/${result.poster_path}`
       : "https://placehold.co/500x750",
-    year: makeYear(result.release_date),
-    overview: result.overview,
-    rating: result.vote_average,
-    popularity: result.popularity,
-    genres: result.genre_ids.map((id) => ({ id, name: genreMap[id] })),
-    language: result.original_language,
-    release: result.release_date,
+    year: result.release_date ? makeYear(result.release_date) : null,
+    overview: result.overview ?? null,
+    rating: typeof result.vote_average === "number" ? result.vote_average : null,
+    popularity: typeof result.popularity === "number" ? result.popularity : null,
+    genres,
+    language: result.original_language ?? null,
+    release: result.release_date ?? null,
   };
+}
+
+function mapMovieResultToMovie(
+  result: MovieApiResult,
+  genreMap: GenreMap
+): Movie {
+  if (!Array.isArray(result.genre_ids)) {
+    console.warn("Missing genre_ids for result:", result);
+    return baseMapToMovie(result, []);
+  }
+  const genres = result.genre_ids
+    .map((id) => (genreMap[id] ? { id, name: genreMap[id] } : null))
+    .filter((genre): genre is Genre => genre !== null);
+  return baseMapToMovie(result, genres);
 }
 
 export async function fetchMovies(
@@ -51,21 +66,21 @@ export async function fetchMovies(
   }
 }
 
-// export async function getMovie(id: number) {
-//   const url = `https://api.themoviedb.org/3/movie/${id}?api_key=${apiKey}`;
-//   try {
-//     const response = await fetch(url);
-//     if (!response.ok) {
-//       throw new Error(`Response status: ${response.status}`);
-//     }
+export async function fetchMovieDetails(id: number): Promise<Movie | null> {
+  const url = `https://api.themoviedb.org/3/movie/${id}?api_key=${apiKey}`;
+  try {
+    const response = await fetch(url);
+    if (!response.ok) {
+      throw new Error(`Response status: ${response.status}`);
+    }
 
-//     const json: MovieApiResponse = await response.json();
-//     return json.results.map(mapMovieResultToMovie);
-//   } catch (error) {
-//     console.error(error);
-//     return [];
-//   }
-// }
+    const json: MovieDetailsApiResult = await response.json();
+    return baseMapToMovie(json, json.genres);
+  } catch (error) {
+    console.error(error);
+    return null;
+  }
+}
 
 //Get current TMDB genres
 export async function getGenres(): Promise<Genre[]> {
@@ -77,7 +92,7 @@ export async function getGenres(): Promise<Genre[]> {
     }
 
     const json: MovieGenresResponse = await response.json();
-    return json["genres"];
+    return json.genres;
   } catch (error) {
     console.error(error);
     return [];
