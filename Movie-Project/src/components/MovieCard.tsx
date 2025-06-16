@@ -40,15 +40,15 @@ export default function MovieCard({
   return (
     <div className="card mb-3">
       <div className="row">
-        <div className="col-5 col-md-4">
+        <div className="col-4 col-md-3">
           <img
             src={poster}
             alt={"poster for: " + title}
             className="img-fluid movie-card--rounded-top-left"
           />
         </div>
-        <div className="col-7 col-md-8 pe-4">
-          <div className="card-body p-1 p-md-3">
+        <div className="col-8 col-md-8">
+          <div className="card-body p-2 ps-0 p-md-9">
             <h2 className="card-title h4">
               {formatTitleWithYear({ title, year, variant: "card" })}
             </h2>

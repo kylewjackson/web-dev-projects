@@ -18,7 +18,7 @@ function baseMapToMovie(
     title: result.title ?? "Untitled",
     poster: result.poster_path
       ? `https://image.tmdb.org/t/p/w500/${result.poster_path}`
-      : "https://placehold.co/500x750",
+      : "https://placehold.co/500x750?text=No+Poster",
     year: result.release_date ? makeYear(result.release_date) : null,
     overview: result.overview ?? null,
     rating:
