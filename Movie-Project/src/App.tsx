@@ -8,6 +8,7 @@ import renderRoutes from "./utils/renderRoutes";
 import { createGenreMap, getGenres } from "./api/tmdb";
 import "./App.css";
 import Logo from "./assets/logo.svg";
+import TMDB from "./assets/tmdb.svg";
 
 function App() {
   const [apiLoading, setApiLoading] = useState<boolean>(false);
@@ -98,6 +99,15 @@ function App() {
         />
         <Route path="*" element={<Navigate to="/search" replace />} />
       </Routes>
+      <footer className="row mt-5">
+        <p className="col-md-6 d-flex justify-content-center justify-content-md-end align-items-center">
+          Site Copyright Kyle Jackson 2025.
+        </p>
+        <p className="col-md-6  d-flex justify-content-center justify-content-md-start align-items-center">
+          <span className="me-3">Powered by</span>
+          <img src={TMDB} alt="TMDB" width={100} height={43} />
+        </p>
+      </footer>
     </div>
   );
 }
