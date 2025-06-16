@@ -6,7 +6,7 @@ export type FormatTitleOptions = {
 };
 
 export type Year = (number & { __brand: "Year" }) | null;
-export type ISODateString = string & { __brand: "ISODateString"};
+export type ISODateString = string & { __brand: "ISODateString" };
 
 export interface Genre {
   id: number;
@@ -26,7 +26,7 @@ export type Movie = {
   language: string | null;
   release: string | null;
   genres: Genre[];
-	lastUpdated?: ISODateString
+  lastUpdated?: ISODateString;
 };
 
 export type FullMovie = Movie & {

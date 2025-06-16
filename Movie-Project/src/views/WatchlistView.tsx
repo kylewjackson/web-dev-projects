@@ -1,5 +1,6 @@
 import MovieCard from "../components/MovieCard";
 import type { Movie } from "../types/movie";
+import useWatchlistRefresh from "../hooks/useWatchlistRefresh";
 
 type Props = {
   watchlist: Movie[];
@@ -10,6 +11,9 @@ export default function WatchlistView({ watchlist, setWatchlist }: Props) {
   function onRemoveFromWatchlist(movie: Movie) {
     setWatchlist(watchlist.filter((listMovie) => listMovie.id !== movie.id));
   }
+
+  useWatchlistRefresh(watchlist, setWatchlist);
+
   return (
     <main className="row justify-content-center">
       <h1 className="visually-hidden">Your Watchlist</h1>

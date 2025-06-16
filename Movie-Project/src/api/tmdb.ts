@@ -21,8 +21,10 @@ function baseMapToMovie(
       : "https://placehold.co/500x750",
     year: result.release_date ? makeYear(result.release_date) : null,
     overview: result.overview ?? null,
-    rating: typeof result.vote_average === "number" ? result.vote_average : null,
-    popularity: typeof result.popularity === "number" ? result.popularity : null,
+    rating:
+      typeof result.vote_average === "number" ? result.vote_average : null,
+    popularity:
+      typeof result.popularity === "number" ? result.popularity : null,
     genres,
     language: result.original_language ?? null,
     release: result.release_date ?? null,
@@ -57,9 +59,9 @@ export async function fetchMovies(
     }
 
     const json: MovieApiResponse = await response.json();
-    return json.results.map((result) =>
-      mapMovieResultToMovie(result, genreMap)
-    );
+    return json.results
+      .filter((result) => result.id && result.title)
+      .map((result) => mapMovieResultToMovie(result, genreMap));
   } catch (error) {
     console.error(error);
     return [];
@@ -75,7 +77,8 @@ export async function fetchMovieDetails(id: number): Promise<Movie | null> {
     }
 
     const json: MovieDetailsApiResult = await response.json();
-    return baseMapToMovie(json, json.genres);
+    const genres = Array.isArray(json.genres) ? json.genres : [];
+    return baseMapToMovie(json, genres);
   } catch (error) {
     console.error(error);
     return null;
