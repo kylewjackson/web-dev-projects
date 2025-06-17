@@ -16,10 +16,9 @@ export const MOVIE_FIELDS: MovieField[] = [
 ] as const;
 
 export const EXTENDED_MOVIE_FIELDS = [
-	"runtime",
-	"tagline",
+  "backdrop",
+  "runtime",
+  "tagline",
 ] as const;
 
-export const CREDIT_MOVIE_FIELDS = [
-
-] as const;
+export const CREDIT_MOVIE_FIELDS = [] as const;

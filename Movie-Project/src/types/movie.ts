@@ -20,6 +20,7 @@ export type Movie = {
   title: string;
   year: Year | null;
   poster: string;
+  backdrop: string | null;
   overview: string | null;
   popularity: number | null;
   rating: number | null;

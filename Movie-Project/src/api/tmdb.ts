@@ -19,6 +19,9 @@ function baseMapToMovie(
     poster: result.poster_path
       ? `https://image.tmdb.org/t/p/w500/${result.poster_path}`
       : "https://placehold.co/500x750?text=No+Poster",
+    backdrop: result.backdrop_path
+      ? `https://image.tmdb.org/t/p/w1280/${result.backdrop_path}`
+      : null,
     year: result.release_date ? makeYear(result.release_date) : null,
     overview: result.overview ?? null,
     rating:
