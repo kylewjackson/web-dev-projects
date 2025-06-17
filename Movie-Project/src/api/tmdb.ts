@@ -44,7 +44,7 @@ function mapMovieResultToMovie(
   }
   const genres = result.genre_ids
     .map((id) => (genreMap[id] ? { id, name: genreMap[id] } : null))
-    .filter((genre): genre is Genre => genre !== null);
+    .filter((genre): genre is Genre => genre !== null)
   return baseMapToMovie(result, genres);
 }
 
@@ -64,6 +64,7 @@ export async function fetchMovies(
     const json: MovieApiResponse = await response.json();
     return json.results
       .filter((result) => result.id && result.title)
+			.sort((a, b) => b.popularity - a.popularity) //Sort by popularity for better results
       .map((result) => mapMovieResultToMovie(result, genreMap));
   } catch (error) {
     console.error(error);
