@@ -47,7 +47,7 @@ export default function MovieCard({
             className="img-fluid movie-card--rounded-top-left"
           />
         </div>
-        <div className="col-8 col-md-8">
+        <div className="col-8 col-md-9">
           <div className="card-body p-2 ps-0 p-md-9">
             <h2 className="card-title h4">
               {formatTitleWithYear({ title, year, variant: "card" })}
@@ -56,14 +56,26 @@ export default function MovieCard({
               <button
                 type="button"
                 className={`btn btn-sm ${
-                  onAddToWatchlist ? "btn-outline-primary" : "btn-danger"
+                  onAddToWatchlist ? "btn-outline-dark" : "btn-outline-danger"
                 }`}
                 onClick={handleAddToWatchlist}
                 disabled={onAddToWatchlist && isInWatchlist && true}
               >
-                {onAddToWatchlist
-                  ? `${isInWatchlist ? "In" : "Add to"} Watchlist`
-                  : "Remove From Watchlist"}
+                {onAddToWatchlist ? (
+                  isInWatchlist ? (
+                    <span>
+                      In Watchlist <i className="bi bi-bookmark-fill"></i>
+                    </span>
+                  ) : (
+                    <span>
+                      Add to Watchlist <i className="bi bi-bookmark-plus"></i>
+                    </span>
+                  )
+                ) : (
+                  <span>
+                    Remove <i className="bi bi-bookmark-x"></i>
+                  </span>
+                )}
               </button>
             </div>
           </div>
