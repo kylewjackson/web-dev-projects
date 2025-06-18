@@ -9,6 +9,7 @@ import { createGenreMap, getGenres } from "./api/tmdb";
 import "./App.css";
 import Logo from "./assets/logo.svg";
 import TMDB from "./assets/tmdb.svg";
+import MovieDetails from "./components/MovieDetails";
 
 function App() {
   const [apiLoading, setApiLoading] = useState<boolean>(false);
@@ -25,7 +26,7 @@ function App() {
     }
 
     loadGenres();
-  });
+  }, []);
 
   return (
     <div className="container py-4">
@@ -95,6 +96,18 @@ function App() {
           path="/watchlist"
           element={
             <WatchlistView watchlist={watchlist} setWatchlist={setWatchlist} />
+          }
+        />
+        <Route
+          path="/movie/:id"
+          element={
+            <MovieDetails
+              apiLoading={apiLoading}
+              apiError={apiError}
+              setApiLoading={setApiLoading}
+              setApiError={setApiError}
+              setAriaMessage={setAriaMessage}
+            />
           }
         />
         <Route path="*" element={<Navigate to="/search" replace />} />

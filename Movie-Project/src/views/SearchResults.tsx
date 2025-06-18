@@ -3,6 +3,8 @@ import { fetchMovies } from "../api/tmdb";
 import type { GenreMap, Movie } from "../types/movie";
 import MovieCard from "../components/MovieCard";
 import SearchBar from "../components/SearchBar";
+import LoadingMessage from "../components/common/LoadingMessage";
+import ErrorMessage from "../components/common/ErrorMessage";
 
 type Props = {
   apiLoading: boolean;
@@ -87,18 +89,8 @@ export default function SearchResults({
           apiLoading={apiLoading}
           setHasSearched={setHasSearched}
         />
-        {apiLoading && (
-          <div className="text-center">
-            <div className="spinner-border" role="status">
-              <span className="visually-hidden">Loading results...</span>
-            </div>
-          </div>
-        )}
-        {apiError && (
-          <div className="alert alert-danger">
-            Something went wrong: {apiError.message}
-          </div>
-        )}
+        {apiLoading && <LoadingMessage context={"results"} />}
+        {apiError && <ErrorMessage message={apiError.message} />}
         {movieResults.length > 0 ? (
           <>
             <div className="alert alert-info">
