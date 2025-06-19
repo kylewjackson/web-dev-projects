@@ -1,4 +1,3 @@
-import { useState } from "react";
 import { fetchMovies } from "../api/tmdb";
 import type { GenreMap, Movie } from "../types/movie";
 import MovieCard from "../components/MovieCard";
@@ -15,6 +14,12 @@ type Props = {
   watchlist: Movie[];
   setWatchlist: React.Dispatch<React.SetStateAction<Movie[]>>;
   genreMap: GenreMap;
+  movieResults: Movie[];
+  setMovieResults: React.Dispatch<React.SetStateAction<Movie[]>>;
+  hasSearched: boolean;
+  setHasSearched: (searched: boolean) => void;
+  query: string;
+  setQuery: (query: string) => void;
 };
 
 export default function SearchResults({
@@ -26,11 +31,13 @@ export default function SearchResults({
   watchlist,
   setWatchlist,
   genreMap,
+  movieResults,
+  setMovieResults,
+  hasSearched,
+  setHasSearched,
+  query,
+  setQuery,
 }: Props) {
-  const [movieResults, setMovieResults] = useState<Movie[]>([]);
-  const [hasSearched, setHasSearched] = useState(false);
-  const [query, setQuery] = useState<string>("");
-
   //Communicate with SearchBar
   async function onSearch(query: string) {
     setApiLoading(true);

@@ -18,6 +18,11 @@ function App() {
   const [genreMap, setGenreMap] = useState<GenreMap>({});
   const [watchlist, setWatchlist] = useLocalStorage<Movie[]>("watchlist", []);
 
+  //Search
+  const [movieResults, setMovieResults] = useState<Movie[]>([]);
+  const [hasSearched, setHasSearched] = useState(false);
+  const [query, setQuery] = useState<string>("");
+
   useEffect(() => {
     //Init genres at start
     async function loadGenres() {
@@ -92,6 +97,12 @@ function App() {
               watchlist={watchlist}
               setWatchlist={setWatchlist}
               genreMap={genreMap}
+              movieResults={movieResults}
+              setMovieResults={setMovieResults}
+              hasSearched={hasSearched}
+              setHasSearched={setHasSearched}
+              query={query}
+              setQuery={setQuery}
             />
           )}
           <Route
