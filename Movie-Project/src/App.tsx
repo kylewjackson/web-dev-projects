@@ -79,7 +79,7 @@ function App() {
         </nav>
       </header>
 
-      <main className="body-content row justify-content-center pt-3">
+      <main className="body-content row justify-content-center">
         <Routes>
           {renderRoutes(
             ["/", "/search"],

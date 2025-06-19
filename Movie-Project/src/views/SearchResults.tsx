@@ -81,7 +81,7 @@ export default function SearchResults({
   return (
     <>
       <h1 className="visually-hidden">Search for Movies</h1>
-      <section className="col-11 col-lg-6">
+      <section className="col-11 col-lg-6 pt-3">
         <SearchBar
           onSearch={onSearch}
           query={query}

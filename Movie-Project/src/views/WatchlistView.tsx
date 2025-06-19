@@ -17,7 +17,7 @@ export default function WatchlistView({ watchlist, setWatchlist }: Props) {
   return (
     <>
       <h1 className="visually-hidden">Your Watchlist</h1>
-      <section className="col-11 col-lg-6">
+      <section className="col-11 col-lg-6 pt-3">
         {watchlist.length > 0 ? (
           <ul className="list-unstyled">
             {watchlist.map((movie) => (
