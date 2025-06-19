@@ -31,9 +31,23 @@ export type Movie = {
 };
 
 export type MovieDetails = {
-  runtime: number;
-	status: string;
-	tagline: string;
+  runtime: number | null;
+  status: MovieStatus | null;
+  tagline: string | null;
 };
 
 export type FullMovie = Movie & MovieDetails;
+
+export type MovieStatus =
+  | "Rumored"
+  | "Planned"
+  | "In Production"
+  | "Post Production"
+  | "Released"
+  | "Canceled";
+
+export type RatingIconEntry = {
+  threshold: number;
+  iconClass: string;
+  ariaLabel: string;
+};

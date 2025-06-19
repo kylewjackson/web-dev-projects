@@ -1,9 +1,11 @@
 import { useEffect, useState } from "react";
-import type { FullMovie } from "../types/movie";
+import type { ReactElement } from "react";
+import type { FullMovie, MovieStatus } from "../types/movie";
 import { fetchMovieDetails } from "../api/tmdb";
 import LoadingMessage from "./common/LoadingMessage";
 import ErrorMessage from "./common/ErrorMessage";
 import { formatTitleWithYear } from "../utils/movieUtils";
+import RatingIcon from "./common/RatingIcon";
 
 type Props = {
   apiLoading: boolean;
@@ -76,6 +78,16 @@ export default function MovieDetails({
     tagline,
   } = movie;
 
+  const infoBadgeClasses = "badge text-bg-light col-5 py-3";
+  const statusIcon: Record<MovieStatus, ReactElement> = {
+    Rumored: <i className="bi bi-question-circle pe-1" />,
+    Planned: <i className="bi bi-calendar-event pe-1" />,
+    "In Production": <i className="bi bi-play-circle pe-1" />,
+    "Post Production": <i className="bi bi-scissors pe-1" />,
+    Released: <i className="bi bi-check-circle pe-1" />,
+    Canceled: <i className="bi bi-slash-circle pe-1" />,
+  };
+
   return (
     <article>
       <div
@@ -86,7 +98,7 @@ export default function MovieDetails({
           backgroundRepeat: "no-repeat",
         }}
       >
-        <h1 className="movie-details_title col-12 col-sm-10 p-2 mb-0 mx-auto text-center text-bg-light">
+        <h1 className="movie-details_title col-12 col-sm-10 p-2 mb-0 mx-auto text-center text-bg-light rounded-3">
           {formatTitleWithYear({
             title,
             year,
@@ -99,21 +111,30 @@ export default function MovieDetails({
         <h2 className="visually-hidden">Overview</h2>
         <div className="movie-details_info col-12 col-sm-10 text-center row mx-auto justify-content-around p-sm-0">
           {language && (
-            <p className="text-bg-light col-5">
-              <i className="bi bi-ear" aria-label="language"></i>{" "}
+            <p className={infoBadgeClasses}>
+              <i className="bi bi-ear pe-1"></i>{" "}
               {new Intl.DisplayNames(undefined, { type: "language" }).of(
                 language
               )}
             </p>
           )}
           {runtime && (
-            <p className="text-bg-light col-5">
-              <i className="bi bi-clock" aria-label="runtime"></i> {runtime}{" "}
+            <p className={infoBadgeClasses}>
+              <i className="bi bi-clock pe-1"></i> {runtime}{" "}
               {runtime > 1 ? "mins" : "min"}
             </p>
           )}
-          <p className="text-bg-light col-5">Status: {status}</p>
-          <p className="text-bg-light col-5">Avg. Rating: {rating}</p>
+          {status && (
+            <p className={infoBadgeClasses}>
+              {statusIcon[status] ?? null} {status}
+            </p>
+          )}
+          {rating && rating > 0 && (
+            <p className={infoBadgeClasses}>
+              {rating && <RatingIcon val={rating} className="pe-1" />} Rating:{" "}
+              {rating && Math.round(rating)}
+            </p>
+          )}
         </div>
       </div>
       <div className="movie-details_overview mx-xl-5">

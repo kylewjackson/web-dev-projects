@@ -1,4 +1,4 @@
-import type { Genre } from "./movie";
+import type { Genre, MovieStatus } from "./movie";
 
 export interface MovieApiResponse {
   page: number;
@@ -23,8 +23,8 @@ export interface MovieApiResult {
 export type MovieDetailsApiResult = Omit<MovieApiResult, "genre_ids"> & {
   genres: Genre[];
   runtime: number;
-	status: string;
-	tagline: string;
+  status: MovieStatus;
+  tagline: string;
 };
 
 export interface MovieGenresResponse {
