@@ -3,13 +3,13 @@ import { Routes, Route, Navigate, NavLink, Link } from "react-router";
 import type { GenreMap, Movie } from "./types/movie";
 import SearchResults from "./views/SearchResults";
 import WatchlistView from "./views/WatchlistView";
+import MoviePage from "./views/MoviePage";
 import useLocalStorage from "./hooks/useLocalStorage";
 import renderRoutes from "./utils/renderRoutes";
 import { createGenreMap, getGenres } from "./api/tmdb";
 import "./App.css";
 import Logo from "./assets/logo.svg";
 import TMDB from "./assets/tmdb.svg";
-import MovieDetails from "./components/MovieDetails";
 
 function App() {
   const [apiLoading, setApiLoading] = useState<boolean>(false);
@@ -104,9 +104,9 @@ function App() {
             }
           />
           <Route
-            path="/movie/:id"
+            path="/movie/:id/:slug"
             element={
-              <MovieDetails
+              <MoviePage
                 apiLoading={apiLoading}
                 apiError={apiError}
                 setApiLoading={setApiLoading}

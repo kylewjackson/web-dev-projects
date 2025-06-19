@@ -1,13 +1,13 @@
-import { useEffect, useState } from "react";
-import type { ReactElement } from "react";
+import { useEffect, useState, type ReactElement } from "react";
+import { useParams } from "react-router";
 import type { FullMovie, MovieStatus } from "../types/movie";
 import { fetchMovieDetails } from "../api/tmdb";
+import { formatTitleWithYear } from "../utils/movieUtils";
 import LoadingMessage from "./common/LoadingMessage";
 import ErrorMessage from "./common/ErrorMessage";
-import { formatTitleWithYear } from "../utils/movieUtils";
 import RatingIcon from "./common/RatingIcon";
 
-type Props = {
+export type Props = {
   apiLoading: boolean;
   apiError: Error | null;
   setApiLoading: (loading: boolean) => void;
@@ -22,15 +22,22 @@ export default function MovieDetails({
   setApiError,
   setAriaMessage,
 }: Props) {
+  const { id } = useParams();
   const [movie, setMovie] = useState<FullMovie | null>(null);
   const [hasAttemptedLoad, setHasAttemptedLoad] = useState(false);
 
   useEffect(() => {
     async function loadMovie() {
+      if (!Number(id)) {
+        setAriaMessage(`Invalid movie id in url`);
+        setHasAttemptedLoad(true);
+        return;
+      }
+
       setApiLoading(true);
       setAriaMessage(`Loading details for movie`);
       setApiError(null);
-      const movieData = await fetchMovieDetails(9323);
+      const movieData = await fetchMovieDetails(Number(id));
       setApiLoading(false);
       setHasAttemptedLoad(true);
 
@@ -38,7 +45,7 @@ export default function MovieDetails({
         setMovie(movieData);
       } else {
         const detailErrorMsg = "Couldn't load movie details";
-        setApiError(new Error(detailErrorMsg));
+        // setApiError(new Error(detailErrorMsg));
         setAriaMessage(detailErrorMsg);
       }
 
@@ -47,14 +54,23 @@ export default function MovieDetails({
     }
 
     loadMovie();
-  }, [setApiError, setApiLoading, setAriaMessage]);
+  }, [id, setApiError, setApiLoading, setAriaMessage]);
 
   if (apiLoading) {
     return <LoadingMessage context="movie details" />;
   }
 
   if (!movie && hasAttemptedLoad) {
-    return <h1>No Movie Found</h1>;
+    return (
+      <>
+        <h1 className="mt-3 text-center">No Movie Found</h1>
+        <p className="col-md-6 text-center mx-auto">
+          It looks like this ID doesn't point to a single film (it might be a
+          collection or an upcoming title). Try searching again or go back to
+          the results.
+        </p>
+      </>
+    );
   }
 
   if (!movie && apiError) {
@@ -105,7 +121,7 @@ export default function MovieDetails({
             variant: "card",
           })}
         </h1>
-        <div className="movie-details_poster col-9 py-3 m-auto">
+        <div className="movie-details_poster col-9 py-4 m-auto">
           <img src={poster} alt="" className="img-fluid shadow-sm" />
         </div>
         <h2 className="visually-hidden">Overview</h2>
@@ -129,10 +145,12 @@ export default function MovieDetails({
               {statusIcon[status] ?? null} {status}
             </p>
           )}
-          {rating && rating > 0 && (
+          {rating != null && Math.round(rating) !== 0 && (
             <p className={infoBadgeClasses}>
-              {rating && <RatingIcon val={rating} className="pe-1" />} Rating:{" "}
-              {rating && Math.round(rating)}
+              {rating && (
+                <RatingIcon val={Math.round(rating)} className="pe-1" />
+              )}{" "}
+              Rating: {rating && Math.round(rating)}
             </p>
           )}
         </div>

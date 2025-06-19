@@ -1,9 +1,9 @@
-import MovieDetails from "../components/MovieDetails";
+import MovieDetails, { type Props } from "../components/MovieDetails";
 
-export default function MoviePage() {
+export default function MoviePage(props: Props) {
   return (
     <main className="row">
-      <MovieDetails />
+      <MovieDetails {...props} />
     </main>
   );
 }

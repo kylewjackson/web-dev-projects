@@ -1,6 +1,8 @@
 import { useState } from "react";
 import { type Movie } from "../types/movie";
 import { formatTitleWithYear } from "../utils/movieUtils";
+import { NavLink } from "react-router";
+import slugify from "slugify";
 
 type Props = {
   movie: Movie;
@@ -28,6 +30,7 @@ export default function MovieCard({
     genres,
   } = movie;
   const [expanded, setExpanded] = useState(false);
+  const slug = slugify(title, "+");
 
   function handleAddToWatchlist() {
     if (onAddToWatchlist) {
@@ -47,12 +50,24 @@ export default function MovieCard({
             className="img-fluid movie-card--rounded-top-left shadow-sm"
           />
         </div>
-        <div className="col-8 col-md-9">
+        <div className="col-8 col-md-9 ps-0 ps-md-2">
           <div className="card-body p-2 ps-0 p-md-9">
             <h2 className="card-title h4">
               {formatTitleWithYear({ title, year, variant: "card" })}
             </h2>
             <div>
+              <NavLink
+                to={`/movie/${id}/${slug}`}
+                className="btn btn-link ps-0 me-2"
+                style={
+                  {
+                    "--bs-btn-color": "var(--bs-dark-text)",
+                    "--bs-btn-hover-color": "var(--bs-dark-text-emphasis)",
+                  } as React.CSSProperties
+                }
+              >
+                <span>Full Details<i className="ps-1 bi bi-arrow-up-right-circle" /></span>
+              </NavLink>
               <button
                 type="button"
                 className={`btn btn-sm${!isInWatchlist ? " shadow-sm" : ""} ${
