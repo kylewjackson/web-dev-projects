@@ -122,18 +122,26 @@ export default function MovieDetails({
       <div
         className="movie-details full-viewport--1280 row justify-content-center p-3"
         style={{
-          backgroundImage: `linear-gradient(rgba(255,255,255,0.15), rgba(255,255,255,1)), url('${backdrop}')`,
+          backgroundImage: `linear-gradient(rgba(255,255,255,0.2), rgba(255,255,255,1)), url('${backdrop}')`,
           backgroundSize: "contain",
           backgroundRepeat: "no-repeat",
         }}
       >
-        <h1 className="movie-details_title col-12 col-sm-10 p-2 mb-0 mx-auto text-center text-bg-light rounded-3">
-          {formatTitleWithYear({
-            title,
-            year,
-            variant: "card",
-          })}
-        </h1>
+        <div className="movie-details_title col-12 col-sm-10 mb-0 text-center mx-auto">
+          <h1 className="p-2 text-center text-bg-light rounded-3">
+            {formatTitleWithYear({
+              title,
+              year,
+              variant: "card",
+            })}
+          </h1>
+          <WatchlistButton
+            movie={movie}
+            isInWatchlist={isInWatchlist}
+            toggleWatchlist={toggleWatchlist}
+						outline={false}
+          />
+        </div>
         <div className="movie-details_poster col-9 py-4 m-auto">
           <img src={poster} alt="" className="img-fluid shadow-sm" />
         </div>
@@ -166,11 +174,6 @@ export default function MovieDetails({
               Rating: {rating && Math.round(rating)}
             </p>
           )}
-          <WatchlistButton
-            movie={movie}
-            isInWatchlist={isInWatchlist}
-            toggleWatchlist={toggleWatchlist}
-          />
         </div>
       </div>
       <div className="movie-details_overview mx-xl-5">

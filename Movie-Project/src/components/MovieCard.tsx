@@ -49,10 +49,10 @@ export default function MovieCard({
             <h2 className="card-title h4">
               {formatTitleWithYear({ title, year, variant: "card" })}
             </h2>
-            <div>
+            <div className="d-flex flex-column align-items-start">
               <NavLink
                 to={`/movie/${id}/${slug}`}
-                className="btn btn-link ps-0 me-2"
+                className="btn btn-link ps-0 me-2 mb-2"
                 style={
                   {
                     "--bs-btn-color": "var(--bs-dark-text)",
