@@ -37,13 +37,13 @@ export default function SearchBar({
             setHasSearched(false);
           }}
           placeholder=" " //For Bootstrap floating form
-          className="form-control"
+          className="form-control shadow-sm"
         />
         <label htmlFor={searchId}>Search Movies:</label>
       </div>
       <button
         type="submit"
-        className="col-3 btn btn-primary"
+        className="col-3 btn btn-primary shadow-sm"
         disabled={apiLoading || !query.trim()}
       >
         Search
