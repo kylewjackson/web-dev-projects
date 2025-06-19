@@ -38,6 +38,9 @@ export type MovieDetails = {
 
 export type FullMovie = Movie & MovieDetails;
 
+export type HandleMovie = (movie: Movie) => void;
+export type HandleMovies = React.Dispatch<React.SetStateAction<Movie[]>>;
+
 export type MovieStatus =
   | "Rumored"
   | "Planned"

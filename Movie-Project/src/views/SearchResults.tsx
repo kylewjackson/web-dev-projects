@@ -1,5 +1,10 @@
 import { fetchMovies } from "../api/tmdb";
-import type { GenreMap, Movie } from "../types/movie";
+import type {
+  GenreMap,
+  HandleMovie,
+  HandleMovies,
+  Movie,
+} from "../types/movie";
 import MovieCard from "../components/MovieCard";
 import SearchBar from "../components/SearchBar";
 import LoadingMessage from "../components/common/LoadingMessage";
@@ -12,10 +17,10 @@ type Props = {
   setApiError: (error: Error | null) => void;
   setAriaMessage: (message: string) => void;
   watchlist: Movie[];
-  setWatchlist: React.Dispatch<React.SetStateAction<Movie[]>>;
+  toggleWatchlist: HandleMovie;
   genreMap: GenreMap;
   movieResults: Movie[];
-  setMovieResults: React.Dispatch<React.SetStateAction<Movie[]>>;
+  setMovieResults: HandleMovies;
   hasSearched: boolean;
   setHasSearched: (searched: boolean) => void;
   query: string;
@@ -29,7 +34,7 @@ export default function SearchResults({
   setApiError,
   setAriaMessage,
   watchlist,
-  setWatchlist,
+  toggleWatchlist,
   genreMap,
   movieResults,
   setMovieResults,
@@ -70,14 +75,6 @@ export default function SearchResults({
     setApiLoading(false);
   }
 
-  function onAddToWatchlist(movie: Movie) {
-    setWatchlist((previousWatchlist) =>
-      previousWatchlist.some((listMovie) => listMovie.id === movie.id)
-        ? previousWatchlist
-        : [movie, ...previousWatchlist]
-    );
-  }
-
   // useEffect(() => {
   //   if (hasSearched && query !== "") {
   //     console.log("Query change: " + query);
@@ -109,10 +106,7 @@ export default function SearchResults({
                   <MovieCard
                     movie={movie}
                     watchlist={watchlist}
-                    onAddToWatchlist={onAddToWatchlist}
-                    isInWatchlist={watchlist.some(
-                      (listMovie) => listMovie.id === movie.id
-                    )}
+                    toggleWatchlist={toggleWatchlist}
                   />
                 </li>
               ))}

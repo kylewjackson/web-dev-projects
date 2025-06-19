@@ -1,22 +1,20 @@
 import { useState } from "react";
-import { type Movie } from "../types/movie";
+import type { Movie, HandleMovie } from "../types/movie";
 import { formatTitleWithYear } from "../utils/movieUtils";
 import { NavLink } from "react-router";
 import slugify from "slugify";
+import WatchlistButton from "./WatchlistButton";
 
 type Props = {
   movie: Movie;
   watchlist: Movie[];
-  onAddToWatchlist?: (movie: Movie) => void;
-  onRemoveFromWatchlist?: (movie: Movie) => void;
-  isInWatchlist?: boolean;
+  toggleWatchlist: HandleMovie;
 };
 
 export default function MovieCard({
   movie,
-  onAddToWatchlist,
-  onRemoveFromWatchlist,
-  isInWatchlist,
+  watchlist,
+  toggleWatchlist,
 }: Props) {
   const {
     id,
@@ -29,16 +27,12 @@ export default function MovieCard({
     language,
     genres,
   } = movie;
+
   const [expanded, setExpanded] = useState(false);
   const slug = slugify(title, "+");
-
-  function handleAddToWatchlist() {
-    if (onAddToWatchlist) {
-      onAddToWatchlist(movie);
-    } else if (onRemoveFromWatchlist) {
-      onRemoveFromWatchlist(movie);
-    }
-  }
+  const isInWatchlist = watchlist.some(
+    (listMovie) => listMovie.id === movie.id
+  );
 
   return (
     <div className="card mb-3">
@@ -66,32 +60,16 @@ export default function MovieCard({
                   } as React.CSSProperties
                 }
               >
-                <span>Full Details<i className="ps-1 bi bi-arrow-up-right-circle" /></span>
+                <span>
+                  Full Details
+                  <i className="ps-1 bi bi-arrow-up-right-circle" />
+                </span>
               </NavLink>
-              <button
-                type="button"
-                className={`btn btn-sm${!isInWatchlist ? " shadow-sm" : ""} ${
-                  onAddToWatchlist ? "btn-outline-dark" : "btn-outline-danger"
-                }`}
-                onClick={handleAddToWatchlist}
-                disabled={onAddToWatchlist && isInWatchlist && true}
-              >
-                {onAddToWatchlist ? (
-                  isInWatchlist ? (
-                    <span>
-                      In Watchlist <i className="bi bi-bookmark-fill"></i>
-                    </span>
-                  ) : (
-                    <span>
-                      Add to Watchlist <i className="bi bi-bookmark-plus"></i>
-                    </span>
-                  )
-                ) : (
-                  <span>
-                    Remove <i className="bi bi-bookmark-x"></i>
-                  </span>
-                )}
-              </button>
+              <WatchlistButton
+                movie={movie}
+                isInWatchlist={isInWatchlist}
+                toggleWatchlist={toggleWatchlist}
+              />
             </div>
           </div>
         </div>

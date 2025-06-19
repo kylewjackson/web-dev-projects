@@ -33,6 +33,34 @@ function App() {
     loadGenres();
   }, []);
 
+  function toggleWatchlist(movie: Movie) {
+    setWatchlist((prev) =>
+      prev.some((listMovie) => listMovie.id === movie.id)
+        ? prev.filter((listMovie) => listMovie.id !== movie.id)
+        : [movie, ...prev]
+    );
+  }
+
+  // function handleAddToWatchlist(movie: Movie) {
+  //   if (onAddToWatchlist) {
+  //     onAddToWatchlist(movie);
+  //   } else if (onRemoveFromWatchlist) {
+  //     onRemoveFromWatchlist(movie);
+  //   }
+  // }
+
+  // function onAddToWatchlist(movie: Movie) {
+  //   setWatchlist((previousWatchlist) =>
+  //     previousWatchlist.some((listMovie) => listMovie.id === movie.id)
+  //       ? previousWatchlist
+  //       : [movie, ...previousWatchlist]
+  //   );
+  // }
+
+  // function onRemoveFromWatchlist(movie: Movie) {
+  //   setWatchlist(watchlist.filter((listMovie) => listMovie.id !== movie.id));
+  // }
+
   return (
     <div className="container">
       {/* aria-live annoucment message for state changes */}
@@ -95,7 +123,7 @@ function App() {
               setApiError={setApiError}
               setAriaMessage={setAriaMessage}
               watchlist={watchlist}
-              setWatchlist={setWatchlist}
+              toggleWatchlist={toggleWatchlist}
               genreMap={genreMap}
               movieResults={movieResults}
               setMovieResults={setMovieResults}
@@ -111,6 +139,7 @@ function App() {
               <WatchlistView
                 watchlist={watchlist}
                 setWatchlist={setWatchlist}
+                toggleWatchlist={toggleWatchlist}
               />
             }
           />
@@ -123,6 +152,8 @@ function App() {
                 setApiLoading={setApiLoading}
                 setApiError={setApiError}
                 setAriaMessage={setAriaMessage}
+                watchlist={watchlist}
+                toggleWatchlist={toggleWatchlist}
               />
             }
           />

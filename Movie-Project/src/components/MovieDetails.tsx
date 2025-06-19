@@ -1,11 +1,17 @@
 import { useEffect, useState, type ReactElement } from "react";
 import { useParams } from "react-router";
-import type { FullMovie, MovieStatus } from "../types/movie";
+import type {
+  FullMovie,
+  HandleMovie,
+  Movie,
+  MovieStatus,
+} from "../types/movie";
 import { fetchMovieDetails } from "../api/tmdb";
 import { formatTitleWithYear } from "../utils/movieUtils";
 import LoadingMessage from "./common/LoadingMessage";
 import ErrorMessage from "./common/ErrorMessage";
 import RatingIcon from "./common/RatingIcon";
+import WatchlistButton from "./WatchlistButton";
 
 export type Props = {
   apiLoading: boolean;
@@ -13,6 +19,8 @@ export type Props = {
   setApiLoading: (loading: boolean) => void;
   setApiError: (error: Error | null) => void;
   setAriaMessage: (message: string) => void;
+  watchlist: Movie[];
+  toggleWatchlist: HandleMovie;
 };
 
 export default function MovieDetails({
@@ -21,6 +29,8 @@ export default function MovieDetails({
   setApiLoading,
   setApiError,
   setAriaMessage,
+  watchlist,
+  toggleWatchlist,
 }: Props) {
   const { id } = useParams();
   const [movie, setMovie] = useState<FullMovie | null>(null);
@@ -103,13 +113,16 @@ export default function MovieDetails({
     Released: <i className="bi bi-check-circle pe-1" />,
     Canceled: <i className="bi bi-slash-circle pe-1" />,
   };
+  const isInWatchlist = watchlist.some(
+    (listMovie) => listMovie.id === movie.id
+  );
 
   return (
     <article>
       <div
         className="movie-details full-viewport--1280 row justify-content-center p-3"
         style={{
-          backgroundImage: `linear-gradient(rgba(255,255,255,0.2), rgba(255,255,255,1)), url('${backdrop}')`,
+          backgroundImage: `linear-gradient(rgba(255,255,255,0.15), rgba(255,255,255,1)), url('${backdrop}')`,
           backgroundSize: "contain",
           backgroundRepeat: "no-repeat",
         }}
@@ -153,6 +166,11 @@ export default function MovieDetails({
               Rating: {rating && Math.round(rating)}
             </p>
           )}
+          <WatchlistButton
+            movie={movie}
+            isInWatchlist={isInWatchlist}
+            toggleWatchlist={toggleWatchlist}
+          />
         </div>
       </div>
       <div className="movie-details_overview mx-xl-5">

@@ -1,17 +1,18 @@
 import MovieCard from "../components/MovieCard";
-import type { Movie } from "../types/movie";
+import type { Movie, HandleMovie, HandleMovies } from "../types/movie";
 import useWatchlistRefresh from "../hooks/useWatchlistRefresh";
 
 type Props = {
   watchlist: Movie[];
-  setWatchlist: React.Dispatch<React.SetStateAction<Movie[]>>;
+  setWatchlist: HandleMovies;
+  toggleWatchlist: HandleMovie;
 };
 
-export default function WatchlistView({ watchlist, setWatchlist }: Props) {
-  function onRemoveFromWatchlist(movie: Movie) {
-    setWatchlist(watchlist.filter((listMovie) => listMovie.id !== movie.id));
-  }
-
+export default function WatchlistView({
+  watchlist,
+  setWatchlist,
+  toggleWatchlist,
+}: Props) {
   useWatchlistRefresh(watchlist, setWatchlist);
 
   return (
@@ -25,7 +26,7 @@ export default function WatchlistView({ watchlist, setWatchlist }: Props) {
                 <MovieCard
                   movie={movie}
                   watchlist={watchlist}
-                  onRemoveFromWatchlist={onRemoveFromWatchlist}
+                  toggleWatchlist={toggleWatchlist}
                 />
               </li>
             ))}
