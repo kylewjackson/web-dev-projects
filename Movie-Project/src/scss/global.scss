@@ -1,3 +1,11 @@
+//*Layout*
+
+.body-content {
+  margin-top: 66px;
+}
+
+//*Utilities*
+
 .truncate {
   display: -webkit-box;
   line-clamp: 2;
@@ -12,6 +20,14 @@
     -webkit-line-clamp: 5;
   }
 }
+
+.full-viewport--1280 {
+  width: min(100vw, 1280px);
+  margin-left: max((100% - 100vw)/2, (100% - 1280px)/2);
+  margin-right: max((100% - 100vw)/2, (100% - 1280px)/2);
+}
+
+//*Components*
 
 .movie-card {
   &--rounded-top-left {

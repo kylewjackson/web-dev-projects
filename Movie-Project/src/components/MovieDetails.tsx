@@ -34,7 +34,7 @@ export default function MovieDetails({
       if (movieData) {
         setMovie(movieData);
       } else {
-				const detailErrorMsg = "Couldn't load movie details";
+        const detailErrorMsg = "Couldn't load movie details";
         setApiError(new Error(detailErrorMsg));
         setAriaMessage(detailErrorMsg);
       }
@@ -51,7 +51,31 @@ export default function MovieDetails({
       {apiLoading ? (
         <LoadingMessage context="movie details" />
       ) : movie ? (
-        <h1>{movie.title}</h1>
+        <>
+          <div
+            className="full-viewport--1280 row p-3"
+            style={{
+              backgroundImage: `linear-gradient(rgba(255,255,255,0.2), rgba(255,255,255,1)), url('${movie.backdrop}')`,
+              backgroundSize: "contain",
+            }}
+          >
+            <div className="col-8 text-center my-auto">
+              <h1 className="text-bg-light">{movie.title}</h1>
+              <p className="text-bg-light">Language: {movie.language}</p>
+              <p className="text-bg-light">Avg. Rating: {movie.rating}</p>
+            </div>
+            <div className="col-4">
+              <img
+                src={`${movie.poster}`}
+                alt=""
+                className="img-fluid shadow"
+              />
+            </div>
+          </div>
+          <div className="mx-xl-2">
+            <p>{movie.overview}</p>
+          </div>
+        </>
       ) : hasAttemptedLoad ? (
         <h1>No Movie Found</h1>
       ) : null}

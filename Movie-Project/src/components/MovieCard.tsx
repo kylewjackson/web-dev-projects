@@ -44,7 +44,7 @@ export default function MovieCard({
           <img
             src={poster}
             alt={"poster for: " + title}
-            className="img-fluid movie-card--rounded-top-left"
+            className="img-fluid movie-card--rounded-top-left shadow-sm"
           />
         </div>
         <div className="col-8 col-md-9">
@@ -55,7 +55,7 @@ export default function MovieCard({
             <div>
               <button
                 type="button"
-                className={`btn btn-sm ${
+                className={`btn btn-sm${!isInWatchlist ? " shadow-sm" : ""} ${
                   onAddToWatchlist ? "btn-outline-dark" : "btn-outline-danger"
                 }`}
                 onClick={handleAddToWatchlist}

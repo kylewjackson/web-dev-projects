@@ -29,13 +29,13 @@ function App() {
   }, []);
 
   return (
-    <div className="container py-4">
+    <div className="container">
       {/* aria-live annoucment message for state changes */}
       <div id="announce" aria-live="polite" className="visually-hidden">
         <p>{ariaMessage}</p>
       </div>
-      <header className="text-center mb-4">
-        <nav className="navbar navbar-expand-sm bg-body-tertiary">
+      <header className="text-center fixed-top">
+        <nav className="navbar navbar-expand-sm bg-body-tertiary shadow-sm">
           <div className="container-fluid">
             <Link
               to="/"
@@ -78,40 +78,47 @@ function App() {
           </div>
         </nav>
       </header>
-      <Routes>
-        {renderRoutes(
-          ["/", "/search"],
-          <SearchResults
-            apiLoading={apiLoading}
-            apiError={apiError}
-            setApiLoading={setApiLoading}
-            setApiError={setApiError}
-            setAriaMessage={setAriaMessage}
-            watchlist={watchlist}
-            setWatchlist={setWatchlist}
-            genreMap={genreMap}
-          />
-        )}
-        <Route
-          path="/watchlist"
-          element={
-            <WatchlistView watchlist={watchlist} setWatchlist={setWatchlist} />
-          }
-        />
-        <Route
-          path="/movie/:id"
-          element={
-            <MovieDetails
+
+      <main className="body-content row justify-content-center pt-3">
+        <Routes>
+          {renderRoutes(
+            ["/", "/search"],
+            <SearchResults
               apiLoading={apiLoading}
               apiError={apiError}
               setApiLoading={setApiLoading}
               setApiError={setApiError}
               setAriaMessage={setAriaMessage}
+              watchlist={watchlist}
+              setWatchlist={setWatchlist}
+              genreMap={genreMap}
             />
-          }
-        />
-        <Route path="*" element={<Navigate to="/search" replace />} />
-      </Routes>
+          )}
+          <Route
+            path="/watchlist"
+            element={
+              <WatchlistView
+                watchlist={watchlist}
+                setWatchlist={setWatchlist}
+              />
+            }
+          />
+          <Route
+            path="/movie/:id"
+            element={
+              <MovieDetails
+                apiLoading={apiLoading}
+                apiError={apiError}
+                setApiLoading={setApiLoading}
+                setApiError={setApiError}
+                setAriaMessage={setAriaMessage}
+              />
+            }
+          />
+          <Route path="*" element={<Navigate to="/" replace />} />
+        </Routes>
+      </main>
+
       <footer className="row mt-5">
         <p className="col-md-6 d-flex justify-content-center justify-content-md-end align-items-center">
           Site Copyright Kyle Jackson 2025.
