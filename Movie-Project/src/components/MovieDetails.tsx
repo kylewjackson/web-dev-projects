@@ -34,8 +34,9 @@ export default function MovieDetails({
       if (movieData) {
         setMovie(movieData);
       } else {
-        setApiError(new Error("Couldn't load movie details"));
-        setAriaMessage("Something went wrong fetching movie details.");
+				const detailErrorMsg = "Couldn't load movie details";
+        setApiError(new Error(detailErrorMsg));
+        setAriaMessage(detailErrorMsg);
       }
 
       setApiLoading(false);
