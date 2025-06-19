@@ -27,19 +27,19 @@ export default function MovieDetails({
       setApiLoading(true);
       setAriaMessage(`Loading details for movie`);
       setApiError(null);
-      try {
-        const movieData = await fetchMovieDetails(9323);
+      const movieData = await fetchMovieDetails(9323);
+      setApiLoading(false);
+      setHasAttemptedLoad(true);
+
+      if (movieData) {
         setMovie(movieData);
-      } catch (error) {
-        if (error instanceof Error) {
-          setApiError(error);
-          console.log(error);
-        }
+      } else {
+        setApiError(new Error("Couldn't load movie details"));
         setAriaMessage("Something went wrong fetching movie details.");
-      } finally {
-        setApiLoading(false);
-        setHasAttemptedLoad(true);
       }
+
+      setApiLoading(false);
+      setHasAttemptedLoad(true);
     }
 
     loadMovie();

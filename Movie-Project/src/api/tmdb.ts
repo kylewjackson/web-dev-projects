@@ -6,6 +6,7 @@ import type {
   MovieGenresResponse,
 } from "../types/tmdb";
 import { makeYear } from "../utils/movieUtils";
+import handleApi from "./handling";
 
 const apiKey = import.meta.env.VITE_TMDB_API_KEY;
 
@@ -55,55 +56,34 @@ export async function fetchMovies(
   const url = `https://api.themoviedb.org/3/search/movie?api_key=${apiKey}&query=${encodeURIComponent(
     query
   )}`;
-  try {
-    const response = await fetch(url);
-    if (!response.ok) {
-      throw new Error(`Response status: ${response.status}`);
-    }
+  const json = await handleApi<MovieApiResponse>(url);
+  if (!json) return [];
 
-    const json: MovieApiResponse = await response.json();
-    return json.results
-      .filter((result) => result.id && result.title)
-      .sort((a, b) => b.popularity - a.popularity) //Sort by popularity for better results
-      .map((result) => mapMovieResultToMovie(result, genreMap));
-  } catch (error) {
-    console.error(error);
-    return [];
-  }
+  return json.results
+    .filter((result) => result.id && result.title)
+    .sort((a, b) => b.popularity - a.popularity) //Sort by popularity for better results
+    .map((result) => mapMovieResultToMovie(result, genreMap));
 }
 
 export async function fetchMovieDetails(id: number): Promise<Movie | null> {
   const url = `https://api.themoviedb.org/3/movie/${id}?api_key=${apiKey}`;
-  try {
-    const response = await fetch(url);
-    if (!response.ok) {
-      throw new Error(`Response status: ${response.status}`);
-    }
+  const json = await handleApi<MovieDetailsApiResult>(url);
+  if (!json) return null;
 
-    const json: MovieDetailsApiResult = await response.json();
-    const genres = Array.isArray(json.genres) ? json.genres : [];
-    return baseMapToMovie(json, genres);
-  } catch (error) {
-    console.error(error);
-    return null;
-  }
+  const genres = Array.isArray(json.genres) ? json.genres : [];
+  return baseMapToMovie(json, genres);
 }
 
 //Get current TMDB genres
 export async function getGenres(): Promise<Genre[]> {
   const url = `https://api.themoviedb.org/3/genre/movie/list?api_key=${apiKey}`;
-  try {
-    const response = await fetch(url);
-    if (!response.ok) {
-      throw new Error(`Response status: ${response.status}`);
-    }
-
-    const json: MovieGenresResponse = await response.json();
-    return json.genres;
-  } catch (error) {
-    console.warn(`Unable to fetch genres: ${error}. Using static genres.`);
+  const json = await handleApi<MovieGenresResponse>(url);
+  if (!json) {
+    console.warn(`Unable to fetch genres. Using static genres.`);
     return STATIC_GENRES;
   }
+
+  return json.genres;
 }
 
 //Map to standard format for differing response structures

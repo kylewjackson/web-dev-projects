@@ -37,7 +37,9 @@ export default function SearchResults({
     setAriaMessage(`Loading results for ${query}`);
     setApiError(null);
     setHasSearched(true);
-    try {
+    const movies = await fetchMovies(query, genreMap);
+
+    if (movies) {
       const movies = await fetchMovies(query, genreMap);
       setMovieResults(movies);
       if (movies.length > 0) {
@@ -51,16 +53,14 @@ export default function SearchResults({
           `No results found for ${query}. Please try a new search.`
         );
       }
-    } catch (error) {
-      if (error instanceof Error) {
-        setApiError(error);
-        console.log(error);
-      }
+    } else {
+      const searchErrorMsg = "Something went wrong. Please try a new search.";
       setMovieResults([]);
-      setAriaMessage("Something went wrong. Please try a new search.");
-    } finally {
-      setApiLoading(false);
+      setApiError(new Error(searchErrorMsg));
+      setAriaMessage(searchErrorMsg);
     }
+
+    setApiLoading(false);
   }
 
   function onAddToWatchlist(movie: Movie) {
