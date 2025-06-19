@@ -19,6 +19,7 @@ export const EXTENDED_MOVIE_FIELDS = [
   "backdrop",
   "runtime",
   "tagline",
+	"status",
 ] as const;
 
 export const CREDIT_MOVIE_FIELDS = [] as const;

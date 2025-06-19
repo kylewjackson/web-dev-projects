@@ -1,4 +1,10 @@
-import type { Genre, GenreMap, Movie } from "../types/movie";
+import type {
+  FullMovie,
+  Genre,
+  GenreMap,
+  Movie,
+  MovieDetails,
+} from "../types/movie";
 import type {
   MovieApiResponse,
   MovieApiResult,
@@ -35,6 +41,14 @@ function baseMapToMovie(
   };
 }
 
+function mapToFullMovie(result: MovieDetailsApiResult): MovieDetails {
+  return {
+    runtime: result.runtime ?? null,
+		status: result.status ?? null,
+		tagline: result.tagline ?? null,
+  };
+}
+
 function mapMovieResultToMovie(
   result: MovieApiResult,
   genreMap: GenreMap
@@ -65,13 +79,13 @@ export async function fetchMovies(
     .map((result) => mapMovieResultToMovie(result, genreMap));
 }
 
-export async function fetchMovieDetails(id: number): Promise<Movie | null> {
+export async function fetchMovieDetails(id: number): Promise<FullMovie | null> {
   const url = `https://api.themoviedb.org/3/movie/${id}?api_key=${apiKey}`;
   const json = await handleApi<MovieDetailsApiResult>(url);
   if (!json) return null;
 
   const genres = Array.isArray(json.genres) ? json.genres : [];
-  return baseMapToMovie(json, genres);
+  return { ...baseMapToMovie(json, genres), ...mapToFullMovie(json) };
 }
 
 //Get current TMDB genres

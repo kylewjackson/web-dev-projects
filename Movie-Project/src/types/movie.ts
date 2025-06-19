@@ -30,6 +30,10 @@ export type Movie = {
   lastUpdated?: ISODateString;
 };
 
-export type FullMovie = Movie & {
-  director: string;
+export type MovieDetails = {
+  runtime: number;
+	status: string;
+	tagline: string;
 };
+
+export type FullMovie = Movie & MovieDetails;

@@ -34,3 +34,28 @@
     border-top-left-radius: var(--bs-border-radius) !important;
   }
 }
+
+@media (min-width: 576px) {
+  .movie-details {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: auto auto;
+    grid-template-areas:
+      "title poster"
+      "info poster";
+    align-items: center;
+  }
+
+  .movie-details_title {
+    grid-area: title;
+  }
+
+  .movie-details_poster {
+    grid-area: poster;
+  }
+
+  .movie-details_info {
+    grid-area: info;
+    align-self: start;
+  }
+}
