@@ -130,6 +130,7 @@ export default function MovieDetails({
         }}
       >
         <div className="movie-details_title col-12 col-sm-10 mb-0 text-center mx-auto">
+					{genres.length > 0 && <GenreBadges movie={movie} genres={genres} variant="light" />}
           <h1 className="p-2 text-center text-bg-light rounded-3">
             {formatTitleWithYear({
               title,
@@ -137,7 +138,6 @@ export default function MovieDetails({
               variant: "card",
             })}
           </h1>
-					{genres.length > 0 && <GenreBadges movie={movie} genres={genres} />}
           <WatchlistButton
             movie={movie}
             isInWatchlist={isInWatchlist}
