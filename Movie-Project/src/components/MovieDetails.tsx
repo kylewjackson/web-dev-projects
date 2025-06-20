@@ -12,6 +12,7 @@ import LoadingMessage from "./common/LoadingMessage";
 import ErrorMessage from "./common/ErrorMessage";
 import RatingIcon from "./common/RatingIcon";
 import WatchlistButton from "./WatchlistButton";
+import GenreBadges from "./GenreBadges";
 
 export type Props = {
   apiLoading: boolean;
@@ -98,6 +99,7 @@ export default function MovieDetails({
     backdrop,
     rating,
     overview,
+    genres,
     language,
     runtime,
     status,
@@ -120,7 +122,7 @@ export default function MovieDetails({
   return (
     <article>
       <div
-        className="movie-details full-viewport--1280 row justify-content-center p-3"
+        className="movie-details full-viewport--1280 row justify-content-center p-3 pt-sm-0"
         style={{
           backgroundImage: `linear-gradient(rgba(255,255,255,0.2), rgba(255,255,255,1)), url('${backdrop}')`,
           backgroundSize: "contain",
@@ -135,11 +137,12 @@ export default function MovieDetails({
               variant: "card",
             })}
           </h1>
+					{genres.length > 0 && <GenreBadges movie={movie} genres={genres} />}
           <WatchlistButton
             movie={movie}
             isInWatchlist={isInWatchlist}
             toggleWatchlist={toggleWatchlist}
-						outline={false}
+            outline={false}
           />
         </div>
         <div className="movie-details_poster col-9 py-4 m-auto">

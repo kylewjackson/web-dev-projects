@@ -27,6 +27,7 @@ export default function WatchlistView({
                   movie={movie}
                   watchlist={watchlist}
                   toggleWatchlist={toggleWatchlist}
+									outline={true}
                 />
               </li>
             ))}

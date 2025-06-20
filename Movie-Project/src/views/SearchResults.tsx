@@ -107,6 +107,7 @@ export default function SearchResults({
                     movie={movie}
                     watchlist={watchlist}
                     toggleWatchlist={toggleWatchlist}
+										outline={true}
                   />
                 </li>
               ))}

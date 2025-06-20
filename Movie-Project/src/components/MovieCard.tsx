@@ -4,17 +4,20 @@ import { formatTitleWithYear } from "../utils/movieUtils";
 import { NavLink } from "react-router";
 import slugify from "slugify";
 import WatchlistButton from "./WatchlistButton";
+import GenreBadges from "./GenreBadges";
 
 type Props = {
   movie: Movie;
   watchlist: Movie[];
   toggleWatchlist: HandleMovie;
+	outline?: boolean;
 };
 
 export default function MovieCard({
   movie,
   watchlist,
   toggleWatchlist,
+	outline,
 }: Props) {
   const {
     id,
@@ -69,6 +72,7 @@ export default function MovieCard({
                 movie={movie}
                 isInWatchlist={isInWatchlist}
                 toggleWatchlist={toggleWatchlist}
+								outline={outline}
               />
             </div>
           </div>
@@ -97,15 +101,7 @@ export default function MovieCard({
           {genres.length > 0 && (
             <>
               <h4 className="visually-hidden">Genre</h4>
-              <ul className="list-unstyled d-flex flex-wrap mb-2">
-                {genres.map((genre) => (
-                  <li key={`${movie.id}--${genre.id}`}>
-                    <span className="me-1 badge text-bg-secondary">
-                      {genre.name}
-                    </span>
-                  </li>
-                ))}
-              </ul>
+              <GenreBadges movie={movie} genres={genres}/>
             </>
           )}
           {overview && (
