@@ -22,6 +22,7 @@ export const EXTENDED_MOVIE_FIELDS = [
   "status",
   "budget",
   "revenue",
+	"original_title",
 ] as const;
 
 export const CREDIT_MOVIE_FIELDS = [] as const;

@@ -95,6 +95,7 @@ export default function MovieDetails({
 
   const {
     title,
+    original_title,
     year,
     poster,
     backdrop,
@@ -185,6 +186,9 @@ export default function MovieDetails({
         </div>
       </div>
       <div className="movie-details_overview mx-xl-5">
+        {original_title && (
+          <p className="text-secondary">Original Title: {original_title}</p>
+        )}
         {tagline && <p className="fst-italic">{tagline}</p>}
         <p>{overview}</p>
         {budget != null && budget > 0 && (
@@ -193,7 +197,7 @@ export default function MovieDetails({
         {revenue != null && revenue > 0 && (
           <p
             className={
-              budget != null
+              budget
                 ? revenue > budget
                   ? "text-success"
                   : "text-danger"
