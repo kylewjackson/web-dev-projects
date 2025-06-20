@@ -8,6 +8,7 @@ import type {
 } from "../types/movie";
 import { fetchMovieDetails } from "../api/tmdb";
 import { formatTitleWithYear } from "../utils/movieUtils";
+import formatCurrency from "../utils/formatCurrency";
 import LoadingMessage from "./common/LoadingMessage";
 import ErrorMessage from "./common/ErrorMessage";
 import RatingIcon from "./common/RatingIcon";
@@ -104,6 +105,8 @@ export default function MovieDetails({
     runtime,
     status,
     tagline,
+    budget,
+    revenue,
   } = movie;
 
   const infoBadgeClasses = "badge text-bg-light col-5 py-3";
@@ -130,7 +133,9 @@ export default function MovieDetails({
         }}
       >
         <div className="movie-details_title col-12 col-sm-10 mb-0 text-center mx-auto">
-					{genres.length > 0 && <GenreBadges movie={movie} genres={genres} variant="light" />}
+          {genres.length > 0 && (
+            <GenreBadges movie={movie} genres={genres} variant="light" />
+          )}
           <h1 className="p-2 text-center text-bg-light rounded-3">
             {formatTitleWithYear({
               title,
@@ -158,7 +163,7 @@ export default function MovieDetails({
               )}
             </p>
           )}
-          {runtime && (
+          {runtime !== null && runtime > 0 && (
             <p className={infoBadgeClasses}>
               <i className="bi bi-clock pe-1"></i> {runtime}{" "}
               {runtime > 1 ? "mins" : "min"}
@@ -182,6 +187,22 @@ export default function MovieDetails({
       <div className="movie-details_overview mx-xl-5">
         {tagline && <p className="fst-italic">{tagline}</p>}
         <p>{overview}</p>
+        {budget != null && budget > 0 && (
+          <p>Budget: {formatCurrency(budget)}</p>
+        )}
+        {revenue != null && revenue > 0 && (
+          <p
+            className={
+              budget != null
+                ? revenue > budget
+                  ? "text-success"
+                  : "text-danger"
+                : undefined
+            }
+          >
+            Revenue: {formatCurrency(revenue)}
+          </p>
+        )}
       </div>
     </article>
   );

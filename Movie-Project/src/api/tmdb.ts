@@ -46,6 +46,8 @@ function mapToFullMovie(result: MovieDetailsApiResult): MovieDetails {
     runtime: result.runtime ?? null,
     status: result.status ?? null,
     tagline: result.tagline ?? null,
+    revenue: result.revenue ?? null,
+    budget: result.budget ?? null,
   };
 }
 

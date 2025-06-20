@@ -34,6 +34,8 @@ export type MovieDetails = {
   runtime: number | null;
   status: MovieStatus | null;
   tagline: string | null;
+  budget: number | null;
+  revenue: number | null;
 };
 
 export type FullMovie = Movie & MovieDetails;

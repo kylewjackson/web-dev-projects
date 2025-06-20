@@ -25,6 +25,8 @@ export type MovieDetailsApiResult = Omit<MovieApiResult, "genre_ids"> & {
   runtime: number;
   status: MovieStatus;
   tagline: string;
+  revenue: number;
+  budget: number;
 };
 
 export interface MovieGenresResponse {
