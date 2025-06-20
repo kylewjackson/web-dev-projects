@@ -37,6 +37,7 @@ export type MovieDetails = {
   budget: number | null;
   revenue: number | null;
 	original_title: string | null;
+	imdb: string;
 };
 
 export type FullMovie = Movie & MovieDetails;

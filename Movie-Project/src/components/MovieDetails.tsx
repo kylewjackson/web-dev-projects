@@ -108,6 +108,7 @@ export default function MovieDetails({
     tagline,
     budget,
     revenue,
+    imdb,
   } = movie;
 
   const infoBadgeClasses = "badge text-bg-light col-5 py-3";
@@ -186,6 +187,16 @@ export default function MovieDetails({
         </div>
       </div>
       <div className="movie-details_overview mx-xl-5">
+        {imdb && (
+          <a href={`https://www.imdb.com/title/${imdb}/`} target="_blank" title="Visit IMDb">
+            <span className="visually-hidden">(Opens in new tab)</span>
+            <span className="badge text-black" style={{backgroundColor: '#f4c434'}}>IMDb</span>
+          </a>
+        )}
+				<a href={`https://www.letterboxd.com/tmdb/${id}/`} target="_blank" title="Visit Letterboxd">
+            <span className="visually-hidden">(Opens in new tab)</span>
+            <span className="badge text-bg-dark">Letterboxd</span>
+          </a>
         {original_title && (
           <p className="text-secondary">Original Title: {original_title}</p>
         )}
