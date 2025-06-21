@@ -5,6 +5,7 @@ import { NavLink } from "react-router";
 import slugify from "slugify";
 import WatchlistButton from "./WatchlistButton";
 import GenreBadges from "./GenreBadges";
+import formatLanguage from "../utils/formatLanguage";
 
 type Props = {
   movie: Movie;
@@ -118,9 +119,7 @@ export default function MovieCard({
             <>
               <h4 className="h6">Language</h4>
               <p>
-                {new Intl.DisplayNames(undefined, { type: "language" }).of(
-                  language
-                )}
+                {formatLanguage(language)}
               </p>
             </>
           )}
