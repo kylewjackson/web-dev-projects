@@ -149,7 +149,7 @@ export default function MovieDetails({
           backgroundRepeat: "no-repeat",
         }}
       >
-        <div className="movie-details_title col-12 col-sm-10 mb-0 mx-auto mt-4 mt-sm-5 mt-lg-0 pb-2 text-center">
+        <div className="movie-details_title col-12 col-sm-10 mb-0 mx-auto mt-4 mt-sm-5 mt-lg-0 pb-1 text-center">
           <button
             type="button"
             className="btn btn-light btn-sm position-absolute top-0 start-0 m-2 py-0"
@@ -228,6 +228,7 @@ export default function MovieDetails({
                   style={{ backgroundColor: "#f4c434" }}
                 >
                   IMDb
+                  <i className="ps-1 bi bi-arrow-up-right-circle" />
                 </span>
               </a>
             </li>
@@ -239,7 +240,9 @@ export default function MovieDetails({
               title="Visit Letterboxd"
             >
               <span className="visually-hidden">(Opens in new tab)</span>
-              <span className="badge text-bg-dark">Letterboxd</span>
+              <span className="badge text-bg-dark">
+                Letterboxd <i className="ps-1 bi bi-arrow-up-right-circle" />
+              </span>
             </a>
           </li>
         </ul>

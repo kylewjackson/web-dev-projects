@@ -68,7 +68,7 @@ export default function MovieCard({
               >
                 <span>
                   Full Details
-                  <i className="ps-1 bi bi-arrow-up-right-circle" />
+                  <i className="ps-1 bi bi-arrow-right-circle" />
                 </span>
               </NavLink>
               <WatchlistButton

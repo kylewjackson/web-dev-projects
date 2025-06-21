@@ -68,7 +68,7 @@ function App() {
         <p>{ariaMessage}</p>
       </div>
       <header className="text-center fixed-top">
-        <nav className="navbar navbar-expand-sm bg-body-tertiary shadow-sm">
+        <nav className="navbar navbar-expand bg-body-tertiary shadow-sm">
           <div className="container-fluid">
             <Link
               to="/"
@@ -80,9 +80,8 @@ function App() {
                 width={30}
                 height={40}
               />
-              <p className="d-sm-none m-0 ps-3">Watchlist App</p>
             </Link>
-            <button
+            {/* <button
               className="navbar-toggler"
               type="button"
               data-bs-toggle="collapse"
@@ -92,16 +91,22 @@ function App() {
               aria-label="Toggle navigation"
             >
               <span className="navbar-toggler-icon"></span>
-            </button>
+            </button> */}
             <div className="collapse navbar-collapse" id="Navbar">
               <ul className="navbar-nav">
                 <li className="nav-item">
                   <NavLink to="/search" className="nav-link">
-                    Search
+                    <i className="bi bi-search pe-1" />
+                    <span>Search</span>
                   </NavLink>
                 </li>
                 <li className="nav-item">
                   <NavLink to="/watchlist" className="nav-link">
+                    {watchlist && watchlist.length > 0 ? (
+                      <i className="bi bi-bookmark-fill pe-1" />
+                    ) : (
+                      <i className="bi bi-bookmark pe-1" />
+                    )}
                     <span>Watchlist</span>
                     <span> ({watchlist && watchlist.length})</span>
                   </NavLink>
