@@ -152,10 +152,12 @@ export default function MovieDetails({
             outline={false}
           />
         </div>
+
         <div className="movie-details_poster col-9 py-4 m-auto">
           <img src={poster} alt="" className="img-fluid shadow-sm" />
         </div>
-        <h2 className="visually-hidden">Overview</h2>
+
+        <h2 className="visually-hidden">Additional Details</h2>
         <div className="movie-details_info col-12 col-sm-10 text-center row mx-auto justify-content-around p-sm-0">
           {language && (
             <p className={infoBadgeClasses}>
@@ -186,22 +188,47 @@ export default function MovieDetails({
           )}
         </div>
       </div>
+
       <div className="movie-details_overview mx-xl-5">
-        {imdb && (
-          <a href={`https://www.imdb.com/title/${imdb}/`} target="_blank" title="Visit IMDb">
-            <span className="visually-hidden">(Opens in new tab)</span>
-            <span className="badge text-black" style={{backgroundColor: '#f4c434'}}>IMDb</span>
-          </a>
-        )}
-				<a href={`https://www.letterboxd.com/tmdb/${id}/`} target="_blank" title="Visit Letterboxd">
-            <span className="visually-hidden">(Opens in new tab)</span>
-            <span className="badge text-bg-dark">Letterboxd</span>
-          </a>
+        <h3 className="visually-hidden">External Sites</h3>
+        <ul className="list-unstyled row row-cols-auto gx-2">
+          {imdb && (
+            <li className="col">
+              <a
+                href={`https://www.imdb.com/title/${imdb}/`}
+                target="_blank"
+                title="Visit IMDb"
+              >
+                <span className="visually-hidden">(Opens in new tab)</span>
+                <span
+                  className="badge text-black"
+                  style={{ backgroundColor: "#f4c434" }}
+                >
+                  IMDb
+                </span>
+              </a>
+            </li>
+          )}
+          <li className="col">
+            <a
+              href={`https://www.letterboxd.com/tmdb/${id}/`}
+              target="_blank"
+              title="Visit Letterboxd"
+            >
+              <span className="visually-hidden">(Opens in new tab)</span>
+              <span className="badge text-bg-dark">Letterboxd</span>
+            </a>
+          </li>
+        </ul>
+
+        <h3 className="visually-hidden">Movie Overview</h3>
         {original_title && (
           <p className="text-secondary">Original Title: {original_title}</p>
         )}
         {tagline && <p className="fst-italic">{tagline}</p>}
         <p>{overview}</p>
+
+        <h3 className="visually-hidden">Financials</h3>
         {budget != null && budget > 0 && (
           <p>Budget: {formatCurrency(budget)}</p>
         )}
