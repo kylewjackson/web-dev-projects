@@ -10,14 +10,16 @@ type Props = {
   movie: Movie;
   watchlist: Movie[];
   toggleWatchlist: HandleMovie;
-	outline?: boolean;
+  outline?: boolean;
+  from: string;
 };
 
 export default function MovieCard({
   movie,
   watchlist,
   toggleWatchlist,
-	outline,
+  outline,
+  from,
 }: Props) {
   const {
     id,
@@ -55,6 +57,7 @@ export default function MovieCard({
             <div className="d-flex flex-column align-items-start">
               <NavLink
                 to={`/movie/${id}/${slug}`}
+                state={{ from }}
                 className="btn btn-link ps-0 me-2 mb-2"
                 style={
                   {
@@ -72,7 +75,7 @@ export default function MovieCard({
                 movie={movie}
                 isInWatchlist={isInWatchlist}
                 toggleWatchlist={toggleWatchlist}
-								outline={outline}
+                outline={outline}
               />
             </div>
           </div>
@@ -101,7 +104,7 @@ export default function MovieCard({
           {genres.length > 0 && (
             <>
               <h4 className="visually-hidden">Genre</h4>
-              <GenreBadges movie={movie} genres={genres}/>
+              <GenreBadges movie={movie} genres={genres} />
             </>
           )}
           {overview && (

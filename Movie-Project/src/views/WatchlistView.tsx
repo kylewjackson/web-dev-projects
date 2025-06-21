@@ -1,3 +1,4 @@
+import { useLocation } from "react-router";
 import MovieCard from "../components/MovieCard";
 import type { Movie, HandleMovie, HandleMovies } from "../types/movie";
 import useWatchlistRefresh from "../hooks/useWatchlistRefresh";
@@ -14,6 +15,7 @@ export default function WatchlistView({
   toggleWatchlist,
 }: Props) {
   useWatchlistRefresh(watchlist, setWatchlist);
+  const location = useLocation();
 
   return (
     <>
@@ -27,7 +29,8 @@ export default function WatchlistView({
                   movie={movie}
                   watchlist={watchlist}
                   toggleWatchlist={toggleWatchlist}
-									outline={true}
+                  outline={true}
+                  from={location.pathname}
                 />
               </li>
             ))}

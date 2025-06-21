@@ -1,5 +1,5 @@
 import { useEffect, useState, type ReactElement } from "react";
-import { useParams } from "react-router";
+import { useParams, useLocation, useNavigate } from "react-router";
 import type {
   FullMovie,
   HandleMovie,
@@ -24,6 +24,9 @@ export type Props = {
   watchlist: Movie[];
   toggleWatchlist: HandleMovie;
 };
+interface LocationState {
+  from?: string;
+}
 
 export default function MovieDetails({
   apiLoading,
@@ -37,6 +40,17 @@ export default function MovieDetails({
   const { id } = useParams();
   const [movie, setMovie] = useState<FullMovie | null>(null);
   const [hasAttemptedLoad, setHasAttemptedLoad] = useState(false);
+  const navigate = useNavigate();
+  const location = useLocation();
+  const { from } = (location.state as LocationState) || {};
+
+  function handleGoBack() {
+    if (from) {
+      navigate(from);
+    } else {
+      navigate("/search");
+    }
+  }
 
   useEffect(() => {
     async function loadMovie() {
@@ -128,14 +142,22 @@ export default function MovieDetails({
   return (
     <article>
       <div
-        className="movie-details full-viewport--1280 row justify-content-center p-3 pt-sm-0"
+        className="movie-details full-viewport--1280 row justify-content-center p-3 pt-sm-0 position-relative"
         style={{
           backgroundImage: `linear-gradient(rgba(255,255,255,0.2), rgba(255,255,255,1)), url('${backdrop}')`,
           backgroundSize: "contain",
           backgroundRepeat: "no-repeat",
         }}
       >
-        <div className="movie-details_title col-12 col-sm-10 mb-0 text-center mx-auto">
+        <div className="movie-details_title col-12 col-sm-10 mb-0 mx-auto mt-4 mt-sm-5 mt-lg-0 pb-2 text-center">
+          <button
+            type="button"
+            className="btn btn-light btn-sm position-absolute top-0 start-0 m-2 py-0"
+            onClick={handleGoBack}
+          >
+            <i className="bi bi-arrow-left-short" />
+            <span>Go Back</span>
+          </button>
           {genres.length > 0 && (
             <GenreBadges movie={movie} genres={genres} variant="light" />
           )}

@@ -1,3 +1,4 @@
+import { useLocation } from "react-router";
 import { fetchMovies } from "../api/tmdb";
 import type {
   GenreMap,
@@ -43,6 +44,8 @@ export default function SearchResults({
   query,
   setQuery,
 }: Props) {
+  const location = useLocation();
+
   //Communicate with SearchBar
   async function onSearch(query: string) {
     setApiLoading(true);
@@ -107,7 +110,8 @@ export default function SearchResults({
                     movie={movie}
                     watchlist={watchlist}
                     toggleWatchlist={toggleWatchlist}
-										outline={true}
+                    outline={true}
+                    from={location.pathname}
                   />
                 </li>
               ))}
