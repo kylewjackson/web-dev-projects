@@ -97,6 +97,7 @@ export default function MovieDetails({
     title,
     original_title,
     year,
+    release,
     poster,
     backdrop,
     rating,
@@ -228,22 +229,35 @@ export default function MovieDetails({
         {tagline && <p className="fst-italic">{tagline}</p>}
         <p>{overview}</p>
 
+        {release && (
+          <>
+            <h4 className="h6">Release Date</h4>
+            <p>{release}</p>
+          </>
+        )}
+
         <h3 className="visually-hidden">Financials</h3>
         {budget != null && budget > 0 && (
-          <p>Budget: {formatCurrency(budget)}</p>
+          <>
+            <h4 className="h6">Budget</h4>
+            <p>{formatCurrency(budget)}</p>
+          </>
         )}
         {revenue != null && revenue > 0 && (
-          <p
-            className={
-              budget
-                ? revenue > budget
-                  ? "text-success"
-                  : "text-danger"
-                : undefined
-            }
-          >
-            Revenue: {formatCurrency(revenue)}
-          </p>
+          <>
+            <h4 className="h6">Revenue</h4>
+            <p
+              className={
+                budget
+                  ? revenue > budget
+                    ? "text-success"
+                    : "text-danger"
+                  : undefined
+              }
+            >
+              {formatCurrency(revenue)}
+            </p>
+          </>
         )}
       </div>
     </article>
