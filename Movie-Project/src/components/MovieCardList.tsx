@@ -24,7 +24,7 @@ export default function MovieCardList({
             movie={movie}
             watchlist={watchlist}
             toggleWatchlist={toggleWatchlist}
-            outline={true}
+            outline={false}
             from={locationPathName}
             context={context}
           />

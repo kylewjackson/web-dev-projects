@@ -12,6 +12,7 @@ type Props = {
   watchlist: Movie[];
   toggleWatchlist: HandleMovie;
   outline?: boolean;
+	variant?: string;
   from: string;
   context?: string;
 };
@@ -21,6 +22,7 @@ export default function MovieCard({
   watchlist,
   toggleWatchlist,
   outline,
+	variant,
   from,
   context,
 }: Props) {
@@ -46,11 +48,13 @@ export default function MovieCard({
     <div className="card mb-3">
       <div className="row">
         <div className="col-4 col-md-3">
-          <img
-            src={poster}
-            alt={"poster for: " + title}
-            className="img-fluid movie-card--rounded-top-left shadow-sm"
-          />
+          <NavLink to={`/movie/${id}/${slug}`} state={{ from }} tabIndex={-1}>
+            <img
+              src={poster}
+              alt={"poster for: " + title}
+              className="img-fluid movie-card--rounded-top-left shadow-sm"
+            />
+          </NavLink>
         </div>
         <div className="col-8 col-md-9 ps-0 ps-md-2">
           <div className="card-body p-2 ps-0 p-md-9">
@@ -64,8 +68,8 @@ export default function MovieCard({
                 className="btn btn-link ps-0 me-2 mb-2"
                 style={
                   {
-                    "--bs-btn-color": "var(--bs-dark-text)",
-                    "--bs-btn-hover-color": "var(--bs-dark-text-emphasis)",
+                    "--bs-btn-color": "var(--bs-body-text)",
+                    "--bs-btn-hover-color": "var(--bs-body-text-emphasis)",
                   } as React.CSSProperties
                 }
               >
@@ -79,12 +83,13 @@ export default function MovieCard({
                 isInWatchlist={isInWatchlist}
                 toggleWatchlist={toggleWatchlist}
                 outline={outline}
+								variant={variant}
               />
             </div>
           </div>
         </div>
         <button
-          className="col-12 mt-2 btn btn-link text-dark-emphasis text-decoration-none"
+          className="col-12 mt-2 btn btn-link text-body text-decoration-none"
           type="button"
           data-bs-toggle="collapse"
           data-bs-target={`#collapse-${context ? `${context}-` : ""}${id}`}

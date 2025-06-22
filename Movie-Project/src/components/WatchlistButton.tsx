@@ -4,21 +4,24 @@ type Props = {
   movie: Movie;
   isInWatchlist: boolean;
   toggleWatchlist: HandleMovie;
-	outline?: boolean
+  outline?: boolean;
+  variant?: string;
 };
 
 export default function WatchlistButton({
   movie,
   isInWatchlist,
   toggleWatchlist,
-	outline = false,
+  outline = false,
+  variant = "secondary",
 }: Props) {
-
   return (
     <button
       type="button"
       className={`btn btn-sm${!isInWatchlist ? " shadow-sm" : ""} ${
-        !isInWatchlist ? `btn-${outline ? 'outline-' : ''}dark` : `btn-${outline ? 'outline-' : ''}danger`
+        !isInWatchlist
+          ? `btn-${outline ? "outline-" : ""}${variant}`
+          : `btn-${outline ? "outline-" : ""}danger`
       }`}
       onClick={() => toggleWatchlist(movie)}
     >

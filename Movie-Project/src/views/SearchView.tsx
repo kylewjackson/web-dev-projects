@@ -92,7 +92,7 @@ export default function SearchView({
   return (
     <>
       <h1 className="visually-hidden">Search for Movies</h1>
-      <section className="col-11 col-lg-6 pt-3">
+      <section className="col-11 col-lg-5 pt-3">
         <SearchBar
           onSearch={onSearch}
           query={query}
@@ -111,8 +111,8 @@ export default function SearchView({
           locationPathName={location.pathname}
         />
       </section>
-      <section className="col-12 pt-3">
-        <div className="col-11 col-lg-6 mx-auto">
+      <section className="col-12 pt-3 bg-body-tertiary">
+        <div className="col-11 col-lg-5 mx-auto">
           <Showcase
             genreMap={genreMap}
             apiError={apiError}

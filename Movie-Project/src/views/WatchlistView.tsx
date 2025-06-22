@@ -20,7 +20,7 @@ export default function WatchlistView({
   return (
     <>
       <h1 className="visually-hidden">Your Watchlist</h1>
-      <section className="col-11 col-lg-6 pt-3">
+      <section className="col-11 col-lg-5 pt-3">
         {watchlist.length > 0 ? (
           <MovieCardList
             movies={watchlist}

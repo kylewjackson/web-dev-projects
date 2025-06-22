@@ -49,7 +49,7 @@ function App() {
   }
 
   return (
-    <div className="container">
+    <div className="container-fluid">
       {/* aria-live annoucment message for state changes */}
       <div id="announce" aria-live="polite" className="visually-hidden">
         <p>{ariaMessage}</p>

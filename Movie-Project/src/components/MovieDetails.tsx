@@ -172,7 +172,7 @@ export default function MovieDetails({
             movie={movie}
             isInWatchlist={isInWatchlist}
             toggleWatchlist={toggleWatchlist}
-            outline={false}
+            variant={'primary'}
           />
         </div>
 
@@ -212,7 +212,7 @@ export default function MovieDetails({
         </div>
       </div>
 
-      <div className="movie-details_overview mx-xl-5">
+      <div className="movie-details_overview full-viewport--1280 mx-lg-auto px-4">
         <h3 className="visually-hidden">External Sites</h3>
         <ul className="list-unstyled row row-cols-auto gx-2">
           {imdb && (

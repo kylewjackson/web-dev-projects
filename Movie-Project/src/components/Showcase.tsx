@@ -74,7 +74,7 @@ export default function Showcase({
       <ul className="nav nav-tabs justify-content-center" id="showcase" role="tablist">
         <li className="nav-item" role="presentation">
           <button
-            className="text-dark nav-link active"
+            className="text-body nav-link active"
             id="popular"
             data-bs-toggle="tab"
             data-bs-target="#popular-pane"
@@ -88,7 +88,7 @@ export default function Showcase({
         </li>
         <li className="nav-item" role="presentation">
           <button
-            className="text-dark nav-link"
+            className="text-body nav-link"
             id="top-rated-tab"
             data-bs-toggle="tab"
             data-bs-target="#top-rated-tab-pane"
@@ -103,7 +103,7 @@ export default function Showcase({
         </li>
         <li className="nav-item" role="presentation">
           <button
-            className="text-dark nav-link"
+            className="text-body nav-link"
             id="upcoming-tab"
             data-bs-toggle="tab"
             data-bs-target="#upcoming-tab-pane"
