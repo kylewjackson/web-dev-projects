@@ -4,12 +4,13 @@ import type {
   GenreMap,
   HandleMovie,
   HandleMovies,
+  HandleShowcase,
   Movie,
+  ShowcaseTabs,
 } from "../types/movie";
-import MovieCard from "../components/MovieCard";
 import SearchBar from "../components/SearchBar";
-import LoadingMessage from "../components/common/LoadingMessage";
-import ErrorMessage from "../components/common/ErrorMessage";
+import SearchResults from "../components/SearchResults";
+import Showcase from "../components/Showcase";
 
 type Props = {
   apiLoading: boolean;
@@ -26,9 +27,11 @@ type Props = {
   setHasSearched: (searched: boolean) => void;
   query: string;
   setQuery: (query: string) => void;
+  showcaseTabs: ShowcaseTabs;
+  setShowcaseTabs: HandleShowcase;
 };
 
-export default function SearchResults({
+export default function SearchView({
   apiLoading,
   setApiLoading,
   apiError,
@@ -43,6 +46,8 @@ export default function SearchResults({
   setHasSearched,
   query,
   setQuery,
+  showcaseTabs,
+  setShowcaseTabs,
 }: Props) {
   const location = useLocation();
 
@@ -55,7 +60,6 @@ export default function SearchResults({
     const movies = await fetchMovies(query, genreMap);
 
     if (movies) {
-      const movies = await fetchMovies(query, genreMap);
       setMovieResults(movies);
       if (movies.length > 0) {
         setAriaMessage(
@@ -96,36 +100,31 @@ export default function SearchResults({
           apiLoading={apiLoading}
           setHasSearched={setHasSearched}
         />
-        {apiLoading && <LoadingMessage context={"results"} />}
-        {apiError && <ErrorMessage message={apiError.message} />}
-        {movieResults.length > 0 ? (
-          <>
-            <div className="alert alert-info">
-              {movieResults.length} result{movieResults.length > 1 && "s"} found
-            </div>
-            <ul className="list-unstyled">
-              {movieResults.map((movie) => (
-                <li key={movie.id}>
-                  <MovieCard
-                    movie={movie}
-                    watchlist={watchlist}
-                    toggleWatchlist={toggleWatchlist}
-                    outline={true}
-                    from={location.pathname}
-                  />
-                </li>
-              ))}
-            </ul>
-          </>
-        ) : (
-          movieResults.length === 0 &&
-          hasSearched &&
-          !apiLoading && (
-            <p className="alert alert-warning text-center">
-              No results found for {query}. Please try a new search.
-            </p>
-          )
-        )}
+        <SearchResults
+          apiLoading={apiLoading}
+          apiError={apiError}
+          watchlist={watchlist}
+          toggleWatchlist={toggleWatchlist}
+          movieResults={movieResults}
+          hasSearched={hasSearched}
+          query={query}
+          locationPathName={location.pathname}
+        />
+      </section>
+      <section className="col-12 pt-3">
+        <div className="col-11 col-lg-6 mx-auto">
+          <Showcase
+            genreMap={genreMap}
+            apiError={apiError}
+            setApiError={setApiError}
+            setAriaMessage={setAriaMessage}
+            watchlist={watchlist}
+            toggleWatchlist={toggleWatchlist}
+            locationPathName={location.pathname}
+            showcaseTabs={showcaseTabs}
+            setShowcaseTabs={setShowcaseTabs}
+          />
+        </div>
       </section>
     </>
   );

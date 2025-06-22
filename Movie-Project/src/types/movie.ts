@@ -1,3 +1,5 @@
+import type { TMDBMovieList } from "./tmdb";
+
 //Title + Year format for various contexts
 export type FormatTitleOptions = {
   title: string;
@@ -36,14 +38,15 @@ export type MovieDetails = {
   tagline: string | null;
   budget: number | null;
   revenue: number | null;
-	original_title: string | null;
-	imdb: string;
+  original_title: string | null;
+  imdb: string;
 };
 
 export type FullMovie = Movie & MovieDetails;
 
 export type HandleMovie = (movie: Movie) => void;
 export type HandleMovies = React.Dispatch<React.SetStateAction<Movie[]>>;
+export type HandleShowcase = React.Dispatch<React.SetStateAction<ShowcaseTabs>>;
 
 export type MovieStatus =
   | "Rumored"
@@ -58,3 +61,5 @@ export type RatingIconEntry = {
   iconClass: string;
   ariaLabel: string;
 };
+
+export type ShowcaseTabs = Record<TMDBMovieList, Movie[]>;

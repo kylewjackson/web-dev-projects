@@ -13,6 +13,7 @@ type Props = {
   toggleWatchlist: HandleMovie;
   outline?: boolean;
   from: string;
+  context?: string;
 };
 
 export default function MovieCard({
@@ -21,6 +22,7 @@ export default function MovieCard({
   toggleWatchlist,
   outline,
   from,
+  context,
 }: Props) {
   const {
     id,
@@ -85,9 +87,9 @@ export default function MovieCard({
           className="col-12 mt-2 btn btn-link text-dark-emphasis text-decoration-none"
           type="button"
           data-bs-toggle="collapse"
-          data-bs-target={`#collapse-${id}`}
+          data-bs-target={`#collapse-${context ? `${context}-` : ""}${id}`}
           aria-expanded="false"
-          aria-controls={`collapse-${id}`}
+          aria-controls={`collapse-${context ? `${context}-` : ""}${id}`}
           onClick={() => setExpanded(!expanded)}
         >
           {expanded === false ? (
@@ -100,7 +102,10 @@ export default function MovieCard({
             </>
           )}
         </button>
-        <div className="mt-2 collapse col-11 mx-auto row" id={`collapse-${id}`}>
+        <div
+          className="mt-2 collapse col-11 mx-auto row"
+          id={`collapse-${context ? `${context}-` : ""}${id}`}
+        >
           <h3 className="h5">Overview</h3>
           {genres.length > 0 && (
             <>
@@ -118,9 +123,7 @@ export default function MovieCard({
           {language && (
             <>
               <h4 className="h6">Language</h4>
-              <p>
-                {formatLanguage(language)}
-              </p>
+              <p>{formatLanguage(language)}</p>
             </>
           )}
           {release && (

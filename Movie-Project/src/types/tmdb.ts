@@ -1,5 +1,7 @@
 import type { Genre, MovieStatus } from "./movie";
 
+export type TMDBMovieList = "popular" | "top_rated" | "upcoming";
+
 export interface MovieApiResponse {
   page: number;
   results: MovieApiResult[];
@@ -27,8 +29,8 @@ export type MovieDetailsApiResult = Omit<MovieApiResult, "genre_ids"> & {
   tagline: string;
   revenue: number;
   budget: number;
-	original_title: string;
-	imdb_id: string;
+  original_title: string;
+  imdb_id: string;
 };
 
 export interface MovieGenresResponse {

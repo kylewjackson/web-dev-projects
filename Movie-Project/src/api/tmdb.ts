@@ -10,6 +10,7 @@ import type {
   MovieApiResult,
   MovieDetailsApiResult,
   MovieGenresResponse,
+  TMDBMovieList,
 } from "../types/tmdb";
 import { makeYear } from "../utils/movieUtils";
 import handleApi from "./handling";
@@ -81,6 +82,19 @@ export async function fetchMovies(
   return json.results
     .filter((result) => result.id && result.title)
     .sort((a, b) => b.popularity - a.popularity) //Sort by popularity for better results
+    .map((result) => mapMovieResultToMovie(result, genreMap));
+}
+
+export async function fetchMoviesShowcase(
+  listType: TMDBMovieList,
+  genreMap: GenreMap
+): Promise<Movie[]> {
+  const url = `https://api.themoviedb.org/3/movie/${listType}?api_key=${apiKey}`;
+  const json = await handleApi<MovieApiResponse>(url);
+  if (!json) return [];
+
+  return json.results
+    .filter((result) => result.id && result.title)
     .map((result) => mapMovieResultToMovie(result, genreMap));
 }
 

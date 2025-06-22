@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react";
 import { Routes, Route, Navigate, NavLink, Link } from "react-router";
-import type { GenreMap, Movie } from "./types/movie";
-import SearchResults from "./views/SearchResults";
+import type { GenreMap, Movie, ShowcaseTabs } from "./types/movie";
+import SearchView from "./views/SearchView";
 import WatchlistView from "./views/WatchlistView";
-import MoviePage from "./views/MoviePage";
+import MovieDetailView from "./views/MovieDetailView";
 import useLocalStorage from "./hooks/useLocalStorage";
 import renderRoutes from "./utils/renderRoutes";
 import { createGenreMap, getGenres } from "./api/tmdb";
@@ -23,6 +23,13 @@ function App() {
   const [hasSearched, setHasSearched] = useState(false);
   const [query, setQuery] = useState<string>("");
 
+  //Showcase
+  const [showcaseTabs, setShowcaseTabs] = useState<ShowcaseTabs>({
+    popular: [],
+    top_rated: [],
+    upcoming: [],
+  });
+
   useEffect(() => {
     //Init genres at start
     async function loadGenres() {
@@ -40,26 +47,6 @@ function App() {
         : [movie, ...prev]
     );
   }
-
-  // function handleAddToWatchlist(movie: Movie) {
-  //   if (onAddToWatchlist) {
-  //     onAddToWatchlist(movie);
-  //   } else if (onRemoveFromWatchlist) {
-  //     onRemoveFromWatchlist(movie);
-  //   }
-  // }
-
-  // function onAddToWatchlist(movie: Movie) {
-  //   setWatchlist((previousWatchlist) =>
-  //     previousWatchlist.some((listMovie) => listMovie.id === movie.id)
-  //       ? previousWatchlist
-  //       : [movie, ...previousWatchlist]
-  //   );
-  // }
-
-  // function onRemoveFromWatchlist(movie: Movie) {
-  //   setWatchlist(watchlist.filter((listMovie) => listMovie.id !== movie.id));
-  // }
 
   return (
     <div className="container">
@@ -81,17 +68,6 @@ function App() {
                 height={40}
               />
             </Link>
-            {/* <button
-              className="navbar-toggler"
-              type="button"
-              data-bs-toggle="collapse"
-              data-bs-target="#Navbar"
-              aria-controls="Navbar"
-              aria-expanded="false"
-              aria-label="Toggle navigation"
-            >
-              <span className="navbar-toggler-icon"></span>
-            </button> */}
             <div className="collapse navbar-collapse" id="Navbar">
               <ul className="navbar-nav">
                 <li className="nav-item">
@@ -121,7 +97,7 @@ function App() {
         <Routes>
           {renderRoutes(
             ["/", "/search"],
-            <SearchResults
+            <SearchView
               apiLoading={apiLoading}
               apiError={apiError}
               setApiLoading={setApiLoading}
@@ -136,6 +112,8 @@ function App() {
               setHasSearched={setHasSearched}
               query={query}
               setQuery={setQuery}
+              showcaseTabs={showcaseTabs}
+              setShowcaseTabs={setShowcaseTabs}
             />
           )}
           <Route
@@ -151,7 +129,7 @@ function App() {
           <Route
             path="/movie/:id/:slug"
             element={
-              <MoviePage
+              <MovieDetailView
                 apiLoading={apiLoading}
                 apiError={apiError}
                 setApiLoading={setApiLoading}
