@@ -70,11 +70,11 @@ export default function Showcase({
 
   return (
     <>
-      <h2 className="text-center">Showcase</h2>
-      <ul className="nav nav-tabs" id="showcase" role="tablist">
+      <h2 className="text-center mb-4">Showcase</h2>
+      <ul className="nav nav-tabs justify-content-center" id="showcase" role="tablist">
         <li className="nav-item" role="presentation">
           <button
-            className="nav-link active"
+            className="text-dark nav-link active"
             id="popular"
             data-bs-toggle="tab"
             data-bs-target="#popular-pane"
@@ -88,7 +88,7 @@ export default function Showcase({
         </li>
         <li className="nav-item" role="presentation">
           <button
-            className="nav-link"
+            className="text-dark nav-link"
             id="top-rated-tab"
             data-bs-toggle="tab"
             data-bs-target="#top-rated-tab-pane"
@@ -103,7 +103,7 @@ export default function Showcase({
         </li>
         <li className="nav-item" role="presentation">
           <button
-            className="nav-link"
+            className="text-dark nav-link"
             id="upcoming-tab"
             data-bs-toggle="tab"
             data-bs-target="#upcoming-tab-pane"
@@ -117,7 +117,7 @@ export default function Showcase({
           </button>
         </li>
       </ul>
-      <div className="tab-content" id="showcaseTabContent">
+      <div className="mt-3 tab-content" id="showcaseTabContent" style={{minHeight: 'calc(100vh - 250px)'}}>
         <div
           className="tab-pane fade show active"
           id="popular-pane"
