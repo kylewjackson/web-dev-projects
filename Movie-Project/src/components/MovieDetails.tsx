@@ -145,8 +145,8 @@ export default function MovieDetails({
 
   const backgroundImage =
     activeTheme === "dark"
-      ? `linear-gradient(rgba(33, 37, 41,0.2), rgba(33, 37, 41,1)), url('${backdrop}')`
-      : `linear-gradient(rgba(255,255,255,0.2), rgba(255,255,255,1)), url('${backdrop}')`;
+      ? `linear-gradient(rgba(33, 37, 41,0.2) 10%, rgba(33, 37, 41,0.8) 85%, rgba(33, 37, 41,1) 98%, rgba(33, 37, 41,1) 100%), url('${backdrop}')`
+      : `linear-gradient(rgba(255,255,255,0.2) 10%, rgba(255,255,255,0.8) 85%, rgba(255,255,255,1) 98%,rgba(255,255,255,1) 100%), url('${backdrop}')`;
 
   return (
     <article>
