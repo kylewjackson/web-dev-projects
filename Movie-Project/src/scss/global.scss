@@ -29,6 +29,15 @@
 
 //*Components*
 
+/* make the native clear-button show a pointer cursor */
+input[type="search"]::-webkit-search-cancel-button {
+  cursor: pointer;
+}
+
+input[type="search"]::-ms-clear {
+  cursor: pointer;
+}
+
 .movie-card {
   &--rounded-top-left {
     border-top-left-radius: var(--bs-border-radius) !important;

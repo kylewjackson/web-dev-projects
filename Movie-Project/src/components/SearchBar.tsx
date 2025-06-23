@@ -1,31 +1,52 @@
-import { useId } from "react";
+import { useId, useRef, useEffect } from "react";
 import { Form, FloatingLabel, Row, Col, Button } from "react-bootstrap";
+import type { HandleMovies } from "../types/movie";
 
 type Props = {
   onSearch: (query: string) => void;
+  onClear?: () => void;
   query: string;
-  setQuery: (query: string) => void;
+  setQuery: (q: string) => void;
   apiLoading: boolean;
   setHasSearched: (val: boolean) => void;
+  setMovieResults: HandleMovies;
 };
 
 export default function SearchBar({
   onSearch,
+  onClear,
   query,
   setQuery,
   apiLoading,
   setHasSearched,
+  setMovieResults,
 }: Props) {
   const searchId = useId();
+  const inputRef = useRef<HTMLInputElement>(null);
 
-  function handleSearch(e: React.FormEvent<HTMLFormElement>) {
+  useEffect(() => {
+    const input = inputRef.current;
+    if (!input) return;
+    const handleNativeSearch = (e: Event) => {
+      // only treat it as a "clear" if value is empty
+      if ((e.target as HTMLInputElement).value === "") {
+        setMovieResults([]);
+        setHasSearched(false);
+        onClear?.();
+      }
+    };
+    input.addEventListener("search", handleNativeSearch);
+    return () => input.removeEventListener("search", handleNativeSearch);
+  }, [onClear, setHasSearched, setMovieResults]);
+
+  function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
-    const formattedQuery = query.trim();
-    onSearch(formattedQuery);
+    const q = query.trim();
+    onSearch(q);
   }
 
   return (
-    <Form onSubmit={handleSearch} className="mb-4">
+    <Form onSubmit={handleSubmit} className="mb-3">
       <Row className="gx-1">
         <Col xs={9}>
           <FloatingLabel
@@ -35,8 +56,9 @@ export default function SearchBar({
           >
             <Form.Control
               type="search"
-              placeholder="Search Movies:" // required for floating label
+              ref={inputRef}
               value={query}
+              placeholder=" " // needed so floating label shrinks
               onChange={(e) => {
                 setQuery(e.target.value);
                 setHasSearched(false);
@@ -45,7 +67,6 @@ export default function SearchBar({
             />
           </FloatingLabel>
         </Col>
-
         <Col xs={3}>
           <Button
             type="submit"

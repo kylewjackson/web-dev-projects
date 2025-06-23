@@ -100,6 +100,7 @@ export default function SearchView({
           setQuery={setQuery}
           apiLoading={apiLoading}
           setHasSearched={setHasSearched}
+          setMovieResults={setMovieResults}
         />
         <SearchResults
           apiLoading={apiLoading}
