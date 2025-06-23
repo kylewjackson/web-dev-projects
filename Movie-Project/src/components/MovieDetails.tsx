@@ -14,6 +14,8 @@ import ErrorMessage from "./common/ErrorMessage";
 import RatingIcon from "./common/RatingIcon";
 import WatchlistButton from "./WatchlistButton";
 import GenreBadges from "./GenreBadges";
+import { Button, Col, Row } from "react-bootstrap";
+import type { Theme } from "../types/preferences";
 
 export type Props = {
   apiLoading: boolean;
@@ -23,6 +25,7 @@ export type Props = {
   setAriaMessage: (message: string) => void;
   watchlist: Movie[];
   toggleWatchlist: HandleMovie;
+  activeTheme: Theme;
 };
 interface LocationState {
   from?: string;
@@ -36,6 +39,7 @@ export default function MovieDetails({
   setAriaMessage,
   watchlist,
   toggleWatchlist,
+  activeTheme,
 }: Props) {
   const { id } = useParams();
   const [movie, setMovie] = useState<FullMovie | null>(null);
@@ -139,25 +143,36 @@ export default function MovieDetails({
     (listMovie) => listMovie.id === movie.id
   );
 
+  const backgroundImage =
+    activeTheme === "dark"
+      ? `linear-gradient(rgba(33, 37, 41,0.2), rgba(33, 37, 41,1)), url('${backdrop}')`
+      : `linear-gradient(rgba(255,255,255,0.2), rgba(255,255,255,1)), url('${backdrop}')`;
+
   return (
     <article>
-      <div
-        className="movie-details full-viewport--1280 row justify-content-center p-3 pt-sm-0 position-relative"
+      <Row
+        as="section"
+        className="movie-details full-viewport--1280 justify-content-center p-3 pt-sm-0 position-relative"
         style={{
-          backgroundImage: `linear-gradient(rgba(255,255,255,0.2), rgba(255,255,255,1)), url('${backdrop}')`,
+          backgroundImage: backgroundImage,
           backgroundSize: "contain",
           backgroundRepeat: "no-repeat",
         }}
       >
-        <div className="movie-details_title col-12 col-sm-10 mb-0 mx-auto mt-4 mt-sm-5 mt-lg-0 pb-1 text-center">
-          <button
-            type="button"
-            className="btn btn-light btn-sm position-absolute top-0 start-0 m-2 py-0"
+        <Col
+          xs={12}
+          sm={10}
+          className="movie-details_title mb-0 mx-auto mt-4 mt-sm-5 mt-lg-0 pb-1 text-center"
+        >
+          <Button
+            size="sm"
+            variant="light"
+            className="position-absolute top-0 start-0 m-2 py-0"
             onClick={handleGoBack}
           >
             <i className="bi bi-arrow-left-short" />
             <span>Go Back</span>
-          </button>
+          </Button>
           {genres.length > 0 && (
             <GenreBadges movie={movie} genres={genres} variant="light" />
           )}
@@ -166,57 +181,60 @@ export default function MovieDetails({
               title,
               year,
               variant: "card",
+              bg: "light",
             })}
           </h1>
           <WatchlistButton
             movie={movie}
             isInWatchlist={isInWatchlist}
             toggleWatchlist={toggleWatchlist}
-            variant={'primary'}
+            variant={"primary"}
           />
-        </div>
+        </Col>
 
-        <div className="movie-details_poster col-9 py-4 m-auto">
+        <Col xs={9} className="movie-details_poster py-4 m-auto">
           <img src={poster} alt="" className="img-fluid shadow-sm" />
-        </div>
+        </Col>
 
         <h2 className="visually-hidden">Additional Details</h2>
-        <div className="movie-details_info col-12 col-sm-10 text-center row mx-auto justify-content-around p-sm-0">
-          {language && (
-            <p className={infoBadgeClasses}>
-              <i className="bi bi-ear pe-1"></i>{" "}
-              {new Intl.DisplayNames(undefined, { type: "language" }).of(
-                language
-              )}
-            </p>
-          )}
-          {runtime !== null && runtime > 0 && (
-            <p className={infoBadgeClasses}>
-              <i className="bi bi-clock pe-1"></i> {runtime}{" "}
-              {runtime > 1 ? "mins" : "min"}
-            </p>
-          )}
-          {status && (
-            <p className={infoBadgeClasses}>
-              {statusIcon[status] ?? null} {status}
-            </p>
-          )}
-          {rating != null && Math.round(rating) !== 0 && (
-            <p className={infoBadgeClasses}>
-              {rating && (
-                <RatingIcon val={Math.round(rating)} className="pe-1" />
-              )}{" "}
-              Rating: {rating && Math.round(rating)}
-            </p>
-          )}
-        </div>
-      </div>
+        <Col xs={12} sm={10} className="movie-details_info text-center mx-auto">
+          <Row className="justify-content-around">
+            {language && (
+              <p className={infoBadgeClasses}>
+                <i className="bi bi-ear pe-1"></i>{" "}
+                {new Intl.DisplayNames(undefined, { type: "language" }).of(
+                  language
+                )}
+              </p>
+            )}
+            {runtime !== null && runtime > 0 && (
+              <p className={infoBadgeClasses}>
+                <i className="bi bi-clock pe-1"></i> {runtime}{" "}
+                {runtime > 1 ? "mins" : "min"}
+              </p>
+            )}
+            {status && (
+              <p className={infoBadgeClasses}>
+                {statusIcon[status] ?? null} {status}
+              </p>
+            )}
+            {rating != null && Math.round(rating) !== 0 && (
+              <p className={infoBadgeClasses}>
+                {rating && (
+                  <RatingIcon val={Math.round(rating)} className="pe-1" />
+                )}{" "}
+                Rating: {rating && Math.round(rating)}
+              </p>
+            )}
+          </Row>
+        </Col>
+      </Row>
 
-      <div className="movie-details_overview full-viewport--1280 mx-lg-auto px-4">
+      <section className="movie-details_overview full-viewport--1280 mx-lg-auto px-4">
         <h3 className="visually-hidden">External Sites</h3>
-        <ul className="list-unstyled row row-cols-auto gx-2">
+        <Row as="ul" className="list-unstyled row-cols-auto gx-2">
           {imdb && (
-            <li className="col">
+            <Col as="li">
               <a
                 href={`https://www.imdb.com/title/${imdb}/`}
                 target="_blank"
@@ -231,9 +249,9 @@ export default function MovieDetails({
                   <i className="ps-1 bi bi-arrow-up-right-circle" />
                 </span>
               </a>
-            </li>
+            </Col>
           )}
-          <li className="col">
+          <Col as="li">
             <a
               href={`https://www.letterboxd.com/tmdb/${id}/`}
               target="_blank"
@@ -244,8 +262,8 @@ export default function MovieDetails({
                 Letterboxd <i className="ps-1 bi bi-arrow-up-right-circle" />
               </span>
             </a>
-          </li>
-        </ul>
+          </Col>
+        </Row>
 
         <h3 className="visually-hidden">Movie Overview</h3>
         {original_title && (
@@ -284,7 +302,7 @@ export default function MovieDetails({
             </p>
           </>
         )}
-      </div>
+      </section>
     </article>
   );
 }

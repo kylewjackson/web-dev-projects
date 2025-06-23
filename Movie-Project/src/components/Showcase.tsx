@@ -8,6 +8,7 @@ import type {
   ShowcaseTabs,
 } from "../types/movie";
 import type { TMDBMovieList } from "../types/tmdb";
+import { Tabs, Tab } from "react-bootstrap";
 import ErrorMessage from "./common/ErrorMessage";
 import LoadingMessage from "./common/LoadingMessage";
 import MovieCardList from "./MovieCardList";
@@ -37,8 +38,9 @@ export default function Showcase({
 }: Props) {
   const loadedTabs = useRef<Set<TMDBMovieList>>(new Set());
   const [localLoading, setLocalLoading] = useState(false);
+  const [activeTab, setActiveTab] = useState<TMDBMovieList>("popular");
 
-  //Fetch Tab Data
+  // Fetch Tab Data
   const onShowcaseFetch = useCallback(
     async (listType: TMDBMovieList) => {
       if (loadedTabs.current.has(listType)) return;
@@ -63,112 +65,79 @@ export default function Showcase({
     [genreMap, setApiError, setAriaMessage, setShowcaseTabs]
   );
 
+  // initial load
   useEffect(() => {
-    // fetch initial popular results
     void onShowcaseFetch("popular");
   }, [onShowcaseFetch]);
 
   return (
     <>
       <h2 className="text-center mb-4">Showcase</h2>
-      <ul className="nav nav-tabs justify-content-center" id="showcase" role="tablist">
-        <li className="nav-item" role="presentation">
-          <button
-            className="text-body nav-link active"
-            id="popular"
-            data-bs-toggle="tab"
-            data-bs-target="#popular-pane"
-            type="button"
-            role="tab"
-            aria-controls="popular-pane"
-            aria-selected="true"
-          >
-            Popular
-          </button>
-        </li>
-        <li className="nav-item" role="presentation">
-          <button
-            className="text-body nav-link"
-            id="top-rated-tab"
-            data-bs-toggle="tab"
-            data-bs-target="#top-rated-tab-pane"
-            type="button"
-            role="tab"
-            aria-controls="top-rated-tab-pane"
-            aria-selected="false"
-            onClick={() => onShowcaseFetch("top_rated")}
-          >
-            Top Rated
-          </button>
-        </li>
-        <li className="nav-item" role="presentation">
-          <button
-            className="text-body nav-link"
-            id="upcoming-tab"
-            data-bs-toggle="tab"
-            data-bs-target="#upcoming-tab-pane"
-            type="button"
-            role="tab"
-            aria-controls="upcoming-tab-pane"
-            aria-selected="false"
-            onClick={() => onShowcaseFetch("upcoming")}
-          >
-            Upcoming
-          </button>
-        </li>
-      </ul>
-      <div className="mt-3 tab-content" id="showcaseTabContent" style={{minHeight: 'calc(100vh - 250px)'}}>
-        <div
-          className="tab-pane fade show active"
-          id="popular-pane"
-          role="tabpanel"
-          aria-labelledby="popular"
-          tabIndex={0}
+
+      {/* wrap Tabs in a div for mt-3 + minHeight */}
+      <div className="mt-3" style={{ minHeight: "calc(100vh - 250px)" }}>
+        <Tabs
+          id="showcase"
+          activeKey={activeTab}
+          onSelect={(k) => {
+            const key = k as TMDBMovieList;
+            setActiveTab(key);
+            onShowcaseFetch(key);
+          }}
+          className="justify-content-center mb-3"
+          mountOnEnter
         >
-          {localLoading && <LoadingMessage context={"popular movies"} />}
-          {apiError && <ErrorMessage message={apiError.message} />}
-          <MovieCardList
-            movies={showcaseTabs["popular"]}
-            watchlist={watchlist}
-            toggleWatchlist={toggleWatchlist}
-            locationPathName={locationPathName}
-            context={"showcase-popular"}
-          />
-        </div>
-        <div
-          className="tab-pane fade"
-          id="top-rated-tab-pane"
-          role="tabpanel"
-          aria-labelledby="top-rated-tab"
-          tabIndex={0}
-        >
-          {localLoading && <LoadingMessage context={"top rated movies"} />}
-          {apiError && <ErrorMessage message={apiError.message} />}
-          <MovieCardList
-            movies={showcaseTabs["top_rated"]}
-            watchlist={watchlist}
-            toggleWatchlist={toggleWatchlist}
-            locationPathName={locationPathName}
-            context={"showcase-top_rated"}
-          />
-        </div>
-        <div
-          className="tab-pane fade"
-          id="upcoming-tab-pane"
-          role="tabpanel"
-          aria-labelledby="upcoming-tab"
-          tabIndex={0}
-        >
-          {localLoading && <LoadingMessage context={"upcoming movies"} />}
-          {apiError && <ErrorMessage message={apiError.message} />}
-          <MovieCardList
-            movies={showcaseTabs["upcoming"]}
-            watchlist={watchlist}
-            toggleWatchlist={toggleWatchlist}
-            locationPathName={locationPathName}
-            context={"showcase-upcoming"}
-          />
-        </div>
+          <Tab
+            eventKey="popular"
+            title={<span className="text-body">Popular</span>}
+          >
+            {localLoading && activeTab === "popular" && (
+              <LoadingMessage context="popular movies" />
+            )}
+            {apiError && <ErrorMessage message={apiError.message} />}
+            <MovieCardList
+              movies={showcaseTabs.popular}
+              watchlist={watchlist}
+              toggleWatchlist={toggleWatchlist}
+              locationPathName={locationPathName}
+              context="showcase-popular"
+            />
+          </Tab>
+
+          <Tab
+            eventKey="top_rated"
+            title={<span className="text-body">Top Rated</span>}
+          >
+            {localLoading && activeTab === "top_rated" && (
+              <LoadingMessage context="top rated movies" />
+            )}
+            {apiError && <ErrorMessage message={apiError.message} />}
+            <MovieCardList
+              movies={showcaseTabs.top_rated}
+              watchlist={watchlist}
+              toggleWatchlist={toggleWatchlist}
+              locationPathName={locationPathName}
+              context="showcase-top_rated"
+            />
+          </Tab>
+
+          <Tab
+            eventKey="upcoming"
+            title={<span className="text-body">Upcoming</span>}
+          >
+            {localLoading && activeTab === "upcoming" && (
+              <LoadingMessage context="upcoming movies" />
+            )}
+            {apiError && <ErrorMessage message={apiError.message} />}
+            <MovieCardList
+              movies={showcaseTabs.upcoming}
+              watchlist={watchlist}
+              toggleWatchlist={toggleWatchlist}
+              locationPathName={locationPathName}
+              context="showcase-upcoming"
+            />
+          </Tab>
+        </Tabs>
       </div>
     </>
   );

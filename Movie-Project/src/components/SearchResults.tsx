@@ -2,6 +2,7 @@ import type { HandleMovie, Movie } from "../types/movie";
 import LoadingMessage from "./common/LoadingMessage";
 import ErrorMessage from "./common/ErrorMessage";
 import MovieCardList from "./MovieCardList";
+import { Alert } from "react-bootstrap";
 
 type Props = {
   apiLoading: boolean;
@@ -26,28 +27,31 @@ export default function SearchResults({
 }: Props) {
   return (
     <>
-      {apiLoading && <LoadingMessage context={"results"} />}
+      {apiLoading && <LoadingMessage context="results" />}
       {apiError && <ErrorMessage message={apiError.message} />}
+
       {movieResults.length > 0 ? (
         <>
-          <div className="alert alert-info">
+          <Alert variant="info">
             {movieResults.length} result{movieResults.length > 1 && "s"} found
-          </div>
+          </Alert>
+
           <MovieCardList
             movies={movieResults}
             watchlist={watchlist}
             toggleWatchlist={toggleWatchlist}
             locationPathName={locationPathName}
-            context={"search-result"}
+            context="search-result"
           />
         </>
       ) : (
         movieResults.length === 0 &&
         hasSearched &&
         !apiLoading && (
-          <p className="alert alert-warning text-center">
-            No results found for {query}. Please try a new search.
-          </p>
+          <Alert variant="warning" className="text-center">
+            No results found for <strong>{query}</strong>. Please try a new
+            search.
+          </Alert>
         )
       )}
     </>

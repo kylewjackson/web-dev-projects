@@ -1,0 +1,15 @@
+/* Light theme */
+html[data-bs-theme="light"] {
+  .dropdown-item.active {
+    background-color: #e9ecef;
+    color: #212529;
+  }
+}
+
+/* Dark theme */
+html[data-bs-theme="dark"] {
+  .dropdown-item.active {
+    background-color: #343a40;
+    color: #f8f9fa;
+  }
+}

@@ -1,69 +1,63 @@
+import { Dropdown } from "react-bootstrap";
 import type { Theme } from "../types/preferences";
 
 type Props = {
-	userTheme: Theme;
+  userTheme: Theme;
   activeTheme: Theme;
   setUserTheme: (theme: Theme) => void;
 };
 
 export default function ThemeSwitch({
-	userTheme,
+  userTheme,
   activeTheme,
   setUserTheme,
 }: Props) {
+  // pick the right icon for the toggle
+  const icon =
+    userTheme === "auto" ? (
+      <i className="bi bi-shadows me-1" aria-label="System theme" />
+    ) : userTheme === "dark" ? (
+      <i className="bi bi-moon-stars me-1" aria-label="Dark mode" />
+    ) : (
+      <i className="bi bi-brightness-high me-1" aria-label="Light mode" />
+    );
+
   return (
-    <div className="dropdown">
-      <button
-        className={`btn ${activeTheme === "dark" ? 'btn-dark' : 'btn-light'} dropdown-toggle`}
-        type="button"
+    <Dropdown align="end">
+      <Dropdown.Toggle
         id="themeDropdown"
-        data-bs-toggle="dropdown"
-        aria-expanded="false"
-				aria-label="Select theme"
+        variant={activeTheme === "dark" ? "dark" : "light"}
+        aria-label="Select theme"
       >
-        {userTheme === "auto" ? (
-          <i className="bi bi-shadows me-1" aria-label="auto mode" />
-        ) : userTheme === "dark" ? (
-          <i className="bi bi-moon-stars me-1" aria-label="dark mode" />
-        ) : (
-          <i className="bi bi-brightness-high me-1" aria-label="light mode" />
-        )}
-      </button>
-      <ul
-        className="dropdown-menu dropdown-menu-end"
-        aria-labelledby="themeDropdown"
-      >
-        <li>
-          <button
-            className="dropdown-item d-flex align-items-center"
-            data-bs-theme-value="light"
-						onClick={() => setUserTheme("light")}
-          >
-            <i className="bi bi-brightness-high me-1" />
-            Light
-          </button>
-        </li>
-        <li>
-          <button
-            className="dropdown-item d-flex align-items-center"
-            data-bs-theme-value="dark"
-						onClick={() => setUserTheme("dark")}
-          >
-            <i className="bi bi-moon-stars me-1" />
-            Dark
-          </button>
-        </li>
-        <li>
-          <button
-            className="dropdown-item d-flex align-items-center"
-            data-bs-theme-value="auto"
-						onClick={() => setUserTheme("auto")}
-          >
-            <i className="bi bi-shadows me-1" />
-            System
-          </button>
-        </li>
-      </ul>
-    </div>
+        {icon}
+      </Dropdown.Toggle>
+
+      <Dropdown.Menu>
+        <Dropdown.Item
+          active={userTheme === "light"}
+          className="d-flex align-items-center"
+          onClick={() => setUserTheme("light")}
+        >
+          <i className="bi bi-brightness-high me-1" />
+          Light
+        </Dropdown.Item>
+        <Dropdown.Item
+          active={userTheme === "dark"}
+          className="d-flex align-items-center"
+          onClick={() => setUserTheme("dark")}
+        >
+          <i className="bi bi-moon-stars me-1" />
+          Dark
+        </Dropdown.Item>
+        <Dropdown.Item
+          active={userTheme === "auto"}
+          className="d-flex align-items-center"
+          onClick={() => setUserTheme("auto")}
+        >
+          <i className="bi bi-shadows me-1" />
+          System
+        </Dropdown.Item>
+      </Dropdown.Menu>
+    </Dropdown>
   );
 }

@@ -3,6 +3,7 @@ import type { Movie, HandleMovie } from "../types/movie";
 import { formatTitleWithYear } from "../utils/movieUtils";
 import { NavLink } from "react-router";
 import slugify from "slugify";
+import { Card, Row, Col, Button, Collapse } from "react-bootstrap";
 import WatchlistButton from "./WatchlistButton";
 import GenreBadges from "./GenreBadges";
 import formatLanguage from "../utils/formatLanguage";
@@ -12,7 +13,7 @@ type Props = {
   watchlist: Movie[];
   toggleWatchlist: HandleMovie;
   outline?: boolean;
-	variant?: string;
+  variant?: string;
   from: string;
   context?: string;
 };
@@ -22,7 +23,7 @@ export default function MovieCard({
   watchlist,
   toggleWatchlist,
   outline,
-	variant,
+  variant,
   from,
   context,
 }: Props) {
@@ -37,17 +38,15 @@ export default function MovieCard({
     language,
     genres,
   } = movie;
-
   const [expanded, setExpanded] = useState(false);
   const slug = slugify(title, "+");
-  const isInWatchlist = watchlist.some(
-    (listMovie) => listMovie.id === movie.id
-  );
+  const isInWatchlist = watchlist.some((m) => m.id === id);
+  const collapseId = `collapse-${context ? `${context}-` : ""}${id}`;
 
   return (
-    <div className="card mb-3">
-      <div className="row">
-        <div className="col-4 col-md-3">
+    <Card className="mb-3">
+      <Row>
+        <Col xs={4} md={3}>
           <NavLink to={`/movie/${id}/${slug}`} state={{ from }} tabIndex={-1}>
             <img
               src={poster}
@@ -55,12 +54,14 @@ export default function MovieCard({
               className="img-fluid movie-card--rounded-top-left shadow-sm"
             />
           </NavLink>
-        </div>
-        <div className="col-8 col-md-9 ps-0 ps-md-2">
-          <div className="card-body p-2 ps-0 p-md-9">
-            <h2 className="card-title h4">
+        </Col>
+
+        <Col xs={8} md={9} className="ps-0 ps-md-2">
+          <Card.Body className="p-2 ps-0 p-md-9">
+            <Card.Title as="h2" className="h4">
               {formatTitleWithYear({ title, year, variant: "card" })}
-            </h2>
+            </Card.Title>
+
             <div className="d-flex flex-column align-items-start">
               <NavLink
                 to={`/movie/${id}/${slug}`}
@@ -78,46 +79,48 @@ export default function MovieCard({
                   <i className="ps-1 bi bi-arrow-right-circle" />
                 </span>
               </NavLink>
+
               <WatchlistButton
                 movie={movie}
                 isInWatchlist={isInWatchlist}
                 toggleWatchlist={toggleWatchlist}
                 outline={outline}
-								variant={variant}
+                variant={variant}
               />
             </div>
-          </div>
-        </div>
-        <button
-          className="col-12 mt-2 btn btn-link text-body text-decoration-none"
-          type="button"
-          data-bs-toggle="collapse"
-          data-bs-target={`#collapse-${context ? `${context}-` : ""}${id}`}
-          aria-expanded="false"
-          aria-controls={`collapse-${context ? `${context}-` : ""}${id}`}
-          onClick={() => setExpanded(!expanded)}
-        >
-          {expanded === false ? (
-            <>
-              Show More <i className="bi bi-chevron-down"></i>
-            </>
-          ) : (
-            <>
-              Show Less <i className="bi bi-chevron-up"></i>
-            </>
-          )}
-        </button>
-        <div
-          className="mt-2 collapse col-11 mx-auto row"
-          id={`collapse-${context ? `${context}-` : ""}${id}`}
-        >
+          </Card.Body>
+        </Col>
+      </Row>
+
+      <Button
+        variant="link"
+        className="col-12 mt-2 text-body text-decoration-none"
+        onClick={() => setExpanded((e) => !e)}
+        aria-controls={collapseId}
+        aria-expanded={expanded}
+      >
+        {expanded ? (
+          <>
+            Show Less <i className="bi bi-chevron-up" />
+          </>
+        ) : (
+          <>
+            Show More <i className="bi bi-chevron-down" />
+          </>
+        )}
+      </Button>
+
+      <Collapse in={expanded}>
+        <div id={collapseId} className="mt-2 col-11 mx-auto row">
           <h3 className="h5">Overview</h3>
+
           {genres.length > 0 && (
             <>
               <h4 className="visually-hidden">Genre</h4>
               <GenreBadges movie={movie} genres={genres} />
             </>
           )}
+
           {overview && (
             <>
               <h4 className="visually-hidden">Synopsis</h4>
@@ -131,12 +134,14 @@ export default function MovieCard({
               <p>{formatLanguage(language)}</p>
             </>
           )}
+
           {release && (
             <>
               <h4 className="h6">Release</h4>
               <p>{release}</p>
             </>
           )}
+
           {rating != null && rating > 0 && (
             <>
               <h4 className="h6">Avg. Rating</h4>
@@ -144,7 +149,7 @@ export default function MovieCard({
             </>
           )}
         </div>
-      </div>
-    </div>
+      </Collapse>
+    </Card>
   );
 }

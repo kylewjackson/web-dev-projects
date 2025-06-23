@@ -11,6 +11,7 @@ import type {
 import SearchBar from "../components/SearchBar";
 import SearchResults from "../components/SearchResults";
 import Showcase from "../components/Showcase";
+import { Col } from "react-bootstrap";
 
 type Props = {
   apiLoading: boolean;
@@ -92,7 +93,7 @@ export default function SearchView({
   return (
     <>
       <h1 className="visually-hidden">Search for Movies</h1>
-      <section className="col-11 col-lg-5 pt-3">
+      <Col as="section" xs={11} lg={5} className="pt-3">
         <SearchBar
           onSearch={onSearch}
           query={query}
@@ -110,9 +111,9 @@ export default function SearchView({
           query={query}
           locationPathName={location.pathname}
         />
-      </section>
-      <section className="col-12 pt-3 bg-body-tertiary">
-        <div className="col-11 col-lg-5 mx-auto">
+      </Col>
+      <Col as="section" xs={12} className="pt-3 bg-body-tertiary">
+        <Col xs={11} lg={5} className="mx-auto">
           <Showcase
             genreMap={genreMap}
             apiError={apiError}
@@ -124,8 +125,8 @@ export default function SearchView({
             showcaseTabs={showcaseTabs}
             setShowcaseTabs={setShowcaseTabs}
           />
-        </div>
-      </section>
+        </Col>
+      </Col>
     </>
   );
 }

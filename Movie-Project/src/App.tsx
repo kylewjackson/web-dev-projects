@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { Routes, Route, Navigate, NavLink, Link } from "react-router";
+import { Container, Row, Col, Navbar, Nav } from "react-bootstrap";
 import type { GenreMap, Movie, ShowcaseTabs } from "./types/movie";
 import type { Theme } from "./types/preferences";
 import SearchView from "./views/SearchView";
@@ -64,95 +65,52 @@ function App() {
   }
 
   return (
-    <div className="container-fluid">
+    <Container fluid>
       {/* aria-live annoucment message for state changes */}
       <div id="announce" aria-live="polite" className="visually-hidden">
         <p>{ariaMessage}</p>
       </div>
-      <header className="text-center fixed-top">
-        <nav className="navbar navbar-expand bg-body-tertiary shadow-sm">
-          <div className="container-fluid">
-            <Link
-              to="/"
-              className="navbar-brand mb-0 d-flex align-items-center"
-            >
-              <img
-                src={Logo}
-                alt="Movie Watchlist App Logo"
-                width={30}
-                height={40}
-              />
-            </Link>
-            <div
-              className="collapse navbar-collapse justify-content-between"
-              id="Navbar"
-            >
-              <ul className="navbar-nav">
-                <li className="nav-item">
-                  <NavLink to="/search" className="nav-link">
-                    <i className="bi bi-search pe-1" />
-                    <span>Search</span>
-                  </NavLink>
-                </li>
-                <li className="nav-item">
-                  <NavLink to="/watchlist" className="nav-link">
-                    {watchlist && watchlist.length > 0 ? (
-                      <i className="bi bi-bookmark-fill pe-1" />
-                    ) : (
-                      <i className="bi bi-bookmark pe-1" />
-                    )}
-                    <span>Watchlist</span>
-                    <span> ({watchlist && watchlist.length})</span>
-                  </NavLink>
-                </li>
-              </ul>
-              <ThemeSwitch
-                userTheme={userTheme}
-                activeTheme={activeTheme}
-                setUserTheme={setUserTheme}
-              />
-            </div>
-          </div>
-        </nav>
-      </header>
-
-      <main className="body-content row justify-content-center">
-        <Routes>
-          {renderRoutes(
-            ["/", "/search"],
-            <SearchView
-              apiLoading={apiLoading}
-              apiError={apiError}
-              setApiLoading={setApiLoading}
-              setApiError={setApiError}
-              setAriaMessage={setAriaMessage}
-              watchlist={watchlist}
-              toggleWatchlist={toggleWatchlist}
-              genreMap={genreMap}
-              movieResults={movieResults}
-              setMovieResults={setMovieResults}
-              hasSearched={hasSearched}
-              setHasSearched={setHasSearched}
-              query={query}
-              setQuery={setQuery}
-              showcaseTabs={showcaseTabs}
-              setShowcaseTabs={setShowcaseTabs}
+      <Navbar bg="body-tertiary" fixed="top" expand className="shadow-sm">
+        <Container fluid>
+          <Navbar.Brand
+            as={Link}
+            to="/"
+            className="d-flex align-items-center mb-0"
+          >
+            <img
+              src={Logo}
+              alt="Movie Watchlist App Logo"
+              width={30}
+              height={40}
             />
-          )}
-          <Route
-            path="/watchlist"
-            element={
-              <WatchlistView
-                watchlist={watchlist}
-                setWatchlist={setWatchlist}
-                toggleWatchlist={toggleWatchlist}
-              />
-            }
+          </Navbar.Brand>
+          <Nav className="me-auto">
+            <Nav.Link as={NavLink} to="/search">
+              <i className="bi bi-search pe-1" /> Search
+            </Nav.Link>
+            <Nav.Link as={NavLink} to="/watchlist">
+              {watchlist.length > 0 ? (
+                <i className="bi bi-bookmark-fill pe-1" />
+              ) : (
+                <i className="bi bi-bookmark pe-1" />
+              )}
+              Watchlist ({watchlist.length})
+            </Nav.Link>
+          </Nav>
+          <ThemeSwitch
+            userTheme={userTheme}
+            activeTheme={activeTheme}
+            setUserTheme={setUserTheme}
           />
-          <Route
-            path="/movie/:id/:slug"
-            element={
-              <MovieDetailView
+        </Container>
+      </Navbar>
+
+      <main className="body-content">
+        <Row className="justify-content-center">
+          <Routes>
+            {renderRoutes(
+              ["/", "/search"],
+              <SearchView
                 apiLoading={apiLoading}
                 apiError={apiError}
                 setApiLoading={setApiLoading}
@@ -160,23 +118,67 @@ function App() {
                 setAriaMessage={setAriaMessage}
                 watchlist={watchlist}
                 toggleWatchlist={toggleWatchlist}
+                genreMap={genreMap}
+                movieResults={movieResults}
+                setMovieResults={setMovieResults}
+                hasSearched={hasSearched}
+                setHasSearched={setHasSearched}
+                query={query}
+                setQuery={setQuery}
+                showcaseTabs={showcaseTabs}
+                setShowcaseTabs={setShowcaseTabs}
               />
-            }
-          />
-          <Route path="*" element={<Navigate to="/" replace />} />
-        </Routes>
+            )}
+            <Route
+              path="/watchlist"
+              element={
+                <WatchlistView
+                  watchlist={watchlist}
+                  setWatchlist={setWatchlist}
+                  toggleWatchlist={toggleWatchlist}
+                />
+              }
+            />
+            <Route
+              path="/movie/:id/:slug"
+              element={
+                <MovieDetailView
+                  apiLoading={apiLoading}
+                  apiError={apiError}
+                  setApiLoading={setApiLoading}
+                  setApiError={setApiError}
+                  setAriaMessage={setAriaMessage}
+                  watchlist={watchlist}
+                  toggleWatchlist={toggleWatchlist}
+									activeTheme={activeTheme}
+                />
+              }
+            />
+            <Route path="*" element={<Navigate to="/" replace />} />
+          </Routes>
+        </Row>
       </main>
 
-      <footer className="row mt-5">
-        <p className="col-md-6 d-flex justify-content-center justify-content-md-end align-items-center">
-          Site Copyright Kyle Jackson 2025.
-        </p>
-        <p className="col-md-6  d-flex justify-content-center justify-content-md-start align-items-center">
-          <span className="me-3">Powered by</span>
-          <img src={TMDB} alt="TMDB" width={100} height={43} />
-        </p>
+      <footer className="mt-5">
+        <Row>
+          <Col
+            md={6}
+            as="p"
+            className="d-flex justify-content-center justify-content-md-end align-items-center"
+          >
+            Site Copyright Kyle Jackson 2025.
+          </Col>
+          <Col
+            md={6}
+            as="p"
+            className="d-flex justify-content-center justify-content-md-start align-items-center"
+          >
+            <span className="me-3">Powered by</span>
+            <img src={TMDB} alt="TMDB" width={100} height={43} />
+          </Col>
+        </Row>
       </footer>
-    </div>
+    </Container>
   );
 }
 

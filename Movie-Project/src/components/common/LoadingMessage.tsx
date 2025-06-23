@@ -1,3 +1,5 @@
+import { Spinner } from "react-bootstrap";
+
 type Props = {
   context: string;
 };
@@ -5,9 +7,9 @@ type Props = {
 export default function LoadingMessage({ context }: Props) {
   return (
     <div className="text-center">
-      <div className="spinner-border" role="status">
+      <Spinner animation="border" role="status">
         <span className="visually-hidden">Loading {context}...</span>
-      </div>
+      </Spinner>
     </div>
   );
 }

@@ -15,12 +15,20 @@ export function formatTitleWithYear({
   title,
   year,
   variant = "raw",
+  bg = "auto",
 }: FormatTitleOptions): JSX.Element | string {
   if (variant === "card") {
     return (
       <>
         <span>{title}</span>
-        {year && <span className="text-body-tertiary"> ({year})</span>}
+        {year && (
+          <span
+            className={bg === "light" ? "text-black-50" : "text-body-tertiary"}
+          >
+            {" "}
+            ({year})
+          </span>
+        )}
       </>
     );
   }

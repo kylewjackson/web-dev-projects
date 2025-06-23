@@ -5,6 +5,7 @@ export type FormatTitleOptions = {
   title: string;
   year: Year;
   variant?: "card" | "raw";
+  bg?: "light" | "auto";
 };
 
 export type Year = (number & { __brand: "Year" }) | null;

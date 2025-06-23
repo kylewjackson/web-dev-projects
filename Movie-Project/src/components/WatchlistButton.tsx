@@ -1,4 +1,5 @@
 import type { HandleMovie, Movie } from "../types/movie";
+import { Button } from "react-bootstrap";
 
 type Props = {
   movie: Movie;
@@ -15,28 +16,31 @@ export default function WatchlistButton({
   outline = false,
   variant = "secondary",
 }: Props) {
+  // determine the correct Bootstrap variant
+  const btnVariant = isInWatchlist
+    ? outline
+      ? "outline-danger"
+      : "danger"
+    : outline
+    ? `outline-${variant}`
+    : variant;
+
   return (
-    <button
-      type="button"
-      className={`btn btn-sm${!isInWatchlist ? " shadow-sm" : ""} ${
-        !isInWatchlist
-          ? `btn-${outline ? "outline-" : ""}${variant}`
-          : `btn-${outline ? "outline-" : ""}danger`
-      }`}
+    <Button
+      variant={btnVariant}
+      size="sm"
+      className={!isInWatchlist ? "shadow-sm" : ""}
       onClick={() => toggleWatchlist(movie)}
     >
       {!isInWatchlist ? (
-        <span>
+        <>
           Add to Watchlist <i className="bi bi-bookmark-plus" />
-        </span>
+        </>
       ) : (
-        <span>
+        <>
           Remove from Watchlist <i className="bi bi-bookmark-x" />
-        </span>
+        </>
       )}
-      {/* <span>
-        In Watchlist <i className="bi bi-bookmark-fill" />
-      </span> */}
-    </button>
+    </Button>
   );
 }

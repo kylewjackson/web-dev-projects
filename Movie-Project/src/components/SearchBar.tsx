@@ -1,4 +1,5 @@
 import { useId } from "react";
+import { Form, FloatingLabel, Row, Col, Button } from "react-bootstrap";
 
 type Props = {
   onSearch: (query: string) => void;
@@ -24,30 +25,38 @@ export default function SearchBar({
   }
 
   return (
-    //gx-1 class to correct Bootstrap floating form padding
-    <form onSubmit={handleSearch} className="mb-4 row gx-1">
-      <div className="form-floating col-9">
-        <input
-          id={searchId}
-          type="search"
-          name="searchQuery"
-          value={query}
-          onChange={(e) => {
-            setQuery(e.target.value);
-            setHasSearched(false);
-          }}
-          placeholder=" " //For Bootstrap floating form
-          className="form-control shadow-sm"
-        />
-        <label htmlFor={searchId}>Search Movies:</label>
-      </div>
-      <button
-        type="submit"
-        className="col-3 btn btn-primary shadow-sm"
-        disabled={apiLoading || !query.trim()}
-      >
-        Search
-      </button>
-    </form>
+    <Form onSubmit={handleSearch} className="mb-4">
+      <Row className="gx-1">
+        <Col xs={9}>
+          <FloatingLabel
+            controlId={searchId}
+            label="Search Movies:"
+            className="shadow-sm"
+          >
+            <Form.Control
+              type="search"
+              placeholder="Search Movies:" // required for floating label
+              value={query}
+              onChange={(e) => {
+                setQuery(e.target.value);
+                setHasSearched(false);
+              }}
+              disabled={apiLoading}
+            />
+          </FloatingLabel>
+        </Col>
+
+        <Col xs={3}>
+          <Button
+            type="submit"
+            variant="primary"
+            className="shadow-sm w-100 h-100"
+            disabled={apiLoading || !query.trim()}
+          >
+            Search
+          </Button>
+        </Col>
+      </Row>
+    </Form>
   );
 }
