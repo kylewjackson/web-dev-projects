@@ -1,15 +1,18 @@
 import { useEffect, useState } from "react";
 import { Routes, Route, Navigate, NavLink, Link } from "react-router";
 import type { GenreMap, Movie, ShowcaseTabs } from "./types/movie";
+import type { Theme } from "./types/preferences";
 import SearchView from "./views/SearchView";
 import WatchlistView from "./views/WatchlistView";
 import MovieDetailView from "./views/MovieDetailView";
 import useLocalStorage from "./hooks/useLocalStorage";
+import useSystemTheme from "./hooks/useSystemTheme";
 import renderRoutes from "./utils/renderRoutes";
 import { createGenreMap, getGenres } from "./api/tmdb";
 import "./App.css";
 import Logo from "./assets/logo.svg";
 import TMDB from "./assets/tmdb.svg";
+import ThemeSwitch from "./components/ThemeSwitch";
 
 function App() {
   const [apiLoading, setApiLoading] = useState<boolean>(false);
@@ -17,6 +20,13 @@ function App() {
   const [ariaMessage, setAriaMessage] = useState<string>("");
   const [genreMap, setGenreMap] = useState<GenreMap>({});
   const [watchlist, setWatchlist] = useLocalStorage<Movie[]>("watchlist", []);
+
+  //Theme
+  const systemTheme = useSystemTheme();
+  const [userTheme, setUserTheme] = useState<Theme>(
+    (localStorage.getItem("theme") as Theme) || "auto"
+  );
+  const activeTheme = userTheme === "auto" ? systemTheme : userTheme;
 
   //Search
   const [movieResults, setMovieResults] = useState<Movie[]>([]);
@@ -39,6 +49,11 @@ function App() {
 
     loadGenres();
   }, []);
+
+  useEffect(() => {
+    document.documentElement.setAttribute("data-bs-theme", activeTheme);
+    localStorage.setItem("theme", userTheme);
+  }, [activeTheme, userTheme]);
 
   function toggleWatchlist(movie: Movie) {
     setWatchlist((prev) =>
@@ -68,7 +83,10 @@ function App() {
                 height={40}
               />
             </Link>
-            <div className="collapse navbar-collapse" id="Navbar">
+            <div
+              className="collapse navbar-collapse justify-content-between"
+              id="Navbar"
+            >
               <ul className="navbar-nav">
                 <li className="nav-item">
                   <NavLink to="/search" className="nav-link">
@@ -88,6 +106,11 @@ function App() {
                   </NavLink>
                 </li>
               </ul>
+              <ThemeSwitch
+                userTheme={userTheme}
+                activeTheme={activeTheme}
+                setUserTheme={setUserTheme}
+              />
             </div>
           </div>
         </nav>
