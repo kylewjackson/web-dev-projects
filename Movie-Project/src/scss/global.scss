@@ -1,0 +1,70 @@
+//*Layout*
+
+.body-content {
+  margin-top: 66px;
+}
+
+//*Utilities*
+
+.truncate {
+  display: -webkit-box;
+  line-clamp: 2;
+  // number of lines
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+
+  @media (min-width: 769px) {
+    line-clamp: 5;
+    // number of lines
+    -webkit-line-clamp: 5;
+  }
+}
+
+.full-viewport--1280 {
+  width: min(100vw, 1280px);
+  margin-left: max((100% - 100vw)/2, (100% - 1280px)/2);
+  margin-right: max((100% - 100vw)/2, (100% - 1280px)/2);
+}
+
+//*Components*
+
+/* make the native clear-button show a pointer cursor */
+input[type="search"]::-webkit-search-cancel-button {
+  cursor: pointer;
+}
+
+input[type="search"]::-ms-clear {
+  cursor: pointer;
+}
+
+.movie-card {
+  &--rounded-top-left {
+    border-top-left-radius: var(--bs-border-radius) !important;
+  }
+}
+
+@media (min-width: 576px) {
+  .movie-details {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: auto auto;
+    grid-template-areas:
+      "title poster"
+      "info poster";
+    align-items: center;
+  }
+
+  .movie-details_title {
+    grid-area: title;
+  }
+
+  .movie-details_poster {
+    grid-area: poster;
+  }
+
+  .movie-details_info {
+    grid-area: info;
+    align-self: start;
+  }
+}

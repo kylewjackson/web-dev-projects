@@ -1,0 +1,4 @@
+@use "bootstrap/scss/bootstrap" with (
+  $enable-smooth-scroll: false
+);
+@use "./base/bs-overrides";

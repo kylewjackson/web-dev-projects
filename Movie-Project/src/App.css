@@ -1,16 +1,1 @@
-.truncate {
-	display: -webkit-box;
-	line-clamp: 2;
-	/* number of lines */
-	-webkit-line-clamp: 2;
-	-webkit-box-orient: vertical;
-	overflow: hidden;
-}
-
-@media (min-width: 769px) {
-	.truncate {
-		line-clamp: 5;
-		/* number of lines */
-		-webkit-line-clamp: 5;
-	}
-}
+@import url("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css");
