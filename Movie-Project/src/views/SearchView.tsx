@@ -1,55 +1,30 @@
-import { useLocation } from "react-router";
+import { useLocation, useOutletContext } from "react-router";
 import { fetchMovies } from "../api/tmdb";
-import type {
-  GenreMap,
-  HandleMovie,
-  HandleMovies,
-  HandleShowcase,
-  Movie,
-  ShowcaseTabs,
-} from "../types/movie";
 import SearchBar from "../components/SearchBar";
 import SearchResults from "../components/SearchResults";
 import Showcase from "../components/Showcase";
 import { Col } from "react-bootstrap";
+import type { AppContextType } from "../App";
 
-type Props = {
-  apiLoading: boolean;
-  setApiLoading: (loading: boolean) => void;
-  apiError: Error | null;
-  setApiError: (error: Error | null) => void;
-  setAriaMessage: (message: string) => void;
-  watchlist: Movie[];
-  toggleWatchlist: HandleMovie;
-  genreMap: GenreMap;
-  movieResults: Movie[];
-  setMovieResults: HandleMovies;
-  hasSearched: boolean;
-  setHasSearched: (searched: boolean) => void;
-  query: string;
-  setQuery: (query: string) => void;
-  showcaseTabs: ShowcaseTabs;
-  setShowcaseTabs: HandleShowcase;
-};
-
-export default function SearchView({
-  apiLoading,
-  setApiLoading,
-  apiError,
-  setApiError,
-  setAriaMessage,
-  watchlist,
-  toggleWatchlist,
-  genreMap,
-  movieResults,
-  setMovieResults,
-  hasSearched,
-  setHasSearched,
-  query,
-  setQuery,
-  showcaseTabs,
-  setShowcaseTabs,
-}: Props) {
+export default function SearchView() {
+  const {
+    apiLoading,
+    apiError,
+    setApiLoading,
+    setApiError,
+    setAriaMessage,
+    watchlist,
+    toggleWatchlist,
+    genreMap,
+    movieResults,
+    setMovieResults,
+    hasSearched,
+    setHasSearched,
+    query,
+    setQuery,
+    showcaseTabs,
+    setShowcaseTabs,
+  } = useOutletContext<AppContextType>();
   const location = useLocation();
 
   //Communicate with SearchBar

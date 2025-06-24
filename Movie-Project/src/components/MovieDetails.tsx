@@ -1,5 +1,5 @@
 import { useEffect, useState, type ReactElement } from "react";
-import { useParams, useLocation, useNavigate } from "react-router";
+import { useParams, useNavigate, useOutletContext } from "react-router";
 import type {
   FullMovie,
   HandleMovie,
@@ -16,6 +16,7 @@ import WatchlistButton from "./WatchlistButton";
 import GenreBadges from "./GenreBadges";
 import { Button, Col, Row } from "react-bootstrap";
 import type { Theme } from "../types/preferences";
+import type { AppContextType } from "../App";
 
 export type Props = {
   apiLoading: boolean;
@@ -27,30 +28,28 @@ export type Props = {
   toggleWatchlist: HandleMovie;
   activeTheme: Theme;
 };
-interface LocationState {
-  from?: string;
-}
 
-export default function MovieDetails({
-  apiLoading,
-  apiError,
-  setApiLoading,
-  setApiError,
-  setAriaMessage,
-  watchlist,
-  toggleWatchlist,
-  activeTheme,
-}: Props) {
+export default function MovieDetails() {
+  const {
+    apiLoading,
+    apiError,
+    setApiLoading,
+    setApiError,
+    setAriaMessage,
+    watchlist,
+    toggleWatchlist,
+    activeTheme,
+  } = useOutletContext<AppContextType>();
+
   const { id } = useParams();
   const [movie, setMovie] = useState<FullMovie | null>(null);
   const [hasAttemptedLoad, setHasAttemptedLoad] = useState(false);
   const navigate = useNavigate();
-  const location = useLocation();
-  const { from } = (location.state as LocationState) || {};
 
   function handleGoBack() {
-    if (from) {
-      navigate(from);
+    const hasPrev = window.history.state?.idx > 0;
+    if (hasPrev) {
+      navigate(-1);
     } else {
       navigate("/search");
     }

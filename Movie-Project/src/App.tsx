@@ -1,19 +1,43 @@
 import { useEffect, useState } from "react";
-import { Routes, Route, Navigate, NavLink, Link } from "react-router";
+import { Outlet, NavLink, Link } from "react-router";
 import { Container, Row, Col, Navbar, Nav } from "react-bootstrap";
-import type { GenreMap, Movie, ShowcaseTabs } from "./types/movie";
+import type {
+  GenreMap,
+  HandleMovie,
+  HandleMovies,
+  HandleShowcase,
+  Movie,
+  ShowcaseTabs,
+} from "./types/movie";
 import type { Theme } from "./types/preferences";
-import SearchView from "./views/SearchView";
-import WatchlistView from "./views/WatchlistView";
-import MovieDetailView from "./views/MovieDetailView";
 import useLocalStorage from "./hooks/useLocalStorage";
 import useSystemTheme from "./hooks/useSystemTheme";
-import renderRoutes from "./utils/renderRoutes";
 import { createGenreMap, getGenres } from "./api/tmdb";
 import "./App.css";
 import Logo from "./assets/logo.svg";
 import TMDB from "./assets/tmdb.svg";
 import ThemeSwitch from "./components/ThemeSwitch";
+export interface AppContextType {
+  apiLoading: boolean;
+  apiError: Error | null;
+  setApiLoading: (loading: boolean) => void;
+  setApiError: (e: Error | null) => void;
+  ariaMessage: string;
+  setAriaMessage: (message: string) => void;
+  genreMap: GenreMap;
+  watchlist: Movie[];
+  setWatchlist: HandleMovies;
+  toggleWatchlist: HandleMovie;
+  movieResults: Movie[];
+  setMovieResults: HandleMovies;
+  hasSearched: boolean;
+  setHasSearched: (searched: boolean) => void;
+  query: string;
+  setQuery: (query: string) => void;
+  showcaseTabs: ShowcaseTabs;
+  setShowcaseTabs: HandleShowcase;
+  activeTheme: Theme;
+}
 
 function App() {
   const [apiLoading, setApiLoading] = useState<boolean>(false);
@@ -107,55 +131,29 @@ function App() {
 
       <main className="body-content">
         <Row className="justify-content-center">
-          <Routes>
-            {renderRoutes(
-              ["/", "/search"],
-              <SearchView
-                apiLoading={apiLoading}
-                apiError={apiError}
-                setApiLoading={setApiLoading}
-                setApiError={setApiError}
-                setAriaMessage={setAriaMessage}
-                watchlist={watchlist}
-                toggleWatchlist={toggleWatchlist}
-                genreMap={genreMap}
-                movieResults={movieResults}
-                setMovieResults={setMovieResults}
-                hasSearched={hasSearched}
-                setHasSearched={setHasSearched}
-                query={query}
-                setQuery={setQuery}
-                showcaseTabs={showcaseTabs}
-                setShowcaseTabs={setShowcaseTabs}
-              />
-            )}
-            <Route
-              path="/watchlist"
-              element={
-                <WatchlistView
-                  watchlist={watchlist}
-                  setWatchlist={setWatchlist}
-                  toggleWatchlist={toggleWatchlist}
-                />
-              }
-            />
-            <Route
-              path="/movie/:id/:slug"
-              element={
-                <MovieDetailView
-                  apiLoading={apiLoading}
-                  apiError={apiError}
-                  setApiLoading={setApiLoading}
-                  setApiError={setApiError}
-                  setAriaMessage={setAriaMessage}
-                  watchlist={watchlist}
-                  toggleWatchlist={toggleWatchlist}
-									activeTheme={activeTheme}
-                />
-              }
-            />
-            <Route path="*" element={<Navigate to="/" replace />} />
-          </Routes>
+          <Outlet
+            context={{
+              apiLoading,
+              apiError,
+              setApiLoading,
+              setApiError,
+              ariaMessage,
+              setAriaMessage,
+              genreMap,
+              watchlist,
+              setWatchlist,
+              toggleWatchlist,
+              movieResults,
+              setMovieResults,
+              hasSearched,
+              setHasSearched,
+              query,
+              setQuery,
+              showcaseTabs,
+              setShowcaseTabs,
+              activeTheme,
+            }}
+          />
         </Row>
       </main>
 

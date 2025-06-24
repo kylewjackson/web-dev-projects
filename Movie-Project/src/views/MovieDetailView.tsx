@@ -1,10 +1,10 @@
 import { Row } from "react-bootstrap";
-import MovieDetails, { type Props } from "../components/MovieDetails";
+import MovieDetails from "../components/MovieDetails";
 
-export default function MovieDetailView(props: Props) {
+export default function MovieDetailView() {
   return (
     <Row>
-      <MovieDetails {...props} />
+      <MovieDetails />
     </Row>
   );
 }
