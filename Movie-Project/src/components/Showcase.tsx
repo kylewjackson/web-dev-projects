@@ -63,6 +63,7 @@ export default function Showcase({
         const movies = await fetchMoviesShowcase(listType, genreMap);
         setShowcaseTabs((prev) => ({ ...prev, [listType]: movies ?? [] }));
         loadedTabs.current.add(listType);
+				setAriaMessage("Results loaded.");
       } catch {
         setShowcaseTabs((prev) => ({ ...prev, [listType]: [] }));
         const errMsg = "Something went wrong fetching showcase.";
