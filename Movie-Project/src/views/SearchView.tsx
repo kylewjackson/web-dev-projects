@@ -24,6 +24,8 @@ export default function SearchView() {
     setQuery,
     showcaseTabs,
     setShowcaseTabs,
+    activeTab,
+    setActiveTab,
   } = useOutletContext<AppContextType>();
   const location = useLocation();
 
@@ -100,6 +102,8 @@ export default function SearchView() {
             locationPathName={location.pathname}
             showcaseTabs={showcaseTabs}
             setShowcaseTabs={setShowcaseTabs}
+            activeTab={activeTab}
+            setActiveTab={setActiveTab}
           />
         </Col>
       </Col>

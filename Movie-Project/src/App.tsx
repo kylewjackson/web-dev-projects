@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, type Dispatch, type SetStateAction } from "react";
 import { Outlet, NavLink, Link } from "react-router";
 import { Container, Row, Col, Navbar, Nav } from "react-bootstrap";
 import type {
@@ -17,6 +17,7 @@ import "./App.css";
 import Logo from "./assets/logo.svg";
 import TMDB from "./assets/tmdb.svg";
 import ThemeSwitch from "./components/ThemeSwitch";
+import type { TMDBMovieList } from "./types/tmdb";
 export interface AppContextType {
   apiLoading: boolean;
   apiError: Error | null;
@@ -36,6 +37,8 @@ export interface AppContextType {
   setQuery: (query: string) => void;
   showcaseTabs: ShowcaseTabs;
   setShowcaseTabs: HandleShowcase;
+  activeTab: TMDBMovieList;
+  setActiveTab: Dispatch<SetStateAction<TMDBMovieList>>;
   activeTheme: Theme;
 }
 
@@ -45,6 +48,7 @@ function App() {
   const [ariaMessage, setAriaMessage] = useState<string>("");
   const [genreMap, setGenreMap] = useState<GenreMap>({});
   const [watchlist, setWatchlist] = useLocalStorage<Movie[]>("watchlist", []);
+  const [activeTab, setActiveTab] = useState<TMDBMovieList>("popular");
 
   //Theme
   const systemTheme = useSystemTheme();
@@ -152,6 +156,8 @@ function App() {
               showcaseTabs,
               setShowcaseTabs,
               activeTheme,
+              activeTab,
+              setActiveTab,
             }}
           />
         </Row>

@@ -1,4 +1,11 @@
-import { useCallback, useEffect, useRef, useState } from "react";
+import {
+  useCallback,
+  useEffect,
+  useRef,
+  useState,
+  type Dispatch,
+  type SetStateAction,
+} from "react";
 import { fetchMoviesShowcase } from "../api/tmdb";
 import type {
   GenreMap,
@@ -23,6 +30,8 @@ type Props = {
   setAriaMessage: (message: string) => void;
   showcaseTabs: ShowcaseTabs;
   setShowcaseTabs: HandleShowcase;
+  activeTab: TMDBMovieList;
+  setActiveTab: Dispatch<SetStateAction<TMDBMovieList>>;
 };
 
 export default function Showcase({
@@ -35,10 +44,11 @@ export default function Showcase({
   setAriaMessage,
   showcaseTabs,
   setShowcaseTabs,
+  activeTab,
+  setActiveTab,
 }: Props) {
   const loadedTabs = useRef<Set<TMDBMovieList>>(new Set());
   const [localLoading, setLocalLoading] = useState(false);
-  const [activeTab, setActiveTab] = useState<TMDBMovieList>("popular");
 
   // Fetch Tab Data
   const onShowcaseFetch = useCallback(
