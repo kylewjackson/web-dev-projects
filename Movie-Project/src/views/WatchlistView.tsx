@@ -1,17 +1,10 @@
+import React from "react";
 import { useLocation, useOutletContext } from "react-router";
-// import type { Movie, HandleMovie, HandleMovies } from "../types/movie";
+import { Button, Col, Row } from "react-bootstrap";
+import { type AppContextType } from "../App";
 import useWatchlistRefresh from "../hooks/useWatchlistRefresh";
 import MovieCardList from "../components/MovieCardList";
-import { Button, Col, Row } from "react-bootstrap";
-import React from "react";
 import ClearWatchlist from "../components/ClearWatchlist";
-import { type AppContextType } from "../App";
-
-// type Props = {
-//   watchlist: Movie[];
-//   setWatchlist: HandleMovies;
-//   toggleWatchlist: HandleMovie;
-// };
 
 export default function WatchlistView() {
   const { watchlist, setWatchlist, toggleWatchlist } =

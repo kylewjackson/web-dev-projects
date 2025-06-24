@@ -10,14 +10,14 @@ import type {
   ShowcaseTabs,
 } from "./types/movie";
 import type { Theme } from "./types/preferences";
+import type { TMDBMovieList } from "./types/tmdb";
 import useLocalStorage from "./hooks/useLocalStorage";
 import useSystemTheme from "./hooks/useSystemTheme";
 import { createGenreMap, getGenres } from "./api/tmdb";
+import ThemeSwitch from "./components/ThemeSwitch";
 import "./App.css";
 import Logo from "./assets/logo.svg";
 import TMDB from "./assets/tmdb.svg";
-import ThemeSwitch from "./components/ThemeSwitch";
-import type { TMDBMovieList } from "./types/tmdb";
 export interface AppContextType {
   apiLoading: boolean;
   apiError: Error | null;

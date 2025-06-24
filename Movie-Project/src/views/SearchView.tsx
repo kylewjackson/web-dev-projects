@@ -1,10 +1,10 @@
 import { useLocation, useOutletContext } from "react-router";
+import { Col } from "react-bootstrap";
+import type { AppContextType } from "../App";
 import { fetchMovies } from "../api/tmdb";
 import SearchBar from "../components/SearchBar";
 import SearchResults from "../components/SearchResults";
 import Showcase from "../components/Showcase";
-import { Col } from "react-bootstrap";
-import type { AppContextType } from "../App";
 
 export default function SearchView() {
   const {

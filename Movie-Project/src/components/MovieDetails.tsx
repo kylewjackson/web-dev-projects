@@ -1,11 +1,14 @@
 import { useEffect, useState, type ReactElement } from "react";
 import { useParams, useNavigate, useOutletContext } from "react-router";
+import { Button, Col, Row } from "react-bootstrap";
+import type { AppContextType } from "../App";
 import type {
   FullMovie,
   HandleMovie,
   Movie,
   MovieStatus,
 } from "../types/movie";
+import type { Theme } from "../types/preferences";
 import { fetchMovieDetails } from "../api/tmdb";
 import { formatTitleWithYear } from "../utils/movieUtils";
 import formatCurrency from "../utils/formatCurrency";
@@ -14,9 +17,6 @@ import ErrorMessage from "./common/ErrorMessage";
 import RatingIcon from "./common/RatingIcon";
 import WatchlistButton from "./WatchlistButton";
 import GenreBadges from "./GenreBadges";
-import { Button, Col, Row } from "react-bootstrap";
-import type { Theme } from "../types/preferences";
-import type { AppContextType } from "../App";
 
 export type Props = {
   apiLoading: boolean;
