@@ -170,15 +170,21 @@ function App() {
             as="p"
             className="d-flex justify-content-center justify-content-md-end align-items-center"
           >
-            Site Copyright Kyle Jackson 2025.
+            Site
+            <i className="bi bi-c-circle px-1" aria-label="Copyright" />
+            <a href="https://www.kylejackson.dev/">Kyle Jackson</a>
+            <span className="ps-1">{new Date().getFullYear()}</span>.
           </Col>
           <Col
             md={6}
             as="p"
             className="d-flex justify-content-center justify-content-md-start align-items-center"
           >
-            <span className="me-3">Powered by</span>
-            <img src={TMDB} alt="TMDB" width={100} height={43} />
+            <span className="me-2">Powered by:</span>
+            <a href="https://www.themoviedb.org/" target="_blank">
+							<span className="visually-hidden">(Opens in new tab)</span>
+              <img src={TMDB} alt="TMDB" width={60} height={32} />
+            </a>
           </Col>
         </Row>
       </footer>
