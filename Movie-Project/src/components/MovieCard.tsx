@@ -7,6 +7,7 @@ import { Card, Row, Col, Button, Collapse } from "react-bootstrap";
 import WatchlistButton from "./WatchlistButton";
 import GenreBadges from "./GenreBadges";
 import formatLanguage from "../utils/formatLanguage";
+import RatingIcon from "./common/RatingIcon";
 
 type Props = {
   movie: Movie;
@@ -145,7 +146,10 @@ export default function MovieCard({
           {rating != null && rating > 0 && (
             <>
               <h4 className="h6">Avg. Rating</h4>
-              <p>{Math.round(rating)}</p>
+              <p>
+                <RatingIcon val={Math.round(rating)} className="pe-1" />
+                {Math.round(rating)}
+              </p>
             </>
           )}
         </div>
