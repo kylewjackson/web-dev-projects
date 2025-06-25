@@ -32,15 +32,67 @@ export default function WatchlistView() {
   }, [watchlist, currentPage, maxPerPage]);
 
   const paginationItems = [];
-  for (let i = 1; i <= totalPages; i++) {
+  const delta = 2;
+
+  if (totalPages <= 5 + delta * 2) {
+    for (let i = 1; i <= totalPages; i++) {
+      paginationItems.push(
+        <Pagination.Item
+          key={i}
+          active={i === currentPage}
+          onClick={() => setCurrentPage(i)}
+          aria-label={`Go to page ${i}`}
+        >
+          {i}
+        </Pagination.Item>
+      );
+    }
+  } else {
     paginationItems.push(
       <Pagination.Item
-        key={i}
-        active={i === currentPage}
-        onClick={() => setCurrentPage(i)}
-        aria-label={`Go to page ${i}`}
+        key={1}
+        active={1 === currentPage}
+        onClick={() => setCurrentPage(1)}
+        aria-label={`Go to page 1`}
       >
-        {i}
+        1
+      </Pagination.Item>
+    );
+
+    if (currentPage - delta > 2) {
+      paginationItems.push(
+        <Pagination.Ellipsis key="start-ellipsis" disabled />
+      );
+    }
+
+    const start = Math.max(2, currentPage - delta);
+    const end = Math.min(totalPages - 1, currentPage + delta);
+
+    for (let i = start; i <= end; i++) {
+      paginationItems.push(
+        <Pagination.Item
+          key={i}
+          active={i === currentPage}
+          onClick={() => setCurrentPage(i)}
+          aria-label={`Go to page ${i}`}
+        >
+          {i}
+        </Pagination.Item>
+      );
+    }
+
+    if (currentPage + delta < totalPages - 1) {
+      paginationItems.push(<Pagination.Ellipsis key="end-ellipsis" disabled />);
+    }
+
+    paginationItems.push(
+      <Pagination.Item
+        key={totalPages}
+        active={totalPages === currentPage}
+        onClick={() => setCurrentPage(totalPages)}
+        aria-label={`Go to page ${totalPages}`}
+      >
+        {totalPages}
       </Pagination.Item>
     );
   }
@@ -66,7 +118,7 @@ export default function WatchlistView() {
 
       {totalPages > 1 && (
         <Row as="nav" className="py-3">
-          <Pagination className="d-flex justify-content-center pe-0">
+          <Pagination className="d-flex flex-wrap justify-content-center pe-0">
             {paginationItems}
           </Pagination>
         </Row>
