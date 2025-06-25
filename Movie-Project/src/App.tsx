@@ -122,7 +122,7 @@ function App() {
               ) : (
                 <i className="bi bi-bookmark pe-1" />
               )}
-              Watchlist ({watchlist.length})
+              Watchlist ({watchlist.length > 99 ? "99+" : watchlist.length})
             </Nav.Link>
           </Nav>
           <ThemeSwitch
@@ -182,7 +182,7 @@ function App() {
           >
             <span className="me-2">Powered by:</span>
             <a href="https://www.themoviedb.org/" target="_blank">
-							<span className="visually-hidden">(Opens in new tab)</span>
+              <span className="visually-hidden">(Opens in new tab)</span>
               <img src={TMDB} alt="TMDB" width={60} height={32} />
             </a>
           </Col>
