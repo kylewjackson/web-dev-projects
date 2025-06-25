@@ -59,9 +59,16 @@ export default function MovieCard({
 
         <Col xs={8} md={9} className="ps-0 ps-md-2">
           <Card.Body className="p-2 ps-0 p-md-9">
-            <Card.Title as="h2" className="h4">
-              {formatTitleWithYear({ title, year, variant: "card" })}
-            </Card.Title>
+            <NavLink
+              to={`/detail/${id}/${slug}`}
+              state={{ from }}
+              tabIndex={-1}
+              className="text-decoration-none text-reset"
+            >
+              <Card.Title as="h2" className="h4">
+                {formatTitleWithYear({ title, year, variant: "card" })}
+              </Card.Title>
+            </NavLink>
 
             <div className="d-flex flex-column align-items-start">
               <NavLink
