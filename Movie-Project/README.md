@@ -1,6 +1,7 @@
 # Movie Watchlist 🎬
 
 **Live Demo:** https://www.kylejackson.dev/movie/
+
 **Project Board:** https://github.com/users/kylewjackson/projects/9
 
 ## Overview
