@@ -1,6 +1,7 @@
 [build]
   command = "npm run build:monorepo"
   publish = "portfolio/public"
+	NODE_VERSION = "18"
 
 # ─── static pages ───
 [[redirects]]
