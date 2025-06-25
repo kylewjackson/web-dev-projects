@@ -1,4 +1,4 @@
-import { useState, useEffect, useMemo } from "react";
+import { useState, useEffect, useMemo, useLayoutEffect, useRef } from "react";
 import { useLocation, useOutletContext } from "react-router";
 import { Button, Col, Row, Pagination } from "react-bootstrap";
 import type { AppContextType } from "../App";
@@ -13,6 +13,7 @@ export default function WatchlistView() {
   const [currentPage, setCurrentPage] = useState(1);
   const maxPerPage = 20;
   const totalPages = Math.ceil(watchlist.length / maxPerPage);
+  const shouldScrollRef = useRef(false);
 
   useWatchlistRefresh(watchlist, setWatchlist);
 
@@ -23,9 +24,24 @@ export default function WatchlistView() {
   }, [watchlist, totalPages, currentPage]);
 
   function handleCurrentPage(page: number) {
-    window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
+    shouldScrollRef.current = true;
     setCurrentPage(page);
   }
+
+  useLayoutEffect(() => {
+    if (!shouldScrollRef.current) return;
+
+    shouldScrollRef.current = false;
+    requestAnimationFrame(() => {
+      const root = document.scrollingElement || document.documentElement;
+      // feature-detect Safari’s support
+      if ("scrollBehavior" in document.documentElement.style) {
+        root.scrollTo({ top: 0, left: 0, behavior: "smooth" });
+      } else {
+        root.scrollTo(0, 0);
+      }
+    });
+  }, [currentPage]);
 
   const visibleItems = useMemo(() => {
     const start = (currentPage - 1) * maxPerPage;
