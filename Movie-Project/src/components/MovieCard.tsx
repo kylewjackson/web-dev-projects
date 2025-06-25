@@ -48,7 +48,7 @@ export default function MovieCard({
     <Card className="mb-3">
       <Row>
         <Col xs={4} md={3}>
-          <NavLink to={`/movie/${id}/${slug}`} state={{ from }} tabIndex={-1}>
+          <NavLink to={`/detail/${id}/${slug}`} state={{ from }} tabIndex={-1}>
             <img
               src={poster}
               alt={"poster for: " + title}
