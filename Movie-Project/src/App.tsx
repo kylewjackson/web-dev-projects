@@ -176,8 +176,8 @@ function App() {
         <Row>
           <Col
             md={6}
-            as="p"
-            className="d-flex justify-content-center justify-content-md-end align-items-center"
+            as="small"
+            className="d-flex justify-content-center justify-content-md-end align-items-center mb-3"
           >
             Site
             <i className="bi bi-c-circle px-1" aria-label="Copyright" />
@@ -186,8 +186,8 @@ function App() {
           </Col>
           <Col
             md={6}
-            as="p"
-            className="d-flex justify-content-center justify-content-md-start align-items-center"
+            as="small"
+            className="d-flex justify-content-center justify-content-md-start align-items-center mb-3"
           >
             <span className="me-2">Powered by:</span>
             <a href="https://www.themoviedb.org/" target="_blank">
