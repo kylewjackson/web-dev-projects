@@ -6,11 +6,16 @@ import useWatchlistRefresh from "../hooks/useWatchlistRefresh";
 import MovieCardList from "../components/MovieCardList";
 import ClearWatchlist from "../components/ClearWatchlist";
 
+type LocationState = { page?: number };
+
 export default function WatchlistView() {
+  const location = useLocation();
   const { watchlist, setWatchlist, toggleWatchlist } =
     useOutletContext<AppContextType>();
   const [modalShow, setModalShow] = useState(false);
-  const [currentPage, setCurrentPage] = useState(1);
+  //TODO: Intialize page with previous watchlist if returning from details
+  const locationState = location.state as LocationState | undefined;
+  const [currentPage, setCurrentPage] = useState(locationState?.page ?? 1);
   const maxPerPage = 20;
   const totalPages = Math.ceil(watchlist.length / maxPerPage);
   const shouldScrollRef = useRef(false);
@@ -114,8 +119,6 @@ export default function WatchlistView() {
     );
   }
 
-  const location = useLocation();
-
   return (
     <>
       <h1 className="text-center my-3">Watchlist</h1>
@@ -127,6 +130,7 @@ export default function WatchlistView() {
             watchlist={watchlist}
             toggleWatchlist={toggleWatchlist}
             locationPathName={location.pathname}
+            currentPage={currentPage}
           />
         ) : (
           <h2 className="h4 text-center">Nothing in watchlist</h2>
