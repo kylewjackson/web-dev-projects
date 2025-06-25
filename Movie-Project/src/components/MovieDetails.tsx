@@ -174,7 +174,7 @@ export default function MovieDetails() {
         <Col
           xs={12}
           sm={10}
-          className="movie-details_title mb-0 mx-auto mt-4 mt-sm-5 mt-lg-0 pb-1 text-center"
+          className="movie-details_title mb-0 mx-auto mt-4 mt-sm-5 mt-lg-0 px-0 pb-1 text-center"
         >
           <Button
             size="sm"
@@ -188,7 +188,7 @@ export default function MovieDetails() {
           {genres.length > 0 && (
             <GenreBadges movie={movie} genres={genres} variant="light" />
           )}
-          <h1 className="p-2 text-center text-bg-light rounded-3">
+          <h1 className="fs-3 fs-lg-1 p-2 text-center text-bg-light rounded-3">
             {formatTitleWithYear({
               title,
               year,
