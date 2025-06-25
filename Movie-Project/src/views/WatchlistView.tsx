@@ -3,6 +3,7 @@ import { useLocation, useOutletContext } from "react-router";
 import { Button, Col, Row, Pagination } from "react-bootstrap";
 import type { AppContextType } from "../App";
 import useWatchlistRefresh from "../hooks/useWatchlistRefresh";
+import scrollTop from "../utils/scrollTop";
 import MovieCardList from "../components/MovieCardList";
 import ClearWatchlist from "../components/ClearWatchlist";
 
@@ -36,15 +37,7 @@ export default function WatchlistView() {
     if (!shouldScrollRef.current) return;
 
     shouldScrollRef.current = false;
-    requestAnimationFrame(() => {
-      const root = document.scrollingElement || document.documentElement;
-      // feature-detect Safari’s support
-      if ("scrollBehavior" in document.documentElement.style) {
-        root.scrollTo({ top: 0, left: 0, behavior: "smooth" });
-      } else {
-        root.scrollTo(0, 0);
-      }
-    });
+    requestAnimationFrame(scrollTop);
   }, [currentPage]);
 
   const visibleItems = useMemo(() => {

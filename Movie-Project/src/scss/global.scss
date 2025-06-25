@@ -29,6 +29,15 @@
 
 //*Components*
 
+.back-to-top-btn {
+  opacity: 1;
+  transition: opacity 0.5s ease;
+
+  &.fade-out {
+    opacity: 0;
+  }
+}
+
 /* make the native clear-button show a pointer cursor */
 input[type="search"]::-webkit-search-cancel-button {
   cursor: pointer;

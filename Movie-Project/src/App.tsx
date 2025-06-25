@@ -18,6 +18,7 @@ import ThemeSwitch from "./components/ThemeSwitch";
 import "./App.css";
 import Logo from "./assets/logo.svg";
 import TMDB from "./assets/tmdb.svg";
+import BackToTop from "./components/common/BackToTop";
 export interface AppContextType {
   apiLoading: boolean;
   apiError: Error | null;
@@ -40,7 +41,7 @@ export interface AppContextType {
   activeTab: TMDBMovieList;
   setActiveTab: Dispatch<SetStateAction<TMDBMovieList>>;
   activeTheme: Theme;
-	clearSearch: () => void;
+  clearSearch: () => void;
 }
 
 function App() {
@@ -166,7 +167,7 @@ function App() {
               activeTheme,
               activeTab,
               setActiveTab,
-							clearSearch,
+              clearSearch,
             }}
           />
         </Row>
@@ -197,6 +198,8 @@ function App() {
           </Col>
         </Row>
       </footer>
+
+      <BackToTop />
     </Container>
   );
 }
