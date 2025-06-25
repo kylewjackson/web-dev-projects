@@ -65,7 +65,7 @@ export default function MovieCard({
 
             <div className="d-flex flex-column align-items-start">
               <NavLink
-                to={`/movie/${id}/${slug}`}
+                to={`/detail/${id}/${slug}`}
                 state={{ from }}
                 className="btn btn-link ps-0 me-2 mb-2"
                 style={

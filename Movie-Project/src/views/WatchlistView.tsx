@@ -125,7 +125,7 @@ export default function WatchlistView() {
       )}
 
       {watchlist.length > 0 && (
-        <Col className="text-center">
+        <Col xs={12} className="text-center">
           <Button variant="danger" onClick={() => setModalShow(true)}>
             Clear Watchlist?
           </Button>
