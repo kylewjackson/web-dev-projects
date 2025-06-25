@@ -22,9 +22,10 @@ export default function WatchlistView() {
     }
   }, [watchlist, totalPages, currentPage]);
 
-  useEffect(() => {
+  function handleCurrentPage(page: number) {
     window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
-  }, [currentPage]);
+    setCurrentPage(page);
+  }
 
   const visibleItems = useMemo(() => {
     const start = (currentPage - 1) * maxPerPage;
@@ -40,7 +41,7 @@ export default function WatchlistView() {
         <Pagination.Item
           key={i}
           active={i === currentPage}
-          onClick={() => setCurrentPage(i)}
+          onClick={() => handleCurrentPage(i)}
           aria-label={`Go to page ${i}`}
         >
           {i}
@@ -52,7 +53,7 @@ export default function WatchlistView() {
       <Pagination.Item
         key={1}
         active={1 === currentPage}
-        onClick={() => setCurrentPage(1)}
+        onClick={() => handleCurrentPage(1)}
         aria-label={`Go to page 1`}
       >
         1
@@ -73,7 +74,7 @@ export default function WatchlistView() {
         <Pagination.Item
           key={i}
           active={i === currentPage}
-          onClick={() => setCurrentPage(i)}
+          onClick={() => handleCurrentPage(i)}
           aria-label={`Go to page ${i}`}
         >
           {i}
@@ -89,7 +90,7 @@ export default function WatchlistView() {
       <Pagination.Item
         key={totalPages}
         active={totalPages === currentPage}
-        onClick={() => setCurrentPage(totalPages)}
+        onClick={() => handleCurrentPage(totalPages)}
         aria-label={`Go to page ${totalPages}`}
       >
         {totalPages}
