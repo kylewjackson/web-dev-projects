@@ -13,7 +13,6 @@ export default function WatchlistView() {
   const { watchlist, setWatchlist, toggleWatchlist } =
     useOutletContext<AppContextType>();
   const [modalShow, setModalShow] = useState(false);
-  //TODO: Intialize page with previous watchlist if returning from details
   const locationState = location.state as LocationState | undefined;
   const [currentPage, setCurrentPage] = useState(locationState?.page ?? 1);
   const maxPerPage = 20;

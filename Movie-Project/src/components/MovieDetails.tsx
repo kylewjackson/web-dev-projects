@@ -47,7 +47,6 @@ export default function MovieDetails() {
   const navigate = useNavigate();
 
   function handleGoBack() {
-    //TODO if from watchlist, return to previous page of the watchlist
     const hasPrev = window.history.state?.idx > 0;
     if (hasPrev) {
       navigate(-1);
