@@ -7,6 +7,7 @@ type Props = {
   toggleWatchlist: HandleMovie;
   locationPathName: string;
   context?: string;
+  currentPage?: number;
 };
 
 export default function MovieCardList({
@@ -15,6 +16,7 @@ export default function MovieCardList({
   toggleWatchlist,
   locationPathName,
   context,
+  currentPage,
 }: Props) {
   return (
     <ul className="list-unstyled">
@@ -27,6 +29,7 @@ export default function MovieCardList({
             outline={false}
             from={locationPathName}
             context={context}
+            page={currentPage}
           />
         </li>
       ))}

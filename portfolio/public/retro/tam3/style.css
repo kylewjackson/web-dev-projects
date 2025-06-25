@@ -1,0 +1,84 @@
+body {
+   margin: 0;
+   font-size: 10pt;
+   font-family: verdana;
+   background: #9bc4d6 url('long3.png') repeat-y;
+   color: #566872;
+}
+
+A:link { color: #c0c0c0; }
+A:visited { color: #9bc4d6; }
+A:active {   color: #c0c0c0; }
+A:hover { color: #9bc4d6;}
+
+h1 {
+   border-bottom: 1px #566872 solid;
+   text-align: left;
+   font-size: 10pt;
+   font-weight: bold;
+   font-family: arial;
+   color: #9bc4d6;
+}
+
+h2 {
+   font-size: 7pt;
+   font-family: Tahoma;
+   color: #FFFFFF;
+}
+
+h3 {
+   font-size: 8pt;
+   font-family: arial;
+   color: #FFFFFF;
+}
+
+#content {
+   LEFT: 380px; 
+   WIDTH: 425px;
+   TOP: 250px;
+   POSITION: absolute;
+   Z-INDEX: 1;
+}
+
+#navigation {
+   Z-INDEX: 1; 
+   LEFT: 200px; 
+   WIDTH: 160px; 
+   POSITION: absolute; 
+   TOP: 250px; 
+   HEIGHT: 477px;
+}
+
+#head {
+   Z-INDEX: 1; 
+   LEFT: 0px; 
+   WIDTH: 631px; 
+   POSITION: absolute; 
+   TOP: 0px; 
+   HEIGHT: 36px;
+}
+
+#login {
+   Z-INDEX: 1; 
+   LEFT: 210px; 
+   WIDTH: 631px; 
+   POSITION: absolute; 
+   TOP: 48px; 
+   FLOAT: center;
+}
+
+#main {
+   Z-INDEX: 1; 
+   LEFT: 100px;  
+   POSITION: absolute; 
+   TOP: 0px;
+}
+
+#long {
+   Z-INDEX: 1; 
+   LEFT: 0px; 
+   WIDTH: 0px; 
+   POSITION: absolute; 
+   TOP: 326px; 
+   HEIGHT: 0px;
+}

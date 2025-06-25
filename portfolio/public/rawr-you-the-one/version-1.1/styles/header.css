@@ -1,0 +1,77 @@
+header.start {
+    grid-template-rows: 70vh 20vh 10vh;
+}
+
+header:not(.start) {
+    grid-template-rows: 5vh 1fr;
+}
+
+#title-header {
+    place-self: end center;
+    width: 80vw;
+    max-height: 45vh;
+}
+
+#subtitle-header {
+    -ms-flex-item-align: start;
+    align-self: start;
+    margin: 0;
+    text-align: end;
+    font-size: 7.5vw;
+}
+
+/*keep subtitle font size larger at wider resolutions*/
+@media (min-width: 360px) {
+    #subtitle-header {
+        font-size: calc(28px + (36 - 28) * ((100vw - 360px) / (650 - 360)));
+    }
+}
+
+@media (min-width: 650px) {
+    #subtitle-header {
+        font-size: 36px;
+    }
+}
+
+/*reposition subtitle at wider resolutions*/
+@media (min-width: 800px) {
+    #subtitle-header {
+        padding-right: 20vw;
+    }
+}
+
+/*rescaling of header for portrait orientation, including svg logo and subtitle */
+@media (max-width: 80vh) {
+    #title-header {
+        padding-bottom: calc(1.5vh + ((75vh - 100vw) * .8));
+    }
+
+    #subtitle-header {
+        position: relative;
+        bottom: calc(1.5vh + ((75vh - 100vw) * .8));
+    }
+}
+
+#scroll-arrow {
+    width: 10vw;
+    justify-self: center;
+    opacity: .85;
+}
+
+/*enlarge arrow at taller resolutions*/
+@media (min-height: 165vw) {
+    #scroll-arrow {
+        position: relative;
+        bottom: calc(1.5vh + ((75vh - 100vw) * .8));
+        width: 20vw;
+    }
+}
+
+/*reposition and make arrow smaller at shorter resolutions*/
+@media (max-height: 45vw) {
+    #scroll-arrow {
+        position: relative;
+        bottom: 5vh;
+        width: 15vh;
+    }
+}

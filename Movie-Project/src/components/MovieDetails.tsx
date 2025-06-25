@@ -93,6 +93,19 @@ export default function MovieDetails() {
     return (
       <>
         <h1 className="mt-3 text-center">No Movie Found</h1>
+        <Row className="mx-auto text-center">
+          <Col>
+            <Button
+              variant="primary"
+              className="start-0 m-2 py-0"
+              onClick={handleGoBack}
+            >
+              <i className="bi bi-arrow-left-short" />
+              <span>Go Back</span>
+            </Button>
+          </Col>
+        </Row>
+
         <p className="col-md-6 text-center mx-auto">
           It looks like this ID doesn't point to a single film (it might be a
           collection or an upcoming title). Try searching again or go back to
@@ -161,7 +174,7 @@ export default function MovieDetails() {
         <Col
           xs={12}
           sm={10}
-          className="movie-details_title mb-0 mx-auto mt-4 mt-sm-5 mt-lg-0 pb-1 text-center"
+          className="movie-details_title mb-0 mx-auto mt-4 mt-sm-5 mt-lg-0 px-0 pb-1 text-center"
         >
           <Button
             size="sm"
@@ -175,7 +188,7 @@ export default function MovieDetails() {
           {genres.length > 0 && (
             <GenreBadges movie={movie} genres={genres} variant="light" />
           )}
-          <h1 className="p-2 text-center text-bg-light rounded-3">
+          <h1 className="fs-3 fs-lg-1 p-2 text-center text-bg-light rounded-3">
             {formatTitleWithYear({
               title,
               year,

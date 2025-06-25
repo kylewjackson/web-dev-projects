@@ -14,7 +14,7 @@ export default function WatchlistButton({
   isInWatchlist,
   toggleWatchlist,
   outline = false,
-  variant = "secondary",
+  variant = "primary",
 }: Props) {
   // determine the correct Bootstrap variant
   const btnVariant = isInWatchlist

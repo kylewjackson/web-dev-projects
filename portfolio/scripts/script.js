@@ -59,12 +59,12 @@ const tools = {
 			full: "JavaScript EcmaScript6",
 			url: "https://developer.mozilla.org/en-US/docs/Web/JavaScript",
 		},
-		scss: {
-			abbr: "scss",
-			name: "SCSS",
-			symbol: "S",
-			full: "Sass / SCSS",
-			url: "https://sass-lang.com/",
+		typescript: {
+			abbr: "typescript",
+			name: "TypeScript",
+			symbol: "TS",
+			full: "TypeScript",
+			url: "https://www.typescriptlang.org/",
 		},
 	},
 	frameworks: {
@@ -74,6 +74,13 @@ const tools = {
 			symbol: "R",
 			full: "React.JS",
 			url: "https://reactjs.org/",
+		},
+		scss: {
+			abbr: "scss",
+			name: "SCSS",
+			symbol: "S",
+			full: "Sass / SCSS",
+			url: "https://sass-lang.com/",
 		},
 		bootstrap: {
 			abbr: "bootstrap",
@@ -305,6 +312,16 @@ if (document.body.id === "about") {
 
 //projects
 const projects = {
+	movie: {
+		abbr: "movie",
+		title: "Movie Watchlist",
+		description:
+			"A movie search and watchlist app.",
+		tools: "React, TypeScript, Bootstrap, API",
+		thumb: "/movie",
+		live: "/movie",
+		source: "https://github.com/kylewjackson/web-dev-projects/tree/master/Movie-Project",
+	},
 	work: {
 		abbr: "work",
 		title: "Work Portfolio",
@@ -427,6 +444,16 @@ function addProject(abbr, title, description, tools, thumb, live, source) {
 
 //specific projects for index page
 if (document.body.id === "index") {
+	//movie
+	addProject(
+		projects["movie"].abbr,
+		projects["movie"].title,
+		projects["movie"].description,
+		projects["movie"].tools,
+		projects["movie"].thumb,
+		projects["movie"].live,
+		projects["movie"].source
+	);
 	//work
 	addProject(
 		projects["work"].abbr,

@@ -1,0 +1,214 @@
+#stats ul {
+    background: #C4C4C4;
+    padding: 0;
+    margin: 0;
+}
+
+/* first row style */
+#stats ul>li:first-child {
+    background: #ED74BE;
+    color: #FFF7B3;
+    -webkit-box-shadow: inset 0px 8vw 5.333vw -5.333vw rgba(255, 255, 255, 0.3),
+        inset 0px -8vw 5.333vw -5.333vw rgba(0, 0, 0, 0.15);
+    box-shadow: inset 0px 8vw 5.333vw -5.333vw rgba(255, 255, 255, 0.3),
+        inset 0px -8vw 5.333vw -5.333vw rgba(0, 0, 0, 0.15);
+}
+
+#stats li {
+    height: 20vw;
+    place-items: center;
+    position: relative;
+    list-style-type: none;
+    /* v1.1 stat chart gap tweak */
+    /* padding: 1vw;
+    margin: -1px; */
+}
+
+/* Highlight Styles */
+
+.pet-stats.highlight {
+    color: #FFF7B3;
+}
+
+.pet-stats.highlight.no-match {
+    opacity: 0.5;
+    color: rgba(185, 74, 141, 0.4); /* v1.1 */
+}
+
+/*v1.1 dupe selection style */
+.duplicate-selection.pet-stats {
+    color: #BA7AA1;
+}
+
+/* v1.1 stat chart background colors */
+
+#stats > #stat-charts-container .pet-stats.pawfect-match {
+    background-color: rgba(236, 115, 190, 0.65);
+    color: #93F3E2;
+}
+
+#stats > #stat-charts-container .pet-stats.no-match {
+    background-color: rgba(0, 0, 0, 0.25);
+}
+
+
+@media (min-width: 500px) {
+    #stats li {
+        height: 15vw;
+        padding: 0;
+    }
+}
+
+#stat-charts-container {
+    grid-template-columns: 1fr 50% repeat(2, 1fr);
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+}
+
+/* round corners of stat chart */
+#stat-rounds-container,
+#stat-woofs-container,
+#stat-matches-container {
+    font-family: 'Yellowtail', cursive;
+    font-size: 4vw;
+}
+
+@media (min-width: 500px) {
+
+    #stat-rounds-container,
+    #stat-woofs-container,
+    #stat-matches-container {
+        font-size: 3vw;
+        grid-auto-columns: minmax(90px, 1fr);
+    }
+}
+
+#stat-rounds-container> :first-child,
+#stat-rounds-container> :first-child> :first-child {
+    border-radius: 10px 0 0 0;
+}
+
+#stat-rounds-container> :last-child,
+#stat-rounds-container> :last-child> :last-child {
+    border-radius: 0 0 0 10px;
+}
+
+#stat-matches-container> :first-child,
+#stat-matches-container> :first-child> :first-child {
+    border-radius: 0 10px 0 0;
+}
+
+#stat-matches-container> :last-child,
+#stat-matches-container> :last-child> :last-child {
+    border-radius: 0 0 10px 0;
+}
+
+.round-stats,
+.match-stats {
+    font-size: 8vw;
+}
+
+@media (min-width: 500px) {
+
+    .round-stats,
+    .match-stats {
+        font-size: 6vw;
+    }
+}
+
+#stat-selections-container {
+    grid-template-columns: repeat(2, 1fr);
+    place-items: stretch;
+    font-family: 'Alfa Slab One', sans-serif;
+    font-size: 3.2vw;
+}
+
+.woof-stats {
+    text-align: center;
+    font-size: 3.1vw;
+}
+
+@media (min-width: 500px) {
+    #stat-selections-container {
+        font-size: 2.5vw;
+    }
+
+    .woof-stats {
+        font-size: 2.1vw;
+    }
+}
+
+@media (min-width: 700px) {
+    #stat-selections-container {
+        font-size: 14px;
+    }
+
+    .woof-stats {
+        font-size: 12px;
+    }
+
+    #stat-rounds-container,
+    #stat-woofs-container,
+    #stat-matches-container {
+        font-size: 18px;
+    }
+}
+
+/* alternate stat bg fades */
+
+#stat-woofs-container li {
+    background: rgba(155, 155, 155, 0.1);
+}
+
+.stat-selections:nth-child(odd)>li {
+    background: rgba(155, 155, 155, 0.1);
+}
+
+#stat-charts-container li:nth-child(2n + 3) {
+    background: rgba(155, 155, 155, 0.1);
+}
+
+/* overlapping */
+#stat-woofs-container li.woof-stats:nth-of-type(2n + 3) {
+    background: rgba(155, 155, 155, 0.15);
+}
+
+#stat-charts-container .stat-selections:nth-child(odd)>li:nth-of-type(2n + 3) {
+    background: rgba(155, 155, 155, 0.15);
+}
+
+.loss {
+    color: #F75BBA;
+    background-color: #FFF7B3 !important;
+}
+
+.win {
+    background-color: #93F3E2 !important;
+    color: #F75BBA !important;
+}
+
+/* Widescreen Grid Styles */
+
+@media (min-width: 700px) {
+    #stat-charts-container {
+        grid-template-columns: 1fr 70% 1fr 1fr;
+    }
+
+    #stat-selections-container {
+        grid-template-columns: repeat(auto-fit, minmax(85px, 1fr));
+    }
+
+    .stat-selections {
+        grid-auto-columns: minmax(70px, 1fr);
+    }
+
+    #stats li {
+        max-height: 80px;
+    }
+
+    .correct-stats,
+    .round-stats {
+        font-size: 40px;
+    }
+}

@@ -23,7 +23,7 @@ export default function SearchResults({
   movieResults,
   hasSearched,
   query,
-  locationPathName,
+  locationPathName
 }: Props) {
   return (
     <>

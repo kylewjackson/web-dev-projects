@@ -1,0 +1,11 @@
+{
+    "name": "my-project",
+    "version": "1.0.0",
+  "scripts": {
+    "build": "babel scripts -d lib"
+   },
+    "devDependencies": {
+     "@babel/cli": "^7.0.0",
+     "@babel/core": "^7.0.0"
+    }
+  }

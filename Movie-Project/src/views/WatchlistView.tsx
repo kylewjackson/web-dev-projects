@@ -1,18 +1,24 @@
-import { useState, useEffect, useMemo } from "react";
+import { useState, useEffect, useMemo, useLayoutEffect, useRef } from "react";
 import { useLocation, useOutletContext } from "react-router";
 import { Button, Col, Row, Pagination } from "react-bootstrap";
 import type { AppContextType } from "../App";
 import useWatchlistRefresh from "../hooks/useWatchlistRefresh";
+import scrollTop from "../utils/scrollTop";
 import MovieCardList from "../components/MovieCardList";
 import ClearWatchlist from "../components/ClearWatchlist";
 
+type LocationState = { page?: number };
+
 export default function WatchlistView() {
+  const location = useLocation();
   const { watchlist, setWatchlist, toggleWatchlist } =
     useOutletContext<AppContextType>();
   const [modalShow, setModalShow] = useState(false);
-  const [currentPage, setCurrentPage] = useState(1);
+  const locationState = location.state as LocationState | undefined;
+  const [currentPage, setCurrentPage] = useState(locationState?.page ?? 1);
   const maxPerPage = 20;
   const totalPages = Math.ceil(watchlist.length / maxPerPage);
+  const shouldScrollRef = useRef(false);
 
   useWatchlistRefresh(watchlist, setWatchlist);
 
@@ -22,8 +28,16 @@ export default function WatchlistView() {
     }
   }, [watchlist, totalPages, currentPage]);
 
-  useEffect(() => {
-    window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
+  function handleCurrentPage(page: number) {
+    shouldScrollRef.current = true;
+    setCurrentPage(page);
+  }
+
+  useLayoutEffect(() => {
+    if (!shouldScrollRef.current) return;
+
+    shouldScrollRef.current = false;
+    requestAnimationFrame(scrollTop);
   }, [currentPage]);
 
   const visibleItems = useMemo(() => {
@@ -32,20 +46,70 @@ export default function WatchlistView() {
   }, [watchlist, currentPage, maxPerPage]);
 
   const paginationItems = [];
-  for (let i = 1; i <= totalPages; i++) {
+  const delta = 2;
+
+  if (totalPages <= 5 + delta * 2) {
+    for (let i = 1; i <= totalPages; i++) {
+      paginationItems.push(
+        <Pagination.Item
+          key={i}
+          active={i === currentPage}
+          onClick={() => handleCurrentPage(i)}
+          aria-label={`Go to page ${i}`}
+        >
+          {i}
+        </Pagination.Item>
+      );
+    }
+  } else {
     paginationItems.push(
       <Pagination.Item
-        key={i}
-        active={i === currentPage}
-        onClick={() => setCurrentPage(i)}
-        aria-label={`Go to page ${i}`}
+        key={1}
+        active={1 === currentPage}
+        onClick={() => handleCurrentPage(1)}
+        aria-label={`Go to page 1`}
       >
-        {i}
+        1
+      </Pagination.Item>
+    );
+
+    if (currentPage - delta > 2) {
+      paginationItems.push(
+        <Pagination.Ellipsis key="start-ellipsis" disabled />
+      );
+    }
+
+    const start = Math.max(2, currentPage - delta);
+    const end = Math.min(totalPages - 1, currentPage + delta);
+
+    for (let i = start; i <= end; i++) {
+      paginationItems.push(
+        <Pagination.Item
+          key={i}
+          active={i === currentPage}
+          onClick={() => handleCurrentPage(i)}
+          aria-label={`Go to page ${i}`}
+        >
+          {i}
+        </Pagination.Item>
+      );
+    }
+
+    if (currentPage + delta < totalPages - 1) {
+      paginationItems.push(<Pagination.Ellipsis key="end-ellipsis" disabled />);
+    }
+
+    paginationItems.push(
+      <Pagination.Item
+        key={totalPages}
+        active={totalPages === currentPage}
+        onClick={() => handleCurrentPage(totalPages)}
+        aria-label={`Go to page ${totalPages}`}
+      >
+        {totalPages}
       </Pagination.Item>
     );
   }
-
-  const location = useLocation();
 
   return (
     <>
@@ -58,6 +122,7 @@ export default function WatchlistView() {
             watchlist={watchlist}
             toggleWatchlist={toggleWatchlist}
             locationPathName={location.pathname}
+            currentPage={currentPage}
           />
         ) : (
           <h2 className="h4 text-center">Nothing in watchlist</h2>
@@ -66,14 +131,14 @@ export default function WatchlistView() {
 
       {totalPages > 1 && (
         <Row as="nav" className="py-3">
-          <Pagination className="d-flex justify-content-center pe-0">
+          <Pagination className="d-flex flex-wrap justify-content-center pe-0">
             {paginationItems}
           </Pagination>
         </Row>
       )}
 
       {watchlist.length > 0 && (
-        <Col className="text-center">
+        <Col xs={12} className="text-center">
           <Button variant="danger" onClick={() => setModalShow(true)}>
             Clear Watchlist?
           </Button>

@@ -2,13 +2,15 @@
   "name": "my-app",
   "version": "0.1.0",
   "private": true,
+	"engines": {
+ 		"node": ">=14.0.0"
+	},
   "dependencies": {
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-scripts": "5.0.1",
     "react-transition-group": "^4.4.5",
-    "sass": "^1.89.1",
-    "scss": "^0.2.4"
+    "sass": "^1.89.2"
   },
   "scripts": {
     "start": "react-scripts start",
@@ -32,7 +34,7 @@
       "last 1 safari version"
     ]
   },
-  "homepage": "/React-Product-Page/build",
+  "homepage": "/productpage",
   "devDependencies": {
     "eslint": "^8.57.1",
     "eslint-plugin-jsx-a11y": "^6.10.2",

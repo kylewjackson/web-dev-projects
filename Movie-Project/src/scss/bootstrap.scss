@@ -1,4 +1,25 @@
-@use "bootstrap/scss/bootstrap" with (
-  $enable-smooth-scroll: false
+$enable-smooth-scroll: false;
+
+@import "bootstrap/scss/functions";
+@import "bootstrap/scss/variables";
+@import "bootstrap/scss/variables-dark";
+@import "bootstrap/scss/maps";
+@import "bootstrap/scss/mixins";
+@import "bootstrap/scss/utilities";
+
+$utilities: map-merge(
+  $utilities,
+  (
+    "font-size":
+      map-merge(
+        map-get($utilities, "font-size"),
+        (
+          responsive: true,
+        )
+      ),
+  )
 );
-@use "./base/bs-overrides";
+
+@import "bootstrap/scss/utilities/api";
+@import "bootstrap/scss/bootstrap";
+@import "./base/bs-overrides";

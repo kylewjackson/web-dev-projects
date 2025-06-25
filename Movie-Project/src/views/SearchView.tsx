@@ -26,6 +26,7 @@ export default function SearchView() {
     setShowcaseTabs,
     activeTab,
     setActiveTab,
+		clearSearch
   } = useOutletContext<AppContextType>();
   const location = useLocation();
 
@@ -76,8 +77,10 @@ export default function SearchView() {
           query={query}
           setQuery={setQuery}
           apiLoading={apiLoading}
+					hasSearched={hasSearched}
           setHasSearched={setHasSearched}
           setMovieResults={setMovieResults}
+					clearSearch={clearSearch}
         />
         <SearchResults
           apiLoading={apiLoading}

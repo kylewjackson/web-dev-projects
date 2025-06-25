@@ -5,6 +5,21 @@
 Project Thumbnails
 ==================*/
 
+#movie-thumbnail-preview {
+    //mobile portratit
+    @include mixins.thumbMobilePortrait('../images/thumbnails/movie/thumbnail-phone-movie.jpg');
+
+    //mobile landscape
+    @include mixins.thumbMobileLandscape('../images/thumbnails/movie/thumbnail-phone-landscape-movie.jpg');
+
+    //tablet
+    @include mixins.thumbTablet('../images/thumbnails/movie/thumbnail-tablet-movie.jpg');
+
+    //large
+    @include mixins.thumbLarge('../images/thumbnails/movie/thumbnail-large-movie.jpg');
+
+}
+
 #work-thumbnail-preview {
     //mobile portratit
     @include mixins.thumbMobilePortrait('../images/thumbnails/work/thumbnail-phone-work.jpg');

@@ -1,0 +1,435 @@
+@media (max-width: 999px) {
+
+    /* Rules */
+    #rules-container {
+        gap: 5vw;
+    }
+
+    @media (min-width: 500px) {
+        #rules-container {
+            grid-template-columns: repeat(2, 45%);
+            -webkit-box-pack: justify;
+            -ms-flex-pack: justify;
+            justify-content: space-between;
+            row-gap: 7vw;
+            -webkit-column-gap: 0;
+            column-gap: 0;
+        }
+    }
+
+    @media (min-width: 700px) {
+        #rules-container {
+            -ms-flex-pack: distribute;
+            justify-content: space-around;
+            -ms-flex-line-pack: start;
+            align-content: start;
+            row-gap: 3.5vw;
+        }
+    }
+
+    .rules {
+        gap: 2vw;
+    }
+
+    .rules.left {
+        grid-template-columns: 30% 1fr;
+    }
+
+    .rules.right {
+        grid-template-columns: 1fr 30%;
+        /* backfill empty cells */
+        grid-auto-flow: dense;
+    }
+
+    @media (min-width: 500px) {
+
+        .rules.left,
+        .rules.right {
+            grid-template-columns: auto;
+        }
+
+        .rules.right {
+            grid-auto-flow: row;
+        }
+
+        .rules:nth-of-type(odd):not(#config-rules)>.rule-descriptions {
+            text-align: right;
+        }
+
+        #config-rules-description {
+            text-align: center;
+        }
+
+        #list-rules-bone-icons {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+        }
+
+        #list-rules-description,
+        #blackout-rules-description {
+            grid-row: 1;
+        }
+    }
+
+    .paw-overlays,
+    .bones {
+        position: relative;
+        width: 75%;
+    }
+
+    @media (min-width: 500px) {
+        .paw-overlays {
+            width: 30%;
+        }
+
+        #config-rules>.paw-overlays {
+            width: 25%;
+        }
+    }
+
+    @media (min-width: 700px) {
+        #config-rules>.paw-overlays {
+            width: 20%;
+        }
+
+        .bones {
+            width: 60%;
+        }
+    }
+
+    /* rotate left justified paws */
+    .paw-overlays:not(.right) {
+        -webkit-transform: rotate(45deg);
+        transform: rotate(45deg);
+    }
+
+    /*start right justified paws in second column*/
+    .paw-overlays.right {
+        grid-column: 2;
+    }
+
+    @media (min-width: 500px) {
+        .paw-overlays.right {
+            grid-column: auto;
+        }
+
+        .paw-overlays.right {
+            -webkit-transform: rotate(45deg);
+            transform: rotate(45deg);
+        }
+
+        .paw-overlays:not(.right) {
+            -webkit-transform: inherit;
+            transform: inherit;
+        }
+    }
+
+    #list-rules-black-bone-icon {
+        width: 130%;
+    }
+
+    @media (min-width: 500px) {
+        #list-rules-black-bone-icon {
+            grid-row: 2;
+            grid-column: 2;
+        }
+    }
+
+    .paw-shadings {
+        position: absolute;
+        top: -2px;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        width: 100%;
+        height: 100%;
+    }
+
+    @media (min-width: 500px) {
+
+        #config-rules-paw,
+        #config-rules-paw-shade {
+            height: auto;
+            width: 60%;
+            top: 1vw;
+            left: 2vw;
+        }
+    }
+
+    .paw-bases {
+        width: 100%;
+        height: 100%;
+    }
+
+    #game-rules-paw {
+        fill: #F75BBA;
+    }
+
+    #woof-rules-paw {
+        fill: #FFF7B3;
+    }
+
+    #blackout-rules-paw {
+        fill: #225381;
+    }
+
+    #config {
+        padding-bottom: 20vh;
+    }
+
+    @media (min-width: 500px) {
+        #config-rules {
+            max-height: 18vw;
+        }
+    }
+
+    @media (min-width: 700px) {
+        #config-rules {
+            place-self: center;
+            max-width: 60%;
+            padding: 2vw;
+        }
+    }
+
+    #config-rules-paw {
+        fill: #E5E5E5;
+    }
+
+    @media (min-width: 500px) {
+        #config-rules-paw {
+            position: relative;
+        }
+    }
+
+    #submit-config {
+        margin-top: 3vh;
+    }
+
+    @media (min-width: 500px) {
+        #submit-config {
+            max-width: 35vw;
+        }
+    }
+
+    @media (min-width: 700px) {
+        @media (max-height: 1000px) {
+            #config-form {
+                row-gap: 1vw;
+            }
+        }
+
+        #submit-config {
+            margin-top: 1vw;
+        }
+    }
+
+    #config-options {
+        place-items: center;
+        gap: 2vw;
+    }
+
+    .config-inputs {
+        justify-self: end;
+    }
+
+    .config-labels {
+        position: relative;
+        /* to make sure larger text doesn't get misaligned*/
+        width: 10vw;
+        padding-left: 10vw;
+        /*  -----  */
+        font-size: 10vw;
+    }
+
+    /* add input icons before label elements */
+    .config-labels::before {
+        position: absolute;
+        opacity: 1;
+        right: 15vw;
+        content: url('../images/input-unchecked-green.svg');
+        width: 5vw;
+    }
+
+    .config-labels::after {
+        position: absolute;
+        opacity: 0;
+        top: .5vw;
+        right: 11.5vw;
+        content: url('../images/input-checked.svg');
+        width: 12vw;
+    }
+
+    /* change based on what's checked */
+    .config-inputs:checked+.config-labels {
+        background-color: #F65BBA;
+        color: #FFF7B3;
+        -webkit-text-stroke: .25vw #C4C4C4;
+        border-radius: 15% 0 0 15%;
+    }
+
+    .config-inputs:checked+.config-labels::before {
+        opacity: 0;
+    }
+
+    .config-inputs:checked+.config-labels::after {
+        opacity: 1;
+        top: 0;
+    }
+
+    @media (min-width: 700px) {
+        .config-labels {
+            font-size: 7vw;
+            padding-left: 7vw;
+            width: 7vw;
+        }
+
+        .config-labels::before {
+            width: 3vw;
+            right: 10vw;
+        }
+
+        .config-labels::after {
+            width: 8vw;
+            right: 8.5vw;
+        }
+    }
+}
+
+@media (min-width: 1000px) {
+
+    /*Rules */
+    #rules-container {
+        grid-template-columns: repeat(2, minmax(-webkit-min-content, 350px));
+        grid-template-columns: repeat(2, minmax(min-content, 350px));
+        gap: 2vw;
+        place-content: center;
+        font-size: 20px;
+    }
+
+    .rules {
+        gap: 5%;
+    }
+
+    .rules:nth-of-type(odd):not(#config-rules)>.rule-descriptions {
+        text-align: right;
+    }
+
+    #list-rules-description,
+    #blackout-rules-description {
+        grid-row: 1;
+    }
+
+    /* Vectors */
+    .paw-overlays,
+    .bones {
+        position: relative;
+        width: 30%;
+    }
+
+    .paw-overlays.right {
+        -webkit-transform: rotate(45deg);
+        transform: rotate(45deg);
+    }
+
+    #config-rules-paw-overlay {
+        width: 15%;
+    }
+
+    .paw-bases {
+        width: 100%;
+        height: 100%;
+    }
+
+    #game-rules-paw {
+        fill: #F75BBA;
+    }
+
+    #woof-rules-paw {
+        fill: #FFF7B3;
+    }
+
+    #blackout-rules-paw {
+        fill: #225381;
+    }
+
+    #config-rules-paw {
+        fill: #E5E5E5;
+    }
+
+
+    .paw-shadings {
+        position: absolute;
+        top: -2px;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        width: 100%;
+        height: 100%;
+    }
+
+    /* Config */
+    #config {
+        grid-auto-columns: minmax(-webkit-min-content, 350px);
+        grid-auto-columns: minmax(min-content, 350px);
+        -webkit-box-pack: center;
+        -ms-flex-pack: center;
+        justify-content: center;
+        font-size: 20px;
+    }
+
+    #config-header {
+        font-size: 80px;
+        -webkit-text-stroke-width: 1px;
+    }
+
+    #config-form>.sub-headings {
+        font-size: 50px;
+    }
+
+    #config-options {
+        width: 150px;
+        padding-left: 10%;
+    }
+
+    .config-labels {
+        position: relative;
+        font-size: 65px;
+        padding-left: 30%;
+    }
+
+    .config-inputs:checked+.config-labels {
+        background-color: #F65BBA;
+        color: #FFF7B3;
+        border-radius: 10px 0 0 10px;
+        text-shadow: 1px 1px 1px #93F3E2;
+    }
+
+    /* add input icons before label elements */
+    .config-labels::before {
+        position: absolute;
+        opacity: 1;
+        content: url('../images/input-unchecked-green.svg');
+        width: 25%;
+        left: -10%;
+    }
+
+    .config-labels::after {
+        position: absolute;
+        opacity: 0;
+        content: url('../images/input-checked.svg');
+        width: 50%;
+        left: -20%;
+    }
+
+    .config-inputs:checked+.config-labels::before {
+        opacity: 0;
+    }
+
+    .config-inputs:checked+.config-labels::after {
+        opacity: 1;
+    }
+
+    #submit-config {
+        font-size: 30px;
+    }
+}

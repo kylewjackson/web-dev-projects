@@ -2,6 +2,10 @@
 
 A sampling of various web development projects and coding challenges.
 
+## Movie Watchlist
+
+A Movie Watchlist app built using React, TypeScript, Bootstrap, and TMDB's API. [Live](https://www.kylejackson.dev/movie/).
+
 ## Tutorial Projects
 
 I will be adding my sample projects from various learning courses, including those taken on [Lynda.com](https://www.lynda.com), [Udemy](https://www.udemy.com/user/kyle-jackson-20/), and [freeCodeCamp](https://www.freecodecamp.org/kylewjackson).
@@ -15,6 +19,10 @@ A browser-based logic game inspired by MTV's _Are You the One?_. Made with vanil
 My front-end portfolio, hosted by Netlify. HTML, CSS, Sass, and vanilla JS. View it live [here](https://www.kylejackson.dev)!
 
 [![Netlify Status](https://api.netlify.com/api/v1/badges/38b0311d-6da0-46d6-977e-5e6102fe7948/deploy-status)](https://app.netlify.com/sites/kylewjackson/deploys)
+
+## Work Portfolio
+
+A showcase of working done as a Front End Developer and Software Engineer at Sally Beauty Holidngs. [Live](https://www.kylejackson.dev/work).
 
 ## React Product Page Demo
 
