@@ -8,7 +8,7 @@
     "copy:product":  "rm -rf portfolio/public/productpage && mkdir -p portfolio/public/productpage && cp -R React-Product-Page/build/. portfolio/public/productpage",
     "copy:movie":    "rm -rf portfolio/public/movie       && mkdir -p portfolio/public/movie       && cp -R Movie-Project/dist/.   portfolio/public/movie",
 
-    "copy:rawr":     "rm -rf portfolio/public/rawr-you-the-one && mkdir -p portfolio/public/rawr-you-the-one && cp -R rawr-you-the-one/. portfolio/public/rawr-you-the-one/",
+    "copy:rawr":     "rm -rf portfolio/public/rawr-you-the-one && mkdir -p portfolio/public/rawr-you-the-one && cp -R Rawr-You-The-One/. portfolio/public/rawr-you-the-one/",
     "copy:retro":    "rm -rf portfolio/public/retro                 && mkdir -p portfolio/public/retro                 && cp -R retro/.                 portfolio/public/retro",
     "copy:Lynda":    "rm -rf portfolio/public/Lynda                && mkdir -p portfolio/public/Lynda                && cp -R Lynda/.                portfolio/public/Lynda",
     "copy:Udemy":    "rm -rf portfolio/public/Udemy                && mkdir -p portfolio/public/Udemy                && cp -R Udemy/.                portfolio/public/Udemy",
