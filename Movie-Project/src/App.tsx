@@ -40,6 +40,7 @@ export interface AppContextType {
   activeTab: TMDBMovieList;
   setActiveTab: Dispatch<SetStateAction<TMDBMovieList>>;
   activeTheme: Theme;
+	clearSearch: () => void;
 }
 
 function App() {
@@ -92,6 +93,12 @@ function App() {
     );
   }
 
+  function clearSearch() {
+    setMovieResults([]);
+    setHasSearched(false);
+    setQuery("");
+  }
+
   return (
     <Container fluid>
       {/* aria-live annoucment message for state changes */}
@@ -104,6 +111,7 @@ function App() {
             as={Link}
             to="/"
             className="d-flex align-items-center mb-0"
+            onClick={clearSearch}
           >
             <img
               src={Logo}
@@ -158,6 +166,7 @@ function App() {
               activeTheme,
               activeTab,
               setActiveTab,
+							clearSearch,
             }}
           />
         </Row>
