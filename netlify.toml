@@ -1,0 +1,41 @@
+[build]
+  command = "npm run build:monorepo"
+  publish = "portfolio/public"
+
+# ─── static pages ───
+[[redirects]]
+  from = "/"
+  to   = "/index.html"
+  status = 200
+
+[[redirects]]
+  from = "/about"
+  to   = "/about.html"
+  status = 200
+
+[[redirects]]
+  from = "/projects"
+  to   = "/projects.html"
+  status = 200
+
+[[redirects]]
+  from = "/work"
+  to   = "/work.html"
+  status = 200
+
+# ─── React apps (SPA fallbacks) ───
+[[redirects]]
+  from = "/productpage/*"
+  to   = "/productpage/index.html"
+  status = 200
+
+[[redirects]]
+  from = "/movie/*"
+  to   = "/movie/index.html"
+  status = 200
+
+# ─── Legacy Rawr (301) ───
+[[redirects]]
+  from = "/rawr/*"
+  to   = "/rawr-you-the-one/version-1.1/:splat"
+  status = 301

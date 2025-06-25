@@ -1,0 +1,19 @@
+.container.main {
+	margin-top: 7em;
+}
+
+#show-date {
+	padding-top: 1em;
+}
+
+i.icon {
+	font-size: 2em;
+}
+
+	.extra i.icon {
+		padding-top: .15em;
+	}
+
+#delete {
+	display: inline;
+}
