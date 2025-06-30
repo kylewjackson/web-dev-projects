@@ -1,0 +1,26 @@
+#no-js-alert {
+    position: fixed;
+    overflow: hidden;
+    background-color: #93F3E2;
+    width: 110vw;
+    height: 100vh;
+    z-index: 100;
+    left: 0;
+    top: 0;
+    margin-left: -10vw;
+    margin-right: -10vw;
+}
+
+#no-js-alert > strong {
+    position: fixed;
+    overflow: hidden;
+    width: 30vw;
+    font-size: 2rem;
+    top: 40%;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    margin: auto;
+    /* left: 10%;
+    top: 40%; */
+}

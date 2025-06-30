@@ -1,7 +1,7 @@
 import { useState } from "react";
 import type { Movie, HandleMovie } from "../types/movie";
 import { formatTitleWithYear } from "../utils/movieUtils";
-import { NavLink } from "react-router";
+import { NavLink, useNavigate } from "react-router";
 import slugify from "slugify";
 import { Card, Row, Col, Button, Collapse } from "react-bootstrap";
 import WatchlistButton from "./WatchlistButton";
@@ -17,6 +17,7 @@ type Props = {
   variant?: string;
   from: string;
   context?: string;
+  page?: number;
 };
 
 export default function MovieCard({
@@ -27,6 +28,7 @@ export default function MovieCard({
   variant,
   from,
   context,
+  page,
 }: Props) {
   const {
     id,
@@ -39,6 +41,7 @@ export default function MovieCard({
     language,
     genres,
   } = movie;
+  const navigate = useNavigate();
   const [expanded, setExpanded] = useState(false);
   const slug = slugify(title, "+");
   const isInWatchlist = watchlist.some((m) => m.id === id);
@@ -48,7 +51,12 @@ export default function MovieCard({
     <Card className="mb-3">
       <Row>
         <Col xs={4} md={3}>
-          <NavLink to={`/movie/${id}/${slug}`} state={{ from }} tabIndex={-1}>
+          <NavLink
+            to={`/detail/${id}/${slug}`}
+            state={{ from, page }}
+            onClick={() => navigate(from, { replace: true, state: { page } })}
+            tabIndex={-1}
+          >
             <img
               src={poster}
               alt={"poster for: " + title}
@@ -59,14 +67,25 @@ export default function MovieCard({
 
         <Col xs={8} md={9} className="ps-0 ps-md-2">
           <Card.Body className="p-2 ps-0 p-md-9">
-            <Card.Title as="h2" className="h4">
-              {formatTitleWithYear({ title, year, variant: "card" })}
-            </Card.Title>
+            <NavLink
+              to={`/detail/${id}/${slug}`}
+              state={{ from, page }}
+              tabIndex={-1}
+              className="text-decoration-none text-reset"
+              onClick={() => navigate(from, { replace: true, state: { page } })}
+            >
+              <Card.Title as="h2" className="h4">
+                {formatTitleWithYear({ title, year, variant: "card" })}
+              </Card.Title>
+            </NavLink>
 
             <div className="d-flex flex-column align-items-start">
               <NavLink
-                to={`/movie/${id}/${slug}`}
-                state={{ from }}
+                to={`/detail/${id}/${slug}`}
+                state={{ from, page }}
+                onClick={() =>
+                  navigate(from, { replace: true, state: { page } })
+                }
                 className="btn btn-link ps-0 me-2 mb-2"
                 style={
                   {

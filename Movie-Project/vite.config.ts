@@ -4,6 +4,7 @@ import svgr from "vite-plugin-svgr";
 
 // https://vite.dev/config/
 export default defineConfig({
+	base: '/movie/',
   plugins: [react(), svgr()],
   css: {
     preprocessorOptions: {

@@ -527,6 +527,9 @@ Toolbox
 #tools #react-box {
   background-color: #6ACEE3;
 }
+#tools #typescript-box {
+  background-color: #367ac4;
+}
 #tools #jquery-box {
   background-color: #2C5CDA;
 }
@@ -692,6 +695,49 @@ Linkbox
 /*=================
 Project Thumbnails
 ==================*/
+@media (max-width: 499px) and (orientation: portrait) {
+  #movie-thumbnail-preview {
+    background-position: center;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-image: url("../images/thumbnails/movie/thumbnail-phone-movie.jpg");
+  }
+}
+@media (max-height: 499px) and (orientation: landscape) {
+  #movie-thumbnail-preview {
+    background-position: center;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-image: url("../images/thumbnails/movie/thumbnail-phone-landscape-movie.jpg");
+    width: 49%;
+    margin: 0;
+    left: 21%;
+  }
+}
+@media (min-width: 500px) and (min-height: 500px) {
+  #movie-thumbnail-preview {
+    background-position: center;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-image: url("../images/thumbnails/movie/thumbnail-tablet-movie.jpg");
+    background-position: inherit;
+    top: 7%;
+  }
+}
+@media (min-width: 768px) and (min-height: 500px) {
+  #movie-thumbnail-preview {
+    background-position: center;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-image: url("../images/thumbnails/movie/thumbnail-large-movie.jpg");
+  }
+}
+@media (min-width: 1300px) {
+  #movie-thumbnail-preview {
+    background-position: center 25%;
+  }
+}
+
 @media (max-width: 499px) and (orientation: portrait) {
   #work-thumbnail-preview {
     background-position: center;
@@ -1715,6 +1761,12 @@ About Styles
 }
 #about #tool-container .links#react-link:hover {
   background-color: #6ACEE3;
+  color: #EEEEEE;
+  padding: 2%;
+  border-radius: 5px;
+}
+#about #tool-container .links#typescript-link:hover {
+  background-color: #367ac4;
   color: #EEEEEE;
   padding: 2%;
   border-radius: 5px;

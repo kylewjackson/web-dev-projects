@@ -1,48 +1,45 @@
-import { useId, useRef, useEffect } from "react";
+import { useId } from "react";
 import { Form, FloatingLabel, Row, Col, Button } from "react-bootstrap";
 import type { HandleMovies } from "../types/movie";
 
 type Props = {
   onSearch: (query: string) => void;
-  onClear?: () => void;
   query: string;
   setQuery: (q: string) => void;
   apiLoading: boolean;
+  hasSearched: boolean;
   setHasSearched: (val: boolean) => void;
   setMovieResults: HandleMovies;
+  clearSearch: () => void;
 };
 
 export default function SearchBar({
   onSearch,
-  onClear,
   query,
   setQuery,
   apiLoading,
+  hasSearched,
   setHasSearched,
   setMovieResults,
+  clearSearch,
 }: Props) {
   const searchId = useId();
-  const inputRef = useRef<HTMLInputElement>(null);
 
-  useEffect(() => {
-    const input = inputRef.current;
-    if (!input) return;
-    const handleNativeSearch = (e: Event) => {
-      // only treat it as a "clear" if value is empty
-      if ((e.target as HTMLInputElement).value === "") {
-        setMovieResults([]);
-        setHasSearched(false);
-        onClear?.();
-      }
-    };
-    input.addEventListener("search", handleNativeSearch);
-    return () => input.removeEventListener("search", handleNativeSearch);
-  }, [onClear, setHasSearched, setMovieResults]);
+  function handleChange(e: React.ChangeEvent<HTMLInputElement>) {
+    const next = e.target.value;
+    setQuery(next);
+    setHasSearched(false);
+
+    // if the box is empty, clear out current results
+    if (next.trim() === "") {
+      setMovieResults([]);
+    }
+  }
 
   function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
     const q = query.trim();
-    onSearch(q);
+    if (q) onSearch(q);
   }
 
   return (
@@ -56,13 +53,9 @@ export default function SearchBar({
           >
             <Form.Control
               type="search"
-              ref={inputRef}
               value={query}
               placeholder=" " // needed so floating label shrinks
-              onChange={(e) => {
-                setQuery(e.target.value);
-                setHasSearched(false);
-              }}
+              onChange={handleChange}
               disabled={apiLoading}
             />
           </FloatingLabel>
@@ -77,6 +70,19 @@ export default function SearchBar({
             Search
           </Button>
         </Col>
+        {hasSearched && (
+          <Col className="mt-1 text-end">
+            <Button
+              type="button"
+              variant="link"
+              size="sm"
+              onClick={clearSearch}
+              className="text-body"
+            >
+              Clear
+            </Button>
+          </Col>
+        )}
       </Row>
     </Form>
   );

@@ -18,6 +18,7 @@ import ThemeSwitch from "./components/ThemeSwitch";
 import "./App.css";
 import Logo from "./assets/logo.svg";
 import TMDB from "./assets/tmdb.svg";
+import BackToTop from "./components/common/BackToTop";
 export interface AppContextType {
   apiLoading: boolean;
   apiError: Error | null;
@@ -40,6 +41,7 @@ export interface AppContextType {
   activeTab: TMDBMovieList;
   setActiveTab: Dispatch<SetStateAction<TMDBMovieList>>;
   activeTheme: Theme;
+  clearSearch: () => void;
 }
 
 function App() {
@@ -92,6 +94,12 @@ function App() {
     );
   }
 
+  function clearSearch() {
+    setMovieResults([]);
+    setHasSearched(false);
+    setQuery("");
+  }
+
   return (
     <Container fluid>
       {/* aria-live annoucment message for state changes */}
@@ -104,6 +112,7 @@ function App() {
             as={Link}
             to="/"
             className="d-flex align-items-center mb-0"
+            onClick={clearSearch}
           >
             <img
               src={Logo}
@@ -122,7 +131,7 @@ function App() {
               ) : (
                 <i className="bi bi-bookmark pe-1" />
               )}
-              Watchlist ({watchlist.length})
+              Watchlist ({watchlist.length > 99 ? "99+" : watchlist.length})
             </Nav.Link>
           </Nav>
           <ThemeSwitch
@@ -158,6 +167,7 @@ function App() {
               activeTheme,
               activeTab,
               setActiveTab,
+              clearSearch,
             }}
           />
         </Row>
@@ -167,8 +177,8 @@ function App() {
         <Row>
           <Col
             md={6}
-            as="p"
-            className="d-flex justify-content-center justify-content-md-end align-items-center"
+            as="small"
+            className="d-flex justify-content-center justify-content-md-end align-items-center mb-3"
           >
             Site
             <i className="bi bi-c-circle px-1" aria-label="Copyright" />
@@ -177,17 +187,19 @@ function App() {
           </Col>
           <Col
             md={6}
-            as="p"
-            className="d-flex justify-content-center justify-content-md-start align-items-center"
+            as="small"
+            className="d-flex justify-content-center justify-content-md-start align-items-center mb-3"
           >
             <span className="me-2">Powered by:</span>
             <a href="https://www.themoviedb.org/" target="_blank">
-							<span className="visually-hidden">(Opens in new tab)</span>
+              <span className="visually-hidden">(Opens in new tab)</span>
               <img src={TMDB} alt="TMDB" width={60} height={32} />
             </a>
           </Col>
         </Row>
       </footer>
+
+      <BackToTop />
     </Container>
   );
 }
