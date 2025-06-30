@@ -62,7 +62,7 @@ Follow these steps to run the Movie Watchlist app locally on your machine:
 
 3. **API Key setup:**  
     This app uses the TMDB API which **requires an API key**. Sign up for a free account at TMDB and obtain an API key from your account settings.  
-    In the `Movie-Project` directory, create a file named **`.env`** (it's already in .gitignore to keep it private[GitHub](https://github.com/kylewjackson/web-dev-projects/issues/37)). Add the following line to the `.env` file:
+    In the `Movie-Project` directory, create a file named **`.env`** (it's already in .gitignore to keep it private [[#37]](https://github.com/kylewjackson/web-dev-projects/issues/37)). Add the following line to the `.env` file:
 
     ```bash
     VITE_TMDB_API_KEY = YOUR_TMDB_API_KEY_HERE
