@@ -22,9 +22,9 @@ netlify dev --offline --framework '#static' --dir portfolio/dist --no-open
 
 The preview serves `/`, `/projects`, and `/work` and their flat HTML equivalents. About and the sibling projects are outside this isolated preview. Project cards retain their production destinations.
 
-### Work browser checks
+### Browser checks
 
-Run the optional browser checker against a running local preview. It exercises pointer and keyboard navigation, the contents control, the viewer, and script and motion fallbacks. Chromium screenshots and axe reports go to the ignored `.baseline/work-browser/` directory by default.
+Run the optional checkers against a running local preview. The project checker covers Home and Projects navigation, card behavior, reflow, and script and motion fallbacks. The Work checker covers fragment navigation, the contents control, and the screenshot viewer. Chromium screenshots and axe reports go to the ignored `.baseline/project-browser/` and `.baseline/work-browser/` directories by default.
 
 Use an existing npm directory containing Playwright and axe-core, or install them in a disposable directory as shown here.
 
@@ -32,6 +32,7 @@ Use an existing npm directory containing Playwright and axe-core, or install the
 browser_tools=$(mktemp -d)
 npm install --prefix "$browser_tools" playwright axe-core
 "$browser_tools/node_modules/.bin/playwright" install chromium
+node tooling/check-project-browser.mjs --url http://localhost:8080 --tool-root "$browser_tools"
 node tooling/check-work-browser.mjs --url http://localhost:8080 --tool-root "$browser_tools"
 ```
 

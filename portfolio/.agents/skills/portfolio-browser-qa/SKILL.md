@@ -1,13 +1,14 @@
 ---
 name: portfolio-browser-qa
-description: Validate rendered portfolio accessibility, navigation, and optional interactions after changes to shared layout, Work fragments, the floating contents control, or the screenshot viewer. Use for browser regression runs and baseline captures of the portfolio preview.
+description: Verify rendered portfolio behavior after changes to shared navigation or layout, project cards or reveals, or Work fragments and screenshot viewer. Use for accessibility, responsive interaction, and before-and-after browser checks.
 ---
 
 # Portfolio browser QA
 
-Work from `portfolio/`. Start by running `npm run check` for content, asset, and output parity. Use the [development README](../../../readme.md) to start the preview and run the browser checks against the intended build.
+Work from `portfolio/`. Run `npm run check` for content, asset, and output parity. The [development README](../../../readme.md#browser-checks) has the preview and checker commands.
 
-- For Work, run the linked browser checker. It writes viewport captures and axe reports. Review axe's incomplete items and compare relevant captures with the [baseline](../../../BASELINE.md).
-- For changes on other pages, reuse the viewport matrix and evidence approach. Exercise pointer and keyboard navigation separately. For native fragments, verify the URL and Back history, then inspect the destination and keyboard focus after scrolling settles.
-- When an enhancement is involved, check disabled JavaScript and a blocked enhancement separately. Exercise modal controls with the modal open and confirm focus after dismissal. Check reduced motion independently of the default-motion pass.
-- Use the available Firefox and Safari browsers for a smoke pass on changed interactions. A desktop Safari smoke test, headless automation, and automated accessibility findings each cover different aspects. Report any browser, assistive-technology, or visual coverage still needed.
+- Run the project checker for shared cards, Home or Projects reveals, and their navigation. Run the Work checker for fragments, the contents control, and the viewer. Use both when changing shared styles or layout. Reuse their viewport matrix and evidence format for other pages.
+- Before changing an interaction, observe the original initial state, scroll reveal, and relevant hover or focus state. For comparison captures, match the viewport and visible target and wait for fonts, scrolling, and animations to settle. Keep a separate initial-state capture when entry behavior changes. See the [baseline](../../../BASELINE.md) for the reference set.
+- Exercise pointer and keyboard navigation separately. For native fragments, verify the URL, Back history, target clearance below the fixed header, and focus. For dialogs, check keyboard behavior with the dialog open and verify focus restoration on close.
+- Test disabled JavaScript, a blocked enhancement, and reduced motion separately. Check rendered visibility as well as DOM presence, especially for opacity-based reveals. Review axe's incomplete items and verify the relevant foreground and background contrast in the rendered state.
+- Use available Firefox and Safari for checks on changed interactions. Safari Responsive Design Mode supports the same sizes as the Chromium matrix. Verify painted focus in a visible browser if headless output only confirms the focused target. Report remaining browser, device, or assistive-technology coverage.
