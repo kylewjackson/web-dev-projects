@@ -6,37 +6,14 @@
     "dev": "eleventy --serve",
     "build": "node tooling/clean-dist.mjs && eleventy",
     "check": "npm run build && node --test tooling/build.test.mjs",
-    "build:legacy": "run-s transpile scss prefix copy-css copy-js",
-    "transpile": "babel scripts -d babel",
-    "scss": "node node_modules/sass-legacy/sass.js sass:styles",
-    "prefix": "postcss styles/*.css  --use autoprefixer postcss-clean -d styles/min --no-map",
-    "copy-css": "mkdir -p public/styles && cp styles/min/*.css public/styles/",
-    "copy-js": "mkdir -p public/scripts && cp babel/*.js public/scripts/"
+    "check:legacy": "node tooling/check-legacy-build.mjs"
   },
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "@babel/cli": "^7.8.4",
-    "@babel/core": "^7.9.0",
-    "@babel/preset-env": "^7.9.5",
-    "babel-preset-minify": "^0.5.1",
-    "npm-run-all": "^4.1.5",
-    "sass": "1.108.2",
     "@11ty/eleventy": "3.1.8",
-    "sass-legacy": "npm:sass@1.89.1"
+    "sass": "1.108.2"
   },
-  "dependencies": {
-    "@babel/polyfill": "^7.10.1",
-    "autoprefixer": "^9.7.6",
-    "core-js": "^3.6.5",
-    "postcss-clean": "^1.1.0",
-    "postcss-cli": "^7.1.1",
-    "uniq": "^1.0.1"
-  },
-  "browserslist": [
-    "> 0.25%",
-    "last 4 versions"
-  ],
   "engines": {
     "node": ">=24 <25"
   }

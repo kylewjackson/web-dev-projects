@@ -1,23 +1,27 @@
 import assert from "node:assert/strict";
 import { spawnSync } from "node:child_process";
-import { cp, mkdtemp, readFile, readdir, rm, symlink } from "node:fs/promises";
+import { cp, mkdtemp, readFile, readdir, rm } from "node:fs/promises";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
-import { fileURLToPath } from "node:url";
 
 const portfolio = new URL("../", import.meta.url);
+const lock = new URL("legacy-build/", import.meta.url);
 const copy = await mkdtemp(join(tmpdir(), "portfolio-legacy-"));
 
 try {
   // Start with sources only so a missing build step cannot pass using stale output.
-  for (const input of [".babelrc", "package.json", "sass", "scripts"]) {
+  for (const input of [".babelrc", "sass", "scripts"]) {
     await cp(new URL(input, portfolio), join(copy, input), { recursive: true });
   }
-  await symlink(fileURLToPath(new URL("node_modules", portfolio)), join(copy, "node_modules"), "dir");
+  for (const input of ["package.json", "package-lock.json"]) {
+    await cp(new URL(input, lock), join(copy, input));
+  }
 
-  const result = spawnSync("npm", ["run", "build:legacy"], { cwd: copy, stdio: "inherit" });
-  if (result.error) throw result.error;
-  assert.equal(result.status, 0, "Legacy build failed in the disposable directory.");
+  for (const args of [["ci", "--include=dev", "--no-audit"], ["run", "build"]]) {
+    const result = spawnSync("npm", args, { cwd: copy, stdio: "inherit" });
+    if (result.error) throw result.error;
+    assert.equal(result.status, 0, `Legacy npm ${args.join(" ")} failed in the disposable directory.`);
+  }
 
   const outputs = { scripts: ["back-to-top.js", "script.js"], styles: ["main.css"] };
   for (const [directory, expected] of Object.entries(outputs)) {
