@@ -1,0 +1,6 @@
+<a href="{{ href | escape }}" target="_blank" rel="noopener" id="{{ id | escape }}-box" class="link-box"{% if reveal %} data-reveal{% endif %}>
+  <span class="link-badge" aria-hidden="true">
+    <b id="{{ id | escape }}-symbol" class="link-symbol">{{ symbol | escape }}</b>
+  </span>
+  <span id="{{ id | escape }}-name" class="link-name">{{ name | escape }}</span>
+</a>

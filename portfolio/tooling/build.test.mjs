@@ -10,6 +10,7 @@ import { runInNewContext } from "node:vm";
 const dist = new URL("../dist/", import.meta.url);
 const snapshot = new URL("../public/", import.meta.url);
 const legacyScript = await readFile(new URL("../scripts/script.js", import.meta.url), "utf8");
+const legacyTools = runInNewContext("(" + legacyScript.match(/const tools = (\{[^]*?\n\});/)[1] + ")");
 
 const stripComments = (html) => html.replace(/<!--[^]*?-->/g, "");
 const readableText = (html) => html
@@ -21,12 +22,95 @@ const readableText = (html) => html
   .trim();
 
 test("the build emits only the expected top-level output", async () => {
-  assert.deepEqual((await readdir(dist)).sort(), ["images", "index.html", "projects.html", "resume.pdf", "scripts", "styles", "work.html"]);
+  assert.deepEqual((await readdir(dist)).sort(), [
+    "about.html", "images", "index.html", "projects.html", "resume-old.pdf", "resume.pdf", "scripts", "styles", "work.html",
+  ]);
+  assert.deepEqual(await readFile(new URL("resume-old.pdf", dist)), await readFile(new URL("resume-old.pdf", snapshot)));
   assert.deepEqual((await readdir(new URL("scripts/", dist))).sort(), ["reveal.js", "work.js"]);
   for (const script of ["scripts/reveal.js", "scripts/work.js"]) {
     assert.deepEqual(await readFile(new URL(script, dist)), await readFile(new URL("../src/" + script, import.meta.url)));
   }
   assert.deepEqual(await readdir(new URL("styles/", dist)), ["main.css"]);
+});
+
+test("all four pages share static navigation and serve their portfolio-owned references", async () => {
+  const routes = { "/": "index.html", "/about": "about.html", "/projects": "projects.html", "/work": "work.html" };
+  const siblingRoutes = new Set([
+    "/movie", "/productpage", "/rawr",
+    "/Lynda/CSS%20Essential%20Training%20-%20Resume",
+    "/Udemy/Web%20Developer%20Bootcamp/Javascript%20Projects/jQuery%20Projects/to-do-list",
+  ]);
+  const assets = new Set();
+
+  for (const [route, file] of Object.entries(routes)) {
+    const html = await readFile(new URL(file, dist), "utf8");
+    const nav = html.match(/<nav class="navbar"[^>]*>([^]*?)<\/nav>/)[1];
+    assert.deepEqual([...nav.matchAll(/href="([^"]+)"/g)].map(([, href]) => href), Object.keys(routes), file);
+    assert.deepEqual([...nav.matchAll(/href="([^"]+)"[^>]* aria-current="page"/g)].map(([, href]) => href), [route], file);
+    assert.equal(html.match(/<h1[ >]/g).length, 1, file);
+    assert.match(html, /href="\/resume\.pdf">Résumé/);
+    assert.doesNotMatch(html, /<noscript|\son\w+="|href="javascript:/i);
+
+    const ids = [...html.matchAll(/\bid="([^"]+)"/g)].map(([, id]) => id);
+    assert.equal(new Set(ids).size, ids.length, file);
+    for (const [, id] of html.matchAll(/href="#([^"]+)"/g)) {
+      assert.ok(ids.includes(id), `${file} references #${id}`);
+    }
+    for (const [, url] of html.matchAll(/(?:href|src)="(\/[^"]*)"/g)) {
+      if (!(url in routes) && !siblingRoutes.has(url)) assets.add(url);
+    }
+  }
+
+  const css = await readFile(new URL("styles/main.css", dist), "utf8");
+  for (const [, url] of css.matchAll(/url\(["']?(\.\.\/images\/[^"')]+)["']?\)/g)) {
+    assets.add(url.slice(2));
+  }
+  for (const url of assets) {
+    const path = url.slice(1);
+    const bytes = await readFile(new URL(path, dist));
+    if (url.startsWith("/images/") || url === "/resume.pdf") {
+      assert.deepEqual(bytes, await readFile(new URL(path, snapshot)), url);
+    }
+  }
+});
+
+test("About preserves the active production biography, links, illustrations, and tools", async () => {
+  const html = await readFile(new URL("about.html", dist), "utf8");
+  const original = stripComments(await readFile(new URL("about.html", snapshot), "utf8"))
+    .split("<body", 2)[1].split("<noscript>", 1)[0];
+  const main = (page) => page.match(/<main\b[^>]*>([^]*?)<\/main>/)[1];
+  const sections = (page) => [...main(page).matchAll(/<section id="([^"]+)"[^>]*>([^]*?)<\/section>/g)];
+  const migrated = sections(html);
+  const legacy = sections(original);
+  assert.deepEqual(migrated.map(([, id]) => id), ["intro", "credentials", "work-together", "coding", "art", "tools"]);
+  assert.deepEqual(migrated.map(([, id]) => id), legacy.map(([, id]) => id));
+  assert.deepEqual(html.match(/<script\b[^>]*>/g), ['<script type="module" src="/scripts/reveal.js">']);
+  assert.deepEqual(migrated.flatMap(([, , section]) => [...section.matchAll(/<h([1-6])\b/g)].map(([, level]) => level)),
+    ["1", "2", "2", "2", "2", "2"]);
+
+  const values = (page, attribute) => [...page.matchAll(new RegExp(`${attribute}="([^"]+)"`, "g"))]
+    .map(([, value]) => value.replace(/^\/?(images\/|resume\.pdf)/, "/$1").replace(/&amp;/g, "&"));
+  for (const [index, [, id, section]] of migrated.entries()) {
+    const previous = legacy[index][2];
+    // The legacy script inserts tool rows between the heading and this paragraph.
+    const withoutToolRows = section.replace(/<ul id="tool-container"[^]*?<\/ul>/, "");
+    assert.equal(readableText(withoutToolRows), readableText(previous), id);
+    assert.deepEqual(values(withoutToolRows, "href"), values(previous, "href"), id);
+    assert.deepEqual(values(section, "src"), values(previous, "src"), id);
+  }
+
+  const tools = Object.values(legacyTools).flatMap((group) => Object.values(group));
+  assert.equal(tools.length, 26);
+  assert.deepEqual(
+    [...main(html).matchAll(/class="tool-link" id="([^"]+)-link" href="([^"]+)"[^>]*>([^<]+)<\/a>/g)]
+      .map(([, id, url, text]) => [id, url, readableText(text)]),
+    tools.map(({ abbr, url, full }) => [abbr, url, full]),
+  );
+  assert.deepEqual(
+    [...main(html).matchAll(/<span id="([^"]+)-name" class="tool-name">([^<]+)<\/span>/g)]
+      .map(([, id, name]) => [id, readableText(name)]),
+    tools.map(({ abbr, name }) => [abbr, name]),
+  );
 });
 
 test("Home and Projects render the production catalog with its original selections and destinations", async () => {
@@ -88,7 +172,7 @@ test("Home preserves the visible production hero, introduction and skills", asyn
   const intro = (page) => page.match(/<section id="intro"[^>]*>([^]*?)<\/section>/)[1];
   assert.equal(readableText(landing(home)), readableText(landing(original)));
   assert.equal(readableText(intro(home)), readableText(intro(original)));
-  const { additional, ...groups } = runInNewContext("(" + legacyScript.match(/const tools = (\{[^]*?\n\});/)[1] + ")");
+  const { additional, ...groups } = legacyTools;
   const skills = Object.values(groups).flatMap((group) => Object.values(group));
   assert.deepEqual(
     [...home.matchAll(/<span id="([^"]+)-name" class="tool-name">([^<]+)<\/span>/g)]

@@ -1,0 +1,81 @@
+---
+layout: layouts/base.liquid
+permalink: /about.html
+pageId: about
+title: Kyle Jackson - About Me | kylejackson.dev
+socialTitle: Kyle Jackson - About Me
+description: Hi, I'm Kyle Jackson, a Front End Web Developer based in the Dallas-Fort Worth area. I'm all about creative, responsive, and practical website solutions.
+canonical: https://www.kylejackson.dev/about
+---
+<section id="intro" class="content">
+  <img src="/images/profile-small.jpg" alt="Kyle Jackson" class="pic" width="1000" height="1500" data-reveal>
+  <h1 id="intro-heading" class="content-heading" data-reveal>Hi, I’m Kyle Jackson.</h1>
+  <p class="background-paragraph" data-reveal>I graduated from the University of North Texas with a <span class="accent-pink"><em>Bachelor of Arts</em></span> in <span class="accent-blue">Radio, Television, and Film</span> (English Minor). I love movies, writing, and all things artistic, and web design has been a great outlet. I spent a lot of time making <em>fan-sites</em> and <em>digital art</em> as a hobby in high school, and returning to that passion as a career has been amazing!  I’m currently based in the Dallas/Fort-Worth area.</p>
+  <p class="work-ethic-paragraph" data-reveal><strong>Front-End Development</strong> combines my love of <span class="accent-pink"><em>creative expression</em></span> with my penchant for <span class="accent-blue">puzzles and problem solving</span>.</p>
+</section>
+
+<section id="credentials" class="content">
+  <img src="/images/icons/about-certification-ribbon-icon.svg" alt="" id="ribbon-icon" class="icon" data-reveal>
+  <h2 class="about-section-heading" data-reveal>While I’m a <span class="accent-pink">self-taught dev</span>, I do have some <span class="accent-blue">credentials</span>:</h2>
+  <div id="credentials-link-container" class="container">
+    <div id="fcc-container" class="container" data-reveal>
+      {% render "partials/link-box.liquid", href: "https://www.freecodecamp.org/kylewjackson", id: "fcc", symbol: "fcc", name: "FreeCodeCamp" %}
+      <ul class="certification-list" role="list">
+        <li><a href="https://www.freecodecamp.org/certification/kylewjackson/responsive-web-design" target="_blank" rel="noopener" id="responsive-cert" class="links">Responsive Web Design</a></li>
+        <li><a href="https://www.freecodecamp.org/certification/kylewjackson/javascript-algorithms-and-data-structures" target="_blank" rel="noopener" id="algorithm-cert" class="links">Algorithms and Data Structures</a></li>
+      </ul>
+    </div>
+    <div id="udemy-container" class="container" data-reveal>
+      {% render "partials/link-box.liquid", href: "https://www.udemy.com/user/kyle-jackson-20/", id: "udemy", symbol: "u", name: "Udemy" %}
+      <ul class="certification-list" role="list">
+        <li><a href="https://www.udemy.com/certificate/UC-GCOQR6MA/" target="_blank" rel="noopener" id="bootcamp-cert" class="links">Web Developer Bootcamp</a></li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section id="work-together" class="content">
+  <img src="/images/icons/about-work-handshake-icon.svg" alt="" id="handshake-icon" class="icon" data-reveal>
+  <h2 class="about-section-heading" data-reveal>If you’re interested in <span class="accent-pink">working</span> <span class="accent-blue">together</span>, you can find me at:</h2>
+  <div id="work-together-link-container" class="container" data-reveal>
+    {% render "partials/link-box.liquid", href: "https://www.linkedin.com/in/kyle-jackson-80762b4b/", id: "linkedin", symbol: "li", name: "LinkedIn" %}
+    {% render "partials/link-box.liquid", href: "https://www.upwork.com/o/profiles/users/_~0133d2774021cf3b88/?s=1110580755057594368", id: "upwork", symbol: "uw", name: "Upwork" %}
+  </div>
+  <a href="/resume.pdf" target="_blank" rel="noopener" id="resume-link" class="button" data-reveal>Resume</a>
+</section>
+
+<section id="coding" class="content">
+  <img src="/images/icons/about-coding-icon.svg" alt="" id="coding-icon" class="icon" data-reveal>
+  <h2 class="about-section-heading" data-reveal>Check out my code:</h2>
+  <div id="coding-link-container" class="container" data-reveal>
+    {% render "partials/link-box.liquid", href: "https://github.com/kylewjackson", id: "github-profile", symbol: "gh", name: "GitHub" %}
+    {% render "partials/link-box.liquid", href: "https://www.hackerrank.com/kylewalkerjacks1", id: "hackerrank", symbol: "hr", name: "HackerRank" %}
+    {% render "partials/link-box.liquid", href: "https://codepen.io/kylewjackson", id: "codepen", symbol: "c", name: "CodePen" %}
+  </div>
+</section>
+
+<section id="art" class="content">
+  <img src="/images/icons/about-art-paintbrush-icon.svg" alt="" id="paintbrush-icon" class="icon" data-reveal>
+  <h2 class="about-section-heading" data-reveal>Some of my (old) art:</h2>
+  <div id="art-link-container" class="container" data-reveal>
+    {% render "partials/link-box.liquid", href: "https://www.deviantart.com/blackbird97", id: "da", symbol: "da", name: "deviantArt" %}
+  </div>
+</section>
+
+<section id="tools" class="content">
+  <img src="/images/icons/about-tools-icon.svg" alt="" id="tools-icon" class="icon" data-reveal>
+  <h2 class="about-section-heading" data-reveal>I work with:</h2>
+  <ul id="tool-container" class="container" role="list">
+    {% for group in skills %}
+      {% for skill in group.tiles %}
+        <li class="tool-row" data-reveal>
+          {% render "partials/skill-tile.liquid", skill: skill, tag: "span", decorative: true %}
+          <a class="tool-link" id="{{ skill.abbr }}-link" href="{{ skill.url | escape }}" target="_blank" rel="noopener">{{ skill.full | escape }}</a>
+        </li>
+      {% endfor %}
+    {% endfor %}
+  </ul>
+  <p data-reveal>Plus all the <span class="accent-blue">tools</span> I’m <span class="accent-pink">learning</span>:</p>
+  {% render "partials/link-box.liquid", href: "https://stackshare.io/kylewjackson", id: "stackshare", symbol: "ss", name: "StackShare", reveal: true %}
+</section>
+<script type="module" src="/scripts/reveal.js"></script>

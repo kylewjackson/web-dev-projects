@@ -9,22 +9,6 @@
     border-bottom: 2px solid $color-blue;
     padding-bottom: 2px;
   }
-
-  // Keep the original tile backgrounds and select readable foregrounds.
-  #tools {
-    #html-box, #css-box, #js-box, #react-box, #scss-box, #git-box,
-    #sfcc-box, #storybook-box, #bitbucket-box, #kanban-box, #ab-box, #ga-box {
-      color: #111;
-    }
-
-    #jira-box, #qm-box, #mt-box {
-      color: #fff;
-    }
-
-    #typescript-box {
-      color: #000;
-    }
-  }
 }
 
 :is(#index, #all-projects) {
@@ -77,22 +61,8 @@
   }
 }
 
-// Enhance visible content on entry. Text stays at full contrast throughout.
 @media (prefers-reduced-motion: no-preference) {
-  html:has(:is(#index, #all-projects)) {
-    scroll-behavior: smooth;
-  }
-
   :is(#index, #all-projects) {
-    .reveal-in:not(:focus-within) {
-      animation: portfolio-rise 500ms ease-out;
-    }
-
-    .reveal-in:not(:focus-within) :is(.thumbnail-preview, .icon),
-    :is(.icon, #intro-icons).reveal-in {
-      animation: portfolio-art-fade 500ms ease-out;
-    }
-
     .navbar a {
       transition: color 180ms;
     }
@@ -120,12 +90,4 @@
       }
     }
   }
-}
-
-@keyframes portfolio-rise {
-  from { translate: 0 0.75rem; }
-}
-
-@keyframes portfolio-art-fade {
-  from { opacity: 0.65; }
 }

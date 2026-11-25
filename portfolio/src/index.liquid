@@ -39,14 +39,12 @@ canonical: https://www.kylejackson.dev
 <section id="tools" class="content">
   <h2 id="index-tools-heading" class="content-heading" data-reveal>Skills</h2>
   <img src="/images/icons/tools-icon.svg" alt="" id="tools-icon" class="icon" data-reveal>
-  {% for group in homeSkills %}
+  {% for group in skills %}
+    {% unless group.heading %}{% continue %}{% endunless %}
     <h3 id="{{ group.id }}-sub-heading" class="sub-heading" data-reveal>{{ group.heading | escape }}</h3>
     <ul id="{{ group.id }}-container" class="container" role="list">
       {% for skill in group.tiles %}
-        <li id="{{ skill.abbr }}-box" class="tool-box" data-reveal>
-          <b id="{{ skill.abbr }}-symbol" class="tool-symbol" aria-hidden="true">{{ skill.symbol | escape }}</b>
-          <span id="{{ skill.abbr }}-name" class="tool-name">{{ skill.name | escape }}</span>
-        </li>
+        {% render "partials/skill-tile.liquid", skill: skill, tag: "li", reveal: true %}
       {% endfor %}
     </ul>
   {% endfor %}

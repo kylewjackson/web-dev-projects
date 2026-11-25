@@ -1,0 +1,25 @@
+// Keep text visible while enhancing its first appearance.
+@media (prefers-reduced-motion: no-preference) {
+  html:has(:is(#index, #all-projects, #about)) {
+    scroll-behavior: smooth;
+  }
+
+  :is(#index, #all-projects, #about) {
+    .reveal-in:not(:focus-within) {
+      animation: portfolio-rise 500ms ease-out;
+    }
+
+    .reveal-in:not(:focus-within) :is(.thumbnail-preview, .icon),
+    :is(.icon, #intro-icons, .pic).reveal-in {
+      animation: portfolio-art-fade 500ms ease-out;
+    }
+  }
+}
+
+@keyframes portfolio-rise {
+  from { translate: 0 0.75rem; }
+}
+
+@keyframes portfolio-art-fade {
+  from { opacity: 0.65; }
+}

@@ -1,0 +1,19 @@
+// These legacy tile backgrounds need a darker text color for AA contrast.
+#tools {
+  $dark-labels: html, css, js, react, scss, git, sfcc, storybook, bitbucket, kanban, ab, ga, sheets;
+  @each $skill in $dark-labels {
+    ##{$skill}-box, ##{$skill}-link { --skill-ink: #111; }
+  }
+
+  :is(#jira-box, #qm-box, #mt-box, #jira-link, #qm-link, #mt-link) {
+    --skill-ink: #fff;
+  }
+
+  :is(#typescript-box, #typescript-link) {
+    --skill-ink: #000;
+  }
+
+  .tool-box {
+    color: var(--skill-ink, #eee);
+  }
+}

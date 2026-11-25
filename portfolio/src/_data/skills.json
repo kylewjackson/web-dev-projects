@@ -1,0 +1,219 @@
+[
+  {
+    "id": "code",
+    "heading": "Code Languages",
+    "tiles": [
+      {
+        "abbr": "html",
+        "name": "HTML5",
+        "symbol": "5",
+        "full": "HyperText Markup Language 5",
+        "url": "https://www.w3.org/html/"
+      },
+      {
+        "abbr": "css",
+        "name": "CSS3",
+        "symbol": "3",
+        "full": "Cascading StyleSheets 3",
+        "url": "https://www.w3.org/Style/CSS/"
+      },
+      {
+        "abbr": "js",
+        "name": "JavaScript",
+        "symbol": "JS",
+        "full": "JavaScript EcmaScript6",
+        "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript"
+      },
+      {
+        "abbr": "typescript",
+        "name": "TypeScript",
+        "symbol": "TS",
+        "full": "TypeScript",
+        "url": "https://www.typescriptlang.org/"
+      }
+    ]
+  },
+  {
+    "id": "frameworks",
+    "heading": "Frameworks & Tools",
+    "tiles": [
+      {
+        "abbr": "react",
+        "name": "React",
+        "symbol": "R",
+        "full": "React.JS",
+        "url": "https://reactjs.org/"
+      },
+      {
+        "abbr": "scss",
+        "name": "SCSS",
+        "symbol": "S",
+        "full": "Sass / SCSS",
+        "url": "https://sass-lang.com/"
+      },
+      {
+        "abbr": "bootstrap",
+        "name": "Bootstrap 5",
+        "symbol": "Bs",
+        "full": "Bootstrap 4 / 5",
+        "url": "https://getbootstrap.com/"
+      },
+      {
+        "abbr": "sfcc",
+        "name": "SalesForce",
+        "symbol": "SF",
+        "full": "SalesForce Commerce Cloud (SFRA)",
+        "url": "https://www.salesforce.com/commerce/"
+      },
+      {
+        "abbr": "storybook",
+        "name": "Storybook",
+        "symbol": "Sb",
+        "full": "Storybook",
+        "url": "https://storybook.js.org/"
+      },
+      {
+        "abbr": "jquery",
+        "name": "jQuery",
+        "symbol": "jQ",
+        "full": "jQuery",
+        "url": "https://jquery.com/"
+      }
+    ]
+  },
+  {
+    "id": "editing-vc",
+    "heading": "Version Control & Workflow",
+    "tiles": [
+      {
+        "abbr": "git",
+        "name": "Git",
+        "symbol": "G",
+        "full": "Git",
+        "url": "https://git-scm.com/"
+      },
+      {
+        "abbr": "github",
+        "name": "GitHub",
+        "symbol": "GH",
+        "full": "GitHub",
+        "url": "https://github.com/kylewjackson"
+      },
+      {
+        "abbr": "bitbucket",
+        "name": "Bitbucket",
+        "symbol": "Bb",
+        "full": "Bitbucket",
+        "url": "https://bitbucket.org/"
+      },
+      {
+        "abbr": "agile",
+        "name": "Agile",
+        "symbol": "Ag",
+        "full": "Agile Methodologies",
+        "url": "https://en.wikipedia.org/wiki/Agile_software_development"
+      },
+      {
+        "abbr": "scrum",
+        "name": "Scrum",
+        "symbol": "Sc",
+        "full": "Scrum Framework",
+        "url": "https://www.scrum.org/resources/what-scrum-module"
+      },
+      {
+        "abbr": "kanban",
+        "name": "Kanban",
+        "symbol": "Kb",
+        "full": "Kanban Framework",
+        "url": "https://www.atlassian.com/agile/kanban"
+      },
+      {
+        "abbr": "jira",
+        "name": "Jira",
+        "symbol": "Ji",
+        "full": "Jira Project Management",
+        "url": "https://www.atlassian.com/software/jira"
+      }
+    ]
+  },
+  {
+    "id": "design",
+    "heading": "Design & Prototyping",
+    "tiles": [
+      {
+        "abbr": "figma",
+        "name": "Figma",
+        "symbol": "F",
+        "full": "Figma",
+        "url": "https://www.figma.com"
+      },
+      {
+        "abbr": "photoshop",
+        "name": "Photoshop",
+        "symbol": "Ps",
+        "full": "PhotoShop CS6 / Creative Cloud",
+        "url": "https://www.adobe.com/products/photoshop.html"
+      }
+    ]
+  },
+  {
+    "id": "testing",
+    "heading": "Testing & Analytics",
+    "tiles": [
+      {
+        "abbr": "ab",
+        "name": "A/B Testing",
+        "symbol": "AB",
+        "full": "A/B Split Testing",
+        "url": "https://www.oracle.com/cx/marketing/what-is-ab-testing/"
+      },
+      {
+        "abbr": "ga",
+        "name": "Google Analytics",
+        "symbol": "GA",
+        "full": "Google Analytics 3 / 4",
+        "url": "https://marketingplatform.google.com/about/analytics/"
+      },
+      {
+        "abbr": "qm",
+        "name": "Quantum Metric",
+        "symbol": "QM",
+        "full": "Quantum Metric",
+        "url": "https://www.quantummetric.com/"
+      },
+      {
+        "abbr": "mt",
+        "name": "Monetate",
+        "symbol": "Mt",
+        "full": "Monetate Personalization",
+        "url": "https://monetate.com/"
+      }
+    ]
+  },
+  {
+    "id": "additional",
+    "tiles": [
+      {
+        "abbr": "vscode",
+        "name": "VSCode",
+        "symbol": "VSC",
+        "full": "Visual Studio Code",
+        "url": "https://code.visualstudio.com/"
+      },
+      {
+        "abbr": "macos",
+        "name": "MacOS",
+        "symbol": "M",
+        "full": "Apple MacOS",
+        "url": "https://www.apple.com/macos/"
+      },
+      {
+        "abbr": "sheets",
+        "name": "Google Sheets",
+        "symbol": "GS",
+        "full": "Google Sheets",
+        "url": "https://workspace.google.com/products/sheets/"
+      }
+    ]
+  }
+]

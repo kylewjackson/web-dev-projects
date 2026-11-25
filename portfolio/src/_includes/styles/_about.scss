@@ -1,0 +1,119 @@
+@use "../../../sass/abstracts/variables" as *;
+
+#about {
+  .main-content:focus-visible h1 {
+    text-decoration: underline;
+    text-underline-offset: 0.19em;
+  }
+
+  .pic {
+    height: auto;
+  }
+
+  .about-section-heading {
+    font-size: inherit;
+    font-weight: 400;
+    margin-block: 1.33em;
+  }
+
+  // Keep the square and its label within the same focus target.
+  .main-content .link-box {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    height: auto;
+    width: max-content;
+    min-width: max(44px, 20%);
+    max-width: 100%;
+    padding-bottom: 0;
+    gap: 0.3rem;
+    background: transparent;
+    text-decoration: none;
+
+    .link-badge {
+      display: grid;
+      place-items: center;
+      justify-self: center;
+      width: clamp(3rem, 16vw, 75px);
+      aspect-ratio: 1;
+      border-radius: 10%;
+      background: $color-white;
+    }
+
+    .link-symbol {
+      position: static;
+      color: $color-black;
+    }
+
+    .link-name {
+      position: static;
+      overflow-wrap: anywhere;
+    }
+
+    &:is(:hover, :focus-visible, :active) .link-name {
+      color: $color-orange;
+    }
+  }
+
+  .certification-list a {
+    display: inline-block;
+    min-height: 24px;
+
+    &:is(:hover, :focus-visible, :active) {
+      color: $color-orange;
+    }
+  }
+
+  #credentials-link-container {
+    align-items: flex-start;
+  }
+
+  #resume-link:is(:hover, :focus-visible, :active) {
+    color: #87540d;
+  }
+
+  #tool-container {
+    display: block;
+
+    .tool-row {
+      display: grid;
+      grid-template-columns: 40% minmax(0, 1fr);
+      align-items: center;
+      gap: 5%;
+    }
+
+    .tool-link {
+      justify-self: start;
+      display: inline-flex;
+      align-items: center;
+      min-height: 24px;
+      padding: 0.25rem;
+      border-radius: 5px;
+      text-align: left;
+      overflow-wrap: anywhere;
+      font-size: clamp(1rem, 2vw, 1.25rem);
+
+      &:is(:hover, :focus-visible, :active) {
+        color: var(--skill-ink, #{$color-white});
+        background: var(--skill-accent);
+      }
+    }
+
+    @each $skill, $color in $tool-map {
+      ##{$skill}-link { --skill-accent: #{$color}; }
+    }
+  }
+
+  @media (prefers-reduced-motion: no-preference) {
+    .tool-link,
+    .certification-list a,
+    .main-content .link-name,
+    #resume-link {
+      text-underline-offset: 0.05em;
+      transition: text-underline-offset 180ms;
+
+      &:is(:hover, :focus-visible, :active) {
+        text-underline-offset: 0.15em;
+      }
+    }
+  }
+}

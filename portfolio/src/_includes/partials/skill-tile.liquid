@@ -1,0 +1,4 @@
+<{{ tag }} id="{{ skill.abbr | escape }}-box" class="tool-box"{% if decorative %} aria-hidden="true"{% endif %}{% if reveal %} data-reveal{% endif %}>
+  <b id="{{ skill.abbr | escape }}-symbol" class="tool-symbol" aria-hidden="true">{{ skill.symbol | escape }}</b>
+  <span id="{{ skill.abbr | escape }}-name" class="tool-name">{{ skill.name | escape }}</span>
+</{{ tag }}>

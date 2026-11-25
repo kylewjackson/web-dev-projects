@@ -23,6 +23,7 @@ module.exports = function (eleventyConfig) {
   eleventyConfig.addPassthroughCopy({
     "public/images": "images",
     "public/resume.pdf": "resume.pdf",
+    "public/resume-old.pdf": "resume-old.pdf",
     "src/scripts/work.js": "scripts/work.js",
     "src/scripts/reveal.js": "scripts/reveal.js",
   });
