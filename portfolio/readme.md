@@ -14,13 +14,13 @@ npm run check
 npm audit
 ```
 
-`dev` serves Work at `/work` and `/work.html` with live reload. `build` replaces only the local `dist/` directory. `check` rebuilds and verifies the static Work content, fragment links, asset paths, and output boundaries. To preview the built output with the existing rewrite rules, run this from the repository root using Netlify CLI:
+`dev` serves Home, Projects, and Work with live reload. `build` replaces only the local `dist/` directory. `check` rebuilds and verifies the static project catalog, Work content and fragments, asset parity, and output boundaries. To preview the built output with the existing rewrite rules, run this from the repository root using Netlify CLI:
 
 ```sh
 netlify dev --offline --framework '#static' --dir portfolio/dist --no-open
 ```
 
-The preview includes all eight Work case studies. The other portfolio and sibling routes are served by the current deployment and are outside this isolated preview.
+The preview serves `/`, `/projects`, and `/work` and their flat HTML equivalents. About and the sibling projects are outside this isolated preview. Project cards retain their production destinations.
 
 ### Work browser checks
 
@@ -39,7 +39,7 @@ Use `--executable` to launch an installed Chromium browser and `--out` to choose
 
 ## Transitional build and deployment
 
-`src/` contains the new template sources. Work metadata lives in `src/_data/workStudies.json`, and the case-study bodies live in `src/_includes/case-studies/`. The build layers migration styles over the existing `sass/` tree and reads `public/images/` and `public/resume.pdf` through explicit passthrough mappings. Treat `public/` as the read-only production snapshot until the deployment integration phase.
+`src/` contains the new template sources. Home and Projects share `src/_data/projects.json` and the Liquid project-card partial. The catalog order controls Projects, and `featuredOnHome` selects the Home subset in that same order. Its project IDs also select the existing responsive device previews in Sass. Work metadata lives in `src/_data/workStudies.json`, and the case-study bodies live in `src/_includes/case-studies/`. The build layers migration styles over the existing `sass/` tree and reads `public/images/` and `public/resume.pdf` through explicit passthrough mappings. Treat `public/` as the read-only production snapshot until the deployment integration phase.
 
 The previous command is available as `npm run build:legacy` with the old Babel and PostCSS steps and a legacy-only Sass 1.89.1 alias. The newer Sass compiler changed the legacy CSS bytes, so the alias preserves the audited output. Run it only in a disposable copy of the portfolio because it writes to that copy's `public/` directory. The shared Netlify build still serves the checked-in portfolio snapshot.
 
