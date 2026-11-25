@@ -5,6 +5,7 @@
 - Treat `src/` and the portfolio configuration as the new source, with the existing Sass and assets reused during migration. `dist/` is disposable generated output. Restrict cleans and writes to that directory. See [README](readme.md) for the transitional legacy build.
 - Run `npm ci`, `npm run dev`, `npm run build`, and `npm run check` from `portfolio/`. Use the README preview command for local Netlify rewrite checks.
 - Prefer semantic HTML, explicit Liquid includes for repeated markup, and Sass modules with page-specific rules scoped to their pages. Keep native JavaScript small and optional. Navigation, case studies, projects, and contact information must work when JavaScript fails.
+- Preserve or thoughtfully refine existing interactions and motion during migration. Keep content and destinations usable before enhancements load, and honor reduced-motion preferences.
 - Target WCAG 2.2 AA and evergreen desktop and mobile browsers. Check keyboard and focus behavior, reduced motion, contrast, and reflow. Preserve the split light-and-charcoal composition, Playfair typography, pink and cyan accents, custom illustrations, and device-framed previews.
 - Preserve public routes, résumé and asset links, existing Work fragments, and sibling and legacy route behavior. See [baseline](BASELINE.md) for the inventory.
 - Keep Work section order, headings, role dates, and fragment IDs in `src/_data/workStudies.json`. Each entry supplies both the contents link and the section header and points to its body in `src/_includes/case-studies/`.
