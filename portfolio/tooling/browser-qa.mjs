@@ -46,6 +46,7 @@ export async function launchBrowserQA(script, artifactDirectory) {
   }
 
   async function capture(page, name) {
+    await page.evaluate(() => document.fonts.ready);
     await page.screenshot({ path: join(output, `${name}.png`), animations: "disabled" });
   }
 

@@ -11,7 +11,8 @@ npm ci
 npm run dev
 npm run build
 npm run check
-npm audit
+npm audit --omit=dev
+npm audit --include=dev
 ```
 
 `dev` serves Home, About, Projects, and Work with live reload. `build` replaces only the local `dist/` directory. `check` rebuilds and verifies static content and navigation, Work fragments, local references, asset parity, and output boundaries. To preview the built output with the existing rewrite rules, run this from the repository root using Netlify CLI:
@@ -39,11 +40,26 @@ node tooling/check-work-browser.mjs --url http://localhost:8080 --tool-root "$br
 
 Use `--executable` to launch an installed Chromium browser and `--out` to choose a different evidence directory. See the [browser QA skill](.agents/skills/portfolio-browser-qa/SKILL.md) for the manual review.
 
-## Transitional build and deployment
+## Build inputs and legacy verification
 
-`src/` owns the four page templates, shared layout and partials, data, modern Sass, and optional browser modules. Home and Projects use the project-card partial and `src/_data/projects.json`. Home and About use the skill-tile partial and `src/_data/skills.json`. Work metadata lives in `src/_data/workStudies.json` and case-study bodies in `src/_includes/case-studies/`. The build layers migration styles over the shared `sass/` tree and uses explicit passthrough mappings for `public/images/` and the two résumé PDFs. Treat `public/` as the read-only production snapshot until deployment integration.
+`src/` owns the four page templates, shared layout and partials, data, modern Sass, and optional browser modules. Home and Projects use the project-card partial and `src/_data/projects.json`. Home and About use the skill-tile partial and `src/_data/skills.json`. Work metadata lives in `src/_data/workStudies.json` and case-study bodies in `src/_includes/case-studies/`. Eleventy layers modern styles over the one shared `sass/` tree and copies `public/images/`, `public/resume.pdf`, and `public/resume-old.pdf` to their original URLs. Keep those single sources and treat `public/` as a read-only production snapshot. The regression tests also read the production HTML and the catalog in `scripts/script.js`.
 
-The previous command is available as `npm run build:legacy` with the old Babel and PostCSS steps and a legacy-only Sass 1.89.1 alias. That compiler preserves the audited CSS bytes. To verify the legacy output after a locked install, run `node tooling/check-legacy-build.mjs` from `portfolio/`. It builds in a disposable copy and compares the generated CSS and both scripts to production. The shared Netlify build still serves the checked-in portfolio snapshot.
+Eleventy and Dart Sass are the only direct dependencies of the modern build. `npm run check:legacy` takes the legacy Babel configuration, shared Sass, and legacy scripts into a temporary directory. It installs the separate lockfile in `tooling/legacy-build/`, builds with Sass 1.89.1, and compares the generated CSS and both scripts to the checked-in production bytes. Run the legacy audit with `npm --prefix tooling/legacy-build audit --include=dev`. The shared Netlify build serves the checked-in portfolio snapshot.
+
+### Composed preview
+
+Run these commands from `portfolio/` after a locked install. The composer stages modern output and the allowlisted tracked sibling and archive files from `public/`. It reports missing required files or path collisions before a preview can run.
+
+```sh
+npm run check &&
+candidate=$(node tooling/compose-preview.mjs) &&
+preview_dir=$(mktemp -d) &&
+cp ../netlify.toml "$preview_dir/" &&
+mv "$candidate" "$preview_dir/served" &&
+(cd "$preview_dir" && netlify dev --offline --framework '#static' --dir served --no-open)
+```
+
+Use this preview to verify routing and existing assets. The sibling files come from the committed snapshot. The roadmap describes the separate root rebuild rehearsal and the requirements for cutover.
 
 ### Verify production isolation
 
