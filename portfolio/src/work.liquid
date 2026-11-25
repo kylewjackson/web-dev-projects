@@ -10,11 +10,28 @@ canonical: https://www.kylejackson.dev/work
 <h1>Work Portfolio</h1>
 <p>Every project here reflects my belief that great front-end work balances creativity, structure, and performance. From building design systems in Storybook to optimizing user flows with semantic SEO and accessibility in mind, I strive to make the web not just work—but work beautifully. These highlights capture how I approach front-end challenges across teams, tools, and user goals.</p>
 
-<nav id="work-toc" class="work-toc" aria-label="Table of contents">
-  <h2 class="work-toc__heading">Table of Contents</h2>
+<nav id="work-toc" class="work-toc" aria-labelledby="work-toc-heading" tabindex="-1">
+  <h2 id="work-toc-heading" class="work-toc__heading">Table of Contents</h2>
   <ul class="work-toc__list">
-    <li><a href="#project_agile">Agile Workflow Implementation</a></li>
+    {% for study in workStudies %}
+      <li><a href="#{{ study.fragment | escape }}">{{ study.tocLabel | escape }}</a></li>
+    {% endfor %}
   </ul>
 </nav>
 
-{% include "case-studies/agile.liquid" %}
+{% for study in workStudies %}
+  <section id="{{ study.fragment | escape }}" class="work-project" aria-labelledby="{{ study.fragment | escape }}-heading" tabindex="-1">
+    <header>
+      <h2 id="{{ study.fragment | escape }}-heading" class="work-project__heading">{{ study.title | escape }}{% if study.titleEmphasis %} <em>{{ study.titleEmphasis | escape }}</em>{% endif %}</h2>
+      <p class="work-project__info">{{ study.role | escape }} · {{ study.date | escape }}</p>
+      {% for detail in study.details %}
+        <p class="work-project__info"><strong>{{ detail.label | escape }}:</strong> {{ detail.text | escape }}</p>
+      {% endfor %}
+    </header>
+
+    {% include study.template %}
+
+    <a class="work-project__return" href="#work-toc">Return to table of contents</a>
+  </section>
+  <hr>
+{% endfor %}

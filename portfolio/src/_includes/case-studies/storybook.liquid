@@ -1,0 +1,174 @@
+<h3 class="work-project__sub-heading">Overview</h3>
+<p class="work-project__text">Working in collaboration with UX, I began laying the foundation for a scalable design system using Storybook. My goal was to provide developers with accessible documentation and reusable components that reflected our approved brand tokens. I established the structure, architecture, and tooling that could support long-term adoption and handoff.</p>
+
+{% include "partials/work-figure.liquid",
+  href: "/images/samples/storybook_component.png",
+  src: "/images/samples/storybook_component.jpg",
+  alt: "Storybook UI Button overview in Autodocs. Shows sidebar with story implmentations and documentation. Butto story docs show a preview of a CTA button, information and controls for variant, size, width, and text content, as well as usage guidelines.",
+  caption: "Storybook Component",
+  width: 1642,
+  height: 927,
+  full: true
+%}
+
+<h3 class="work-project__sub-heading">Tech Stack & Tooling</h3>
+<ul class="work-project__bullet-list">
+  <li><strong>Framework:</strong> React 18 + Vite</li>
+  <li><strong>Storybook:</strong> Version 8, using the <code>@storybook/react-vite</code> framework
+  </li>
+  <li><strong>TypeScript:</strong> Strongly typed components and stories</li>
+  <li><strong>SCSS:</strong> Modular SCSS structure with utility classes for variants, states,
+    spacing, typography, and color</li>
+  <li><strong>Design Tokens:</strong> SCSS variables structured across palettes like Primary, Neutral,
+    and Alert states</li>
+  <li><strong>Bootstrap:</strong> Used for layout scaffolding within Storybook decorators</li>
+  <li><strong>Accessibility:</strong> Focus styling and keyboard support in components</li>
+  <li><strong>Addon Features:</strong>
+    <ul class="work-project__bullet-list work-project__bullet-list--sub">
+      <li><code>@storybook/addon-controls</code>: Interactive props editing</li>
+      <li><code>@storybook/addon-docs</code> and <code>@storybook/blocks</code>: MDX-based docs with
+        custom layouts and visual swatches</li>
+      <li><code>@whitespace/storybook-addon-html</code>: Shows underlying HTML output</li>
+      <li><code>@storybook/test</code>: Testing hooks for future visual/interaction testing</li>
+    </ul>
+  </li>
+  <li><strong>Linting:</strong> ESLint with Storybook plugin and TypeScript integration</li>
+</ul>
+
+<h3 class="work-project__sub-heading">Design System Integration</h3>
+<ul class="work-project__bullet-list">
+  <li><strong>Color Documentation:</strong>
+    <ul class="work-project__bullet-list work-project__bullet-list--sub">
+      <li>Created reusable <code>&lt;ColorItem&gt;</code> blocks using <code>@storybook/blocks</code>
+        to document brand, neutral, and semantic color tokens (e.g., Sally Red, Error BG, etc.)</li>
+      <li>Structured into sections like Primary, Natural, Alert Text, and Alert Background palettes
+        for UX parity with Figma</li>
+    </ul>
+  </li>
+  <li><strong>Typography & Layout:</strong>
+    <ul class="work-project__bullet-list work-project__bullet-list--sub">
+      <li>Typography tokens defined in <code>_typography.scss</code> and referenced in MDX files</li>
+      <li>SCSS modifiers applied using structured class patterns: <code>.df_template--[variant]</code>
+        and <code>.df_template--[status]</code></li>
+    </ul>
+  </li>
+</ul>
+
+{% include "partials/work-figure.liquid",
+  href: "/images/samples/storybook_story.png",
+  src: "/images/samples/storybook_story.jpg",
+  alt: "Storybook UI for Button Primary Story. Features viewport breakpoint, interactive controls, and HTML output.",
+  caption: "Story (Button - Primary)",
+  width: 1653,
+  height: 933
+%}
+
+<h3 class="work-project__sub-heading">Component Architecture</h3>
+<ul class="work-project__bullet-list">
+  <li><strong>Reusable Component:</strong> <code>TemplateComponent</code> built with flexible props
+    <ul class="work-project__bullet-list work-project__bullet-list--sub">
+      <li>variant: for block vs inline styles</li>
+      <li>status: for semantic intent (success, error, warning, info)</li>
+      <li>children: customizable message content</li>
+    </ul>
+  </li>
+  <li><strong>Styled Using:</strong> BEM-style SCSS utility classes for consistent design application
+  </li>
+  <li><strong>Dynamic Rendering in Stories:</strong>
+    <ul class="work-project__bullet-list work-project__bullet-list--sub">
+      <li>Storybook story uses <code>useFirstRender()</code> hook to toggle between default and
+        reactive content for live previewing component behavior</li>
+    </ul>
+  </li>
+</ul>
+
+{% include "partials/work-figure.liquid",
+  href: "/images/samples/storybook_docs.png",
+  src: "/images/samples/storybook_docs.jpg",
+  alt: "Storybook documentation for Button component. Features live variant displays and info, as well as colors and context from design system for HEX code reference.",
+  caption: "Story Documentation",
+  width: 1646,
+  height: 933
+%}
+
+<h3 class="work-project__sub-heading">Storybook Documentation & Controls</h3>
+<ul class="work-project__bullet-list">
+  <li><strong>Custom MDX Layouts:</strong>
+    <ul class="work-project__bullet-list work-project__bullet-list--sub">
+      <li>Used <code>&lt;Title&gt;</code>, <code>&lt;Primary&gt;</code>,
+        <code>&lt;Controls&gt;</code>, <code>&lt;Stories&gt;</code>, and
+        <code>&lt;ColorPalette&gt;</code> from <code>@storybook/blocks</code> to structure intuitive
+        documentation
+      </li>
+    </ul>
+  </li>
+  <li><strong>Interactive Controls:</strong>
+    <ul class="work-project__bullet-list work-project__bullet-list--sub">
+      <li>Storybook’s Controls tab wired to <code>argTypes</code> for live prop manipulation of
+        status, variant, and content</li>
+    </ul>
+  </li>
+  <li><strong>Live Code Examples:</strong>
+    <ul class="work-project__bullet-list work-project__bullet-list--sub">
+      <li>Stories include dynamic examples and static snapshots for each alert state to support visual
+        QA and documentation</li>
+    </ul>
+  </li>
+</ul>
+
+<div class="work-project__table-container">
+  <table class="work-project__table" id="skills-demonstrated-storybook">
+    <caption>Skills Demonstrated in Storybook</caption>
+    <thead>
+      <tr>
+        <th scope="col">Skill</th>
+        <th scope="col">Application</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <th scope="row">🖌️ Component Design</th>
+        <td>Modular, variant-based components with clear status handling</td>
+      </tr>
+      <tr>
+        <th scope="row">🔨 SCSS Architecture</th>
+        <td>Utility class system for layout and states, global variable usage</td>
+      </tr>
+      <tr>
+        <th scope="row">📘 Design System Adaptation</th>
+        <td>Converted Figma tokens into Storybook-documented design tokens</td>
+      </tr>
+      <tr>
+        <th scope="row">💯 Storybook Proficiency</th>
+        <td>Custom docs layout, decorators, dynamic arg usage, MDX</td>
+      </tr>
+      <tr>
+        <th scope="row">💻 React & TypeScript</th>
+        <td>Functional components with strict typing and prop management</td>
+      </tr>
+      <tr>
+        <th scope="row">♻️ Tooling & Automation</th>
+        <td>ESLint integration, NPM scripts for Storybook builds (<code>storybook</code>,
+          <code>build-storybook</code>)
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<h3 class="work-project__sub-heading">Design System MVP Implementation</h3>
+<p class="work-project__text">Created an MVP branch of the <strong>Design System</strong> to provide
+  immediate access to <strong>UX-approved color, typography, and border radius</strong> utility
+  classes. This foundational setup allows developers to begin using the design system without waiting
+  for full integration.</p>
+
+<strong>Key Features:</strong>
+<ul class="work-project__bullet-list">
+  <li><strong>SCSS Utilities:</strong> Centralized in branch and imported into the site's scss</li>
+  <li><strong>Global Variables & Mixins:</strong> Configured via <code>sass-resources-loader</code> in
+    the Webpack config, enabling use without manual imports</li>
+  <li><strong>Font Integration:</strong> included webfont files and wired them to typography utilities
+  </li>
+  <li><strong>Non-intrusive Setup:</strong> Can be optionally commented out to avoid duplication with
+    existing css</li>
+</ul>

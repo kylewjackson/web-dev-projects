@@ -1,0 +1,99 @@
+<h3 class="work-project__sub-heading">Overview</h3>
+<p class="work-project__text">This <strong>Similar Items Comparison Chart</strong> experience was built
+  as an A/B split test in Monetate to determine the effectiveness of product comparison information vs
+  a product carousel. The experiement was a success, determining that users preferred seeing detailed
+  product information up front, and were more likely to add products to bag directly from the chart
+  and reach the conversion stage more quickly.</p>
+
+{% include "partials/work-figure.liquid",
+  href: "/images/samples/similar-items_desktop.png",
+  src: "/images/samples/similar-items_desktop.jpg",
+  alt: "Desktop design for similar items comparison chart featuring product image, brand, product name, add to bag button, price, rating, and other category-specific attributes like hair color type, duration, need for developer, and other benefits",
+  caption: "Similar Items (Desktop)",
+  width: 1407,
+  height: 738,
+  full: true
+%}
+
+<h3 class="work-project__sub-heading">Skills Demonstrated</h3>
+<ul class="work-project__bullet-list work-project__bullet-list--2xspace">
+  <li>
+    <strong>DOM Manipulation (Vanilla JS):</strong>
+    <ul class="work-project__bullet-list work-project__bullet-list--sub">
+      <li>Proficient manipulation of the DOM using <code>document.createElement</code>,
+        <code>insertAdjacentHTML</code>, and <code>querySelectorAll</code>.
+      </li>
+      <li>Built dynamic UI tables using vanilla JavaScript for product comparison, adapting
+        layouts and content on-the-fly based on API data.</li>
+    </ul>
+  </li>
+  <li>
+    <strong>Asynchronous JavaScript / Promises:</strong>
+    <ul class="work-project__bullet-list work-project__bullet-list--sub">
+      <li>Usage of <code>Promise.then()</code> for asynchronous API data retrieval.</li>
+      <li>Fetched and rendered live product data asynchronously with custom API integrations.</li>
+    </ul>
+  </li>
+  <li>
+    <strong>Data Parsing & Filtering:</strong>
+    <ul class="work-project__bullet-list work-project__bullet-list--sub">
+      <li>Conditional logic to process product attributes (e.g., filtering promotions, calculating
+        rating stars, handling variant vs. master products).</li>
+      <li>Parsed and filtered product data structures to display dynamic promotional, pricing, and
+        rating content.</li>
+    </ul>
+  </li>
+  <li>
+    <strong>Modular & Reusable Logic:</strong>
+    <ul class="work-project__bullet-list work-project__bullet-list--sub">
+      <li>Use of helper functions (<code>getWarrantyForPrice</code>) and reusable switch cases for
+        modular row generation.</li>
+      <li>Engineered modular logic for dynamic row generation across customizable product
+        attributes.</li>
+    </ul>
+  </li>
+  <li>
+    <strong>Responsive Layout with Utility Classes:</strong>
+    <ul class="work-project__bullet-list work-project__bullet-list--sub">
+      <li>Integration with utility-first class structures (Bootstrap + custom CSS).</li>
+      <li>Implemented responsive, mobile-first product layouts using utility class architecture.
+      </li>
+    </ul>
+  </li>
+  <li>
+    <strong>Accessibility Enhancements:</strong>
+    <ul class="work-project__bullet-list work-project__bullet-list--sub">
+      <li>Semantic HTML (<code>.sr-only</code> class) and accessible navigation (aria-label,
+        keyboard-friendly links)</li>
+      <li>Ensured accessible navigation and product ratings via screen reader-friendly markup and
+        ARIA attributes.</li>
+    </ul>
+  </li>
+  <li>
+    <strong>Edge Case Handling & Fallbacks:</strong> Anticipated edge cases and implemented UI
+    fallbacks for missing product data and empty states.
+  </li>
+  <li>
+    <strong>Dynamic Data-driven Rendering:</strong> Programmatically generated data-driven UI for
+    ratings, price comparisons, and warranty matching.
+  </li>
+  <li>
+    <strong>eCommerce Context & Experience:</strong>
+    <ul class="work-project__bullet-list work-project__bullet-list--sub">
+      <li>Product info rendering (e.g. name, brand, image, add-to-cart button) with marketing
+        tracking (<code>data-event-action</code>, <code>data-event-label</code>).</li>
+      <li>Developed interactive product detail modules aligned with eCommerce goals and marketing
+        tracking needs.</li>
+    </ul>
+  </li>
+</ul>
+
+{% include "partials/work-figure.liquid",
+  href: "/images/samples/similar-items_mobile.png",
+  src: "/images/samples/similar-items_mobile.jpg",
+  alt: "Mobile design for similar items comparison chart featuring product image, brand, product name, add to bag button, price, rating, and other category-specific attributes like hair color type, duration, need for developer, and other benefits",
+  caption: "Similar Items (Mobile)",
+  width: 282,
+  height: 623,
+  full: true
+%}

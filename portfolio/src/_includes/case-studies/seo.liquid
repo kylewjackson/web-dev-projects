@@ -1,0 +1,106 @@
+{% include "partials/work-figure.liquid",
+  href: "/images/samples/seo_glossary.png",
+  src: "/images/samples/seo_glossary.jpg",
+  alt: "Hair Color Glossary SEO section featuring semantic HTML, internal linking strategy, and accessibility enhancements.",
+  caption: "SEO Glossary",
+  width: 1644,
+  height: 749,
+  full: true
+%}
+<h3 class="work-project__sub-heading">Glossary Section – Structured Information Architecture</h3>
+<p class="work-project__text">I implemented a comprehensive <strong>Hair Color Glossary</strong> to
+  educate users and boost search engine visibility for long-tail keywords:</p>
+<ul class="work-project__bullet-list">
+  <li><strong>Semantic HTML:</strong> Each term is wrapped in a proper heading
+    (<code>&lt;h3&gt;</code>) followed by a <code>&lt;p&gt;</code> definition, ensuring screen
+    readers and search engines can interpret the structure accurately.</li>
+
+  <li><strong>Internal Linking Strategy:</strong> Every term includes a clearly labeled “Shop Now”
+    <code>&lt;a&gt;</code> tag with aria-label attributes, improving both accessibility and SEO
+    crawlability. These links directly target filtered product category pages using SFCC’s
+    <code>$url(...)$</code> syntax.
+  </li>
+
+  <li><strong>Accessibility Enhancements:</strong> All glossary links include aria-labels for
+    context-aware screen reader navigation. The use of consistent heading hierarchy and plain
+    language definitions improves readability for assistive technology users.</li>
+</ul>
+<p class="work-project__text">This glossary not only increases user engagement but also targets rich
+  snippet eligibility for Google searches like “what is demi-permanent hair color?” or “hair color
+  developer definition.”</p>
+
+{% include "partials/work-figure.liquid",
+  href: "/images/samples/seo_accordion.png",
+  src: "/images/samples/seo_accordion.jpg",
+  alt: "Hair Color Glossary SEO section featuring Strategic Keyword Placement, Contextual Anchor Links, Paragraphs designed for Featured Snippets, and an accordion FAQ section with JSON-LD Schema Support, Expandable Content, and accessible interactivity.",
+  caption: "SEO Content & FAQs",
+  width: 1410,
+  height: 721,
+  full: true
+%}
+<h3 class="work-project__sub-heading">SEO Section – Keyword-Driven, Accessible Content Blocks</h3>
+<p class="work-project__text">The “More About Hair Color” content block is crafted with both
+  <strong>readability</strong> and <strong>search intent</strong> in mind:
+</p>
+<ul class="work-project__bullet-list">
+  <li><strong>Strategic Keyword Placement:</strong> Targeted phrases like “gray coverage,”
+    “semi-permanent,” and “bleach” are embedded in natural language paragraphs, maximizing relevance
+    without keyword stuffing.</li>
+
+  <li><strong>Contextual Anchor Links:</strong> Inline <code>&lt;a&gt;</code> tags use descriptive,
+    keyword-rich anchor text. All links contain <code>data-event-*</code> attributes for GTM
+    tracking, enabling performance insights.</li>
+
+  <li><strong>Paragraphs designed for Featured Snippets:</strong> Each block addresses a specific user
+    query (e.g., benefits of semi-permanent hair color) in concise, informative text. Emphasis on
+    verbs like "create," "refresh," "find," and "try" aligns with user action intents.</li>
+</ul>
+
+<h3 class="work-project__sub-heading">FAQ Accordion – Structured Data + Accessibility</h3>
+<p class="work-project__text">The FAQ section utilizes a JavaScript-powered accordion component built
+  with:</p>
+<ul class="work-project__bullet-list">
+  <li><strong>JSON-LD Schema Support:</strong> Questions and answers are structured in a way
+    compatible with schema generation (if integrated), supporting rich results.</li>
+
+  <li><strong>Expandable Content:</strong> Enhances page length and topical relevance without
+    overwhelming the user upfront.</li>
+
+  <li><strong>Interactive but Accessible:</strong> Toggle buttons use descriptive headings
+    (<code>&lt;h3&gt;</code> equivalent roles). Text content inside is fully keyboard accessible,
+    promoting WCAG compliance.</li>
+</ul>
+
+<div class="work-project__table-container">
+  <table class="work-project__table" id="seo-accessibility-benefits">
+    <caption>Resulting Benefits for SEO & Accessibility</caption>
+    <thead>
+      <tr>
+        <th scope="col">Benefit</th>
+        <th scope="col">Feature Implemented</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <th scope="row">🎯 Rich snippets / glossary targets</th>
+        <td>Structured glossary with keyword-aligned links</td>
+      </tr>
+      <tr>
+        <th scope="row">⏱️ Higher time on page</th>
+        <td>Internal educational content and FAQs</td>
+      </tr>
+      <tr>
+        <th scope="row">🗣️ Screen reader support</th>
+        <td>Aria-labels, proper heading use, no redundant navigation</td>
+      </tr>
+      <tr>
+        <th scope="row">🐛 Crawlable structure</th>
+        <td>Clean semantic HTML, keyword-targeted anchors</td>
+      </tr>
+      <tr>
+        <th scope="row">✏️ GTM Analytics</th>
+        <td>All glossary and SEO links tagged with data-event-*</td>
+      </tr>
+    </tbody>
+  </table>
+</div>

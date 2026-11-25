@@ -1,0 +1,48 @@
+@use "../../../sass/abstracts/variables" as *;
+
+#work {
+  #work-main {
+    overflow-wrap: anywhere;
+  }
+
+  .work-toc__list li {
+    // Use the original row spacing when it already accommodates a 24px link.
+    padding-bottom: max(0px, calc(1lh + 1.5% - 24px));
+  }
+
+  .work-toc a,
+  .work-project__return {
+    display: inline-flex;
+    align-items: center;
+    min-height: 24px;
+    color: $color-black;
+
+    &:is(:hover, :active) {
+      color: #87540d;
+    }
+  }
+
+  .work-project__return {
+    margin-top: 0.5em;
+  }
+
+  .work-project__figure a {
+    display: inline-block;
+    max-width: 100%;
+  }
+
+  .work-project__table tbody th {
+    padding: 1em;
+    vertical-align: top;
+    font-size: 0.85em;
+    text-align: left;
+    font-weight: normal;
+  }
+
+  @media (max-width: 499px) {
+    .work-project__table-container {
+      box-sizing: border-box;
+      width: 100%;
+    }
+  }
+}

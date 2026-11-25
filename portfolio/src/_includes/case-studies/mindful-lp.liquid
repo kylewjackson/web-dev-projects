@@ -1,0 +1,129 @@
+<h3 class="work-project__sub-heading">Overview</h3>
+<p class="work-project__text">A responsive, accessible landing page designed to highlight a sustainable
+  product collection on SallyBeauty.com. Built using Salesforce Commerce Cloud, the page integrates
+  dynamic carousels, analytics tagging, custom JavaScript interactivity, and structured content
+  modules.</p>
+
+{% include "partials/work-figure.liquid",
+  href: "/images/samples/mindful_mobile.png",
+  src: "/images/samples/mindful_mobile.jpg",
+  alt: "Screenshot of Mindful landing page on mobile, featuring hero image and description",
+  caption: "Mindful LP (Mobile)",
+  width: 376,
+  height: 851,
+  full: true
+%}
+
+<div class="work-project__figure-grid">
+  {% include "partials/work-figure.liquid",
+    href: "/images/samples/mindful_desktop-1.png",
+    src: "/images/samples/mindful_desktop-1.jpg",
+    alt: "Screenshot of mindful hero on desktop, featuring hero image, description, shop all CTA, and benefits section with informational icons",
+    caption: "Mindful Hero",
+    width: 1591,
+    height: 1177
+  %}
+  {% include "partials/work-figure.liquid",
+    href: "/images/samples/mindful_desktop-2.png",
+    src: "/images/samples/mindful_desktop-2.jpg",
+    alt: "Mindful desktop screenshot featuring learn more block with CTA, shop by category pill nav, and mindful hair care product carousel",
+    caption: "Category Navigation & Product Carousel",
+    width: 1595,
+    height: 1174
+  %}
+  {% include "partials/work-figure.liquid",
+    href: "/images/samples/mindful_desktop-3.png",
+    src: "/images/samples/mindful_desktop-3.jpg",
+    alt: "Screenshot of Mindful LP on desktop feauturing FAQ accordion items and product gallery",
+    caption: "FAQ and Product Gallery",
+    width: 1589,
+    height: 1183
+  %}
+</div>
+
+<h3 class="work-project__sub-heading">Key Skills Demonstrated</h3>
+<ul class="work-project__bullet-list">
+  <li><strong>Modular + Responsive HTML/CSS Development:</strong>
+    <ul class="work-project__bullet-list work-project__bullet-list--sub">
+      <li>Created a modular, mobile-first layout using SFCC-compatible HTML and BEM-style class
+        structuring.</li>
+      <li>Custom media queries for breakpoint-specific behavior (e.g., adaptive image swaps, hiding
+        breadcrumbs).</li>
+      <li>SCSS-based utility classes for typography, color, and spacing using tokenized brand
+        variables.</li>
+    </ul>
+  </li>
+  <li><strong>Accessibility & SEO Enhancements:</strong>
+    <ul class="work-project__bullet-list work-project__bullet-list--sub">
+      <li>Implemented visually hidden <code>&lt;h1&gt;</code> and <code>&lt;h2&gt;</code> tags
+        (<code>.sr-only</code>) for semantic SEO while maintaining layout control.</li>
+      <li>FAQ accordion uses proper ARIA roles and keyboard focus management
+        (<code>scrollIntoView()</code>, <code>focus()</code>), including conditionally removing
+        outlines on mouse interaction.</li>
+    </ul>
+  </li>
+  <li><strong>Component Architecture & Reusability:</strong>
+    <ul class="work-project__bullet-list work-project__bullet-list--sub">
+      <li>Used content-asset and Demandware includes (<code>$include(...)$</code>) to structure
+        reusable content modules and product tiles.</li>
+      <li>Dynamically built product carousels with <code>fedx.buildVn()</code> and FAQs with
+        <code>fedx.buildAccordion()</code>—custom JavaScript utility patterns within SFCC.
+      </li>
+    </ul>
+  </li>
+  <li><strong>User Experience Features:</strong>
+    <ul class="work-project__bullet-list work-project__bullet-list--sub">
+      <li>Interactive “Learn More” button scrolls and expands specific FAQ accordion content to
+        educate users, improving discoverability and flow.</li>
+      <li>Smooth hover transitions and responsive navigation for category filtering using pill-style
+        buttons and GTM events for click tracking.</li>
+    </ul>
+  </li>
+  <li><strong>Integration with Salesforce Commerce Cloud:</strong>
+    <ul class="work-project__bullet-list work-project__bullet-list--sub">
+      <li>Used SFCC-specific syntax for image and URL linking (<code>$staticlink$</code>,
+        <code>$url(...)$</code>) ensuring compatibility with site controllers and pipelines.
+      </li>
+      <li>Dynamic product tiles populate carousel sections using server-side includes mapped to
+        product IDs, maintaining scalability.</li>
+    </ul>
+  </li>
+</ul>
+
+<div class="work-project__table-container">
+  <table class="work-project__table" id="feature-highlights">
+    <caption>Feature Highlights</caption>
+    <thead>
+      <tr>
+        <th scope="col">Feature</th>
+        <th scope="col">Details</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <th scope="row">🖼️ Hero Image &amp; Messaging</th>
+        <td>Responsive <code>&lt;picture&gt;</code> tag with alt text, conveying brand mission
+          visually and accessibly.</td>
+      </tr>
+      <tr>
+        <th scope="row">🧭 Category Pill Navigation</th>
+        <td>Navigation using GTM-linked anchors for analytics and customer segmentation.</td>
+      </tr>
+      <tr>
+        <th scope="row">🎠 Dynamic Product Carousel</th>
+        <td>Carousel powered by SFCC includes and JavaScript rendering; supports promotional
+          logic and user reviews.</td>
+      </tr>
+      <tr>
+        <th scope="row">❓ Informational FAQs</th>
+        <td><code>Schema.org</code> JSON-LD structured data embedded for SEO; custom accordion
+          interface.</td>
+      </tr>
+      <tr>
+        <th scope="row">🌱 Sustainability Messaging</th>
+        <td>Icons and visual content tied to brand pillars (Cruelty-Free, Vegan, etc.),
+          reflecting marketing alignment.</td>
+      </tr>
+    </tbody>
+  </table>
+</div>

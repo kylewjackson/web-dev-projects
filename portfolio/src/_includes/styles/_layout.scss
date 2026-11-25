@@ -1,0 +1,76 @@
+@use "../../../sass/abstracts/variables" as *;
+
+html {
+  // Leave clearance for the fixed navigation, its accent stripe, and focus rings.
+  scroll-padding-top: 6rem;
+}
+
+:focus {
+  outline: 2px solid $color-black;
+  outline-offset: 2px;
+  box-shadow: 0 0 0 2px $color-white;
+}
+
+.skip-link {
+  position: fixed;
+  z-index: 3;
+  inset: 0 auto auto 0;
+  padding: 0.5rem 1rem;
+  background: $color-white;
+  color: $color-black;
+  font-size: 1rem;
+
+  &:is(:hover, :active) {
+    color: $color-black;
+  }
+
+  &:not(:focus) {
+    clip-path: inset(50%);
+  }
+}
+
+.navbar {
+  width: 100%;
+
+  .nav-link a {
+    display: flex;
+    align-items: center;
+    min-height: 44px;
+  }
+
+  .home-button {
+    padding-inline: 6px;
+  }
+
+  a[aria-current="page"] {
+    color: $color-blue;
+    text-decoration: underline;
+    text-underline-offset: 0.2em;
+  }
+}
+
+@media (max-width: 499px) {
+  .navigation .nav-link {
+    padding-inline: 2%;
+  }
+}
+
+.footer-content {
+  .resume-link {
+    display: inline-flex;
+    align-items: center;
+    min-height: 24px;
+  }
+
+  .container:not(#social-profiles-container) a:is(:hover, :active),
+  .link-name:is(:hover, :active) {
+    color: #87540d;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .navbar,
+  .footer-content a {
+    transition: none;
+  }
+}

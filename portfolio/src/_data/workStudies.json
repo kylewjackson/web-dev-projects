@@ -1,0 +1,89 @@
+[
+  {
+    "fragment": "project_agile",
+    "template": "case-studies/agile.liquid",
+    "tocLabel": "Agile Workflow Implementation",
+    "title": "Agile Workflow Implementation & Jira Project Management",
+    "role": "Sr. Front End Developer",
+    "date": "2023-2025"
+  },
+  {
+    "fragment": "project_seo",
+    "template": "case-studies/seo.liquid",
+    "tocLabel": "SEO & Accessibility",
+    "title": "SEO & Accessibility:",
+    "role": "Sr. Front End Developer",
+    "date": "2023",
+    "titleEmphasis": "Hair Color Landing Page"
+  },
+  {
+    "fragment": "project_similar-items",
+    "template": "case-studies/similar-items.liquid",
+    "tocLabel": "Similar Items Experience",
+    "title": "Similar Items Experience",
+    "role": "Sr. Front End Developer",
+    "date": "03-2025"
+  },
+  {
+    "fragment": "project_storybook",
+    "template": "case-studies/storybook.liquid",
+    "tocLabel": "Storybook",
+    "title": "Storybook",
+    "role": "Sr. Front End Developer",
+    "date": "04-2025"
+  },
+  {
+    "fragment": "project_footer-redesign",
+    "template": "case-studies/footer-redesign.liquid",
+    "tocLabel": "Footer Redesign",
+    "title": "Footer Redesign",
+    "role": "Sr. Front End Developer",
+    "date": "02-2025"
+  },
+  {
+    "fragment": "project_promo-disclaimer",
+    "template": "case-studies/promo-disclaimer.liquid",
+    "tocLabel": "Promo Disclaimer",
+    "title": "Promo Disclaimer",
+    "role": "Sr. Front End Developer",
+    "date": "04-2024"
+  },
+  {
+    "fragment": "project_mindful-lp",
+    "template": "case-studies/mindful-lp.liquid",
+    "tocLabel": "Landing Page: Mindful",
+    "title": "E-Commerce Landing Page:",
+    "role": "Sr. Front End Developer",
+    "date": "04-2024",
+    "titleEmphasis": "Mindful at Sally",
+    "details": [
+      {
+        "label": "Platform",
+        "text": "Salesforce Commerce Cloud (SFCC)"
+      },
+      {
+        "label": "Tools & Technologies",
+        "text": "HTML5, SCSS, JavaScript, jQuery, Bootstrap, GTM, Responsive Design, Accessibility"
+      }
+    ]
+  },
+  {
+    "fragment": "project_hispanic-heritage",
+    "template": "case-studies/hispanic-heritage.liquid",
+    "tocLabel": "Landing Page: Hispanic Heritage Month",
+    "title": "Campaign Landing Page:",
+    "role": "Sr. Front End Developer",
+    "date": "03-2023",
+    "titleEmphasis": "Hispanic Heritage Month",
+    "details": [
+      {
+        "label": "Platform",
+        "text": "Salesforce Commerce Cloud (SFCC)"
+      },
+      {
+        "label": "Tools & Technologies",
+        "text": "HTML5, SCSS, JavaScript, Responsive Design, Accessibility, GTM Event Tagging"
+      }
+    ]
+  }
+]

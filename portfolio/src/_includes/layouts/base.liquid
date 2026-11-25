@@ -16,10 +16,11 @@
   <link rel="icon" href="/images/favicon.png">
 </head>
 <body id="{{ pageId | escape }}">
+  <a class="skip-link" href="#{{ pageId | escape }}-main">Skip to main content</a>
   <header class="header-content">
     {% include "partials/navigation.liquid" %}
   </header>
-  <main id="{{ pageId | escape }}-main" class="main-content">
+  <main id="{{ pageId | escape }}-main" class="main-content" tabindex="-1">
     {{ content }}
   </main>
   {% include "partials/footer.liquid" %}

@@ -9,26 +9,78 @@ import test from "node:test";
 const dist = new URL("../dist/", import.meta.url);
 const snapshot = new URL("../public/", import.meta.url);
 
-test("the proof emits only the expected top-level output", async () => {
+const stripComments = (html) => html.replace(/<!--[^]*?-->/g, "");
+const readableText = (html) => html
+  .replace(/<[^>]+>/g, " ")
+  .replace(/&(?:amp|lt|gt|quot|#39);/g, (entity) => ({
+    "&amp;": "&", "&lt;": "<", "&gt;": ">", "&quot;": '"', "&#39;": "'",
+  })[entity])
+  .replace(/\s+/g, " ")
+  .trim();
+
+test("the build emits only the expected top-level output", async () => {
   assert.deepEqual((await readdir(dist)).sort(), ["images", "resume.pdf", "styles", "work.html"]);
   assert.deepEqual(await readdir(new URL("styles/", dist)), ["main.css"]);
 });
 
-test("Work renders its navigation, case study, and footer without a script", async () => {
+test("Work preserves production copy, section order, and contents links in static HTML", async () => {
   const html = await readFile(new URL("work.html", dist), "utf8");
+  const original = stripComments(await readFile(new URL("work.html", snapshot), "utf8"));
+  const studies = (page) => [...page.matchAll(/<section id="(project_[^"]+)"[^>]*>([^]*?)<\/section>/g)];
+  const toc = (page) => page.match(/<nav id="work-toc"[^>]*>([^]*?)<\/nav>/)[1];
+  const originalStudies = studies(original);
+  const migratedStudies = studies(html);
+  const ids = [...html.matchAll(/\bid="([^"]+)"/g)].map((match) => match[1]);
+
   assert.match(html, /<h1>Work Portfolio<\/h1>/);
   assert.match(html, /rel="canonical" href="https:\/\/www\.kylejackson\.dev\/work"/);
   assert.match(html, /aria-label="Primary"/);
-  assert.match(html, /id="work-toc"/);
-  assert.match(html, /href="#project_agile"/);
-  assert.match(html, /id="project_agile"/);
+  assert.match(html, /href="\/work" aria-current="page"/);
+  assert.match(html, /href="#work-main">Skip to main content/);
+  assert.match(html, /<main id="work-main"[^>]+tabindex="-1"/);
+  assert.match(html, /id="work-toc"[^>]+tabindex="-1"/);
   assert.match(html, /id="contact-heading"/);
-  assert.doesNotMatch(html, /<script\b/);
-  for (const [, asset] of html.matchAll(/(?:href|src)="\/(images\/[^"]+)"/g)) {
+  assert.match(html, /href="\/resume\.pdf">Résumé/);
+  assert.doesNotMatch(html, /<script\b|\son\w+="|href="javascript:/i);
+  assert.equal(new Set(ids).size, ids.length);
+  assert.equal(originalStudies.length, 8);
+  assert.deepEqual(migratedStudies.map((match) => match[1]), originalStudies.map((match) => match[1]));
+  assert.deepEqual(
+    [...toc(html).matchAll(/href="#([^"]+)"/g)].map((match) => match[1]),
+    originalStudies.map((match) => match[1]),
+  );
+  assert.equal(readableText(toc(html)), readableText(toc(original)));
+  assert.equal(
+    readableText(html.match(/<h1>[^]*?(?=<nav id="work-toc")/)[0]),
+    readableText(original.match(/<h1>[^]*?(?=<nav id="work-toc")/)[0]),
+  );
+
+  for (const [index, [, id, section]] of migratedStudies.entries()) {
+    const returnLink = /<a class="work-project__return" href="#work-toc">[^<]+<\/a>/;
+    assert.match(section, returnLink, id);
+    assert.equal(readableText(section.replace(returnLink, "")), readableText(originalStudies[index][2]), id);
+  }
+});
+
+test("Work serves the original previews, full-size destinations, and résumé", async () => {
+  const html = await readFile(new URL("work.html", dist), "utf8");
+  const original = stripComments(await readFile(new URL("work.html", snapshot), "utf8"));
+  const samples = (page) => [...page.matchAll(/(href|src)="\/?(images\/samples\/[^"]+)"/g)]
+    .map(([, attribute, path]) => [attribute, path]);
+  const originalSamples = samples(original);
+  assert.equal(originalSamples.length, 44);
+  assert.deepEqual(samples(html), originalSamples);
+  const imageDescriptions = (page) => [...page.matchAll(/<img src="\/?images\/samples\/[^"]+"\s+alt="([^"]+)"/g)]
+    .map((match) => readableText(match[1]));
+  assert.equal(imageDescriptions(original).length, 22);
+  assert.deepEqual(imageDescriptions(html), imageDescriptions(original));
+
+  const assets = new Set([...html.matchAll(/(?:href|src)="\/(images\/[^"]+|resume\.pdf)"/g)]
+    .map((match) => match[1]));
+  for (const asset of assets) {
     const bytes = await readFile(new URL(asset, dist));
     assert.deepEqual(bytes, await readFile(new URL(asset, snapshot)), asset);
   }
-  assert.deepEqual(await readFile(new URL("resume.pdf", dist)), await readFile(new URL("resume.pdf", snapshot)));
 });
 
 test("the stylesheet contains the existing Work and navigation rules", async () => {

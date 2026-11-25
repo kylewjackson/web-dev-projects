@@ -1,11 +1,12 @@
 <nav class="navbar" aria-label="Primary">
   <ul class="navigation">
     <li id="home-link" class="nav-link">
-      <a href="/" class="home-button">
+      <a href="/" class="home-button"{% if pageId == "index" %} aria-current="page"{% endif %}>
         <img src="/images/icons/navigation-home-icon.svg" alt="Home" id="home-icon" class="icon">
       </a>
     </li>
-    <li id="about-link" class="nav-link"><a href="/about">About Me</a></li>
-    <li id="projects-link" class="nav-link"><a href="/projects">Projects</a></li>
+    <li id="about-link" class="nav-link"><a href="/about"{% if pageId == "about" %} aria-current="page"{% endif %}>About Me</a></li>
+    <li id="projects-link" class="nav-link"><a href="/projects"{% if pageId == "projects" %} aria-current="page"{% endif %}>Projects</a></li>
+    <li id="work-link" class="nav-link"><a href="/work"{% if pageId == "work" %} aria-current="page"{% endif %}>Work</a></li>
   </ul>
 </nav>
