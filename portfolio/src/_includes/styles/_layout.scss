@@ -5,10 +5,19 @@ html {
   scroll-padding-top: 6rem;
 }
 
-:focus {
+:where(a, button):focus-visible {
   outline: 2px solid $color-black;
   outline-offset: 2px;
   box-shadow: 0 0 0 2px $color-white;
+}
+
+.main-content:focus {
+  outline: none;
+}
+
+.main-content:focus-visible > h1:first-child {
+  text-decoration: underline;
+  text-underline-offset: 0.19em;
 }
 
 .skip-link {

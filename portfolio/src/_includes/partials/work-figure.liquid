@@ -1,5 +1,5 @@
 <figure class="work-project__figure{% if full %} work-project__figure--full{% endif %}">
-  <a href="{{ href | escape }}" aria-label="{% if pdf %}Open PDF{% else %}Open full-size image{% endif %}: {{ caption | escape }}">
+  <a href="{{ href | escape }}" aria-label="{% if pdf %}Open PDF{% else %}View screenshot{% endif %}: {{ caption | escape }}"{% unless pdf %} data-work-image{% endunless %}>
     <img src="{{ src | escape }}" alt="{{ alt | escape }}" width="{{ width }}" height="{{ height }}">
   </a>
   <figcaption>{{ caption | escape }}</figcaption>

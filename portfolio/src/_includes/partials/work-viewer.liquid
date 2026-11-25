@@ -1,0 +1,19 @@
+<dialog class="work-viewer" id="work-viewer" aria-labelledby="work-viewer-caption">
+  <header class="work-viewer__header">
+    <h2 id="work-viewer-caption">Screenshot</h2>
+    <form method="dialog">
+      <button class="work-viewer__button work-viewer__close" autofocus aria-label="Close screenshot viewer">×</button>
+    </form>
+  </header>
+  <div class="work-viewer__stage"></div>
+  <div class="work-viewer__toolbar">
+    <div class="work-viewer__gallery" hidden>
+      <button class="work-viewer__button" type="button" data-step="-1" aria-label="Previous screenshot">←</button>
+      <span class="work-viewer__position" role="status"></span>
+      <button class="work-viewer__button" type="button" data-step="1" aria-label="Next screenshot">→</button>
+    </div>
+    <a class="work-viewer__original" target="_blank" rel="noopener">
+      Open original image <span aria-hidden="true">↗</span><span class="sr-only"> (opens in a new tab)</span>
+    </a>
+  </div>
+</dialog>

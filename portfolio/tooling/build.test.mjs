@@ -19,7 +19,9 @@ const readableText = (html) => html
   .trim();
 
 test("the build emits only the expected top-level output", async () => {
-  assert.deepEqual((await readdir(dist)).sort(), ["images", "resume.pdf", "styles", "work.html"]);
+  assert.deepEqual((await readdir(dist)).sort(), ["images", "resume.pdf", "scripts", "styles", "work.html"]);
+  assert.deepEqual(await readdir(new URL("scripts/", dist)), ["work.js"]);
+  assert.deepEqual(await readFile(new URL("scripts/work.js", dist)), await readFile(new URL("../src/scripts/work.js", import.meta.url)));
   assert.deepEqual(await readdir(new URL("styles/", dist)), ["main.css"]);
 });
 
@@ -41,7 +43,11 @@ test("Work preserves production copy, section order, and contents links in stati
   assert.match(html, /id="work-toc"[^>]+tabindex="-1"/);
   assert.match(html, /id="contact-heading"/);
   assert.match(html, /href="\/resume\.pdf">Résumé/);
-  assert.doesNotMatch(html, /<script\b|\son\w+="|href="javascript:/i);
+  assert.doesNotMatch(html, /\son\w+="|href="javascript:/i);
+  assert.deepEqual(html.match(/<script\b[^>]*>/g), ['<script type="module" src="/scripts/work.js">']);
+  assert.match(html, /<p class="work-end"><a href="#work-toc">Back to table of contents<\/a><\/p>/);
+  assert.match(html, /<a class="work-dock" href="#work-toc" inert>/);
+  assert.match(html, /<dialog class="work-viewer" id="work-viewer" aria-labelledby="work-viewer-caption">/);
   assert.equal(new Set(ids).size, ids.length);
   assert.equal(originalStudies.length, 8);
   assert.deepEqual(migratedStudies.map((match) => match[1]), originalStudies.map((match) => match[1]));
@@ -56,9 +62,7 @@ test("Work preserves production copy, section order, and contents links in stati
   );
 
   for (const [index, [, id, section]] of migratedStudies.entries()) {
-    const returnLink = /<a class="work-project__return" href="#work-toc">[^<]+<\/a>/;
-    assert.match(section, returnLink, id);
-    assert.equal(readableText(section.replace(returnLink, "")), readableText(originalStudies[index][2]), id);
+    assert.equal(readableText(section), readableText(originalStudies[index][2]), id);
   }
 });
 
@@ -74,6 +78,9 @@ test("Work serves the original previews, full-size destinations, and résumé", 
     .map((match) => readableText(match[1]));
   assert.equal(imageDescriptions(original).length, 22);
   assert.deepEqual(imageDescriptions(html), imageDescriptions(original));
+  const viewerLinks = [...html.matchAll(/href="(\/images\/samples\/[^"]+)"[^>]* data-work-image>/g)];
+  assert.equal(viewerLinks.length, 21);
+  assert.ok(viewerLinks.every(([, href]) => href.endsWith(".png")));
 
   const assets = new Set([...html.matchAll(/(?:href|src)="\/(images\/[^"]+|resume\.pdf)"/g)]
     .map((match) => match[1]));

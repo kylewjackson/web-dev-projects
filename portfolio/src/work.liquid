@@ -19,6 +19,13 @@ canonical: https://www.kylejackson.dev/work
   </ul>
 </nav>
 
+<div class="work-dock-slot">
+  <a class="work-dock" href="#work-toc" inert>
+    <span class="work-dock__arrow" aria-hidden="true">↑</span>
+    Back to contents
+  </a>
+</div>
+
 {% for study in workStudies %}
   <section id="{{ study.fragment | escape }}" class="work-project" aria-labelledby="{{ study.fragment | escape }}-heading" tabindex="-1">
     <header>
@@ -31,7 +38,10 @@ canonical: https://www.kylejackson.dev/work
 
     {% include study.template %}
 
-    <a class="work-project__return" href="#work-toc">Return to table of contents</a>
   </section>
   <hr>
 {% endfor %}
+
+<p class="work-end"><a href="#work-toc">Back to table of contents</a></p>
+{% include "partials/work-viewer.liquid" %}
+<script type="module" src="/scripts/work.js"></script>

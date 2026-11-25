@@ -1,5 +1,9 @@
 @use "../../../sass/abstracts/variables" as *;
 
+html:has(.work-dock:not([inert])) {
+  scroll-padding-bottom: calc(4.5rem + env(safe-area-inset-bottom));
+}
+
 #work {
   #work-main {
     overflow-wrap: anywhere;
@@ -11,7 +15,7 @@
   }
 
   .work-toc a,
-  .work-project__return {
+  .work-end a {
     display: inline-flex;
     align-items: center;
     min-height: 24px;
@@ -22,13 +26,89 @@
     }
   }
 
-  .work-project__return {
-    margin-top: 0.5em;
+  .work-toc:focus,
+  .work-project:focus {
+    outline: none;
+  }
+
+  .work-toc:focus-visible > h2,
+  .work-project:focus-visible > header > h2 {
+    text-decoration: underline;
+    text-underline-offset: 0.19em;
+  }
+
+  .work-end {
+    margin-block: 1rem 2.5rem;
+    text-align: end;
   }
 
   .work-project__figure a {
+    position: relative;
     display: inline-block;
     max-width: 100%;
+    border-radius: 2px;
+
+    &[aria-haspopup="dialog"]::after {
+      content: "↗" / "";
+      position: absolute;
+      inset: 0.45rem 0.45rem auto auto;
+      display: grid;
+      place-items: center;
+      inline-size: 1.85rem;
+      block-size: 1.85rem;
+      border-radius: 2px;
+      background: $color-black;
+      color: $color-blue;
+      font: 1rem $font-roboto;
+      pointer-events: none;
+    }
+
+    &:hover {
+      box-shadow: 0 0 0 2px $color-blue;
+    }
+  }
+
+  .work-dock {
+    position: fixed;
+    z-index: 1;
+    inset-inline-end: max(1rem, env(safe-area-inset-right));
+    inset-block-end: max(1rem, env(safe-area-inset-bottom));
+    display: inline-flex;
+    gap: 0.55rem;
+    align-items: center;
+    justify-content: center;
+    box-sizing: border-box;
+    min-block-size: 44px;
+    min-inline-size: 44px;
+    padding-inline: 0.85rem;
+    border: 1px solid #777;
+    border-radius: 2rem;
+    background: $color-black;
+    color: $color-white;
+    box-shadow: 0 0.25rem 0.9rem rgb(0 0 0 / 25%);
+    font: 500 0.875rem $font-roboto;
+    text-decoration: none;
+
+    &:hover {
+      background: #252525;
+      border-color: $color-blue;
+    }
+
+    &:focus-visible {
+      outline: 2px solid $color-blue;
+      outline-offset: -5px;
+    }
+
+    &[inert] {
+      visibility: hidden;
+      pointer-events: none;
+    }
+  }
+
+  .work-dock__arrow {
+    color: $color-blue;
+    font-size: 1.2rem;
+    line-height: 1;
   }
 
   .work-project__table tbody th {
@@ -40,9 +120,86 @@
   }
 
   @media (max-width: 499px) {
+    .work-dock-slot {
+      position: fixed;
+      z-index: 1;
+      inset: auto 0 0;
+      display: flex;
+      justify-content: flex-end;
+      padding: 0.35rem max(0.625rem, env(safe-area-inset-right))
+        max(0.35rem, env(safe-area-inset-bottom)) max(0.625rem, env(safe-area-inset-left));
+      border-block-start: 1px solid #aaa;
+      background: $color-white;
+
+      &:has(.work-dock[inert]) {
+        visibility: hidden;
+        pointer-events: none;
+      }
+    }
+
+    .work-dock {
+      position: static;
+      box-shadow: none;
+    }
+
     .work-project__table-container {
       box-sizing: border-box;
       width: 100%;
     }
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  html:has(body#work) {
+    scroll-behavior: smooth;
+  }
+
+  #work {
+    .work-toc a,
+    .work-end a,
+    .navbar .nav-link a,
+    .footer-content a {
+      transition: color 160ms ease-out;
+    }
+
+    .work-project__figure a {
+      transition: box-shadow 160ms ease-out;
+    }
+
+    .work-dock {
+      opacity: 1;
+      transform: translateY(0);
+      transition: opacity 180ms ease-out, transform 180ms ease-out,
+        background-color 160ms ease-out, border-color 160ms ease-out;
+
+      &[inert] {
+        opacity: 0;
+        transform: translateY(0.35rem);
+        transition: opacity 140ms ease-in, transform 140ms ease-in, visibility 0s 140ms;
+      }
+    }
+
+    @media (max-width: 499px) {
+      .work-dock-slot {
+        opacity: 1;
+        transition: opacity 180ms ease-out;
+
+        &:has(.work-dock[inert]) {
+          opacity: 0;
+          transition: opacity 140ms ease-in, visibility 0s 140ms;
+        }
+      }
+    }
+
+    .work-project__heading--entered {
+      animation: work-heading-enter 300ms ease-out;
+    }
+  }
+}
+
+@keyframes work-heading-enter {
+  from {
+    opacity: 0.9;
+    transform: translateY(0.2rem);
   }
 }
