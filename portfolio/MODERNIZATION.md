@@ -1,20 +1,20 @@
 # Modernization roadmap
 
-The approved architecture is Eleventy, Liquid, Dart Sass, and optional native JavaScript on portfolio-local Node 24 LTS. Work is the first migration slice. Keep the build isolated in `dist/` and preserve the deployed snapshot until a reviewed cutover.
+The approved architecture is Eleventy, Liquid, Dart Sass, and optional native JavaScript on portfolio-local Node 24 LTS. All four pages now build in the isolated `dist/` directory. The deployed snapshot is preserved until a reviewed cutover.
 
 | Phase | Status | Acceptance |
 | --- | --- | --- |
 | 0. Branch, instructions, baseline | Complete | Feature branch from master, portfolio guidance and baseline recorded, unrelated work preserved |
 | 1. Build and source architecture | Approved | Locked install, isolated build, Work proof, Sass and Liquid reload, production snapshot intact |
-| 2. Static content and enhancement | Work approved. Home and Projects ready for review. | Work, Home, and Projects render as static HTML with optional enhancements. About follows review. |
-| 3. Accessibility | Work, Home, Projects, and shared templates remediated | Keyboard, contrast, motion, and reflow checks completed for migrated pages. Release-wide browser and screen reader review remain. |
+| 2. Static content and enhancement | Work, Home, and Projects accepted. About migrated. | All four pages render as static HTML with optional enhancements. |
+| 3. Accessibility | Migration checks complete | Keyboard, contrast, motion, and reflow checked. Release-wide browser, physical-device, and screen reader review remain. |
 | 4. Visual design and UX | Pending | Preserve the design identity and give selected professional work priority, with résumé and contact secondary. |
 | 5. Performance | Pending | Reduce eager image bytes, reserve media space, and keep original asset URLs valid. |
 | 6. SEO and metadata | Pending | Validate canonical URLs, sitemap, social metadata, and true 404 status. Remove Universal Analytics. |
 | 7. Deployment integration | Separate approval | Verify shared Node and sibling builds, then stage only allowlisted portfolio files in the existing publish tree. |
 | 8. Final QA | Pending | Check the composed preview across supported browsers and devices and verify public URLs, fragments, and sibling routes. |
 
-Work and its interaction refinements were accepted for this stage. Review Home and Projects before starting About. Featured cases, current role and availability copy, and any new published evidence need editorial confirmation before Phase 4. Replacement analytics and archive indexing remain deferred.
+Featured cases, current role and availability copy, and any new published evidence need editorial confirmation before Phase 4. Replacement analytics and archive indexing remain deferred.
 
 ## Work migration
 
@@ -67,10 +67,39 @@ The original page faded in Work content and footer sections after script load, i
 
 - Revisit Work’s résumé link styling and placement, refine the screenshot viewer interface, and improve case-study composition and presentation. Review reading measure, typography, spacing, visual hierarchy, and component styling during the evolutionary redesign.
 - Revisit Home’s composition and how it leads readers to selected professional work. Review featured projects and the role, location, and freelance availability statements before publishing editorial updates.
+- Reduced or altered Home transitions have made some above-the-fold content feel awkward. Review entrance sequencing, initial states, timing, and fluidity during the design phase.
+- Refine inconsistent alignment in Projects during the design phase.
+- Treat motion as part of the design system across pages, including shared timing, entry behavior, and reduced-motion equivalents.
 - Evaluate Projects categories and the relative prominence of professional work, demos, coursework, and archives. Review the chronological implication of “Recent Projects” against the existing selection. React Product Page’s thumbnail goes to a different GitHub repository from Source and its Live link goes to the demo. Bootcamp uses Live for a certificate, and Retro repeats the same repository for all three links. Work Portfolio’s Source points to the legacy production HTML. The old no-script pages had different entries, placeholder links, and older role and skill copy. The migration uses the active production catalog and Home copy.
+- Confirm About’s location, profile and credential URLs, the two existing LinkedIn destinations, tool version labels such as Bootstrap, Photoshop, and Google Analytics, and whether StackShare and the art profile still belong. The migration uses the active script’s 26 tools. The older no-script fallback listed a different set.
+
+## About migration and source ownership
+
+- `src/about.liquid` renders the original biography, credentials, work profiles, résumé, code and art profiles, and 26 tools. It shares the layout, navigation, and footer. The portrait and five illustrations use their original URLs. One page heading, ordered section headings, semantic lists, descriptive link names, and visible focus replace the skipped heading levels, focusable sections, and duplicate fallback. The decorative badge symbols are hidden from assistive technology. Tool hover keeps the original colors with readable text and stable dimensions. Scroll entry uses the shared reveal module and Sass, with visible text from the start and reduced-motion support.
+- `src/_data/` owns the skills, projects, and Work catalogs. Home and About share the skill tile and the catalog. Home and Projects share the project card. Work uses case study partials, a figure partial, and a viewer. About uses a link badge partial for its repeated profiles. The shared navigation and footer remain in one place.
+- `src/styles/main.scss` compiles the shared `sass/main.scss` entry and modern modules in `src/_includes/styles/`. Keeping the legacy layout, colors, responsive thumbnails, and other shared rules in `sass/` avoids a parallel Sass tree while both builds need them. The legacy hidden-state selectors remain in the shared CSS. Modern templates use the visible-by-default reveal styles. Move the Sass still needed by Eleventy into `src/` and drop obsolete selectors when the retained legacy build can be retired.
+- `src/scripts/` owns the two optional browser modules. A disposable install with only Eleventy and current Dart Sass produced identical output. The modern build reads shared Sass and static assets from the legacy tree. The parity tests still read the legacy HTML and catalog script as references.
+- Eleventy passes through `public/images/`, `public/resume.pdf`, and `public/resume-old.pdf`. These paths are the current asset sources and remain read-only. The final source move needs an asset inventory and URL/byte parity against the composed publish tree, including archived and sibling references before pruning. The legacy HTML, `scripts/`, and legacy CSS and Babel artifacts remain in place for production preservation and reproduction.
+
+### Integrated validation
+
+- On Node 24.22.3, the locked install, Eleventy dev server, production build, and all nine build checks passed. The checks cover static copy, catalog order, all four nav states, fragments, image and résumé bytes, local references, and output isolation. A SHA-256 manifest of all 459 files in the production tree matched before and after the batch. The disposable legacy build produced the same CSS and both scripts byte for byte.
+- Local Netlify preview served the final build bytes at all four clean routes and their flat HTML equivalents, including both résumé URLs. Rawr returned the expected 301. Sibling projects, course archives, and Rawr’s target are outside this isolated preview and remain part of composed release QA. External profile, vendor, and credential destinations were checked for parity with the original, with external availability reserved for the editorial review.
+- Chromium 158 ran the About, Home and Projects, and Work browser suites. The viewport matrix was 320×640, 390×844, 768×1024, and 1440×900. Checks covered keyboard, visible focus, reflow, default and reduced motion, disabled JavaScript, blocked enhancements, cross-page navigation, project cards and touch, and Work fragment history, contents control, screenshot viewer, and focus restoration. Axe reported zero violations on all four pages and with the viewer open. For About’s incomplete color-contrast findings, computed checks covered the primary text links, badges, tile labels, and tool link hover colors.
+- Firefox 160.0.1 checked all routes at those four sizes, About’s render, reflow, reveal and keyboard focus order, and Work viewer dismissal and restored focus at 390 px. The headless run verified focus targets. Safari 26.6.2 passed desktop navigation across all four pages, a Work case fragment and viewer navigation with arrow keys, Escape and focus restoration. Safari’s desktop and 320×640 Responsive Design Mode passed the About skip and first-profile keyboard checks, and the final narrow focus indicator was visually inspected. Screen reader output, physical-device behavior, and the full Safari matrix remain open.
+- The About checker uses the existing browser QA skill and screenshot and axe helpers. Evidence is in the ignored `.baseline/integration/` tree alongside the About comparison sheet and Firefox captures. The checkers retain consistent viewport evidence for visual review. Manual side-by-side comparison remains appropriate for font and rendering differences across browsers. The reusable legacy checker verifies production build parity from a disposable source copy. The README records invocation, and portfolio AGENTS.md points to the existing skill.
 
 ## Dependencies and next batch
 
-The locked audit reported 14 affected package entries, with the same entries in the Home and Projects run. Traversing Eleventy and current Dart Sass found two shared high-severity entries, `picomatch` and `source-map-js`. The other 12 entries are legacy-only, including the critical `shell-quote` finding through `npm-run-all`. The transitional build and lockfile are retained.
+On November 25, 2026, `npm audit` reported 14 affected package entries (one critical, eight high, four moderate, one low). The other 12 entries outside the two shared findings belong to the legacy graph at the flagged versions. The critical entry is `npm-run-all@4.1.5 → shell-quote@1.8.2`. Eleventy uses its own newer `js-yaml` version, separate from the flagged 3.x copy. The manifest and lockfile are preserved for this batch.
 
-After Home and Projects review, migrate About into the shared layout and move its content and tools into static templates. Final source consolidation, visual modernization, image optimization, release-wide browser and screen reader checks, and deployment integration remain separate work.
+| Finding | Locked paths | Compatible remediation |
+| --- | --- | --- |
+| High `picomatch@2.3.1` | Both Sass versions reach it through optional `@parcel/watcher → micromatch`. Babel CLI and PostCSS CLI also reach it through Chokidar 3 → `anymatch` or `readdirp`, and PostCSS CLI via `globby → fast-glob → micromatch`. Eleventy’s optional Nunjucks peer can resolve the same Chokidar 3 when installed. Eleventy’s direct, watcher, and `tinyglobby` and `fdir` copies are 4.0.7 and outside the active flagged ranges. | Refresh the 2.x lock entry or apply a scoped override to 2.3.2. [High advisory](https://github.com/advisories/GHSA-c2c7-rcm5-vvqj) and [moderate advisory](https://github.com/advisories/GHSA-3v7f-55p6-f55p). |
+| High `source-map-js@1.2.1` | `sass@1.108.2` and `sass-legacy@1.89.1` share the resolved copy. Both ranges accept 1.2.2. | Refresh the lock entry within the Sass dependency range. The patch starts at 1.2.2. [Advisory](https://github.com/advisories/GHSA-68fv-2mgg-jv7q). |
+
+A disposable install with both scoped updates cleared both findings, leaving 12 audit entries. All nine modern checks passed and the legacy CSS and two JS files still matched production byte for byte.
+
+Eleventy and Dart Sass are the modern build dependencies. Babel CLI, core, presets and minification, `npm-run-all`, Autoprefixer, PostCSS CLI and cleaning, and the Sass 1.89.1 alias serve the legacy command. `@babel/polyfill`, direct `core-js`, and `uniq` have no active references in either build. The modern CSS compiles without Autoprefixer and the native modules ship without Babel. Retain the legacy alias until byte-parity reproduction is no longer required.
+
+In final technical cleanup, review and apply the targeted lock changes, compare the generated outputs, and finish the modern Sass and static asset ownership plan. Before retiring the legacy pipeline, verify a locked install, all four routes and fragments, asset and résumé bytes, the composed Netlify preview with sibling and archive routes, and the ability to recover the checked-in production snapshot. Preserve a known-good legacy build if rollback still requires regeneration. Dependency retirement, deployment integration, and visual modernization remain separate review steps.
