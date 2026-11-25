@@ -22,6 +22,21 @@ netlify dev --offline --framework '#static' --dir portfolio/dist --no-open
 
 The preview includes all eight Work case studies. The other portfolio and sibling routes are served by the current deployment and are outside this isolated preview.
 
+### Work browser checks
+
+Run the optional browser checker against a running local preview. It exercises pointer and keyboard navigation, the contents control, the viewer, and script and motion fallbacks. Chromium screenshots and axe reports go to the ignored `.baseline/work-browser/` directory by default.
+
+Use an existing npm directory containing Playwright and axe-core, or install them in a disposable directory as shown here.
+
+```sh
+browser_tools=$(mktemp -d)
+npm install --prefix "$browser_tools" playwright axe-core
+"$browser_tools/node_modules/.bin/playwright" install chromium
+node tooling/check-work-browser.mjs --url http://localhost:8080 --tool-root "$browser_tools"
+```
+
+Use `--executable` to launch an installed Chromium browser and `--out` to choose a different evidence directory. See the [browser QA skill](.agents/skills/portfolio-browser-qa/SKILL.md) for the manual review.
+
 ## Transitional build and deployment
 
 `src/` contains the new template sources. Work metadata lives in `src/_data/workStudies.json`, and the case-study bodies live in `src/_includes/case-studies/`. The build layers migration styles over the existing `sass/` tree and reads `public/images/` and `public/resume.pdf` through explicit passthrough mappings. Treat `public/` as the read-only production snapshot until the deployment integration phase.

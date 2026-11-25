@@ -1,0 +1,3 @@
+interface:
+  display_name: "Portfolio Browser QA"
+  short_description: "Verify portfolio interactions and accessibility"
