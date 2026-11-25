@@ -45,4 +45,16 @@ Use `--executable` to launch an installed Chromium browser and `--out` to choose
 
 The previous command is available as `npm run build:legacy` with the old Babel and PostCSS steps and a legacy-only Sass 1.89.1 alias. That compiler preserves the audited CSS bytes. To verify the legacy output after a locked install, run `node tooling/check-legacy-build.mjs` from `portfolio/`. It builds in a disposable copy and compares the generated CSS and both scripts to production. The shared Netlify build still serves the checked-in portfolio snapshot.
 
+### Verify production isolation
+
+From `portfolio/`, capture a manifest before the first build, then capture it again after validation. The script hashes every regular file in `public/`, including ignored files, and records symbolic link targets.
+
+```sh
+manifest_dir=$(mktemp -d)
+node tooling/snapshot-manifest.mjs > "$manifest_dir/before.jsonl"
+# Run the builds and checks.
+node tooling/snapshot-manifest.mjs > "$manifest_dir/after.jsonl"
+diff -u "$manifest_dir/before.jsonl" "$manifest_dir/after.jsonl"
+```
+
 See the [baseline](BASELINE.md) and [roadmap](MODERNIZATION.md) for the migration status and review boundaries.
