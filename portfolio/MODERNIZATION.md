@@ -5,7 +5,7 @@ The approved architecture is Eleventy, Liquid, Dart Sass, and optional native Ja
 | Phase | Status | Acceptance |
 | --- | --- | --- |
 | 0. Branch, instructions, baseline | Complete | Feature branch from master, portfolio guidance and baseline recorded, unrelated work preserved |
-| 1. Build and source architecture | In progress | Locked install, isolated build, Work proof, Sass and Liquid reload, production snapshot intact |
+| 1. Build and source architecture | Complete, awaiting review | Locked install, isolated build, Work proof, Sass and Liquid reload, production snapshot intact |
 | 2. Static content and enhancement | Pending review | Finish Work first, then Home and Projects, then About. Core content and navigation work without scripts. |
 | 3. Accessibility | Pending | Verify semantics, keyboard and screen reader behavior, reduced motion, contrast, and responsive reflow against WCAG 2.2 AA. |
 | 4. Visual design and UX | Pending | Preserve the design identity and give selected professional work priority, with résumé and contact secondary. |
@@ -15,3 +15,9 @@ The approved architecture is Eleventy, Liquid, Dart Sass, and optional native Ja
 | 8. Final QA | Pending | Check the composed preview across supported browsers and devices and verify public URLs, fragments, and sibling routes. |
 
 Review Phase 1 before expanding beyond the Work proof. Featured cases, current role and availability copy, and any new published evidence need editorial confirmation before Phase 4. Replacement analytics and archive indexing remain deferred.
+
+## Phase 1 handoff
+
+The isolated Work proof uses static navigation and one unchanged case-study body. The new build skips Babel and Autoprefixer. The legacy path keeps both, and a disposable build reproduced the deployed CSS and two JS files byte for byte. The proof's Sass output drops generated legacy flexbox and transform prefixes. Chromium rendering was verified at the four baseline widths. Exercise evergreen Firefox and Safari before changing prefixing in a release, and check native script compatibility once enhancements are migrated.
+
+The locked graph audit reported 14 affected package entries, including a critical `shell-quote` entry through the transitional `npm-run-all` dependency. Review the graph when retiring the legacy build. No automated fixes were applied.

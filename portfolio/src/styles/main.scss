@@ -1,0 +1,7 @@
+// Share the existing Sass modules with the legacy build during migration.
+@use "../../sass/main";
+
+// Keep native Work fragment destinations below the fixed navbar.
+#work-main .work-project {
+  scroll-margin-top: 5.5rem;
+}

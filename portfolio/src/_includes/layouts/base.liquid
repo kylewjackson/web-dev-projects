@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="en" dir="ltr">
+<head>
+  <meta charset="utf-8">
+  <title>{{ title | escape }}</title>
+  <meta name="description" content="{{ description | escape }}">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <link rel="canonical" href="{{ canonical | escape }}">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="{{ socialTitle | escape }}">
+  <meta property="og:description" content="{{ description | escape }}">
+  <meta property="og:url" content="{{ canonical | escape }}">
+  <meta property="og:image" content="https://www.kylejackson.dev/images/thumbnails/portfolio/thumbnail-large-portfolio.png">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Playfair+Display:400,400i,700%7CRoboto:400,400i,700&amp;display=swap">
+  <link rel="stylesheet" href="/styles/main.css">
+  <link rel="icon" href="/images/favicon.png">
+</head>
+<body id="{{ pageId | escape }}">
+  <header class="header-content">
+    {% include "partials/navigation.liquid" %}
+  </header>
+  <main id="{{ pageId | escape }}-main" class="main-content">
+    {{ content }}
+  </main>
+  {% include "partials/footer.liquid" %}
+</body>
+</html>
