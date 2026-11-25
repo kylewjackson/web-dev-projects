@@ -56,10 +56,17 @@ candidate=$(node tooling/compose-preview.mjs) &&
 preview_dir=$(mktemp -d) &&
 cp ../netlify.toml "$preview_dir/" &&
 mv "$candidate" "$preview_dir/served" &&
-(cd "$preview_dir" && netlify dev --offline --framework '#static' --dir served --no-open)
+printf '%s\n' "$preview_dir/served" &&
+(cd "$preview_dir" && netlify dev --offline --framework '#static' --dir served --no-open --port 8888)
 ```
 
-Use this preview to verify routing and existing assets. The sibling files come from the committed snapshot. The roadmap describes the separate root rebuild rehearsal and the requirements for cutover.
+In a second terminal, set `publish_dir` to the printed directory and run the HTTP checker from `portfolio/`.
+
+```sh
+node tooling/check-preview.mjs --url http://localhost:8888 --publish-dir "$publish_dir"
+```
+
+The checker compares served bytes and MIME types with the expected artifact and checks redirects, SPA fallbacks, and missing paths. Pass `--case-sensitive` on a case-sensitive filesystem or host to check wrong-case requests. Use the browser suites for client-side navigation and fragment behavior. The sibling files in the local composed preview come from the committed snapshot. The roadmap describes the separate root rebuild rehearsal and the requirements for cutover.
 
 ### Verify production isolation
 

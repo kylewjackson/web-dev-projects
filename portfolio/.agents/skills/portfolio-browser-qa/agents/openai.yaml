@@ -1,3 +1,3 @@
 interface:
   display_name: "Portfolio Browser QA"
-  short_description: "Verify portfolio interactions and accessibility"
+  short_description: "Verify portfolio browser behavior and publish previews"
