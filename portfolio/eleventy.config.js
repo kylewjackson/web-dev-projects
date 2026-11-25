@@ -24,6 +24,7 @@ module.exports = function (eleventyConfig) {
     "public/images": "images",
     "public/resume.pdf": "resume.pdf",
     "src/scripts/work.js": "scripts/work.js",
+    "src/scripts/reveal.js": "scripts/reveal.js",
   });
 
   return {

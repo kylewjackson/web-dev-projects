@@ -1,0 +1,18 @@
+---
+layout: layouts/base.liquid
+permalink: /projects.html
+pageId: projects
+bodyId: all-projects
+title: Kyle Jackson - Front End Projects | kylejackson.dev
+socialTitle: Kyle Jackson - Front End Projects
+description: Hi, I'm Kyle Jackson, a Front End Web Developer based in the Dallas-Fort Worth area. These are my personal and freelance projects.
+canonical: https://www.kylejackson.dev/projects
+---
+<section id="projects" class="content">
+  <h1 id="projects-heading" class="content-heading" data-reveal>All Projects</h1>
+  <img src="/images/icons/gear-icon.svg" alt="" id="gear-icon" class="icon" data-reveal>
+  {% for project in projects %}
+    {% render "partials/project-card.liquid", project: project, cardHeading: "h2" %}
+  {% endfor %}
+</section>
+<script type="module" src="/scripts/reveal.js"></script>

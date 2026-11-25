@@ -1,0 +1,131 @@
+@use "../../../sass/abstracts/variables" as *;
+
+#index {
+  .nav-link:first-child {
+    visibility: visible;
+  }
+
+  .home-button[aria-current="page"] img {
+    border-bottom: 2px solid $color-blue;
+    padding-bottom: 2px;
+  }
+
+  // Keep the original tile backgrounds and select readable foregrounds.
+  #tools {
+    #html-box, #css-box, #js-box, #react-box, #scss-box, #git-box,
+    #sfcc-box, #storybook-box, #bitbucket-box, #kanban-box, #ab-box, #ga-box {
+      color: #111;
+    }
+
+    #jira-box, #qm-box, #mt-box {
+      color: #fff;
+    }
+
+    #typescript-box {
+      color: #000;
+    }
+  }
+}
+
+:is(#index, #all-projects) {
+  .main-content:focus-visible :is(#intro-heading, #projects-heading:first-child) {
+    text-decoration: underline;
+    text-underline-offset: 0.19em;
+  }
+
+  .thumbnail-link {
+    align-self: center;
+    border-radius: 0.125rem;
+  }
+
+  .thumbnail-preview {
+    display: block;
+    pointer-events: none;
+  }
+
+  .project-title {
+    // Preserve the previous title spacing after correcting the heading levels.
+    margin-block: 1.33em;
+  }
+
+  .project-link-container {
+    flex-wrap: wrap;
+    gap: 0.125rem;
+  }
+
+  #projects :is(.source-link, .live-preview-link) {
+    display: inline-flex;
+    align-items: center;
+    min-height: 24px;
+    padding-inline: 0.25em;
+    border-radius: 0.125rem;
+
+    &:is(:hover, :focus-visible, :active) {
+      width: auto;
+      margin-bottom: 0;
+      background: var(--project-link-accent);
+      color: $color-black;
+    }
+  }
+
+  .source-link {
+    --project-link-accent: #{$color-pink};
+  }
+
+  .live-preview-link {
+    --project-link-accent: #{$color-blue};
+  }
+}
+
+// Enhance visible content on entry. Text stays at full contrast throughout.
+@media (prefers-reduced-motion: no-preference) {
+  html:has(:is(#index, #all-projects)) {
+    scroll-behavior: smooth;
+  }
+
+  :is(#index, #all-projects) {
+    .reveal-in:not(:focus-within) {
+      animation: portfolio-rise 500ms ease-out;
+    }
+
+    .reveal-in:not(:focus-within) :is(.thumbnail-preview, .icon),
+    :is(.icon, #intro-icons).reveal-in {
+      animation: portfolio-art-fade 500ms ease-out;
+    }
+
+    .navbar a {
+      transition: color 180ms;
+    }
+
+    #projects :is(.source-link, .live-preview-link) {
+      text-underline-offset: 0.05em;
+      transition: text-underline-offset 180ms;
+
+      &:is(:hover, :focus-visible, :active) {
+        text-underline-offset: 0.15em;
+      }
+    }
+
+    .thumbnail-preview {
+      transition: scale 180ms ease-out;
+    }
+
+    .thumbnail-link:focus-visible .thumbnail-preview {
+      scale: 1.025;
+    }
+
+    @media (hover: hover) {
+      .thumbnail-link:hover .thumbnail-preview {
+        scale: 1.025;
+      }
+    }
+  }
+}
+
+@keyframes portfolio-rise {
+  from { translate: 0 0.75rem; }
+}
+
+@keyframes portfolio-art-fade {
+  from { opacity: 0.65; }
+}

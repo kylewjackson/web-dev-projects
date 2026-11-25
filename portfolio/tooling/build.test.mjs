@@ -5,9 +5,11 @@ import { tmpdir } from "node:os";
 import { join } from "node:path";
 import { fileURLToPath } from "node:url";
 import test from "node:test";
+import { runInNewContext } from "node:vm";
 
 const dist = new URL("../dist/", import.meta.url);
 const snapshot = new URL("../public/", import.meta.url);
+const legacyScript = await readFile(new URL("../scripts/script.js", import.meta.url), "utf8");
 
 const stripComments = (html) => html.replace(/<!--[^]*?-->/g, "");
 const readableText = (html) => html
@@ -19,10 +21,80 @@ const readableText = (html) => html
   .trim();
 
 test("the build emits only the expected top-level output", async () => {
-  assert.deepEqual((await readdir(dist)).sort(), ["images", "resume.pdf", "scripts", "styles", "work.html"]);
-  assert.deepEqual(await readdir(new URL("scripts/", dist)), ["work.js"]);
-  assert.deepEqual(await readFile(new URL("scripts/work.js", dist)), await readFile(new URL("../src/scripts/work.js", import.meta.url)));
+  assert.deepEqual((await readdir(dist)).sort(), ["images", "index.html", "projects.html", "resume.pdf", "scripts", "styles", "work.html"]);
+  assert.deepEqual((await readdir(new URL("scripts/", dist))).sort(), ["reveal.js", "work.js"]);
+  for (const script of ["scripts/reveal.js", "scripts/work.js"]) {
+    assert.deepEqual(await readFile(new URL(script, dist)), await readFile(new URL("../src/" + script, import.meta.url)));
+  }
   assert.deepEqual(await readdir(new URL("styles/", dist)), ["main.css"]);
+});
+
+test("Home and Projects render the production catalog with its original selections and destinations", async () => {
+  const legacyCatalog = runInNewContext("(" + legacyScript.match(/const projects = (\{[^]*?\n\});/)[1] + ")");
+  const original = Object.values(legacyCatalog);
+  const featured = [...legacyScript.matchAll(/addProject\(\s*projects\["([^"]+)"\]\.abbr/g)]
+    .map(([, key]) => legacyCatalog[key].abbr);
+  const stylesheet = await readFile(new URL("styles/main.css", dist), "utf8");
+  const allProjects = await readFile(new URL("projects.html", dist), "utf8");
+  const home = await readFile(new URL("index.html", dist), "utf8");
+  const cards = (html) => [...html.matchAll(/<article id="([^"]+)-container" class="project-container"[^>]*>([^]*?)<\/article>/g)];
+
+  assert.equal(original.length, 10);
+  assert.equal(featured.length, 4);
+  assert.deepEqual(cards(allProjects).map(([, id]) => id), original.map(({ abbr }) => abbr));
+  assert.deepEqual(cards(home).map(([, id]) => id), featured);
+
+  for (const [page, html, level] of [["Home", home, 3], ["Projects", allProjects, 2]]) {
+    const ids = [...html.matchAll(/\bid="([^"]+)"/g)].map(([, id]) => id);
+    assert.equal(new Set(ids).size, ids.length, page);
+    assert.equal(html.match(/<h1[ >]/g).length, 1, page);
+    assert.doesNotMatch(html, /<noscript|onclick=|href="javascript:/i);
+    assert.deepEqual(html.match(/<script\b[^>]*>/g), ['<script type="module" src="/scripts/reveal.js">']);
+    assert.match(html, /aria-label="Primary"/);
+    assert.match(html, /href="\/work">Work<\/a>/);
+
+    for (const [, id, card] of cards(html)) {
+      const project = original.find(({ abbr }) => abbr === id);
+      const tag = `h${level}`;
+      const title = card.match(new RegExp(`<${tag} id="${id}-title"[^>]*>([^]*?)</${tag}>`))[1];
+      assert.equal(readableText(title), project.title, id);
+      assert.ok(card.includes(`>${project.description}</p>`), id);
+      assert.ok(card.includes(`>${project.tools}</p>`), id);
+      const destinations = [...card.matchAll(/<a href="([^"]+)"[^>]* aria-label="([^"]+)"/g)];
+      assert.deepEqual(destinations.map(([, href]) => href), [project.thumb, project.source, project.live], id);
+      assert.ok(destinations.every(([, , label]) => readableText(label).includes(project.title)), id);
+    }
+  }
+
+  const legacyCss = await readFile(new URL("styles/main.css", snapshot), "utf8");
+  const thumbnailPaths = (css, id) => [...css.matchAll(new RegExp(
+    `#${id}-thumbnail-preview\\{[^}]*background-image:url\\(["']?\\.\\./(images/thumbnails/[^"')]+)`,
+    "g",
+  ))].map(([, path]) => path);
+  for (const { abbr } of original) {
+    const paths = thumbnailPaths(legacyCss, abbr);
+    assert.equal(paths.length, 4, abbr);
+    assert.deepEqual(thumbnailPaths(stylesheet, abbr), paths, abbr);
+    for (const path of paths) {
+      assert.deepEqual(await readFile(new URL(path, dist)), await readFile(new URL(path, snapshot)), path);
+    }
+  }
+});
+
+test("Home preserves the visible production hero, introduction and skills", async () => {
+  const home = await readFile(new URL("index.html", dist), "utf8");
+  const original = stripComments(await readFile(new URL("index.html", snapshot), "utf8")).split("<body")[1];
+  const landing = (page) => page.match(/<div id="header-container"[^>]*>([^]*?)<\/div>/)[1];
+  const intro = (page) => page.match(/<section id="intro"[^>]*>([^]*?)<\/section>/)[1];
+  assert.equal(readableText(landing(home)), readableText(landing(original)));
+  assert.equal(readableText(intro(home)), readableText(intro(original)));
+  const { additional, ...groups } = runInNewContext("(" + legacyScript.match(/const tools = (\{[^]*?\n\});/)[1] + ")");
+  const skills = Object.values(groups).flatMap((group) => Object.values(group));
+  assert.deepEqual(
+    [...home.matchAll(/<span id="([^"]+)-name" class="tool-name">([^<]+)<\/span>/g)]
+      .map(([, id, name]) => [id, readableText(name)]),
+    skills.map(({ abbr, name }) => [abbr, name]),
+  );
 });
 
 test("Work preserves production copy, section order, and contents links in static HTML", async () => {

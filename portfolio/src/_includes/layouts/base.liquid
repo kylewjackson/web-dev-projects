@@ -15,10 +15,11 @@
   <link rel="stylesheet" href="/styles/main.css">
   <link rel="icon" href="/images/favicon.png">
 </head>
-<body id="{{ pageId | escape }}">
+<body id="{{ bodyId | default: pageId | escape }}">
   <a class="skip-link" href="#{{ pageId | escape }}-main">Skip to main content</a>
   <header class="header-content">
     {% include "partials/navigation.liquid" %}
+    {% if headerPartial %}{% include headerPartial %}{% endif %}
   </header>
   <main id="{{ pageId | escape }}-main" class="main-content" tabindex="-1">
     {{ content }}

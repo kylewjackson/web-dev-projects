@@ -1,0 +1,15 @@
+{% assign id = project.id %}
+<article id="{{ id }}-container" class="project-container" data-reveal>
+  <a href="{{ project.thumbnail.url | escape }}" target="_blank" rel="noopener" id="{{ id }}-thumbnail" class="thumbnail-link" aria-label="{{ project.title | escape }} {% if project.thumbnail.type == 'repository' %}repository{% elsif project.thumbnail.type == 'case-study' %}case studies{% else %}preview{% endif %}">
+    <span id="{{ id }}-thumbnail-preview" class="thumbnail-preview" aria-hidden="true"></span>
+  </a>
+  <div id="{{ id }}-description-container" class="project-description-container">
+    <{{ cardHeading }} id="{{ id }}-title" class="project-title">{{ project.title | escape }}</{{ cardHeading }}>
+    <p id="{{ id }}-description" class="project-description">{{ project.descriptionHtml }}</p>
+    <p id="{{ id }}-tools" class="project-tools">{{ project.tools | escape }}</p>
+    <div id="{{ id }}-link-container" class="project-link-container">
+      <a href="{{ project.source.url | escape }}" target="_blank" rel="noopener" id="{{ id }}-source-link" class="source-link" aria-label="Source for {{ project.title | escape }}">Source</a>
+      <a href="{{ project.live.url | escape }}" target="_blank" rel="noopener" id="{{ id }}-live-preview-link" class="live-preview-link" aria-label="Live {{ project.live.type | replace: '-', ' ' }} for {{ project.title | escape }}">Live</a>
+    </div>
+  </div>
+</article>

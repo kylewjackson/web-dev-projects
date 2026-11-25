@@ -1,5 +1,6 @@
 // Keep the transitional legacy stylesheet reproducible.
 @use "../../sass/main";
 @use "../_includes/styles/layout";
+@use "../_includes/styles/home-projects";
 @use "../_includes/styles/work";
 @use "../_includes/styles/work-viewer";

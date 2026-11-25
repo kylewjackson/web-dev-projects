@@ -1,0 +1,147 @@
+[
+  {
+    "id": "code",
+    "heading": "Code Languages",
+    "tiles": [
+      {
+        "abbr": "html",
+        "name": "HTML5",
+        "symbol": "5"
+      },
+      {
+        "abbr": "css",
+        "name": "CSS3",
+        "symbol": "3"
+      },
+      {
+        "abbr": "js",
+        "name": "JavaScript",
+        "symbol": "JS"
+      },
+      {
+        "abbr": "typescript",
+        "name": "TypeScript",
+        "symbol": "TS"
+      }
+    ]
+  },
+  {
+    "id": "frameworks",
+    "heading": "Frameworks & Tools",
+    "tiles": [
+      {
+        "abbr": "react",
+        "name": "React",
+        "symbol": "R"
+      },
+      {
+        "abbr": "scss",
+        "name": "SCSS",
+        "symbol": "S"
+      },
+      {
+        "abbr": "bootstrap",
+        "name": "Bootstrap 5",
+        "symbol": "Bs"
+      },
+      {
+        "abbr": "sfcc",
+        "name": "SalesForce",
+        "symbol": "SF"
+      },
+      {
+        "abbr": "storybook",
+        "name": "Storybook",
+        "symbol": "Sb"
+      },
+      {
+        "abbr": "jquery",
+        "name": "jQuery",
+        "symbol": "jQ"
+      }
+    ]
+  },
+  {
+    "id": "editing-vc",
+    "heading": "Version Control & Workflow",
+    "tiles": [
+      {
+        "abbr": "git",
+        "name": "Git",
+        "symbol": "G"
+      },
+      {
+        "abbr": "github",
+        "name": "GitHub",
+        "symbol": "GH"
+      },
+      {
+        "abbr": "bitbucket",
+        "name": "Bitbucket",
+        "symbol": "Bb"
+      },
+      {
+        "abbr": "agile",
+        "name": "Agile",
+        "symbol": "Ag"
+      },
+      {
+        "abbr": "scrum",
+        "name": "Scrum",
+        "symbol": "Sc"
+      },
+      {
+        "abbr": "kanban",
+        "name": "Kanban",
+        "symbol": "Kb"
+      },
+      {
+        "abbr": "jira",
+        "name": "Jira",
+        "symbol": "Ji"
+      }
+    ]
+  },
+  {
+    "id": "design",
+    "heading": "Design & Prototyping",
+    "tiles": [
+      {
+        "abbr": "figma",
+        "name": "Figma",
+        "symbol": "F"
+      },
+      {
+        "abbr": "photoshop",
+        "name": "Photoshop",
+        "symbol": "Ps"
+      }
+    ]
+  },
+  {
+    "id": "testing",
+    "heading": "Testing & Analytics",
+    "tiles": [
+      {
+        "abbr": "ab",
+        "name": "A/B Testing",
+        "symbol": "AB"
+      },
+      {
+        "abbr": "ga",
+        "name": "Google Analytics",
+        "symbol": "GA"
+      },
+      {
+        "abbr": "qm",
+        "name": "Quantum Metric",
+        "symbol": "QM"
+      },
+      {
+        "abbr": "mt",
+        "name": "Monetate",
+        "symbol": "Mt"
+      }
+    ]
+  }
+]
