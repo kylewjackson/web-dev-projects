@@ -8,13 +8,13 @@ The approved architecture is Eleventy, Liquid, Dart Sass, and optional native Ja
 | 1. Build and source architecture | Approved | Locked install, isolated build, Work proof, Sass and Liquid reload, production snapshot intact |
 | 2. Static content and enhancement | Work, Home, and Projects accepted. About migrated. | All four pages render as static HTML with optional enhancements. |
 | 3. Accessibility | Migration checks complete | Keyboard, contrast, motion, and reflow checked. Release-wide browser, physical-device, and screen reader review remain. |
-| 4. Visual design and UX | Pending | Preserve the design identity and give selected professional work priority, with résumé and contact secondary. |
+| 4. Visual design and UX | Expressive Editorial concept ready for approval | Approve the Home title sequence, shared visual system, and Work editorial treatment before implementation. |
 | 5. Performance | Pending | Reduce eager image bytes, reserve media space, and keep original asset URLs valid. |
 | 6. SEO and metadata | Pending | Validate canonical URLs, sitemap, social metadata, and true 404 status. Remove Universal Analytics. |
 | 7. Deployment integration | Local preview verified. Separate approval for integration. | Stage allowlisted modern, sibling, and archive files in a dedicated publish directory. |
 | 8. Final QA | Pending | Check the composed preview across supported browsers and devices and verify public URLs, fragments, and sibling routes. |
 
-Featured cases, current role and availability copy, and any new published evidence need editorial confirmation before Phase 4. Replacement analytics and archive indexing remain deferred.
+Featured cases, current role and availability copy, and any new published evidence need editorial confirmation before Phase 4 implementation. Replacement analytics and archive indexing remain deferred.
 
 ## Work migration
 
@@ -65,11 +65,9 @@ The original page faded in Work content and footer sections after script load, i
 
 ## Design and editorial backlog
 
-- Revisit Work’s résumé link styling and placement, refine the screenshot viewer interface, and improve case-study composition and presentation. Review reading measure, typography, spacing, visual hierarchy, and component styling during the evolutionary redesign.
-- Revisit Home’s composition and how it leads readers to selected professional work. Review featured projects and the role, location, and freelance availability statements before publishing editorial updates.
-- Reduced or altered Home transitions have made some above-the-fold content feel awkward. Review entrance sequencing, initial states, timing, and fluidity during the design phase.
-- Refine inconsistent alignment in Projects during the design phase.
-- Treat motion as part of the design system across pages, including shared timing, entry behavior, and reduced-motion equivalents.
+- The preferred Expressive Editorial direction has a four-page concept, a replayable Home entrance, and an interactive Storybook viewer. The [local review](.baseline/visual-discovery/hybrid/review.html) and its evidence are ignored. Chromium covered the four standard viewports, and Firefox checked desktop and phone reflow, replay, and the viewer keyboard path. Safari, physical-device, and screen-reader review remain open.
+- Approve Home’s opening proportions, name and portrait scale, entrance timing and replay policy, and the proposed Playfair and system sans pairing. Confirm the warm paper and charcoal fields, pink and cyan roles, and original orange hover accent. Confirm featured cases, role, location, and freelance availability before publishing revised copy.
+- Approve Work’s reading measure, contribution and outcome wording, evidence figures, and résumé and contact placement. Retain fragment navigation, original-image links, and focus restoration when refining the viewer. Review mobile project stacking and alignment in the catalog.
 - Evaluate Projects categories and the relative prominence of professional work, demos, coursework, and archives. Review the chronological implication of “Recent Projects” against the existing selection. React Product Page’s thumbnail goes to a different GitHub repository from Source and its Live link goes to the demo. Bootcamp uses Live for a certificate, and Retro repeats the same repository for all three links. Work Portfolio’s Source points to the legacy production HTML. The old no-script pages had different entries, placeholder links, and older role and skill copy. The migration uses the active production catalog and Home copy.
 - Confirm About’s location, profile and credential URLs, the two existing LinkedIn destinations, tool version labels such as Bootstrap, Photoshop, and Google Analytics, and whether StackShare and the art profile still belong. The migration uses the active script’s 26 tools. The older no-script fallback listed a different set.
 

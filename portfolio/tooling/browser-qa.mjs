@@ -22,7 +22,7 @@ export async function launchBrowserQA(script, artifactDirectory) {
       help: { type: "boolean" },
     },
   });
-  const usage = `node tooling/${script} --url <preview origin> [--tool-root <npm prefix>] [--executable <Chromium path>] [--out <artifact directory>]`;
+  const usage = `node tooling/${script} --url <preview URL> [--tool-root <npm prefix>] [--executable <Chromium path>] [--out <artifact directory>]`;
   if (values.help) {
     console.log(usage);
     process.exit(0);
@@ -45,9 +45,26 @@ export async function launchBrowserQA(script, artifactDirectory) {
     throw new Error("Install Playwright and axe-core in a separate npm prefix and pass it with --tool-root.", { cause: error });
   }
 
-  async function capture(page, name) {
+  async function capture(page, name, { fullPage = false } = {}) {
+    if (fullPage) {
+      // Ready offscreen images in the screenshot page without scrolling or triggering reveals.
+      await page.evaluate(async () => {
+        const images = [...document.images].filter((image) =>
+          image.hasAttribute("src") ||
+          image.hasAttribute("srcset") ||
+          image.closest("picture")?.querySelector("source[srcset]"));
+        for (const image of images) image.loading = "eager";
+        await Promise.all(images.map(async (image) => {
+          try {
+            await image.decode();
+          } catch (error) {
+            throw new Error(`Could not decode image ${image.currentSrc || image.src || image.srcset}`, { cause: error });
+          }
+        }));
+      });
+    }
     await page.evaluate(() => document.fonts.ready);
-    await page.screenshot({ path: join(output, `${name}.png`), animations: "disabled" });
+    await page.screenshot({ path: join(output, `${name}.png`), animations: "disabled", fullPage });
   }
 
   async function scan(page, name) {

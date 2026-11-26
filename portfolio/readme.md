@@ -40,6 +40,14 @@ node tooling/check-work-browser.mjs --url http://localhost:8080 --tool-root "$br
 
 Use `--executable` to launch an installed Chromium browser and `--out` to choose a different evidence directory. See the [browser QA skill](.agents/skills/portfolio-browser-qa/SKILL.md) for the manual review.
 
+For a full-page visual review, capture all four pages at the same viewport sizes:
+
+```sh
+node tooling/capture-portfolio-browser.mjs --url http://localhost:8080 --tool-root "$browser_tools"
+```
+
+The command also accepts a preview directory URL that serves the four flat HTML files, such as an isolated concept. Captures use reduced motion, wait for fonts and lazy images, and default to `.baseline/portfolio-captures/`.
+
 ## Build inputs and legacy verification
 
 `src/` owns the four page templates, shared layout and partials, data, modern Sass, and optional browser modules. Home and Projects use the project-card partial and `src/_data/projects.json`. Home and About use the skill-tile partial and `src/_data/skills.json`. Work metadata lives in `src/_data/workStudies.json` and case-study bodies in `src/_includes/case-studies/`. Eleventy layers modern styles over the one shared `sass/` tree and copies `public/images/`, `public/resume.pdf`, and `public/resume-old.pdf` to their original URLs. Keep those single sources and treat `public/` as a read-only production snapshot. The regression tests also read the production HTML and the catalog in `scripts/script.js`.
